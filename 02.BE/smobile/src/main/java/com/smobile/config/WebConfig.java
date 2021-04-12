@@ -1,4 +1,4 @@
-package com.smobile;
+package com.smobile.config;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,5 +16,4 @@ public class WebConfig implements WebMvcConfigurer {
 				.addResourceLocations("classpath:/static/", "file:/opt/smobile/")
 				.setCacheControl(CacheControl.maxAge(10, TimeUnit.DAYS).cachePublic());
 	}
-		
 }
