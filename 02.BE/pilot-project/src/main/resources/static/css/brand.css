@@ -1,0 +1,28 @@
+.navbar {
+	display: flex;
+	justify-content: space-between;
+}
+
+.left {
+	display: flex;
+}
+
+.logo {
+	color: #fff;
+	font-size: 18px;
+	font-weight: 600;
+}
+.search-result {
+	display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+.message-search {
+	line-height: 70px;
+    height: 50px;
+}
+.no, .brand-name, .description {
+	text-align: center;
+	line-height: 50px;
+	height: 30px
+}
