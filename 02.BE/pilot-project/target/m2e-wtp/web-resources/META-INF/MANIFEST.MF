@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: pilot-project-test
+Implementation-Version: 1.0.0
+Built-By: ADMIN
+Implementation-Vendor-Id: com.training.test
+Build-Jdk: 1.8.0_261
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/pilot-project
+Created-By: Maven Integration for Eclipse
+

@@ -1,0 +1,84 @@
+header {
+	background: #4a90e2;
+	height: 50px;
+	margin-bottom: 15px;
+}
+header .main-logo {
+	font-size: 30px;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-top: 2px;
+}
+header .nav-link {
+	background-color: #fff;
+    margin-left: 8px;
+    margin-top: 4px;
+    width: 100px;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 3px;
+    border: 1px solid;
+}
+header .nav-link {
+	color: #333;
+}
+header .nav-link.active {
+	background-color: black;
+	color: #fff;
+}
+
+.sub-header {
+	border: 1px solid #333;
+    border-radius: 5px;
+    height: 46px;
+    padding: 3px 3px;
+    background: #e9ecef;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.sub-header .sub-title {
+	font-weight: 900;
+    color: #333;
+    padding-left: 20px;
+    font-size: 20px;
+    padding-top: 3px;
+}
+
+.action-btns {
+	text-align: center;
+	color: #4a90e2;
+}
+
+.modal-content .modal-header {
+	padding: 0.5rem 1rem;
+    background: #e9ecef;
+}
+.modal-content .modal-body {
+	padding-bottom: 0.5rem; 
+}
+.preview-image-upload {
+	text-align: center;
+	margin-bottom: 5px;
+}
+.preview-image-upload img {
+	max-width: 50%;
+}
+.message-area {
+	padding: 5px 15px;
+}
+div.error-message-invalid, div.error, label.error-message-invalid, label.error {
+    background-color: #f8d7da;
+    position: relative;
+    padding: .375rem .75rem;
+    margin-top: .5rem;
+    border: 1px solid #f5c6cb !important;
+    color: #dc3545 !important;
+    width: 100%;
+    border-radius: .25rem;
+}
+
+.table-bordered img {
+	max-width: 80px;
+	min-height: 100px;
+}
