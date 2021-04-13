@@ -26,7 +26,7 @@ public class PuschaseStatusServiceImpl implements IPurchaseStatusService {
 		String responseMsg = StringUtils.EMPTY;
 		try {
 			if(findByPurchaseStatusName(purStatus.getPurchaseStatusName()) != null) {
-				responseMsg = "Trạng thái đơn hàng đã trùng vui lòng chọn tên khác!";
+				responseMsg = "Trạng thái đơn hàng đã tồn tại vui lòng chọn tên khác!";
 				responseCode = Constants.RESULT_CD_DUPL;
 			} else {
 				purStatusRepository.saveAndFlush(purStatus);
