@@ -29,8 +29,8 @@ public class PuschaseStatusServiceImpl implements IPurchaseStatusService {
 				responseMsg = "Trạng thái đơn hàng đã trùng vui lòng chọn tên khác!";
 				responseCode = Constants.RESULT_CD_DUPL;
 			} else {
-				responseMsg = "Thêm mới trạng thái đơn hàng thành công!";
 				purStatusRepository.saveAndFlush(purStatus);
+				responseMsg = "Thêm mới trạng thái đơn hàng thành công!";
 				responseCode = Constants.RESULT_CD_SUCCESS;
 			}
 		} catch (Exception e) {
@@ -61,9 +61,9 @@ public class PuschaseStatusServiceImpl implements IPurchaseStatusService {
 				responseCode = Constants.RESULT_CD_SUCCESS;
 			}
 		} catch (Exception e) {
-			responseMsg = "Can't update purchse status!";
-			LOGGER.info("Error when update our purchase status");
-			System.out.println("Can't update purchase stauts " + e.getMessage());
+			responseMsg = "Không thể cập nhật trạng thái đơn hàng!";
+			LOGGER.info("Lỗi khi cập nhật đơn hàng");
+			System.out.println("Không thể cập nhật trạng thái đơn hàng: " + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -75,7 +75,21 @@ public class PuschaseStatusServiceImpl implements IPurchaseStatusService {
 
 	@Override
 	public ResponseDataModel deletePurStatusById(Integer pusStatusId) {
-		return null;
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMsg = StringUtils.EMPTY;
+		try {
+			if(findByPurchaseStatusId(pusStatusId) != null) {
+				purStatusRepository.deleteById(pusStatusId);
+				responseCode = Constants.RESULT_CD_SUCCESS;
+				responseMsg = "Xóa trạng thái đơn hàng thành công!";
+			} else {
+				responseMsg = "Xóa trạng thái đơn hàng thất bại!";
+			}
+		} catch (Exception e) {
+			LOGGER.info("Lỗi khi xóa trạng thái đơn hàng!");
+			System.out.println("Không thể xóa trạng thái đơn hàng vì " + e.getMessage());
+		}
+		return new ResponseDataModel(responseCode, responseMsg);
 	}
 
 }

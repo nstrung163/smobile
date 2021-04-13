@@ -108,6 +108,6 @@ public class FileHelper {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(enrcyptMD5("123"));
+		System.out.println(enrcyptMD5("1234"));
 	}
 }
