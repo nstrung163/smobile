@@ -30,6 +30,12 @@ public class ProductController {
 		return productService.findAllProduct();
 	}
 	
+	@GetMapping(value = "/product/{id}")
+	@ResponseBody
+	public ProductEntity findByProductId(@PathVariable(value = "id") Integer id) {
+		return productService.findByProductId(id);
+	}
+	
 	@PostMapping(value = "/product")
 	@ResponseBody
 	public ResponseDataModel addNewProduct(@RequestBody ProductEntity productEntity) {
