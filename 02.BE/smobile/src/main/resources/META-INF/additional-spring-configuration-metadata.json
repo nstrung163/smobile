@@ -13,5 +13,10 @@
     "name": "parent.folder.images.product",
     "type": "java.lang.String",
     "description": "Store image brand with url: images/product/"
+  },
+  {
+    "name": "parent.folder.images.account",
+    "type": "java.lang.String",
+    "description": "Store image accout with url: images/account'"
   }
 ]}

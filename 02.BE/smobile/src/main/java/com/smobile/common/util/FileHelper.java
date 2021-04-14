@@ -32,6 +32,19 @@ public class FileHelper {
 	
 	/**
 	 * 
+	 * Save new file in server storage
+	 * 
+	 * @param parenFolderPath
+	 * @param files
+	 * @param filse
+	 * @throws IOException
+	 */
+	public static String addNewFile(String parentFolderPath, MultipartFile files) throws IOException {
+		return editFile(parentFolderPath, files, null);
+	}
+	
+	/**
+	 * 
 	 * Save new file and remove old file in server storage
 	 * 
 	 * @param parenFolderPath
@@ -63,6 +76,44 @@ public class FileHelper {
 		}
 		
 		byte[] fileInByte = files[0].getBytes();
+		Path path = Paths.get(fullAssetPath);
+		Files.write(path, fileInByte);
+		return assetPath;
+	}
+	
+	/**
+	 * 
+	 * Save new file and remove old file in server storage
+	 * 
+	 * @param parenFolderPath
+	 * @param files
+	 * @param oldFilePath
+	 * @param filse
+	 * @throws IOException
+	 */
+	public static String editFile(String parentFolderPath, MultipartFile files, String oldFilePath ) 
+				throws IOException {
+		String randomStr = new BigInteger(130, new SecureRandom()).toString(32).substring(0, 6);
+		String newFileName = CommonUtil.cvDateToString(new Date(), Constants.DATE_FORMAT_FOR_FILE_NAME) + Constants.COMMON_HYPHEN + randomStr;
+		String rootFolderPath = System.getProperty(Constants.PROP_KEY_ROOT_FOLDER);
+		
+		String originalFileName = files.getOriginalFilename();
+		String fileExtension = originalFileName.substring(originalFileName.lastIndexOf('.'), originalFileName.length());
+		String assetPath = parentFolderPath + newFileName + fileExtension;
+		String fullAssetPath = rootFolderPath + assetPath;
+		
+		/* Create folder to save video or image */
+		File parentFolder = new File(rootFolderPath + parentFolderPath);
+		if (!parentFolder.exists()) {
+			parentFolder.mkdirs();
+		}
+		
+		if (StringUtils.isNotEmpty(oldFilePath)) {
+			/* Remove old file if it existed */
+			deleteFile(rootFolderPath, oldFilePath);
+		}
+		
+		byte[] fileInByte = files.getBytes();
 		Path path = Paths.get(fullAssetPath);
 		Files.write(path, fileInByte);
 		return assetPath;
