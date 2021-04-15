@@ -13,6 +13,6 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
 	
 	ProductEntity findByProductNameAndProductIdNot(String productName, Integer productId);
 	
-	@Query(value = "SELECT P.* FROM PRODUCT AS P JOIN PRODUCT_OPTION AS PO ON P.PRODUCT_ID = PO.PRODUCT_ID WHERE P.PRODUCT_ID = ?1", nativeQuery = true)
-	ProductEntity checkExistesProduct(Integer producId);
+	@Query(value = "SELECT COUNT(P.PRODUCT_ID) FROM PRODUCT AS P WHERE P.PRODUCT_ID = ?1", nativeQuery = true)
+	Integer checkExistesProduct(Integer producId);
 }

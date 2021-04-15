@@ -2,6 +2,7 @@ package com.smobile.entity;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -45,7 +46,7 @@ public class BrandEntity {
 	private MultipartFile[] logoFile;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "brandEntity", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "brandEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<ProductEntity> productSet;
 	
 }

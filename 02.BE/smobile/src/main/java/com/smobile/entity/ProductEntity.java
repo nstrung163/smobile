@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -58,10 +59,10 @@ public class ProductEntity {
 	private ProductInfoEntity productInfoEntity;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "productEntity", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "productEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<ProductImageEntity> productImageSet;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "productEntity", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "productEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<ProductOptionEntity> productList;
 }

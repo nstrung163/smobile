@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.smobile.common.constant.Constants;
-import com.smobile.entity.ProductEntity;
 import com.smobile.entity.ProductOptionEntity;
 import com.smobile.model.ResponseDataModel;
 import com.smobile.repository.IProductOptionRepository;
@@ -41,22 +40,19 @@ public class ProductOptionServiceImpl implements IProductOptionService{
 	public ResponseDataModel addNewProductOption(ProductOptionEntity productOptionEntity) {
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
-		ProductEntity productEntity = productRespository.checkExistesProduct(productOptionEntity.getProductEntity().getProductId());
-//		Map<String, Object> data = new HashMap<String, Object>();
 		try {
-			if(productEntity != null) {
+			Integer productEntity = productRespository.checkExistesProduct(productOptionEntity.getProductEntity().getProductId());
+			if(productEntity != 0) {
 				proOptionRepository.saveAndFlush(productOptionEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Thêm mới lựa chọn sản phẩm thành công!";
-//				data.put("productEntity", productEntity);
-//				data.put("productOption", productOptionEntity);
 				LOGGER.info(responseMsg);
 			} else {
 				responseMsg = "Không tìm thấy sản phẩm!";
 				LOGGER.warn(responseMsg);
 			}
 		} catch (Exception e) {
-			responseMsg = "Thêm mới lựa chọn sản phẩm thất bại!";
+			responseMsg = "Thêm mới tùy chọn sản phẩm thất bại!";
 			LOGGER.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
