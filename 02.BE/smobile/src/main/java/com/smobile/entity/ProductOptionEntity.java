@@ -9,34 +9,34 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "PRODUCT_IMAGE")
+@Table(name = "PRODUCT_OPTION")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductImageEntity {
+public class ProductOptionEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "PRODUCT_IMAGE_ID", columnDefinition = "bigint")
-	private Integer productImageId;
+	@Column(name = "PRODUCT_OPTION_ID", columnDefinition = "bigint")
+	private Integer productOptionId;
 	
-	@Column(name = "IMAGE_URL", columnDefinition = "text", nullable = false)
-	private String imageUrl;
+	@Column(name = "COLOR_PRODUCT_NAME", columnDefinition = "nvarchar(50)", nullable = false)
+	private String colorProductName;
 	
-	@Transient
-	private MultipartFile[] imagesFile;
+	@Column(name = "MEMORY_PRODUCT", columnDefinition = "int", nullable = false)
+	private int memoryProduct;
 	
-	@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")
+	@Column(name = "SALE_PRICE", columnDefinition = "double", nullable =  false)
+	private double salePrice;
+	
+	@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID", nullable = false)
 	@ManyToOne(fetch = FetchType.EAGER)
 	private ProductEntity productEntity;
-
+	
 }

@@ -8,5 +8,4 @@ public interface IProductImageRepository extends JpaRepository<ProductImageEntit
 
 	ProductImageEntity findByProductImageId(Integer productImageId);
 	
-	
 }

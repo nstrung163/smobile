@@ -1,6 +1,7 @@
 package com.smobile.entity;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -53,11 +54,14 @@ public class ProductEntity {
 	private BrandEntity brandEntity;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy = "productEntityInfo", fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "productEntityInfo", fetch = FetchType.EAGER)
 	private ProductInfoEntity productInfoEntity;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "productEntity", fetch = FetchType.LAZY)
 	private Set<ProductImageEntity> productImageSet;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "productEntity", fetch = FetchType.LAZY)
+	private List<ProductOptionEntity> productList;
 }
