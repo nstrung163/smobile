@@ -16,22 +16,28 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "PURCHASE_STATUS")
+@Table(name = "OPTION_SHIPPING")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PurchaseStatusEntity {
+public class OptionShipping {
 
 	@Id
-	@Column(name = "PURCHASE_STATUS_ID", columnDefinition = "bigint")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer purchaseStatusId;
-
-	@Column(name = "PURCHASE_STATUS_NAME", nullable = false, columnDefinition = "nvarchar(50)")
-	private String purchaseStatusName;
+	@Column(name = "OPTION_SHIPPING_ID", columnDefinition = "bigint")
+	private Integer optionShippingId;
+	
+	@Column(name = "OPTION_SHIPPING_NAME", columnDefinition = "nvarchar(100)", nullable = false)
+	private String optionShippingName;
+	
+	@Column(name = "OPTION_SHIPPING_FEE", columnDefinition = "double", nullable = false)
+	private double optionShippingFee;
+	
+	@Column(name = "DESCRIPTION", columnDefinition = "text", nullable = false)
+	private String description;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy = "purchaseStatusEntity", fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "optionShippingEntity", fetch = FetchType.LAZY)
 	private PurchaseEntity purchaseEntity;
-
+	
 }

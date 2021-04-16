@@ -91,7 +91,7 @@ public class FileHelper {
 	 * @param filse
 	 * @throws IOException
 	 */
-	public static String editFile(String parentFolderPath, MultipartFile files, String oldFilePath ) 
+	public static String editFile(String parentFolderPath, MultipartFile files, String oldFilePath) 
 				throws IOException {
 		String randomStr = new BigInteger(130, new SecureRandom()).toString(32).substring(0, 6);
 		String newFileName = CommonUtil.cvDateToString(new Date(), Constants.DATE_FORMAT_FOR_FILE_NAME) + Constants.COMMON_HYPHEN + randomStr;

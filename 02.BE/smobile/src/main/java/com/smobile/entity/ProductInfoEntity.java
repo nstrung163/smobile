@@ -58,6 +58,6 @@ public class ProductInfoEntity {
 	
 	@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")
 	@OneToOne(fetch = FetchType.EAGER)
-	private ProductEntity productEntityInfo;
+	private ProductEntity productEntity;
 	
 }

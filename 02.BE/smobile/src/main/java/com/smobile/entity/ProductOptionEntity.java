@@ -1,5 +1,7 @@
 package com.smobile.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,7 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,9 +39,12 @@ public class ProductOptionEntity {
 	
 	@Column(name = "SALE_PRICE", columnDefinition = "double", nullable =  false)
 	private double salePrice;
-	
+
 	@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID", nullable = false)
 	@ManyToOne(fetch = FetchType.EAGER)
 	private ProductEntity productEntity;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "productOptionEntity", fetch = FetchType.LAZY)
+	private List<PurchaseDetail> purchaseDetailList;
 }

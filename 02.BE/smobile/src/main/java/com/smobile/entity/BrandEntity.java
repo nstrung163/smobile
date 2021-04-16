@@ -16,6 +16,7 @@ import javax.persistence.Transient;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,6 +46,7 @@ public class BrandEntity {
 	@Transient
 	private MultipartFile[] logoFile;
 	
+	@JsonIgnoreProperties("brandEntity")
 	@JsonIgnore
 	@OneToMany(mappedBy = "brandEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<ProductEntity> productSet;

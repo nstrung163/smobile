@@ -41,11 +41,11 @@ public class ProductInfoServiceImpl implements IProductInfoService{
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
 		try {
-			if(productRepository.findByProductId(productInfoEntity.getProductEntityInfo().getProductId()) ==null) {
+			if(productRepository.findByProductId(productInfoEntity.getProductEntity().getProductId()) ==null) {
 				responseMsg = "Không tìm sản phẩm cần thêm thông tin chi tiết!";
 				LOGGER.warn(responseMsg);
 			} else {
- 				if(productInfoRepository.findByProductId(productInfoEntity.getProductEntityInfo().getProductId()) != null) {
+ 				if(productInfoRepository.findByProductId(productInfoEntity.getProductEntity().getProductId()) != null) {
 					responseCode = Constants.RESULT_CD_DUPL;
 					responseMsg = "Sản phẩm đã được thêm thông tin chi tiết!";
 					LOGGER.warn(responseMsg);
@@ -68,7 +68,7 @@ public class ProductInfoServiceImpl implements IProductInfoService{
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
 		try {
-			if(productInfoRepository.findByProductId(productInfoEntity.getProductEntityInfo().getProductId()) == null) {
+			if(productInfoRepository.findByProductId(productInfoEntity.getProductEntity().getProductId()) == null) {
 				responseCode = Constants.RESULT_CD_DUPL;
 				responseMsg = "Không tìm thất sản phẩm!";
 				LOGGER.warn(responseMsg);

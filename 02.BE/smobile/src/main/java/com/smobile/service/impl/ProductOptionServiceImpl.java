@@ -1,6 +1,8 @@
 package com.smobile.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.smobile.common.constant.Constants;
+import com.smobile.entity.ProductEntity;
 import com.smobile.entity.ProductOptionEntity;
 import com.smobile.model.ResponseDataModel;
 import com.smobile.repository.IProductOptionRepository;
@@ -40,12 +43,14 @@ public class ProductOptionServiceImpl implements IProductOptionService{
 	public ResponseDataModel addNewProductOption(ProductOptionEntity productOptionEntity) {
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
+		Map<String, Object> data = new HashMap<String, Object>();
 		try {
-			Integer productEntity = productRespository.checkExistesProduct(productOptionEntity.getProductEntity().getProductId());
-			if(productEntity != 0) {
+			ProductEntity productEntity = productRespository.checkExistesProductTest(productOptionEntity.getProductEntity().getProductId());
+			if(productEntity != null) {
 				proOptionRepository.saveAndFlush(productOptionEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Thêm mới lựa chọn sản phẩm thành công!";
+				data.put("productEntity", productEntity);
 				LOGGER.info(responseMsg);
 			} else {
 				responseMsg = "Không tìm thấy sản phẩm!";
@@ -55,7 +60,7 @@ public class ProductOptionServiceImpl implements IProductOptionService{
 			responseMsg = "Thêm mới tùy chọn sản phẩm thất bại!";
 			LOGGER.error(responseMsg + e.getMessage());
 		}
-		return new ResponseDataModel(responseCode, responseMsg);
+		return new ResponseDataModel(responseCode, responseMsg, data);
 	}
 
 	@Override
@@ -63,10 +68,13 @@ public class ProductOptionServiceImpl implements IProductOptionService{
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
 		try {
-			proOptionRepository.saveAndFlush(productOptionEntity);
-			responseCode = Constants.RESULT_CD_SUCCESS;
-			responseMsg = "Cập nhật thông tin tùy chọn sản phẩm thành công!";
-			LOGGER.info(responseMsg);
+			ProductEntity productEntity = productRespository.checkExistesProductTest(productOptionEntity.getProductEntity().getProductId());
+			if(productEntity != null) {
+				proOptionRepository.saveAndFlush(productOptionEntity);
+				responseCode = Constants.RESULT_CD_SUCCESS;
+				responseMsg = "Cập nhật thông tin tùy chọn sản phẩm thành công!";
+				LOGGER.info(responseMsg);
+			}
 		} catch (Exception e) {
 			responseMsg = "Cập nhật thông tin tùy chọn sản phẩm thất bại!";
 			LOGGER.error(responseMsg + e.getMessage());
