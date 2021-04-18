@@ -1,0 +1,68 @@
+#paging {
+  padding: 0 20px 20px 20px;
+  font-size: 14px;
+  margin: 10px auto;
+  margin-top: 20px;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+#paging a {
+  color: #000;
+  background: #e0e0e0;
+  padding: 10px 14px;
+  margin-right: 5px;
+  text-decoration: none;
+}
+#paging a.aktif {
+  background: #000 !important;
+  color: #fff;
+}
+#paging a:hover {
+  border: 1px solid #000;
+}
+
+.hidden {
+  display: none;
+}
+
+.buy-information {
+	font-size: 1.5rem;
+}
+
+.buy-infor-header {
+	font-size: 1.75rem !important;
+}
+
+.buy-infor-content {
+	font-size: 1.5rem !important;
+}
+
+/* .order-history tfoot  {
+	position: absolute;
+	bottom: 0;	
+}
+
+.user-infor {
+	min-height: 400px;
+	margin-bottom: 55px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+	.user-infor {
+	min-height: 550px;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+	.user-infor {
+	min-height: 650px;
+	}
+}
+
+@media only screen and  (max-width: 767.98px) {
+	.user-infor {
+	min-height: 900px;
+	}
+}
+ */

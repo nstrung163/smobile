@@ -1,0 +1,23 @@
+.pay-category {
+    font-size: 1.5rem;
+    /* border: 1px solid var(--border-color); */
+}
+.pay-category-infor .price {
+    text-align: end;
+    font-size: 1.75rem;
+}
+
+.payments {
+    font-size: 1.75rem;
+}
+
+@media only screen and (max-width: 677.98px) {
+    .pay-category {
+        font-size: 1rem;
+        /* border: 1px solid var(--border-color); */
+    }
+    .pay-category-infor .price {
+        text-align: center;
+        font-size: 1.25rem;
+    }
+} 
