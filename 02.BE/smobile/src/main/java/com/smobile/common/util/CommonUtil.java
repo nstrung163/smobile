@@ -54,6 +54,7 @@ public class CommonUtil {
 		
 		return outputDate;
 	}
+	
 	/**
 	 * Read Properties
 	 * 
