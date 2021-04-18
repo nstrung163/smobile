@@ -1,0 +1,31 @@
+.search-page {
+    font-size: 1.5rem;
+}
+
+.filter {
+    background-color: var(--filter-background);
+    /* border-right: 1px  solid var(--border-color); */
+}
+
+.search-price {
+    color: var(--light-text-color);
+    /* border-right: 1px  solid var(--border-color); */
+}
+
+.search-price-form input {
+    width: 45%;
+}
+.search-price-form a {
+    margin: 5px;
+    border: 1px solid var(--border-color);
+    background-color: var(--background-color);
+    width: auto;
+}
+.search-price-form a:hover {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.search-message p {
+    font-size: 2.5rem;
+}
