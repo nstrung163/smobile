@@ -1,0 +1,59 @@
+/* START BREADCRUMBS */
+* {
+  font-size: 1.4rem;
+}
+main.container {
+  background-color: #fff;
+}
+.breadcrumbs {
+  padding: 10px 0;
+}
+
+.breadcrumbs > ul {
+  display: flex;
+}
+.breadcrumbs > ul > li {
+}
+
+.breadcrumbs > ul > li > a {
+}
+.breadcrumbs > ul > li > i {
+  padding: 0 5px;
+  color: #ccc;
+}
+/* END BREADCRUMBS */
+/* START TOP PRODUCT INFO */
+.top-view {
+  display: flex;
+
+  justify-content: flex-start;
+
+  align-items: center;
+
+  position: relative;
+
+  padding: 13px 0;
+}
+.top-view > h1 {
+  margin-right: 10px;
+
+  font-size: 1.8rem;
+
+  font-weight: 600;
+}
+.top-view > span {
+  position: absolute;
+
+  right: 54%;
+
+  top: 13px;
+}
+
+.top-view > span > i {
+  color: #f5d331;
+}
+
+.top-view > span > a {
+  font-size: 1.2rem;
+}
+/* END TOP PRODUCT INFO */
