@@ -76,5 +76,5 @@ public class ProductEntity {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "productEntity", fetch = FetchType.LAZY)
-	private Set<PurchaseDetail> purchaseDetailSet;
+	private Set<PurchaseDetailEntity> purchaseDetailSet;
 }

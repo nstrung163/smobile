@@ -1,12 +1,21 @@
 package com.smobile.service;
 
+import java.util.List;
+
 import com.smobile.entity.PurchaseStatusEntity;
 import com.smobile.model.ResponseDataModel;
 
 public interface IPurchaseStatusService {
 	
 	/**
-	 * Check duplicate purchase status name when add new Purchase Status
+	 * Find all purchase status
+	 * 
+	 * @return PurchaseStatusEntity
+	 */
+	List<PurchaseStatusEntity> findAllPurchaseStatus();
+	
+	/**
+	 * Find purchase status name
 	 * 
 	 * @param purStatusName
 	 * @return PurchaseStatusEntity

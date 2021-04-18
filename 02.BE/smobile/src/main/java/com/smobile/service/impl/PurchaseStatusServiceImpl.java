@@ -1,10 +1,14 @@
 package com.smobile.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.smobile.common.constant.Constants;
 import com.smobile.entity.PurchaseStatusEntity;
@@ -13,12 +17,25 @@ import com.smobile.repository.IPurchaseStatusRepository;
 import com.smobile.service.IPurchaseStatusService;
 
 @Service
-public class PuschaseStatusServiceImpl implements IPurchaseStatusService {
+public class PurchaseStatusServiceImpl implements IPurchaseStatusService {
 
 	private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	private IPurchaseStatusRepository purStatusRepository;
+
+	@Override
+	public List<PurchaseStatusEntity> findAllPurchaseStatus() {
+		List<PurchaseStatusEntity> purchaseStatusList = new ArrayList<PurchaseStatusEntity>();
+		try {
+			purchaseStatusList = purStatusRepository.findAll();
+			LOGGER.info("Lấy danh sách trạng thái hóa đơn thành công!");
+		} catch (Exception e) {
+			LOGGER.error("Lấy danh sách hóa đơn thất bại!");
+		}
+		return purchaseStatusList;
+	}
+
 	
 	@Override
 	public ResponseDataModel addNewPurStatus(PurchaseStatusEntity purStatus) {
@@ -91,5 +108,6 @@ public class PuschaseStatusServiceImpl implements IPurchaseStatusService {
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
+
 
 }

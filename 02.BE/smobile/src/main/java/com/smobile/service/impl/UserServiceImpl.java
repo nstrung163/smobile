@@ -70,14 +70,14 @@ public class UserServiceImpl implements IUserService {
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
 		try {
-			MultipartFile avateFile = userEntity.getAvataFile();
+			MultipartFile avateFile = userEntity.getAvatarFile();
 			if(avateFile != null && avateFile.getSize() > 0) {
 				if(findByUserName(userEntity.getUserName()) != null) {
 					responseMsg = "Tên người dùng đã tồn tại!";
 					LOGGER.warn(responseMsg);
 				} else {
 					String avataPath = FileHelper.addNewFile(accountFolderPath, avateFile);
-					userEntity.setAvataUrl(avataPath);
+					userEntity.setAvatarUrl(avataPath);
 					userRepository.saveAndFlush(userEntity);
 					responseCode = Constants.RESULT_CD_SUCCESS;
 					responseMsg = "Đăng ký tài khoản thành công!";
@@ -99,11 +99,11 @@ public class UserServiceImpl implements IUserService {
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
 		try {
-			MultipartFile avateFile = userEntity.getAvataFile();
+			MultipartFile avateFile = userEntity.getAvatarFile();
 			if(avateFile != null && avateFile.getSize() > 0) {
 				if(findByUserName(userEntity.getUserName()) != null) {
-					String avataPath = FileHelper.editFile(accountFolderPath, avateFile, userEntity.getAvataUrl());
-					userEntity.setAvataUrl(avataPath);
+					String avataPath = FileHelper.editFile(accountFolderPath, avateFile, userEntity.getAvatarUrl());
+					userEntity.setAvatarUrl(avataPath);
 					userRepository.saveAndFlush(userEntity);
 					responseCode = Constants.RESULT_CD_SUCCESS;
 					responseMsg = "Cập nhật tài khoản thành công!";
@@ -131,7 +131,7 @@ public class UserServiceImpl implements IUserService {
 			UserEntity userEntity = findByUserId(userId);
 			if(userEntity != null) {
 				userRepository.deleteById(userId);
-				FileHelper.deleteFile(userEntity.getAvataUrl());
+				FileHelper.deleteFile(userEntity.getAvatarUrl());
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Xóa tài khoản thành công!";
 				LOGGER.info(responseMsg);

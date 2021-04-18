@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PurchaseDetail {
+public class PurchaseDetailEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

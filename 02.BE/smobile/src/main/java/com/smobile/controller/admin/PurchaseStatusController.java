@@ -1,5 +1,7 @@
 package com.smobile.controller.admin;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,14 +15,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smobile.entity.PurchaseStatusEntity;
 import com.smobile.model.ResponseDataModel;
-import com.smobile.service.impl.PuschaseStatusServiceImpl;
+import com.smobile.service.impl.PurchaseStatusServiceImpl;
 
 @Controller
 @RequestMapping(value = "/v1/api")
 public class PurchaseStatusController {
 
 	@Autowired
-	private PuschaseStatusServiceImpl purChaseStatusService;
+	private PurchaseStatusServiceImpl purChaseStatusService;
+	
+	@GetMapping(value = "/purchase-status-list")
+	@ResponseBody
+	public List<PurchaseStatusEntity> getAllPaymentMethod() {
+		return purChaseStatusService.findAllPurchaseStatus();
+	}
 	
 	@PostMapping(value = "/pruchase-status")
 	@ResponseBody

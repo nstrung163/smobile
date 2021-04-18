@@ -3,6 +3,7 @@ package com.smobile.entity;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,7 +47,7 @@ public class UserEntity {
 	private String phoneNumber;
 
 	@Column(name = "AVATA_URL", columnDefinition = "text", nullable = false)
-	private String avataUrl;
+	private String avatarUrl;
 
 	@Column(name = "EMAIL", columnDefinition = "nvarchar(50)", nullable = true)
 	private String email;
@@ -61,17 +62,17 @@ public class UserEntity {
 	private String roleUser;
 
 	@Transient
-	private MultipartFile avataFile;
+	private MultipartFile avatarFile;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "userEntity", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "userEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<RateProductEntity> rateProductSet;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "userEntity", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "userEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<ProductCommentEntity> productCommentEntitySet;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "userEntity", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "userEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<PurchaseEntity> purchaseEntitySet;
 }

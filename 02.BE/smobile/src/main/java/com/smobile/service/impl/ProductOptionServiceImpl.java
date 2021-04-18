@@ -1,5 +1,6 @@
 package com.smobile.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,16 +28,30 @@ public class ProductOptionServiceImpl implements IProductOptionService{
 	IProductOptionRepository proOptionRepository;
 
 	@Autowired
-	IProductRepository productRespository;
+	IProductRepository productRepository;
 	
 	@Override
 	public List<ProductOptionEntity> findAllProductOption() {
-		return proOptionRepository.findAll();
+		List<ProductOptionEntity> productOptions = new ArrayList<ProductOptionEntity>();
+		try {
+			productOptions = proOptionRepository.findAll();
+			LOGGER.info("Lấy danh sách tùy chọn sản phẩm thành công!");
+		} catch (Exception e) {
+			LOGGER.info("Lấy danh sách tùy chọn sản phẩm thất bại!");
+		}
+		return productOptions;
 	}
 
 	@Override
 	public ProductOptionEntity findByProductOption(Integer productOptionId) {
-		return proOptionRepository.findByProductOptionId(productOptionId);
+		ProductOptionEntity productOptionEntity = new ProductOptionEntity();
+		try {
+			productOptionEntity = proOptionRepository.findByProductOptionId(productOptionId);
+			LOGGER.info("Lấy tùy chọn sản phẩm theo id thành công!");
+		} catch (Exception e) {
+			LOGGER.info("Lấy tùy chọn sản phẩm theo id thất bại");
+		}
+		return productOptionEntity;
 	}
 
 	@Override
@@ -45,7 +60,7 @@ public class ProductOptionServiceImpl implements IProductOptionService{
 		String responseMsg = StringUtils.EMPTY;
 		Map<String, Object> data = new HashMap<String, Object>();
 		try {
-			ProductEntity productEntity = productRespository.checkExistesProductTest(productOptionEntity.getProductEntity().getProductId());
+			ProductEntity productEntity = productRepository.checkExistesProductTest(productOptionEntity.getProductEntity().getProductId());
 			if(productEntity != null) {
 				proOptionRepository.saveAndFlush(productOptionEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
@@ -53,7 +68,7 @@ public class ProductOptionServiceImpl implements IProductOptionService{
 				data.put("productEntity", productEntity);
 				LOGGER.info(responseMsg);
 			} else {
-				responseMsg = "Không tìm thấy sản phẩm!";
+				responseMsg = "Không tìm thấy sản phẩm cần cập nhât!";
 				LOGGER.warn(responseMsg);
 			}
 		} catch (Exception e) {
@@ -68,12 +83,15 @@ public class ProductOptionServiceImpl implements IProductOptionService{
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
 		try {
-			ProductEntity productEntity = productRespository.checkExistesProductTest(productOptionEntity.getProductEntity().getProductId());
+			ProductEntity productEntity = productRepository.checkExistesProductTest(productOptionEntity.getProductEntity().getProductId());
 			if(productEntity != null) {
 				proOptionRepository.saveAndFlush(productOptionEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Cập nhật thông tin tùy chọn sản phẩm thành công!";
 				LOGGER.info(responseMsg);
+			} else {
+				responseMsg = "Không tìm thấy sản phẩm cần cập nhật!";
+				LOGGER.warn(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Cập nhật thông tin tùy chọn sản phẩm thất bại!";
