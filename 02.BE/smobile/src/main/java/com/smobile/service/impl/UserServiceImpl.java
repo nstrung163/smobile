@@ -70,13 +70,13 @@ public class UserServiceImpl implements IUserService {
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
 		try {
-			MultipartFile avateFile = userEntity.getAvatarFile();
-			if(avateFile != null && avateFile.getSize() > 0) {
+			MultipartFile avatarFile = userEntity.getAvatarFile();
+			if(avatarFile != null && avatarFile.getSize() > 0) {
 				if(findByUserName(userEntity.getUserName()) != null) {
 					responseMsg = "Tên người dùng đã tồn tại!";
 					LOGGER.warn(responseMsg);
 				} else {
-					String avataPath = FileHelper.addNewFile(accountFolderPath, avateFile);
+					String avataPath = FileHelper.addNewFile(accountFolderPath, avatarFile);
 					userEntity.setAvatarUrl(avataPath);
 					userRepository.saveAndFlush(userEntity);
 					responseCode = Constants.RESULT_CD_SUCCESS;

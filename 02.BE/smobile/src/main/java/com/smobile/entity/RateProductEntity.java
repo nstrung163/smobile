@@ -10,8 +10,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+
+import lombok.NoArgsConstructor;
+
+import lombok.Data;
+
 @Entity
 @Table(name = "RATE_PRODUCT")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class RateProductEntity {
 
 	@Id

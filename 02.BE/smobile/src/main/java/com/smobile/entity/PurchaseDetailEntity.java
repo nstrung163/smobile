@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,10 +38,12 @@ public class PurchaseDetailEntity {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private PurchaseEntity purchaseEntity;
 	
+	@JsonIgnoreProperties(value = "brandEntity")
 	@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private ProductEntity productEntity;
 	
+	@JsonIgnoreProperties(value = "productEntity")
 	@JoinColumn(name = "PRODUCT_OPTION_ID", referencedColumnName = "PRODUCT_OPTION_ID")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private ProductOptionEntity productOptionEntity;
