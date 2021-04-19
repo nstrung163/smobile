@@ -13,13 +13,14 @@
     <link href="/plugins/datatables/css/buttons.dataTables.min.css" rel="stylesheet" />
     <link href="/plugins/font-awesome/css/all.min.css" rel="stylesheet" />
     <link href="/css/admin/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/admin/admin-index.css">
 </head>
 
 <body class="sb-nav-fixed">
     <!-- HEADER -->
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand" href="/admin/home">Smobile</a>
-        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
+        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle">
             <i class="fas fa-bars"></i>
         </button>
         <!-- Navbar Search-->
@@ -51,10 +52,12 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
+                        <!-- Giới thiệu -->
                         <div class="sb-sidenav-menu-heading">Giới thiệu</div>
                         <a class="nav-link" href="/admin/home">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div> Trang chủ
                         </a>
+                        <!-- Quản lý danh mục -->
                         <div class="sb-sidenav-menu-heading">Quản lý cửa hàng</div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
@@ -63,13 +66,14 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/admin/account/list">Tài khoản <i class="fas fa-user-circle"></i></a> 
-                                <a class="nav-link" href="/admin/brand/list">Nhãn hiệu <i class="fas fa-copyright"></i></a>
-                                <a class="nav-link" href="/admin/product/list">Sản phẩm <i class="fab fa-product-hunt"></i></a>
-                                <a class="nav-link" href="/admin/product/list">Bình luận <i class="fas fa-comments"></i></a>
-                                <a class="nav-link" href="/admin/product/list">Đánh giá <i class="fas fa-star-half-alt"></i></a>
+                                <a class="nav-link" href="/admin/account/list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản </i></a> 
+                                <a class="nav-link" href="/admin/brand/list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
+                                <a class="nav-link" href="/admin/product/list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </i></a>
+                                <a class="nav-link" href="/admin/product/list"><i class="mr-2 fas fa-comments"></i>Bình luận </i></a>
+                                <a class="nav-link" href="/admin/product/list"><i class="mr-2 fas fa-star-half-alt"></i>Đánh giá </i></a>
                             </nav>
                         </div>
+                        <!-- Quản lý bán hàng -->
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-shopping-cart"></i>
@@ -80,14 +84,12 @@
                         </a>
                         <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/admin/account/list">Hóa đơn <i class="fas fa-user-circle"></i></a> 
-                                <a class="nav-link" href="/admin/brand/list">Nhãn hiệu <i class="fas fa-copyright"></i></a>
-                                <a class="nav-link" href="/admin/product/list">Sản phẩm <i class="fab fa-product-hunt"></i></a>
+                                <a class="nav-link" href="/admin/account/list"><i class="mr-2 fas fa-user-circle"> </i>Hóa đơn</i></a> 
+                                <a class="nav-link" href="/admin/product/list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
                             </nav>
                         </div>
-
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStatistic"
-                            aria-expanded="false" aria-controls="collapseStatistic">
+                        <!-- Thống kê -->
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStatistic" aria-expanded="false" aria-controls="collapseStatistic">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-chart-line"></i>
                             </div> Thống kê
@@ -95,8 +97,7 @@
                                 <i class="fas fa-angle-down"></i>
                             </div>
                         </a>
-                        <div class="collapse" id="collapseStatistic" aria-labelledby="headingOne"
-                            data-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapseStatistic" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="/admin/statistic/product">Theo sản phẩm</a> <a class="nav-link"
                                     href="/admin/statistic/order">Theo hóa đơn</a>
@@ -114,7 +115,6 @@
             <main>
                 <div class="container-fluid">
                     <!-- BODY -->
-                    
                     <ol  class="breadcrumb mb-4 mt-4">
                         <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
                         <li class="breadcrumb-item active">Nhãn hiệu</li>
@@ -151,14 +151,16 @@
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <!-- <tfoot>
+                                    <tfoot>
                                         <tr>
                                             <th>No</th>
-                                            <th>Category Code</th>
-                                            <th>Category Name</th>
-                                            <th>Action</th>
+                                            <th>Mã nhãn hiệu</th>
+                                            <th>Tên nhãn hiệu</th>
+                                            <th>Hình ảnh</th>
+                                            <th>Mô tả</th>
+                                            <th>Actions</th>
                                         </tr>
-                                    </tfoot> -->
+                                    </tfoot>
                                     <tbody>
                                     </tbody>
                                 </table>
@@ -169,41 +171,33 @@
                     <div class="modal fade" id="myModal">
                         <div class="modal-dialog">
                             <div class="modal-content">
-
                                 <!-- Modal Header -->
                                 <div class="modal-header">
                                     <h4 class="modal-title">Edit Category</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
-
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     <form action="" method="POST" id="categoryInfoForm">
                                         <div class="form-group">
                                             <label for="categoryId">Category Id: </label>
-                                            <input type="number" class="form-control" id="categoryId"
-                                                readonly="readonly" required="required">
+                                            <input type="number" class="form-control" id="categoryId" readonly="readonly" required="required">
                                         </div>
                                         <div class="form-group">
                                             <label for="categoryCode">Category Code:</label>
-                                            <input type="text" class="form-control" placeholder="Enter category code"
-                                                id="categoryCode" name="categoryCode" required="required">
+                                            <input type="text" class="form-control" placeholder="Enter category code" id="categoryCode" name="categoryCode" required="required">
                                         </div>
                                         <div class="form-group">
                                             <label for="categoryName">Category Name:</label>
-                                            <input type="text" class="form-control" placeholder="Enter category name"
-                                                name="categoryName" id="categoryName" required="required">
+                                            <input type="text" class="form-control" placeholder="Enter category name" name="categoryName" id="categoryName" required="required">
                                         </div>
-                                        <button type="submit" class="btn btn-primary"
-                                            id="btnSubmitCategory">Submit</button>
+                                        <button type="submit" class="btn btn-primary" id="btnSubmitCategory">Submit</button>
                                     </form>
                                 </div>
-
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -231,14 +225,12 @@
                 </div>
             </main>
             <!-- FOOTER -->
-
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
                         <div class="text-muted">Copyright &copy; Smobile 2021</div>
                         <div>
-                            <a href="#">Chính sách bảo mật</a> &middot; <a href="#">Điều khoản &amp;
-                                Điều kiện</a>
+                            <a href="#">Chính sách bảo mật</a> &middot; <a href="#">Điều khoản &amp;Điều kiện</a>
                         </div>
                     </div>
                 </div>
@@ -252,6 +244,6 @@
     <script src="/plugins/datatables/js/jquery.dataTables.min.js"></script>
     <script src="/plugins/datatables/js/dataTables.buttons.min.js"></script>
     <script src="/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/js/scripts.js"></script>
+    <script src="/js/admin/scripts.js"></script>
 </body>
 </html>
