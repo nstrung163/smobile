@@ -1,5 +1,5 @@
 var table;
-var url = '/brands';
+var url = '/products';
 function initTableData() {
 	/** Data from an URL */
 	$.get(url, function(responseData) {
@@ -10,20 +10,26 @@ function initTableData() {
 			processing: true,
 			data: responseData,
 			columns: [
-				{ data: 'brandId' },
-				{ data: 'brandName' },
+				{ data: 'productId' },
+				{ data: 'productName' },
 				{ render: function(data, type, row) {
-						return `<div class='text-center image-area'><a href="${row.logo}" data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src="${row.logo}"></div>`;
-					} 
-				},
-				{ data: 'description' },
+					return `<div class="unit-price"> ${currencyFormat(row.unitPrice)} ₫</div>`;
+				} },
+				{ render: function(data, type, row) {
+					return `<div class="quantity-product"> ${row.quantity}</div>`;
+				} },
+				{ render: function(data, type, row) {
+					return `<div class="sale-date"> ${getFormattedDate(row.saleDate)}</div>`;
+				} },
+				{ data: 'statusProduct' },
+				{ data: 'brandEntity.brandName' },
 				{
 					render: function(data, type, row) {
 						return `<div class="action-btns text-center">
-								<a class="edit-btn" data-id="${row.brandId}" data-name="${row.brandName}" data-toggle="modal" data-target="#myModal">
+								<a class="edit-btn" data-id="${row.productId}" data-name="${row.productName}" data-toggle="modal" data-target="#myModal">
 									<i class="icon-edit-btn fas fa-edit"></i>
 								</a> | 
-								<a class="delete-btn" data-id="${row.brandId}" data-name="${row.brandName}" data-toggle="modal" data-target="#confirmDeleteModal">
+								<a class="delete-btn" data-id="${row.productId}" data-name="${row.productName}" data-toggle="modal" data-target="#confirmDeleteModal">
 									<i class="icon-delete-btn fas fa-trash-alt"></i>
 								</a>
 							</div>`;
@@ -33,20 +39,19 @@ function initTableData() {
 			dom: 'Bfrtip',
 			buttons: [
 				{
-					text: 'Thêm Mới Nhãn Hiệu',
+					text: 'Thêm Mới Sản Phẩm',
 					action: function(e, dt, node, config) {
-						resetFormModal($('#brandInfoForm'));
-						$('.modal-title').text('Thêm Mới Nhãn Hiệu');
-						$('#btnSubmitBrand').text('Đồng ý');
-						$('#brandId').parent().addClass("d-none");
+						resetFormModal($('#productInfoForm'));
+						$('.modal-title').text('Thêm Mới Sản Phẩm');
+						$('#btnSubmitProduct').text('Đồng ý');
+						$('#productId').parent().addClass("d-none");
 						$('#myModal').modal('toggle');
-						$('.preview-image-upload img').attr('src', "/images/image-demo.png");
 					}
 				}
 			]
 		});
 	}).fail(function() {
-		alert("Lỗi khi lấy dữ liệu từ hệ thống!");
+		alert("Lỗi khi lấy dữ liệu từ hệ thống! ");
 	})
 }
 
@@ -68,7 +73,7 @@ $(document).ready(function() {
 		$('.modal-title').text('Chỉnh Sửa Nhãn Hiệu');
 		$('#btnSubmitBrand').text('Cập nhật');
 		$.ajax({
-			url: '/brand/' + $(this).data('id'),
+			url: '/product/' + $(this).data('id'),
 			type: 'GET',
 			dataType: 'json',
 			contentType: 'application/json',

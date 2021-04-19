@@ -15,4 +15,9 @@ public class HomeAdminController {
 	public String initBrandPage() {
 		return "admin/brand-admin";
 	}
+	
+	@GetMapping(value = "/product-list")
+	public String initProductPage() {
+		return "admin/product-admin";
+	}
 }

@@ -8,7 +8,6 @@ $(document).ready(function() {
 			$this.parent().addClass("active");
 		}
 	});
-	var temp = "";
 	// Upload image preview
 	$('input.upload-image').on('change', function() {
 		var url = window.URL || window.webkitURL;
@@ -25,11 +24,9 @@ $(document).ready(function() {
 			} else {
 				fileUrl = "/images/image-demo.png";
 			}
-			temp = oldImagePath;
 		}
 		$parent.find('.preview-image-upload img').attr('src', fileUrl);
 	});
-	console.log(temp);
 });
 $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 event.preventDefault();
@@ -105,4 +102,32 @@ function formValidate($formElement, validationInfo) {
 		ignore: 'input[type=hidden], .select2-input, .select2-focusser'
 	});
 	return $formElement.valid();
+}
+
+/**
+ * 
+ * Currency format 
+ * 
+ * @param price
+ * @returns price format
+ */
+function currencyFormat(price) {
+	return price.toLocaleString('vi-VN', { useGrouping: true });
+}
+
+/**
+ * 
+ * Format date 
+ * 
+ * @param date
+ * @returns dataFormat
+ */
+function getFormattedDate(saleDate) {
+	var date = new Date(saleDate);
+	var day = date.getDate();
+	var month = date.getMonth() + 1;
+	var year = date.getFullYear();
+	if (date < 10) { date = '0' + date }
+	if (month < 10) { month = '0' + month }
+	return day + '/' + month + '/' + year;
 }

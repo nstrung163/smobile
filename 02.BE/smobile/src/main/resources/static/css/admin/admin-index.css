@@ -17,7 +17,10 @@
 .welcome-admin > a {
 	width: 100%;
 }
-#previewonly >img{
+th {
+	text-align: center;
+}
+#previewonly >img {
 	margin: 10px;
 	width: auto;
 	height: 200px;
@@ -94,3 +97,26 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error {
 	opacity: .7;
 }
 /* END IMAGE FROM ADD/UPDATE */
+
+/* START EKKO-LIGHTBOX */
+.ekko-lightbox {
+	display: flex !important;
+	justify-content: center;
+	align-items: center;
+}
+/* END EKKO-LIGHTBOX */
+
+/* START CUSTOM DATATABLE */
+.unit-price {
+	text-align: right;
+    width: 130px;
+}
+
+.sale-date {
+	text-align: center;
+}
+
+.quantity-product {
+	text-align: center;
+}
+/* END CUSTOM DATATABLE */

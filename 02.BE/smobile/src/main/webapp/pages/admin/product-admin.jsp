@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Hệ thống quản lý điện thoại di động Smoble" />
     <meta name="author" content="NST" />
-    <title>Trang chủ</title>
+    <title>Trang chủ | Sản Phẩm</title>
     <link href="<c:url value='/plugins/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
     <link href="<c:url value='/plugins/datatables/css/dataTables.bootstrap.min.css'/>" rel="stylesheet" />
     <link href="<c:url value='/plugins/datatables/css/dataTables.bootstrap4.min.css'/>" rel="stylesheet" />
@@ -71,9 +71,9 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/admin/brand-list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
+                                <a class="nav-link" href="/admin/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
                                 <a class="nav-link" href="/admin/account/list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a> 
-                                <a class="nav-link" href="/admin/brand/list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
-                                <a class="nav-link" href="/admin/product/list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
                                 <a class="nav-link" href="/admin/product/list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
                                 <a class="nav-link" href="/admin/product/list"><i class="mr-2 fas fa-star-half-alt"></i>Đánh giá</a>
                             </nav>
@@ -122,9 +122,9 @@
                     <!-- BODY -->
                     <ol  class="breadcrumb mb-4 mt-4">
                         <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-                        <li class="breadcrumb-item active">Nhãn Hiệu</li>
+                        <li class="breadcrumb-item active">Sản Phẩm</li>
                     </ol>
-                    <h3 >Quản Lý Nhãn Hiệu</h3>
+                    <h3 >Quản Lý Sản Phẩm</h3>
                     <div id="announcemnet" role="alert" aria-live="assertive" aria-atomic="true" class="toast"
                         data-animation="true" data-autohide="true" data-delay="3000"
                         style="position: absolute; top: 70px; right: 30px; z-index: 100000;">
@@ -141,7 +141,7 @@
                     <!-- Alert -->
                     <div class="card mb-4">
                         <div class="card-header">
-                            <i class="fas fa-table mr-1"></i> Thông tin nhãn hiệu
+                            <i class="fas fa-table mr-1"></i> Thông tin sản phẩm
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -149,19 +149,25 @@
                                     <thead data-detail-formatter="detailFormatter">
                                         <tr id="list-header">
                                             <th>No</th>
-                                            <th>Tên nhãn hiệu</th>
-                                            <th>Hình ảnh</th>
-                                            <th>Mô tả</th>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Đơn giá</th>
+                                            <th>Số lượng</th>
+                                            <th>Ngày bán</th>
+                                            <th>Trạng thái</th>
+                                            <th>Nhãn hiệu</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
-                                            <th>Tên nhãn hiệu</th>
-                                            <th>Hình ảnh</th>
-                                            <th>Mô tả</th>
-                                            <th></th>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Đơn giá</th>
+                                            <th>Số lượng</th>
+                                            <th>Ngày bán</th>
+                                            <th>Trạng thái</th>
+                                            <th>Nhãn hiệu</th>
+                                            <th> </th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -175,31 +181,38 @@
 						<div class="modal-content">
 							<!-- Modal Header -->
 							<div class="modal-header">
-								<h5 class="modal-title">Thêm nhãn hiệu</h5>
+								<h5 class="modal-title">Thêm Mới Sản Phẩm</h5>
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 							</div>
 							<!-- Modal body -->
 							<div class="modal-body">
-								<form action="" method="POST" id="brandInfoForm" enctype="multipart/form-data">
+								<form action="" method="POST" id="productInfoForm" enctype="multipart/form-data">
 									<div class="form-group">
-										<label for="brandId">Mã Nhãn Hiệu: </label>
-										<input type="number" class="form-control" id="brandId" name="brandId" readonly="readonly" required="required" >
+										<label for="productId">Mã Sản Phẩm: </label>
+										<input type="number" class="form-control" id="productId" name="productId" readonly="readonly" required="required" >
 									</div>
 									<div class="form-group">
-										<label for="brandName">Tên Nhãn Hiệu:</label>
-										<input type="text" class="form-control" placeholder="Nhập tên nhãn hiệu" name="brandName" id="brandName">
+										<label for="productName">Tên sản phẩm:</label>
+										<input type="text" class="form-control" placeholder="Nhập tên sản phẩm" name="productName" id="productName">
 									</div>
 									<div class="form-group">
-										<label for="logo">Hình ảnh: <span class="required-field">(*)</span></label>
-										<div class="preview-image-upload" id="logoImg">
-											<img src="<c:url value='/images/image-demo.png'/>" alt="image">
-										</div>
-										<input type="file" class="form-control upload-image" name="logoFile" accept="image/*" />
-										<input type="hidden" class="old-img" id="logo" name="logo">
+										<label for="unitPrice">Đơn giá:</label>
+										<input type="number" class="form-control" placeholder="Nhập đơn giá sản phẩm" name="unitPrice" id="unitPrice">
 									</div>
-									<div class="form-group description">
-										<label for="description">Mô tả: </label>
-										<textarea cols="30" rows="4" class="form-control" name="description" id="description" placeholder="Nhập mô tả sản phẩm"></textarea>
+									<div class="form-group">
+										<label for="quantity">Số lượng:</label>
+										<input type="number" class="form-control" placeholder="Nhập số lượng sản phẩm" name="quantity" id="quantity">
+									</div>
+									<div class="form-group">
+										<label for="saleDate">Ngày bán:</label>
+										<input type="date" class="form-control" placeholder="Chọn ngày bán sản phẩm" name="saleDate" id="saleDate">
+									</div>
+									<div class="form-group">
+										<label for="statusProduct">Trạng thái:</label>
+										<input type="text" class="form-control" placeholder="Chọn trạng thái sản phẩm" name="statusProduct" id="statusProduct">
+									</div>
+									<div class="form-group">
+										<label for="brandEntity">Nhãn Hiệu: </label>
 									</div>
 									<button type="submit" class="btn btn-primary" id="btnSubmitBrand">Cập nhật</button>
 								</form>
@@ -258,6 +271,6 @@
 	<script src="<c:url value='/plugins/ekko-lightbox/ekko-lightbox.min.js'/>"></script>
     <script src="<c:url value='/js/admin/scripts.js'/>"></script>
     <script src="<c:url value='/js/base.js'/>"></script>
-    <script src="<c:url value='/js/admin/brand-admin.js'/>"></script>
+    <script src="<c:url value='/js/admin/product-admin.js'/>"></script>
 </body>
 </html>
