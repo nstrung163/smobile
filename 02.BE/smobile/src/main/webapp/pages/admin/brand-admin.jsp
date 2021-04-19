@@ -1,21 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="description" content="Hệ thống quản lý điện thoại di động Smoble" />
+    <meta name="author" content="NST" />
     <title>Trang chủ</title>
-    <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
-    <link href="/plugins/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="/plugins/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-    <link href="/plugins/datatables/css/buttons.dataTables.min.css" rel="stylesheet" />
-    <link href="/plugins/font-awesome/css/all.min.css" rel="stylesheet" />
-    <link href="/css/admin/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/admin/admin-index.css">
+    <link href="<c:url value='/plugins/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
+    <link href="<c:url value='/plugins/datatables/css/dataTables.bootstrap.min.css'/>" rel="stylesheet" />
+    <link href="<c:url value='/plugins/datatables/css/dataTables.bootstrap4.min.css'/>" rel="stylesheet" />
+    <link href="<c:url value='/plugins/datatables/css/buttons.dataTables.min.css'/>" rel="stylesheet" />
+    <link href="<c:url value='/plugins/font-awesome/css/all.min.css'/>" rel="stylesheet" />
+    <link href="<c:url value='/css/admin/styles.css'/>" rel="stylesheet" />
+    <link href="<c:url value='/css/admin/admin-index.css'/>" rel="stylesheet">
 </head>
 
 <body class="sb-nav-fixed">
@@ -146,81 +149,88 @@
                                     <thead data-detail-formatter="detailFormatter">
                                         <tr id="list-header">
                                             <th>No</th>
-                                            <th>Mã nhãn hiệu</th>
                                             <th>Tên nhãn hiệu</th>
                                             <th>Hình ảnh</th>
                                             <th>Mô tả</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <!-- <tfoot>
+                                    <tfoot>
                                         <tr>
                                             <th>No</th>
-                                            <th>Category Code</th>
-                                            <th>Category Name</th>
-                                            <th>Action</th>
+                                            <th>Tên nhãn hiệu</th>
+                                            <th>Hình ảnh</th>
+                                            <th>Mô tả</th>
+                                            <th></th>
                                         </tr>
-                                    </tfoot> -->
+                                    </tfoot>
                                     <tbody>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <!-- The Modal -->
-                    <div class="modal fade" id="myModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Edit Category</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    <form action="" method="POST" id="categoryInfoForm">
-                                        <div class="form-group">
-                                            <label for="categoryId">Category Id: </label>
-                                            <input type="number" class="form-control" id="categoryId" readonly="readonly" required="required">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="categoryCode">Category Code:</label>
-                                            <input type="text" class="form-control" placeholder="Enter category code" id="categoryCode" name="categoryCode" required="required">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="categoryName">Category Name:</label>
-                                            <input type="text" class="form-control" placeholder="Enter category name" name="categoryName" id="categoryName" required="required">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary" id="btnSubmitCategory">Submit</button>
-                                    </form>
-                                </div>
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Delete category -->
-                    <div class="modal fade" id="confirmDeleteModal">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Delete Category</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Do you want to delete <b id="deleteCategoryName"></b>?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary" id="btnSubmitDelete">OK</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   <div class="modal fade" id="myModal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<!-- Modal Header -->
+							<div class="modal-header">
+								<h5 class="modal-title">Thêm nhãn hiệu</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<!-- Modal body -->
+							<div class="modal-body">
+								<form action="" method="POST" id="brandInfoForm" enctype="multipart/form-data">
+									<div class="form-group">
+										<label for="brandId">Mã Nhãn Hiệu: </label>
+										<input type="number" class="form-control" id="brandId" name="brandId" readonly="readonly" required="required" >
+									</div>
+									<div class="form-group">
+										<label for="brandName">Tên Nhãn Hiệu:</label>
+										<input type="text" class="form-control" placeholder="Nhập tên nhãn hiệu" name="brandName" id="brandName">
+									</div>
+									<div class="form-group">
+										<label for="logo">Hình ảnh: <span class="required-field">(*)</span></label>
+										<div class="preview-image-upload" id="logoImg">
+											<img src="<c:url value='/images/image-demo.png'/>" alt="image">
+										</div>
+										<input type="file" class="form-control upload-image" name="logoFile" accept="image/*" />
+										<input type="hidden" class="old-img" id="logo" name="logo">
+									</div>
+									<div class="form-group description">
+										<label for="description">Mô tả: </label>
+										<textarea cols="30" rows="4" class="form-control" name="description" id="description" placeholder="Nhập mô tả sản phẩm"></textarea>
+									</div>
+									<button type="submit" class="btn btn-primary" id="btnSubmitBrand">Cập nhật</button>
+								</form>
+							</div>
+							<!-- Modal footer -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Delete category -->
+				<div class="modal fade" id="confirmDeleteModal" >
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Xóa Nhãn Hiệu</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p>Bạn có muốn xóa nhãn hiệu <b id="deleteBrandName"></b>?</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+								<button type="button" class="btn btn-primary" id="btnSubmitDelete">Xác nhận</button>
+							</div>
+						</div>
+					</div>
+				</div>
                     <!-- END BODY -->
                 </div>
             </main>
@@ -238,12 +248,16 @@
             <!-- END FOOTER -->
         </div>
     </div>
-    <script src="/plugins/jquery/jquery-3.5.1.min.js"></script>
-    <script src="/plugins/jquery/jquery.validate.min.js"></script>
-    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/plugins/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="/plugins/datatables/js/dataTables.buttons.min.js"></script>
-    <script src="/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/js/scripts.js"></script>
+    <script src="<c:url value='/plugins/jquery/jquery-3.5.1.min.js'/>"></script>
+    <script src="<c:url value='/plugins/jquery/jquery.validate.min.js'/>"></script>
+    <script src="<c:url value='/plugins/bootstrap/js/bootstrap.min.js' />"></script>
+    <script src="<c:url value='/plugins/datatables/js/jquery.dataTables.min.js'/>"></script>
+    <script src="<c:url value='/plugins/datatables/js/dataTables.buttons.min.js'/>"></script>
+    <script src="<c:url value='/plugins/datatables/js/dataTables.bootstrap4.min.js'/>"></script>
+    <script src="<c:url value='/plugins/bootstrap/js/bootstrap-notify.min.js'/>"></script>
+	<script src="<c:url value='/plugins/ekko-lightbox/ekko-lightbox.min.js'/>"></script>
+    <script src="<c:url value='/js/admin/scripts.js'/>"></script>
+    <script src="<c:url value='/js/base.js'/>"></script>
+    <script src="<c:url value='/js/admin/brand-admin.js'/>"></script>
 </body>
 </html>

@@ -73,12 +73,10 @@ public class BrandServiceImp implements IBrandService {
 				if(logoFiles != null && logoFiles[0].getSize() > 0) {
 					String imagePath = FileHelper.editFile(brandLogoFolderPath, logoFiles, brandEntity.getLogo());
 					brandEntity.setLogo(imagePath);
-					brandRepository.saveAndFlush(brandEntity);
-					responseCode = Constants.RESULT_CD_SUCCESS;
-					responseMsg = "Cập nhật nhãn hiệu thành công!";
-				} else {
-					responseMsg = "Vui lòng chọn ảnh của nhãn hiệu!";
-				}
+				} 
+				brandRepository.saveAndFlush(brandEntity);
+				responseCode = Constants.RESULT_CD_SUCCESS;
+				responseMsg = "Cập nhật nhãn hiệu thành công!";
 			}
 		} catch (Exception e) {
 			LOGGER.error("Cập nhật nhãn hiệu thất bại! " + e.getMessage());

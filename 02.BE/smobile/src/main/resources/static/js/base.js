@@ -8,7 +8,7 @@ $(document).ready(function() {
 			$this.parent().addClass("active");
 		}
 	});
-
+	var temp = "";
 	// Upload image preview
 	$('input.upload-image').on('change', function() {
 		var url = window.URL || window.webkitURL;
@@ -20,14 +20,16 @@ $(document).ready(function() {
 			$parent.find(".error-message-invalid").removeClass(".error-message-invalid");
 		} else {
 			var oldImagePath = $parent.find(".old-img").val();
-			if (oldImagePath) {
+			if (oldImagePath && oldImagePath != "") {
 				fileUrl = oldImagePath;
 			} else {
 				fileUrl = "/images/image-demo.png";
 			}
+			temp = oldImagePath;
 		}
 		$parent.find('.preview-image-upload img').attr('src', fileUrl);
 	});
+	console.log(temp);
 });
 $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 event.preventDefault();
@@ -36,7 +38,6 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 
 /* Rest form add new brand*/
 function resetFormModal($formElement) {
-
 	$formElement[0].reset();
 	$formElement.find("input[type*='file']").val("");
 	$formElement.validate().destroy();

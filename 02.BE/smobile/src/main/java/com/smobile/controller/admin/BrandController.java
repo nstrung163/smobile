@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smobile.entity.BrandEntity;
@@ -24,6 +24,11 @@ public class BrandController {
 	@Autowired
 	BrandServiceImp brandService;
 	
+	@GetMapping(value = "/brand-list")
+	public String initPage() {
+		return "admin/brand-admin";
+	}
+	
 	@GetMapping(value = "/brands")
 	@ResponseBody
 	public List<BrandEntity> getAllBrands() {
@@ -36,13 +41,13 @@ public class BrandController {
 		return brandService.findByBrandId(id);
 	}
 	
-	@PostMapping(value = "/brand")
+	@PostMapping(value = "/brand/add")
 	@ResponseBody
 	public ResponseDataModel addNewBrand(@ModelAttribute BrandEntity brandEntity) {
 		return brandService.addNewBrand(brandEntity);
 	}
 	
-	@PutMapping(value = "/brand")
+	@RequestMapping(value = "/brand/update", method = {RequestMethod.POST, RequestMethod.PUT})
 	@ResponseBody
 	public ResponseDataModel updateBrand(@ModelAttribute BrandEntity brandEntity) {
 		return brandService.updateBrand(brandEntity);
