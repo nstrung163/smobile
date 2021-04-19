@@ -1,3 +1,22 @@
+.sb-topnav .navbar-brand{
+	width: 225px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0;
+    height: 46px;
+    background-position: 3px -7px;
+    background-image: url(/images/logo2.png);
+} 
+.welcome-admin {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 54%;
+}
+.welcome-admin > a {
+	width: 100%;
+}
 #previewonly >img{
 	margin: 10px;
 	width: auto;
@@ -30,6 +49,18 @@ input.error-message-invalid
 	width: 100%;
 	border-radius: .25rem;
 }
+
+div.error-message-invalid, div.error, label.error-message-invalid, label.error {
+    background-color: #f8d7da;
+    position: relative;
+    padding: .375rem .75rem;
+    margin-top: .5rem;
+    border: 1px solid #f5c6cb !important;
+    color: #dc3545 !important;
+    width: 100%;
+    border-radius: .25rem;
+}
+
 .fade {
       transition: opacity 0.2s linear !important;
 }
@@ -48,7 +79,7 @@ input.error-message-invalid
 }
 
 .image-area {
-	width: 20%;
+	width: 50%;
 	margin: 0 auto;
 }
 
@@ -60,7 +91,6 @@ input.error-message-invalid
 
 .preview-image-upload img {
 	max-width: 50%;
-	height: 150px;
 	opacity: .7;
 }
 /* END IMAGE FROM ADD/UPDATE */

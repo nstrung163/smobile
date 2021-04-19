@@ -1,5 +1,5 @@
 var table;
-var url = '/v1/api/brands';
+var url = '/brands';
 function initTableData() {
 	/** Data from an URL */
 	$.get(url, function(responseData) {
@@ -64,9 +64,9 @@ $(document).ready(function() {
 	/** Show modal form update brand */
 	$("#dataTable").on('click', '.edit-btn', function() {
 		$('#brandId').parent().removeClass("d-none");
-		showModalWithCustomizedTitle($('.modal-title'), 'Chỉnh sửa nhãn hiệu');
+		$('.modal-title').text('Chỉnh sửa nhãn hiệu');
 		$.ajax({
-			url: '/v1/api/brand/' + $(this).data('id'),
+			url: '/brand/' + $(this).data('id'),
 			type: 'GET',
 			dataType: 'json',
 			contentType: 'application/json',
@@ -102,7 +102,7 @@ $(document).ready(function() {
 					minlength: 2,
 					maxlength: 45,
 				},
-				imageFile: {
+				logoFile: {
 					required: isAddAction
 				}
 			},
@@ -112,7 +112,7 @@ $(document).ready(function() {
 					minlength: "Tên nhãn hiệu phải có ít nhất 2 ký tự!",
 					maxlength: "Tên nhãn hiệu không vượt quá 45 ký tự!"
 				},
-				imageFile: {
+				logoFile: {
 					required: "Không được để trống hình ảnh nhãn hiệu!"
 				}
 			},
@@ -121,7 +121,7 @@ $(document).ready(function() {
 		});
 		if ($("#brandInfoForm").valid()) {
 			$.ajax({
-				url: '/v1/api/brand/' + (isAddAction ? "add" : "update"),
+				url: 'brand/' + (isAddAction ? "add" : "update"),
 				type: 'POST',
 				processData: false,
 				contentType: false,
@@ -162,19 +162,19 @@ $(document).ready(function() {
 	$("#btnSubmitDelete").on('click', function() {
 		console.log('.data("") = ' + $(this).data('id') + ', .attr= ' + $(this).attr('data-id'));
 		$.ajax({
-			url: '/v1/api/brand/' + $(this).attr('data-id'),
+			url: 'brand/' + $(this).attr('data-id'),
 			type: 'DELETE',
 			success: function(responseData) {
 				reloadDataTable();
 				$('#confirmDeleteModal').modal('toggle');
 				$('#announcemnet strong:eq(0)').removeClass("text-warning").addClass("text-success");
-				$('#notification').text("Delete Brand Success!");
+				$('#notification').text("Xóa nhãn hiệu thành công!");
 				$("#announcemnet").toast('show');
 				console.log(responseData + ' success: ' + $(this).data('id'))
 			},
 			error: function(e) {
 				console.log('error: ' + $(this).data('id'))
-				alert('Delete brand failed ' + JSON.stringify(e));
+				alert('Xóa nhãn hiệu không thành công: ' + JSON.stringify(e));
 			}
 		})
 		console.log('Brand id after:' + $(this).data('id'))

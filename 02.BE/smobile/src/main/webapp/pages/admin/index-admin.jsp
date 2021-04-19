@@ -71,11 +71,11 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/admin/account/list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a> 
-                                <a class="nav-link" href="/admin/brand/list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
-                                <a class="nav-link" href="/admin/product/list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
-                                <a class="nav-link" href="/admin/product/list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
-                                <a class="nav-link" href="/admin/product/list"><i class="mr-2 fas fa-star-half-alt"></i>Đánh giá</a>
+                            	<a class="nav-link" href="/brand-list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
+                                <a class="nav-link" href="/account/list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a> 
+                                <a class="nav-link" href="/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
+                                <a class="nav-link" href="/product/list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
+                                <a class="nav-link" href="/product/list"><i class="mr-2 fas fa-star-half-alt"></i>Đánh giá</a>
                             </nav>
                         </div>
                         <!-- Quản lý bán hàng -->
@@ -121,116 +121,14 @@
                 <div class="container-fluid">
                     <!-- BODY -->
                     <ol  class="breadcrumb mb-4 mt-4">
-                        <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-                        <li class="breadcrumb-item active">Nhãn hiệu</li>
+                        <li class="breadcrumb-item welcome-admin">
+                        	<a href="/admin/home">
+                        		<marquee>
+                        			<font >Chào mừng bạn đến với cửa hàng điện thoại Smobile</font>
+                        		</marquee>
+                        	</a>
+                        </li>
                     </ol>
-                    <h3 >Quản lý nhãn hiệu</h3>
-                    <div id="announcemnet" role="alert" aria-live="assertive" aria-atomic="true" class="toast"
-                        data-animation="true" data-autohide="true" data-delay="3000"
-                        style="position: absolute; top: 70px; right: 30px; z-index: 100000;">
-                        <div class="toast-header alert-success">
-                            <strong class="mr-auto text-success">Thông báo</strong>
-                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="toast-body">
-                            <strong id="notification">Thành công</strong>
-                        </div>
-                    </div>
-                    <!-- Alert -->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table mr-1"></i> Thông tin nhãn hiệu
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped" id="dataTable" width=100%>
-                                    <thead data-detail-formatter="detailFormatter">
-                                        <tr id="list-header">
-                                            <th>No</th>
-                                            <th>Tên nhãn hiệu</th>
-                                            <th>Hình ảnh</th>
-                                            <th>Mô tả</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Tên nhãn hiệu</th>
-                                            <th>Hình ảnh</th>
-                                            <th>Mô tả</th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                   <div class="modal fade" id="myModal">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<!-- Modal Header -->
-							<div class="modal-header">
-								<h5 class="modal-title">Thêm nhãn hiệu</h5>
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-							</div>
-							<!-- Modal body -->
-							<div class="modal-body">
-								<form action="" method="POST" id="brandInfoForm" enctype="multipart/form-data">
-									<div class="form-group">
-										<label for="brandId">Mã Nhãn Hiệu: </label>
-										<input type="number" class="form-control" id="brandId" name="brandId" readonly="readonly" required="required" >
-									</div>
-									<div class="form-group">
-										<label for="brandName">Tên Nhãn Hiệu:</label>
-										<input type="text" class="form-control" placeholder="Nhập tên nhãn hiệu" name="brandName" id="brandName">
-									</div>
-									<div class="form-group">
-										<label for="logo">Hình ảnh: <span class="required-field">(*)</span></label>
-										<div class="preview-image-upload" id="logoImg">
-											<img src="<c:url value='/images/image-demo.png'/>" alt="image">
-										</div>
-										<input type="file" class="form-control upload-image" name="logoFile" accept="image/*" />
-										<input type="hidden" class="old-img" id="logo" name="logo">
-									</div>
-									<div class="form-group description">
-										<label for="description">Mô tả: </label>
-										<textarea cols="30" rows="4" class="form-control" name="description" id="description" placeholder="Nhập mô tả sản phẩm"></textarea>
-									</div>
-									<button type="submit" class="btn btn-primary" id="btnSubmitBrand">Cập nhật</button>
-								</form>
-							</div>
-							<!-- Modal footer -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Delete category -->
-				<div class="modal fade" id="confirmDeleteModal" >
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title">Xóa Nhãn Hiệu</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<p>Bạn có muốn xóa nhãn hiệu <b id="deleteBrandName"></b>?</p>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-								<button type="button" class="btn btn-primary" id="btnSubmitDelete">Xác nhận</button>
-							</div>
-						</div>
-					</div>
-				</div>
                     <!-- END BODY -->
                 </div>
             </main>
@@ -246,7 +144,7 @@
                 </div>
             </footer>
             <!-- END FOOTER -->
-        </div>
+        </div> 	
     </div>
     <script src="<c:url value='/plugins/jquery/jquery-3.5.1.min.js'/>"></script>
     <script src="<c:url value='/plugins/jquery/jquery.validate.min.js'/>"></script>
@@ -257,7 +155,5 @@
     <script src="<c:url value='/plugins/bootstrap/js/bootstrap-notify.min.js'/>"></script>
 	<script src="<c:url value='/plugins/ekko-lightbox/ekko-lightbox.min.js'/>"></script>
     <script src="<c:url value='/js/admin/scripts.js'/>"></script>
-    <script src="<c:url value='/js/base.js'/>"></script>
-    <script src="<c:url value='/js/admin/brand-admin.js'/>"></script>
 </body>
 </html>

@@ -18,16 +18,15 @@ import com.smobile.model.ResponseDataModel;
 import com.smobile.service.impl.BrandServiceImp;
 
 @Controller
-@RequestMapping(value = "/v1/api")
 public class BrandController {
 	
 	@Autowired
 	BrandServiceImp brandService;
 	
-	@GetMapping(value = "/brand-list")
-	public String initPage() {
-		return "admin/brand-admin";
-	}
+//	@GetMapping(value = "/admin/brand-list")
+//	public String initPage() {
+//		return "admin/brand-admin";
+//	}
 	
 	@GetMapping(value = "/brands")
 	@ResponseBody
