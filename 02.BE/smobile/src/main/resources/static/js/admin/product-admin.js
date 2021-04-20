@@ -44,6 +44,7 @@ function initTableData() {
 						$('#btnSubmitProduct').text('Đồng ý');
 						$('#productId').parent().addClass("d-none");
 						$('input[name=saleDate]').val(today);
+						$('.out-of-stock').addClass('d-none');
 						$('#myModal').modal('toggle');
 					}
 				}
@@ -92,6 +93,7 @@ $(document).ready(function() {
 				} else {
 					$('input[name=quantity]').removeAttr('readonly');
 				}
+				$('.out-of-stock').removeClass('d-none');
 			}
 		})
 	})
@@ -107,12 +109,8 @@ $(document).ready(function() {
 	/** Submit Update Product */
 	$("#btnSubmitProduct").on('click', function(event) {
 		event.preventDefault();
-		
 		var $productId = $('#productId');
 		var isAddAction = $productId.val() == undefined || $productId.val() == "";
-		var isHasQuantity =  $("#statusProduct").val() == "Còn hàng";
-		
-		console.log('isHasQuantity: ' + isHasQuantity);
 		console.log('isAddAction: ' + isAddAction);
 		$("#productInfoForm").validate({
 			rules: {
@@ -167,13 +165,13 @@ $(document).ready(function() {
 			errorClass: "error-message-invalid"
 		});
 		if ($("#productInfoForm").valid()) {
-			var formData = new FormData($('#productInfoForm')[0]);
 			if($('#statusProduct').val() == "Hết hàng") {
 				$('#quantity').val(0)
 				$('input[name=quantity]').removeAttr('readonly');
 			} else {
 				$('input[name=quantity]').attr('readonly', 'readonly');
 			}
+			var formData = new FormData($('#productInfoForm')[0]);
 			$.ajax({
 				url: '/product/' + (isAddAction ? "add" : "update"),
 				type: isAddAction ? 'POST' : 'PUT',

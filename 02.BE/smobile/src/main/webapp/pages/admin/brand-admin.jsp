@@ -240,7 +240,7 @@
                     <div class="d-flex align-items-center justify-content-between small">
                         <div class="text-muted">Copyright &copy; Smobile 2021</div>
                         <div>
-                            <a href="#">Chính sách bảo mật</a> &middot; <a href="#">Điều khoản &amp;Điều kiện</a>
+                            <a href="#">Chính sách bảo mật</a> &middot; <a href="#">Điều khoản &amp; Điều kiện</a>
                         </div>
                     </div>
                 </div>

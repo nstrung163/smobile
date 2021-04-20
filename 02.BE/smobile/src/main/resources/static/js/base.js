@@ -38,8 +38,14 @@ function resetFormModal($formElement) {
 	$formElement[0].reset();
 	$formElement.find("input[type*='file']").val("");
 	$formElement.validate().destroy();
-	$formElement.find(".error-message-invalid").remove();
+	$formElement.find(".error-message-invalid").removeClass('error-message-invalid');
 	$formElement.find("img").attr('src', '');
+	
+//	$formElement[0].reset();
+//	$formElement.find("input[type*='file']").val("");
+//	$formElement.validate().destroy();
+//	$formElement.find(".error-message-invalid").remove();
+//	$formElement.find("img").attr('src', '');
 }
 
 /* Auto change title form add to edit or edit to add  */

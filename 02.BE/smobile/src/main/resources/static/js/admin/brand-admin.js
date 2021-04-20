@@ -1,66 +1,57 @@
 var table;
 var url = '/brands';
 function initTableData() {
-	/** Data from an URL */
-	$.get(url, function(responseData) {
-		/*alert(`data=${JSON.stringify(responseData)}`)*/
-		table = $('#dataTable').DataTable({
-			orderCellsTop: true,
-			fixedHeader: true,
-			processing: true,
-			data: responseData,
-			columns: [
-				{ data: 'brandId' },
-				{ data: 'brandName' },
-				{ render: function(data, type, row) {
-						return `<div class='text-center image-area-brand'><a href="${row.logo}" data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src="${row.logo}"></div>`;
-					} 
-				},
-				{ data: 'description' },
-				{
-					render: function(data, type, row) {
-						return `<div class="action-btns text-center">
-								<a class="edit-btn" data-id="${row.brandId}" data-name="${row.brandName}" data-toggle="modal" data-target="#myModal">
-									<i class="icon-edit-btn fas fa-edit"></i>
-								</a> | 
-								<a class="delete-btn" data-id="${row.brandId}" data-name="${row.brandName}" data-toggle="modal" data-target="#confirmDeleteModal">
-									<i class="icon-delete-btn fas fa-trash-alt"></i>
-								</a>
-							</div>`;
-					}
+/** Data from an URL */
+$.get(url, function(responseData) {
+	/*alert(`data=${JSON.stringify(responseData)}`)*/
+	table = $('#dataTable').DataTable({
+		orderCellsTop: true,
+		fixedHeader: true,
+		processing: true,
+		data: responseData,
+		columns: [
+			{ data: 'brandId' },
+			{ data: 'brandName' },
+			{ render: function(data, type, row) {
+					return `<div class='text-center image-area-brand'><a href="${row.logo}" data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src="${row.logo}"></div>`;
+				} 
+			},
+			{ data: 'description' },
+			{
+				render: function(data, type, row) {
+					return `<div class="action-btns text-center">
+							<a class="edit-btn" data-id="${row.brandId}" data-name="${row.brandName}" data-toggle="modal" data-target="#myModal">
+								<i class="icon-edit-btn fas fa-edit"></i>
+							</a> | 
+							<a class="delete-btn" data-id="${row.brandId}" data-name="${row.brandName}" data-toggle="modal" data-target="#confirmDeleteModal">
+								<i class="icon-delete-btn fas fa-trash-alt"></i>
+							</a>
+						</div>`;
 				}
-			],
-			dom: 'Bfrtip',
-			buttons: [
-				{
-					text: 'Thêm Mới Nhãn Hiệu',
-					action: function(e, dt, node, config) {
-						resetFormModal($('#brandInfoForm'));
-						$('.modal-title').text('Thêm Mới Nhãn Hiệu');
-						$('#btnSubmitBrand').text('Đồng ý');
-						$('#brandId').parent().addClass("d-none");
-						$('#myModal').modal('toggle');
-						$('.preview-image-upload img').attr('src', "/images/image-demo.png");
-					}
+			}
+		],
+		dom: 'Bfrtip',
+		buttons: [
+			{
+				text: 'Thêm Mới Nhãn Hiệu',
+				action: function(e, dt, node, config) {
+					resetFormModal($('#brandInfoForm'));
+					$('.modal-title').text('Thêm Mới Nhãn Hiệu');
+					$('#btnSubmitBrand').text('Đồng ý');
+					$('#brandId').parent().addClass("d-none");
+					$('#myModal').modal('toggle');
+					$('.preview-image-upload img').attr('src', "/images/image-demo.png");
 				}
-			]
-		});
-	}).fail(function() {
-		alert("Lỗi khi lấy dữ liệu từ hệ thống!");
-	})
+			}
+		]
+	});
+}).fail(function() {
+	alert("Lỗi khi lấy dữ liệu từ hệ thống!");
+})
 }
 
 $(document).ready(function() {
 	initTableData();
-	/** Hover change background tag thead */
-	$("#list-header").on({
-		mouseenter: function() {
-			$(this).css("background-color", "lightgray");
-		},
-		mouseleave: function() {
-			$(this).css("background-color", "lightblue");
-		}
-	})
 
 	/** Show modal form update brand */
 	$("#dataTable").on('click', '.edit-btn', function() {
@@ -125,8 +116,8 @@ $(document).ready(function() {
 			$.ajax({
 				url: 'brand/' + (isAddAction ? "add" : "update"),
 				type: 'POST',
-				/*processData: false,
-				contentType: false,*/
+				processData: false,
+				contentType: false,
 				enctype: 'multipart/form-data',
 				data: formData,
 				success: function(responseData) {
@@ -179,14 +170,11 @@ $(document).ready(function() {
 				alert('Xóa nhãn hiệu không thành công: ' + JSON.stringify(e));
 			}
 		})
-		console.log('Brand id after:' + $(this).data('id'))
 	})
 	
-	/** $('.image-area-brand').parent().css("max-width: 30%"); */
 })
 
 function reloadDataTable() {
 	$('#dataTable').dataTable().fnDestroy();
 	initTableData();
 }
-

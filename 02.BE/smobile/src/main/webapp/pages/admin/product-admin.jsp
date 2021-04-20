@@ -212,7 +212,7 @@
 										<label for="statusProduct">Trạng thái:</label>
 										<select class="form-control" id="statusProduct" name="statusProduct">
 											<option value="" disabled="disabled" selected="selected">Chọn trạng thái sản phẩm</option>
-											<option value="Hết hàng">Hết hàng</option>
+											<option class="out-of-stock" value="Hết hàng">Hết hàng</option>
 											<option value="Còn hàng">Còn hàng</option>
 											<option value="Sắp ra mắt">Sắp ra mắt</option>
 										</select>
@@ -265,7 +265,7 @@
                     <div class="d-flex align-items-center justify-content-between small">
                         <div class="text-muted">Copyright &copy; Smobile 2021</div>
                         <div>
-                            <a href="#">Chính sách bảo mật</a> &middot; <a href="#">Điều khoản &amp;Điều kiện</a>
+                            <a href="#">Chính sách bảo mật</a> &middot; <a href="#">Điều khoản &amp; Điều kiện</a>
                         </div>
                     </div>
                 </div>
