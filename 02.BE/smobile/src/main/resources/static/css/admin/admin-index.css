@@ -86,6 +86,11 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error {
 	margin: 0 auto;
 }
 
+.image-area-brand {
+	width: 100px;
+    margin: 0 auto;
+}
+
 /* START IMAGE FROM ADD/UPDATE */
 .preview-image-upload {
 	text-align: center;

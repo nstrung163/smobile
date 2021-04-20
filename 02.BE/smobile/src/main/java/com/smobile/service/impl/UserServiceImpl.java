@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -18,10 +16,11 @@ import com.smobile.model.ResponseDataModel;
 import com.smobile.repository.IUserRepository;
 import com.smobile.service.IUserService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class UserServiceImpl implements IUserService {
-
-	private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	IUserRepository userRepository;
@@ -34,9 +33,9 @@ public class UserServiceImpl implements IUserService {
 		List<UserEntity> users = new ArrayList<UserEntity>();
 		try {
 			users = userRepository.findAll();
-			LOGGER.info("Lấy danh sách người dùng thành công!");
+			log.info("Lấy danh sách người dùng thành công!");
 		} catch (Exception e) {
-			LOGGER.error("Lây danh sách người dùng thất bại!");
+			log.error("Lây danh sách người dùng thất bại!");
 		}
 		return users;
 	}
@@ -46,9 +45,9 @@ public class UserServiceImpl implements IUserService {
 		UserEntity user = new UserEntity();
 		try {
 			user = userRepository.findByUserId(userId);
-			LOGGER.info("Tìm kiếm người dùng theo id thành công!");
+			log.info("Tìm kiếm người dùng theo id thành công!");
 		} catch (Exception e) {
-			LOGGER.info("Tìm kiếm người dùng theo id thất bại!");
+			log.info("Tìm kiếm người dùng theo id thất bại!");
 		}
 		return user;
 	}
@@ -58,9 +57,9 @@ public class UserServiceImpl implements IUserService {
 		UserEntity user = new UserEntity();
 		try {
 			user = userRepository.findByUserName(userName);
-			LOGGER.info("Tìm kiếm người dùng theo username thành công!");
+			log.info("Tìm kiếm người dùng theo username thành công!");
 		} catch (Exception e) {
-			LOGGER.info("Tìm kiếm người dùng theo username thất bại!");
+			log.info("Tìm kiếm người dùng theo username thất bại!");
 		}
 		return user;
 	}
@@ -74,24 +73,24 @@ public class UserServiceImpl implements IUserService {
 			if(avatarFile != null && avatarFile.getSize() > 0) {
 				if(findByUserName(userEntity.getUserName()) != null) {
 					responseMsg = "Tên người dùng đã tồn tại!";
-					LOGGER.warn(responseMsg);
+					log.warn(responseMsg);
 				} else {
 					String avataPath = FileHelper.addNewFile(accountFolderPath, avatarFile);
 					userEntity.setAvatarUrl(avataPath);
 					userRepository.saveAndFlush(userEntity);
 					responseCode = Constants.RESULT_CD_SUCCESS;
 					responseMsg = "Đăng ký tài khoản thành công!";
-					LOGGER.info(responseMsg);
+					log.info(responseMsg);
 				}
 			} else {
 				responseMsg = "Vui lòng chọn ảnh đại diện!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Đăng ký tài khoản thất bại";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
-		return new ResponseDataModel(responseCode, responseMsg);
+		return new ResponseDataModel(responseCode, responseMsg); 
 	}
 
 	@Override
@@ -107,18 +106,18 @@ public class UserServiceImpl implements IUserService {
 					userRepository.saveAndFlush(userEntity);
 					responseCode = Constants.RESULT_CD_SUCCESS;
 					responseMsg = "Cập nhật tài khoản thành công!";
-					LOGGER.info(responseMsg);
+					log.info(responseMsg);
 				} else {
 					responseMsg = "Không tìm thấy tài khoản!";
-					LOGGER.warn(responseMsg);
+					log.warn(responseMsg);
 				}
 			} else {
 				responseMsg = "Vui lòng chọn ảnh đại diện!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Cập nhật tài khoản thất bại";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -134,14 +133,14 @@ public class UserServiceImpl implements IUserService {
 				FileHelper.deleteFile(userEntity.getAvatarUrl());
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Xóa tài khoản thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			} else {
 				responseMsg = "Không tìm thấy tài khoản cần xóa!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Không tìm thấy tài khoản cần xóa!";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}

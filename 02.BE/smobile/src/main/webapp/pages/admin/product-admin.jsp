@@ -71,11 +71,11 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/admin/brand-list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
-                                <a class="nav-link" href="/admin/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
-                                <a class="nav-link" href="/admin/account/list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a> 
-                                <a class="nav-link" href="/admin/product/list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
-                                <a class="nav-link" href="/admin/product/list"><i class="mr-2 fas fa-star-half-alt"></i>Đánh giá</a>
+                                <a class="nav-link" href="/brand-list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
+                                <a class="nav-link" href="/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
+                                <a class="nav-link" href="/account-list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a> 
+                                <a class="nav-link" href="/product-list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
+                                <a class="nav-link" href="/product-list"><i class="mr-2 fas fa-star-half-alt"></i>Đánh giá</a>
                             </nav>
                         </div>
                         <!-- Quản lý bán hàng -->
@@ -124,7 +124,7 @@
                         <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
                         <li class="breadcrumb-item active">Sản Phẩm</li>
                     </ol>
-                    <h3 >Quản Lý Sản Phẩm</h3>
+                    <h3>Quản Lý Sản Phẩm</h3>
                     <div id="announcemnet" role="alert" aria-live="assertive" aria-atomic="true" class="toast"
                         data-animation="true" data-autohide="true" data-delay="3000"
                         style="position: absolute; top: 70px; right: 30px; z-index: 100000;">
@@ -176,6 +176,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Modal add/update -->
                    <div class="modal fade" id="myModal">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -186,7 +187,7 @@
 							</div>
 							<!-- Modal body -->
 							<div class="modal-body">
-								<form action="" method="POST" id="productInfoForm" enctype="multipart/form-data">
+								<form action="" method="POST" id="productInfoForm">
 									<div class="form-group">
 										<label for="productId">Mã Sản Phẩm: </label>
 										<input type="number" class="form-control" id="productId" name="productId" readonly="readonly" required="required" >
@@ -209,12 +210,23 @@
 									</div>
 									<div class="form-group">
 										<label for="statusProduct">Trạng thái:</label>
-										<input type="text" class="form-control" placeholder="Chọn trạng thái sản phẩm" name="statusProduct" id="statusProduct">
+										<select class="form-control" id="statusProduct" name="statusProduct">
+											<option value="" disabled="disabled" selected="selected">Chọn trạng thái sản phẩm</option>
+											<option value="Hết hàng">Hết hàng</option>
+											<option value="Còn hàng">Còn hàng</option>
+											<option value="Sắp ra mắt">Sắp ra mắt</option>
+										</select>
 									</div>
 									<div class="form-group">
 										<label for="brandEntity">Nhãn Hiệu: </label>
+										<select class="form-control" id="brandId" name="brandEntity.brandId">
+											<c:forEach items="${brandList}" var="brand">
+												<option value="${brand.brandId}" class="form-select">${brand.brandName}</option>
+											</c:forEach>
+										
+										</select>
 									</div>
-									<button type="submit" class="btn btn-primary" id="btnSubmitBrand">Cập nhật</button>
+									<button type="submit" class="btn btn-primary" id="btnSubmitProduct">Cập nhật</button>
 								</form>
 							</div>
 							<!-- Modal footer -->
@@ -235,7 +247,7 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<p>Bạn có muốn xóa nhãn hiệu <b id="deleteBrandName"></b>?</p>
+								<p>Bạn có muốn xóa sản phẩm <b id="deleteProductName"></b>?</p>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>

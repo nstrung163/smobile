@@ -3,8 +3,6 @@ package com.smobile.service.impl;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +12,12 @@ import com.smobile.model.ResponseDataModel;
 import com.smobile.repository.IProductRepository;
 import com.smobile.service.IProductService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class ProductServiceImpl implements IProductService{
 
-	private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-	
 	@Autowired
 	IProductRepository productRepository;
 	
@@ -47,7 +46,7 @@ public class ProductServiceImpl implements IProductService{
 			}
 		} catch (Exception e) {
 			responseMsg = "Thêm mới sản phẩm thất bại!";
-			LOGGER.error("Thêm mới sản phẩm thất bại: " + e.getMessage());
+			log.error("Thêm mới sản phẩm thất bại: " + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -67,7 +66,7 @@ public class ProductServiceImpl implements IProductService{
 			}
 		} catch (Exception e) {
 			responseMsg = "Cập nhật sản phẩm thất bại!";
-			LOGGER.error("Cập nhật sản phẩm thất bại: " + e.getMessage());
+			log.error("Cập nhật sản phẩm thất bại: " + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -86,7 +85,7 @@ public class ProductServiceImpl implements IProductService{
 			}
 		} catch (Exception e) {
 			responseMsg = "Xóa sản phẩm thất bại!";
-			LOGGER.error("Xóa sản phẩm thất bại: " + e.getMessage());
+			log.error("Xóa sản phẩm thất bại: " + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}

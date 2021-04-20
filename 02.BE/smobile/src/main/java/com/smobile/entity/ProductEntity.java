@@ -1,6 +1,6 @@
 package com.smobile.entity;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "PRODUCT")
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor 
 public class ProductEntity {
 
 	@Id

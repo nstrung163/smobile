@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +13,12 @@ import com.smobile.model.ResponseDataModel;
 import com.smobile.repository.IOptionShippingRepository;
 import com.smobile.service.IOptionShippingService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class OptionShippingServiceImpl implements IOptionShippingService{
 
-	private final Logger LOGGER = LoggerFactory.getLogger(OptionShippingEntity.class);
-	
 	@Autowired
 	IOptionShippingRepository optionShippingRepository;
 	
@@ -28,9 +27,9 @@ public class OptionShippingServiceImpl implements IOptionShippingService{
 		List<OptionShippingEntity> optionShippings = new ArrayList<OptionShippingEntity>();
 		try {
 			optionShippings = optionShippingRepository.findAll();
-			LOGGER.info("Lấy danh sách sản tùy chọn shipping thành công!");
+			log.info("Lấy danh sách sản tùy chọn shipping thành công!");
 		} catch (Exception e) {
-			LOGGER.info("Lấy danh sách sản tùy chọn shipping thất bại!");
+			log.info("Lấy danh sách sản tùy chọn shipping thất bại!");
 		}
 		return optionShippings;
 	}
@@ -40,9 +39,9 @@ public class OptionShippingServiceImpl implements IOptionShippingService{
 		OptionShippingEntity optionShippingEntity = new OptionShippingEntity();
 		try {
 			optionShippingEntity = optionShippingRepository.findByOptionShippingId(optionShippingId);
-			LOGGER.info("Lấy lựa chọn shipping theo id thành công!");
+			log.info("Lấy lựa chọn shipping theo id thành công!");
 		} catch (Exception e) {
-			LOGGER.info("Lấy lựa chọn shipping theo id thất bại!");
+			log.info("Lấy lựa chọn shipping theo id thất bại!");
 		}
 		return optionShippingEntity;
 	}
@@ -55,16 +54,16 @@ public class OptionShippingServiceImpl implements IOptionShippingService{
 			if(optionShippingRepository.findByOptionShippingName(optionShippingEntity.getOptionShippingName()) != null) {
 				responseCode = Constants.RESULT_CD_DUPL;
 				responseMsg = "Tên phương thức chuyển hàng đã bị trùng!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else {
 				optionShippingRepository.saveAndFlush(optionShippingEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Thêm mới chuyển hàng thành công";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Thêm mới phương thức chuyển hàng thất bại!";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -78,16 +77,16 @@ public class OptionShippingServiceImpl implements IOptionShippingService{
 			   findByOptionShippingNameAndOptionShippingIdNot(optionShippingEntity.getOptionShippingName(), optionShippingEntity.getOptionShippingId()) != null) {
 				responseCode = Constants.RESULT_CD_DUPL;
 				responseMsg = "Tên phương thức chuyển hàng đã bị trùng!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else {
 				optionShippingRepository.saveAndFlush(optionShippingEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Cật nhập phương thức chuyển hàng thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Cật nhật phương thức chuyển hàng thất bại!";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -102,14 +101,14 @@ public class OptionShippingServiceImpl implements IOptionShippingService{
 				optionShippingRepository.deleteById(optionShippingId);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Xóa phương thức chuyển hàng thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			} else {
 				responseMsg = "Không tìm thấy phương thức chuyển hàng cần xóa!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Xóa phương thức chuyển hàng";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}

@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,15 +35,15 @@ public class ProductController {
 		return productService.findByProductId(id);
 	}
 	
-	@PostMapping(value = "/product")
+	@PostMapping(value = "/product/add")
 	@ResponseBody
-	public ResponseDataModel addNewProduct(@RequestBody ProductEntity productEntity) {
+	public ResponseDataModel addNewProduct(@ModelAttribute ProductEntity productEntity) {
 		return productService.addNewProduct(productEntity);
 	}
 	
 	@RequestMapping(value = "/product/update", method = {RequestMethod.POST, RequestMethod.PUT})
 	@ResponseBody
-	public ResponseDataModel updateProduct(@RequestBody ProductEntity productEntity) {
+	public ResponseDataModel updateProduct(@ModelAttribute ProductEntity productEntity) {
 		return productService.updateProduct(productEntity);
 	}
 	

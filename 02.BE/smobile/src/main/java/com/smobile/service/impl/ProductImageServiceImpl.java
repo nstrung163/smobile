@@ -3,8 +3,6 @@ package com.smobile.service.impl;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -17,11 +15,12 @@ import com.smobile.model.ResponseDataModel;
 import com.smobile.repository.IProductImageRepository;
 import com.smobile.service.IProductImageService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class ProductImageServiceImpl implements IProductImageService{
 
-	private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-	
 	@Autowired
 	IProductImageRepository productImageRepository;
 	
@@ -51,7 +50,7 @@ public class ProductImageServiceImpl implements IProductImageService{
 					productImageTemp.setImageUrl(imagePath);
 					productImageTemp.setProductEntity(productImageEntity.getProductEntity());
 					productImageRepository.saveAndFlush(productImageTemp);
-					LOGGER.info("Thêm mới ảnh thứ " + (i + 1) + " cho sản phẩm thành công!");
+					log.info("Thêm mới ảnh thứ " + (i + 1) + " cho sản phẩm thành công!");
 				}
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Thêm ảnh cho sản phẩm hoàn tất!";
@@ -60,7 +59,7 @@ public class ProductImageServiceImpl implements IProductImageService{
 			}
 		} catch (Exception e) {
 			responseMsg = "Thêm ảnh cho sản phẩm thất bại!";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -80,14 +79,14 @@ public class ProductImageServiceImpl implements IProductImageService{
 				productImageRepository.saveAndFlush(productImageEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Cập nhật ảnh sản phẩm thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			} else {
 				responseMsg = "Vui lòng chọn ảnh cho sản phẩm";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Chỉnh sửa ảnh cho sản phẩm thất bại!";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -104,14 +103,14 @@ public class ProductImageServiceImpl implements IProductImageService{
 				FileHelper.deleteFile(productImgTemp.getImageUrl());
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Xóa ảnh của sản phẩm thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			} else {
 				responseMsg = "Sản phẩm không tồn tại!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Xóa ảnh của sản phẩm thất bại!";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}

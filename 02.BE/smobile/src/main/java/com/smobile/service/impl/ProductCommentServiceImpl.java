@@ -1,5 +1,12 @@
 package com.smobile.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.smobile.common.constant.Constants;
 import com.smobile.entity.ProductCommentEntity;
 import com.smobile.entity.ProductEntity;
@@ -10,20 +17,12 @@ import com.smobile.repository.IProductRepository;
 import com.smobile.repository.IUserRepository;
 import com.smobile.service.IProductCommentService;
 
-import java.util.ArrayList;
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
-import org.slf4j.LoggerFactory;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+@Slf4j
 @Service
 public class ProductCommentServiceImpl implements IProductCommentService {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-	
 	@Autowired
 	IProductCommentRepository productCommentRepository;
 	
@@ -38,9 +37,9 @@ public class ProductCommentServiceImpl implements IProductCommentService {
 		List<ProductCommentEntity> productCommentList = new ArrayList<ProductCommentEntity>();
 		try {
 			productCommentList = productCommentRepository.findAll();
-			LOGGER.info("Lấy danh sách bình luận của sản phẩm thành công!");
+			log.info("Lấy danh sách bình luận của sản phẩm thành công!");
 		} catch (Exception e) {
-			LOGGER.error("Lấy danh sách bình luận của sản phẩm thất bại: " + e.getMessage());
+			log.error("Lấy danh sách bình luận của sản phẩm thất bại: " + e.getMessage());
 		}
 		return productCommentList;
 	}
@@ -50,9 +49,9 @@ public class ProductCommentServiceImpl implements IProductCommentService {
 		ProductCommentEntity productCommentEntity = new ProductCommentEntity();
 		try {
 			productCommentEntity = productCommentRepository.findByCommentId(commentId);
-			LOGGER.info("Tìm kiếm bình luận sản phẩm theo id thành công!");
+			log.info("Tìm kiếm bình luận sản phẩm theo id thành công!");
 		} catch (Exception e) {
-			LOGGER.error("Tìm kiếm bình luận sản phẩm theo id thất bại: " + e.getMessage());
+			log.error("Tìm kiếm bình luận sản phẩm theo id thất bại: " + e.getMessage());
 		}
 		return productCommentEntity;
 	}
@@ -62,9 +61,9 @@ public class ProductCommentServiceImpl implements IProductCommentService {
 		List<ProductCommentEntity> productCommentList = new ArrayList<ProductCommentEntity>();
 		try {
 			productCommentList = productCommentRepository.findByProductId(productId);
-			LOGGER.info("Lấy danh sách bình luận theo mã sản phẩm thành công!");
+			log.info("Lấy danh sách bình luận theo mã sản phẩm thành công!");
 		} catch (Exception e) {
-			LOGGER.warn("Lấy danh sách bình luận theo mã sản phẩm không thành công! " + e.getMessage());
+			log.warn("Lấy danh sách bình luận theo mã sản phẩm không thành công! " + e.getMessage());
 		}
 		return productCommentList;
 	}
@@ -78,19 +77,19 @@ public class ProductCommentServiceImpl implements IProductCommentService {
 			UserEntity userEntity = userRepository.findByUserId(productCommentEntity.getUserEntity().getUserId());
 			if(productEntity == null) {
 				responseMsg = "Không tìm thấy sản phẩm!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else if(userEntity == null) {
 				responseMsg = "Vui lòng đăng nhập để bình luận!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else {
 				productCommentRepository.saveAndFlush(productCommentEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Bình luận thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Bình luận sản phẩm không thành công! ";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -104,19 +103,19 @@ public class ProductCommentServiceImpl implements IProductCommentService {
 			UserEntity userEntity = userRepository.findByUserId(productCommentEntity.getUserEntity().getUserId());
 			if(productEntity == null) {
 				responseMsg = "Không tìm thấy sản phẩm!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else if(userEntity == null) {
 				responseMsg = "Vui lòng đăng nhập để bình luận!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else {
 				productCommentRepository.saveAndFlush(productCommentEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Cật nhật bình luận thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Cập nhật bình luận sản phẩm không thành công! ";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -132,14 +131,14 @@ public class ProductCommentServiceImpl implements IProductCommentService {
 				productCommentRepository.flush();
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Xóa bình thuận sản phẩm thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			} else {
 				responseMsg = "Không tìm thấy sản phẩm!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Xóa bình luận không thành công! ";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}

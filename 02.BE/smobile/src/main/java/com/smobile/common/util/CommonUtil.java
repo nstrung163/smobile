@@ -8,13 +8,13 @@ import java.util.Date;
 import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
+@UtilityClass
 public class CommonUtil {
-	
-	private static final Logger LOGGER = LoggerFactory.getLogger(CommonUtil.class);
 	
 	/**
 	 * Convert date to string with input format
@@ -49,7 +49,7 @@ public class CommonUtil {
 		try {
 			outputDate = simpleDateFormat.parse(dateStr);
 		} catch (ParseException e) {
-			LOGGER.error("Error when converting date: " + e.getMessage());
+			log.error("Error when converting date: " + e.getMessage());
 		}
 		
 		return outputDate;

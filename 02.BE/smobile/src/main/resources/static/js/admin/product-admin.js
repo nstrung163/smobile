@@ -3,10 +3,8 @@ var url = '/products';
 function initTableData() {
 	/** Data from an URL */
 	$.get(url, function(responseData) {
-		/*alert(`data=${JSON.stringify(responseData)}`)*/
 		table = $('#dataTable').DataTable({
 			orderCellsTop: true,
-			fixedHeader: true,
 			processing: true,
 			data: responseData,
 			columns: [
@@ -45,6 +43,7 @@ function initTableData() {
 						$('.modal-title').text('Thêm Mới Sản Phẩm');
 						$('#btnSubmitProduct').text('Đồng ý');
 						$('#productId').parent().addClass("d-none");
+						$('input[name=saleDate]').val(today);
 						$('#myModal').modal('toggle');
 					}
 				}
@@ -67,72 +66,119 @@ $(document).ready(function() {
 		}
 	})
 
-	/** Show modal form update brand */
+	/** Show modal form update product */
 	$("#dataTable").on('click', '.edit-btn', function() {
-		$('#brandId').parent().removeClass("d-none");
+		$('#productId').parent().removeClass("d-none");
 		$('.modal-title').text('Chỉnh Sửa Nhãn Hiệu');
-		$('#btnSubmitBrand').text('Cập nhật');
+		$('#btnSubmitProduct').text('Cập nhật');
 		$.ajax({
 			url: '/product/' + $(this).data('id'),
 			type: 'GET',
 			dataType: 'json',
 			contentType: 'application/json',
 			success: function(responseData) {
-				resetFormModal($('#brandInfoForm'));
+				resetFormModal($('#productInfoForm'));
 				console.log('responseData: ' + JSON.stringify(responseData))
-				$("#brandId").val(responseData.brandId);
-				$("#brandName").val(responseData.brandName);
-				$("#description").val(responseData.description);
-				var brandLogo = responseData.logo;
-				console.log(brandLogo)
-				if(brandLogo == null || brandLogo == "") {
-					brandLogo = '/images/image-demo.png';
+				$("#productId").val(responseData.productId);
+				$("#productName").val(responseData.productName);
+				$("#unitPrice").val(responseData.unitPrice);
+				$("#quantity").val(responseData.quantity);
+				$("#saleDate").val(responseData.saleDate);
+				$("#statusProduct").val(responseData.statusProduct);
+				$("#brandId").val(responseData.brandEntity.brandId);
+				if($("#statusProduct").val() == "Hết hàng") {
+					$("#quantity").val(0);
+					$('input[name=quantity]').attr('readonly', 'readonly');
+				} else {
+					$('input[name=quantity]').removeAttr('readonly');
 				}
-				
-				$("#logoImg img").attr('src', brandLogo)
-				$("#logo").val(brandLogo);
 			}
 		})
 	})
+	
+	$('#statusProduct').on('change', function() {
+		if(this.value != "Hết hàng" || this.value == "") {
+			$('input[name=quantity]').removeAttr('readonly');
+		} else {
+			$('input[name=quantity]').attr('readonly', 'readonly');
+		}
+	})
 
-	/** Submit Update Brand */
-	$("#btnSubmitBrand").on('click', function(event) {
+	/** Submit Update Product */
+	$("#btnSubmitProduct").on('click', function(event) {
 		event.preventDefault();
-		var formData = new FormData($('#brandInfoForm')[0]);
-		var $brandId = $('#brandId');
-		var isAddAction = $brandId.val() == undefined || $brandId.val() == "";
 		
-		$("#brandInfoForm").validate({
+		var $productId = $('#productId');
+		var isAddAction = $productId.val() == undefined || $productId.val() == "";
+		var isHasQuantity =  $("#statusProduct").val() == "Còn hàng";
+		
+		console.log('isHasQuantity: ' + isHasQuantity);
+		console.log('isAddAction: ' + isAddAction);
+		$("#productInfoForm").validate({
 			rules: {
-				brandName: {
+				productName: {
 					required: true,
 					minlength: 2,
-					maxlength: 45,
+					maxlength: 100
 				},
-				logoFile: {
-					required: isAddAction
+				unitPrice: {
+					required: true,
+					minlength: 1
+				},
+				quantity: {
+					required: true,
+					maxlength: 32767
+				},
+				saleDate: {
+					required: true
+				},
+				statusProduct: {
+					required: true
+				},
+				brandId: {
+					required: true
 				}
 			},
 			messages: {
-				brandName: {
-					required: "Tên nhãn hiệu không được để trống!",
-					minlength: "Tên nhãn hiệu phải có ít nhất 2 ký tự!",
-					maxlength: "Tên nhãn hiệu không vượt quá 45 ký tự!"
+				productName: {
+					required: "Tên sản phẩm không được để trống!",
+					minlength: "Tên sản phẩm phải có ít nhất 2 ký tự!",
+					maxlength: "Tên sản phẩm không vượt quá 100 ký tự!"
 				},
-				logoFile: {
-					required: "Không được để trống hình ảnh nhãn hiệu!"
+				unitPrice: {
+					required: "Đơn giá không được để trống!",
+					minlength: "Đơn giá không được bé hơn 1"
+				},
+				quantity: {
+					required: "Số lượng không được để trống!",
+					maxlength: "Số lượng thêm vào không vượt quá 32767"
+				},
+				saleDate: {
+					required: "Ngày bán sản phẩm không được để trống!"
+				},
+				statusProduct: {
+					required: "Trạng thái sản phẩm không được để trống!"
+				},
+				brandId: {
+					required: "Nhãn hiệu sản phẩm không được để trống!"
 				}
 			},
 			errorElement: "div",
 			errorClass: "error-message-invalid"
 		});
-		if ($("#brandInfoForm").valid()) {
+		if ($("#productInfoForm").valid()) {
+			var formData = new FormData($('#productInfoForm')[0]);
+			if($('#statusProduct').val() == "Hết hàng") {
+				$('#quantity').val(0)
+				$('input[name=quantity]').removeAttr('readonly');
+			} else {
+				$('input[name=quantity]').attr('readonly', 'readonly');
+			}
 			$.ajax({
-				url: 'brand/' + (isAddAction ? "add" : "update"),
-				type: 'POST',
+				url: '/product/' + (isAddAction ? "add" : "update"),
+				type: isAddAction ? 'POST' : 'PUT',
 				processData: false,
 				contentType: false,
-				enctype: 'multipart/form-data',
 				data: formData,
 				success: function(responseData) {
 					console.log(responseData);
@@ -140,7 +186,6 @@ $(document).ready(function() {
 						/**Reload datatable */
 						reloadDataTable();
 						$('#myModal').modal('toggle');
-						/*$('.modal-backdrop').remove();*/
 						$('#announcemnet strong:eq(0)').removeClass("text-warning").addClass("text-success");
 						$('#notification').text(responseData.responseMsg);
 						$("#announcemnet").toast('show');
@@ -151,45 +196,71 @@ $(document).ready(function() {
 					}
 				},
 				error: function(e) {
-					alert('Cập nhật nhãn hiệu không thành công! ' + JSON.stringify(e));
+					alert('Cập nhật sản phẩm không thành công! ' + JSON.stringify(e));
 				}
 			})
 		}
 
 	})
 
-	/** Show modal delete brand */
+	/** Show modal delete product */
 	$("#dataTable").on('click', '.delete-btn', function() {
-		$("#deleteBrandName").text($(this).data("name"));
+		$("#deleteProductName").text($(this).data("name"));
 		$("#btnSubmitDelete").attr('data-id', $(this).data('id'));
 	})
 	
-
-	/** Submit delete brand */
+	/** Submit delete product*/
 	$("#btnSubmitDelete").on('click', function() {
-		console.log('.data("") = ' + $(this).data('id') + ', .attr= ' + $(this).attr('data-id'));
 		$.ajax({
-			url: 'brand/' + $(this).attr('data-id'),
+			url: '/product/' + $(this).attr('data-id'),
 			type: 'DELETE',
 			success: function(responseData) {
-				reloadDataTable();
-				$('#confirmDeleteModal').modal('toggle');
-				$('#announcemnet strong:eq(0)').removeClass("text-warning").addClass("text-success");
-				$('#notification').text("Xóa nhãn hiệu thành công!");
-				$("#announcemnet").toast('show');
-				console.log(responseData + ' success: ' + $(this).data('id'))
+				console.log('responseCode: ' + responseData.responseCode);
+				if(responseData.responseCode == 100) {
+					reloadDataTable();
+					$('#confirmDeleteModal').modal('toggle');
+					$('#announcemnet strong:eq(0)').removeClass("text-warning").addClass("text-success");
+					$('#notification').text(responseData.responseMsg);
+					$("#announcemnet").toast('show');
+				} else  { 
+					$('#announcemnet strong:eq(0)').removeClass("text-success").addClass("text-warning");
+					$('#notification').text(responseData.resposneMsg);
+					$("#announcemnet").toast('show');
+				}
 			},
 			error: function(e) {
-				console.log('error: ' + $(this).data('id'))
-				alert('Xóa nhãn hiệu không thành công: ' + JSON.stringify(e));
+				alert('Xóa sản phẩm thành công không thành công: ' + JSON.stringify(e));
 			}
 		})
-		console.log('Brand id after:' + $(this).data('id'))
 	})
 })
 
+/**
+*
+* Reload datatable
+* 
+* @return new datatable
+*/
 function reloadDataTable() {
 	$('#dataTable').dataTable().fnDestroy();
 	initTableData();
 }
+
+/**
+*
+* Get current date
+*
+* @return current date
+*/
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1;
+var yyyy = today.getFullYear();
+if(dd < 10) {
+	dd = '0' + dd;
+}
+if(mm < 10) { 
+	mm = '0' + mm;
+}
+today = yyyy + '-' + mm + '-' + dd;
 

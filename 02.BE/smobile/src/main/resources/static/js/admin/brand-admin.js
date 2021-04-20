@@ -13,7 +13,7 @@ function initTableData() {
 				{ data: 'brandId' },
 				{ data: 'brandName' },
 				{ render: function(data, type, row) {
-						return `<div class='text-center image-area'><a href="${row.logo}" data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src="${row.logo}"></div>`;
+						return `<div class='text-center image-area-brand'><a href="${row.logo}" data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src="${row.logo}"></div>`;
 					} 
 				},
 				{ data: 'description' },
@@ -125,8 +125,8 @@ $(document).ready(function() {
 			$.ajax({
 				url: 'brand/' + (isAddAction ? "add" : "update"),
 				type: 'POST',
-				processData: false,
-				contentType: false,
+				/*processData: false,
+				contentType: false,*/
 				enctype: 'multipart/form-data',
 				data: formData,
 				success: function(responseData) {
@@ -181,6 +181,8 @@ $(document).ready(function() {
 		})
 		console.log('Brand id after:' + $(this).data('id'))
 	})
+	
+	/** $('.image-area-brand').parent().css("max-width: 30%"); */
 })
 
 function reloadDataTable() {
