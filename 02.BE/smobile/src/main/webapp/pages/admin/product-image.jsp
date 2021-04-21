@@ -71,11 +71,12 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/brand-list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
-                                <a class="nav-link" href="/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
-                                <a class="nav-link" href="/account-list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a> 
-                                <a class="nav-link" href="/product-list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
-                                <a class="nav-link" href="/product-list"><i class="mr-2 fas fa-star-half-alt"></i>Đánh giá</a>
+                            	<a class="nav-link" href="/brand-list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
+                            	<a class="nav-link" href="/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
+                            	<a class="nav-link" href="/product-image-list"><i class="mr-2 fab fa-product-hunt"></i>Ảnh sản phẩm</a>
+                                <a class="nav-link" href="/account/list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a> 
+                                <a class="nav-link" href="/product/list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
+                                <a class="nav-link" href="/product/list"><i class="mr-2 fas fa-star-half-alt"></i>Đánh giá</a>
                             </nav>
                         </div>
                         <!-- Quản lý bán hàng -->
@@ -104,8 +105,8 @@
                         </a>
                         <div class="collapse" id="collapseStatistic" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/admin/statistic/product">Theo sản phẩm</a> <a class="nav-link"
-                                    href="/admin/statistic/order">Theo hóa đơn</a>
+                                <a class="nav-link" href="/admin/statistic/product">Theo sản phẩm</a>
+                                <a class="nav-link" href="/admin/statistic/order">Theo hóa đơn</a>
                             </nav>
                         </div>
                     </div>
@@ -121,10 +122,10 @@
                 <div class="container-fluid">
                     <!-- BODY -->
                     <ol  class="breadcrumb mb-4 mt-4">
-                        <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-                        <li class="breadcrumb-item active">Sản Phẩm</li>
+                        <li class="breadcrumb-item"><a href="/admin/home">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Ảnh sản phẩm</li>
                     </ol>
-                    <h3>Quản Lý Sản Phẩm</h3>
+                    <h3 >Quản Lý Ảnh Sản Phẩm</h3>
                     <div id="announcemnet" role="alert" aria-live="assertive" aria-atomic="true" class="toast"
                         data-animation="true" data-autohide="true" data-delay="3000"
                         style="position: absolute; top: 70px; right: 30px; z-index: 100000;">
@@ -141,7 +142,7 @@
                     <!-- Alert -->
                     <div class="card mb-4">
                         <div class="card-header">
-                            <i class="fas fa-table mr-1"></i> Thông tin sản phẩm
+                            <i class="fas fa-table mr-1"></i> Thông tin ảnh nhãn hiệu
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -149,25 +150,17 @@
                                     <thead data-detail-formatter="detailFormatter">
                                         <tr id="list-header">
                                             <th>No</th>
-                                            <th>Tên sản phẩm</th>
-                                            <th>Đơn giá</th>
-                                            <th>Số lượng</th>
-                                            <th>Ngày bán</th>
-                                            <th>Trạng thái</th>
-                                            <th>Nhãn hiệu</th>
+                                            <th>Tên Sản Phẩm</th>
+                                            <th>Hình ảnh</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
-                                            <th>Tên sản phẩm</th>
-                                            <th>Đơn giá</th>
-                                            <th>Số lượng</th>
-                                            <th>Ngày bán</th>
-                                            <th>Trạng thái</th>
-                                            <th>Nhãn hiệu</th>
-                                            <th> </th>
+                                            <th>Tên Sản Phẩm</th>
+                                            <th>Hình ảnh</th>
+                                            <th></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -176,56 +169,38 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Modal add/update -->
                    <div class="modal fade" id="myModal">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<!-- Modal Header -->
 							<div class="modal-header">
-								<h5 class="modal-title">Thêm Mới Sản Phẩm</h5>
+								<h5 class="modal-title">Thêm Ảnh Sản Phẩm</h5>
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 							</div>
 							<!-- Modal body -->
 							<div class="modal-body">
-								<form action="" method="POST" id="productInfoForm">
+								<form action="" method="POST" id="productImageInfoForm" enctype="multipart/form-data">
 									<div class="form-group">
-										<label for="productId">Mã Sản Phẩm: </label>
-										<input type="number" class="form-control" id="productId" name="productId" readonly="readonly" required="required" >
+										<label for="productImageId">Mã Ảnh Sản Phẩm: </label>
+										<input type="number" class="form-control" id="productImageId" name="productImageId" readonly="readonly" required="required" >
 									</div>
 									<div class="form-group">
-										<label for="productName">Tên sản phẩm:</label>
-										<input type="text" class="form-control" placeholder="Nhập tên sản phẩm" name="productName" id="productName">
-									</div>
-									<div class="form-group">
-										<label for="unitPrice">Đơn giá:</label>
-										<input type="number" class="form-control" placeholder="Nhập đơn giá sản phẩm" name="unitPrice" id="unitPrice">
-									</div>
-									<div class="form-group">
-										<label for="quantity">Số lượng:</label>
-										<input type="number" class="form-control" placeholder="Nhập số lượng sản phẩm" name="quantity" id="quantity">
-									</div>
-									<div class="form-group">
-										<label for="saleDate">Ngày bán:</label>
-										<input type="date" class="form-control" placeholder="Chọn ngày bán sản phẩm" name="saleDate" id="saleDate">
-									</div>
-									<div class="form-group">
-										<label for="statusProduct">Trạng thái:</label>
-										<select class="form-control" id="statusProduct" name="statusProduct">
-											<option value="" disabled="disabled" selected="selected">Chọn trạng thái sản phẩm</option>
-											<option class="out-of-stock" value="Hết hàng">Hết hàng</option>
-											<option value="Còn hàng">Còn hàng</option>
-											<option value="Sắp ra mắt">Sắp ra mắt</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label for="brandEntity">Nhãn Hiệu: </label>
-										<select class="form-control" id="brandId" name="brandEntity.brandId">
-											<c:forEach items="${brandList}" var="brand">
-												<option value="${brand.brandId}" class="form-select">${brand.brandName}</option>
+										<label for="productEntity">Tên Sản Phẩm:</label>
+										<select class="form-control" id="productId" name="productEntity.productId">
+											<c:forEach items="${productImageList}" var="product">
+												<option value="${product.productId}" class="form-select">${product.productName}</option>
 											</c:forEach>
 										</select>
 									</div>
-									<button type="submit" class="btn btn-primary" id="btnSubmitProduct">Cập nhật</button>
+									<div class="form-group">
+										<label for="imageUrl">Hình ảnh: <span class="required-field">(*)</span></label>
+										<div class="preview-image-upload" id="image">
+											<img src="<c:url value='/images/image-demo.png'/>" alt="image">
+										</div>
+										<input type="file" class="form-control upload-image" name="imagesFile" accept="image/*" multiple="multiple" />
+										<input type="hidden" class="old-img" id="imageUrl" name="imageUrl">
+									</div>
+									<button type="submit" class="btn btn-primary" id="btnSubmitProductImage">Cập nhật</button>
 								</form>
 							</div>
 							<!-- Modal footer -->
@@ -246,7 +221,7 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<p>Bạn có muốn xóa sản phẩm <b id="deleteProductName"></b>?</p>
+								<p>Bạn có muốn xóa ảnh của <b id="deleteProductName"></b>?</p>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
@@ -282,6 +257,6 @@
 	<script src="<c:url value='/plugins/ekko-lightbox/ekko-lightbox.min.js'/>"></script>
     <script src="<c:url value='/js/admin/scripts.js'/>"></script>
     <script src="<c:url value='/js/base.js'/>"></script>
-    <script src="<c:url value='/js/admin/product-admin.js'/>"></script>
+    <script src="<c:url value='/js/admin/product-image.js'/>"></script>
 </body>
 </html>

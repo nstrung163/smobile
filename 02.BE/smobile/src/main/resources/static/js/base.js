@@ -11,6 +11,7 @@ $(document).ready(function() {
 	// Upload image preview
 	$('input.upload-image').on('change', function() {
 		var url = window.URL || window.webkitURL;
+		
 		var file = this.files[0];
 		var fileUrl;
 		var $parent = $(this).parent();
@@ -31,7 +32,8 @@ $(document).ready(function() {
 $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 event.preventDefault();
                 $(this).ekkoLightbox();
-            });
+            }
+);
 
 /* Rest form add new brand*/
 function resetFormModal($formElement) {

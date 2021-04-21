@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smobile.entity.ProductImageEntity;
@@ -18,7 +17,6 @@ import com.smobile.model.ResponseDataModel;
 import com.smobile.service.impl.ProductImageServiceImpl;
 
 @Controller
-@RequestMapping(value = "/v1/api")
 public class ProductImageController {
 
 	@Autowired
@@ -36,13 +34,13 @@ public class ProductImageController {
 		return productImageService.findByProductImageId(id);
 	}
 	
-	@PostMapping(value = "/product-image")
+	@PostMapping(value = "/product-image/add")
 	@ResponseBody
 	public ResponseDataModel addNewProductImage(@ModelAttribute ProductImageEntity productImageEntity) {
 		return productImageService.addProductImage(productImageEntity);
 	}
 	
-	@PutMapping(value = "/product-image")
+	@PutMapping(value = "/product-image/update")
 	@ResponseBody
 	public ResponseDataModel updateProductImage(@ModelAttribute ProductImageEntity productImageEntity) {
 		return productImageService.updateProductImage(productImageEntity);

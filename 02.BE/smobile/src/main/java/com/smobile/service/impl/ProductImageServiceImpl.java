@@ -53,7 +53,7 @@ public class ProductImageServiceImpl implements IProductImageService{
 					log.info("Thêm mới ảnh thứ " + (i + 1) + " cho sản phẩm thành công!");
 				}
 				responseCode = Constants.RESULT_CD_SUCCESS;
-				responseMsg = "Thêm ảnh cho sản phẩm hoàn tất!";
+				responseMsg = "Thêm ảnh cho sản phẩm thành công!";
 			} else {
 				responseMsg = "Vui lòng chọn ảnh cho sản phẩm!";
 			}
