@@ -1,6 +1,6 @@
 package com.smobile.entity;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -16,7 +16,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "PRODUCT")
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor 
 public class ProductEntity {
 
 	@Id
@@ -49,7 +48,6 @@ public class ProductEntity {
 	@Column(name = "STATUS_PRODUCT", columnDefinition = "nvarchar(45)", nullable = false)
 	private String statusProduct;
 
-	@JsonIgnoreProperties("productSet")
 	@JoinColumn(name = "BRAND_ID", referencedColumnName = "BRAND_ID")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private BrandEntity brandEntity;

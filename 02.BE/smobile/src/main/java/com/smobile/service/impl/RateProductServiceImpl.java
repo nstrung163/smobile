@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +17,12 @@ import com.smobile.repository.IRateProductRepository;
 import com.smobile.repository.IUserRepository;
 import com.smobile.service.IRateProductService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class RateProductServiceImpl implements IRateProductService {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-	
 	@Autowired
 	IRateProductRepository rateProductRepository;
 	
@@ -38,9 +37,9 @@ public class RateProductServiceImpl implements IRateProductService {
 		List<RateProductEntity> listRateProduct = new ArrayList<RateProductEntity>();
 		try {
 			listRateProduct = rateProductRepository.findAll();
-			LOGGER.info("Lấy danh sách đánh giá sản phẩm thành công!");
+			log.info("Lấy danh sách đánh giá sản phẩm thành công!");
 		} catch (Exception e) {
-			LOGGER.info("Lấy danh sách đánh giá sản phẩm thất bại!");
+			log.info("Lấy danh sách đánh giá sản phẩm thất bại!");
 		}
 		return listRateProduct;
 	}
@@ -50,9 +49,9 @@ public class RateProductServiceImpl implements IRateProductService {
 		RateProductEntity rateProductEntity = new RateProductEntity();
 		try {
 			rateProductEntity = rateProductRepository.findByRateId(rateId);
-			LOGGER.info("Lấy đánh giá sản phẩm theo id thành công!");
+			log.info("Lấy đánh giá sản phẩm theo id thành công!");
 		} catch (Exception e) {
-			LOGGER.info("Lấy đánh giá sản phẩm theo id thất bại!");
+			log.info("Lấy đánh giá sản phẩm theo id thất bại!");
 		}
 		return rateProductEntity;
 	}
@@ -66,19 +65,19 @@ public class RateProductServiceImpl implements IRateProductService {
 			ProductEntity productEntity = productRepository.findByProductId(rateProductEntity.getProductEntity().getProductId());
 			if(userEntity == null) {
 				responseMsg = "Không tìm thấy người dùng!"; 
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else if(productEntity == null) {
 				responseMsg = "Không tìm thấy sản phẩm!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else {
 				rateProductRepository.saveAndFlush(rateProductEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Đánh giá sản phẩm thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Đánh giá sản phẩm không thành công! ";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -92,19 +91,19 @@ public class RateProductServiceImpl implements IRateProductService {
 			ProductEntity productEntity = productRepository.findByProductId(rateProductEntity.getProductEntity().getProductId());
 			if(userEntity == null) {
 				responseMsg = "Không tìm thấy người dùng!"; 
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else if(productEntity == null) {
 				responseMsg = "Không tìm thấy sản phẩm!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else {
 				rateProductRepository.saveAndFlush(rateProductEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Cập nhật đánh giá sản phẩm thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Cập nhật đánh giá sản phẩm không thành công! ";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -119,14 +118,14 @@ public class RateProductServiceImpl implements IRateProductService {
 				rateProductRepository.deleteById(rateProductId);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Xóa đánh giá sản phẩm thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			} else {
 				responseMsg = "Không tìm thấy sản phẩm cần đánh giá!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Xóa đánh giá sản phẩm không thành công! ";
-			LOGGER.warn(responseMsg + e.getMessage());
+			log.warn(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}

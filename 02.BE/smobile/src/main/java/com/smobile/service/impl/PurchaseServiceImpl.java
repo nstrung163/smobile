@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,10 +21,11 @@ import com.smobile.repository.IPurchaseStatusRepository;
 import com.smobile.repository.IUserRepository;
 import com.smobile.service.IPurchaseService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class PurchaseServiceImpl implements IPurchaseService{
-	
-	private final Logger LOGGER = LoggerFactory.getLogger(PurchaseServiceImpl.class);
 	
 	@Autowired
 	IPurchaseRepository purchaseRepository;
@@ -48,9 +47,9 @@ public class PurchaseServiceImpl implements IPurchaseService{
 		List<PurchaseEntity> purchaseList = new ArrayList<PurchaseEntity>();
 		try {
 			purchaseList = purchaseRepository.findAll();
-			LOGGER.info("Lấy danh sách hóa đơn thành công!");
+			log.info("Lấy danh sách hóa đơn thành công!");
 		} catch (Exception e) {
-			LOGGER.error("Lấy danh sách hóa đơn thất bại!" + e.getMessage());
+			log.error("Lấy danh sách hóa đơn thất bại!" + e.getMessage());
 		}
 		return purchaseList;
 	}
@@ -60,9 +59,9 @@ public class PurchaseServiceImpl implements IPurchaseService{
 		PurchaseEntity purchaseEntity = new PurchaseEntity();
 		try {
 			purchaseEntity = purchaseRepository.findByPurchaseId(purchaseId);
-			LOGGER.info("Lấy hóa đơn theo mã hóa đơn thành công!");
+			log.info("Lấy hóa đơn theo mã hóa đơn thành công!");
 		} catch (Exception e) {
-			LOGGER.error("Lấy hóa đơn theo mã hóa đơn thất bại!");
+			log.error("Lấy hóa đơn theo mã hóa đơn thất bại!");
 		}
 		return purchaseEntity;
 	}
@@ -79,15 +78,15 @@ public class PurchaseServiceImpl implements IPurchaseService{
 			   purchaseRepository.saveAndFlush(purchaseEntity);
 			   responseCode = Constants.RESULT_CD_SUCCESS;
 			   responseMsg = "Thêm mới hóa đơn thành công!";
-			   LOGGER.info(responseMsg);
+			   log.info(responseMsg);
 			} else {
 				responseMsg = "Thông tin truyền vào hóa đơn không chính xác! ";
-				LOGGER.error(responseMsg);
+				log.error(responseMsg);
 			}
 			
 		} catch (Exception e) {
 			responseMsg = "Thêm mới hóa đơn thất bại! ";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -110,19 +109,19 @@ public class PurchaseServiceImpl implements IPurchaseService{
 					purchaseRepository.saveAndFlush(purchaseEntity);
 					responseCode = Constants.RESULT_CD_SUCCESS;
 					responseMsg = "Cập nhật hóa đơn thành công!";
-					LOGGER.info(responseMsg);
+					log.info(responseMsg);
 				} catch (Exception e) {
-					LOGGER.error("Lỗi khi cập nhật hóa đơn: " + e.getMessage());
+					log.error("Lỗi khi cập nhật hóa đơn: " + e.getMessage());
 				}
 				
 			} else {
 				responseMsg = "Thông tin truyền vào hóa đơn không chính xác! ";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			}
 			
 		} catch (Exception e) {
 			responseMsg = "Cập nhật hóa đơn thất bại! ";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -137,14 +136,14 @@ public class PurchaseServiceImpl implements IPurchaseService{
 				purchaseRepository.deleteById(purchaseId);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Xóa hóa đơn thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			} else {
 				responseMsg = "Không tìm thấy hóa đơn cần xóa!";
-				LOGGER.error(responseMsg);
+				log.error(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Xóa hóa đơn thất bại! ";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -161,14 +160,14 @@ public class PurchaseServiceImpl implements IPurchaseService{
 				purchaseRepository.saveAndFlush(purchaseEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Cập nhật trạng thái hóa đơn thành công!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else {
 				responseMsg = "Không tìm thấy hóa đơn!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Cật nhật trạng thái hóa đơn thất bại!";
-			LOGGER.warn(responseMsg);
+			log.warn(responseMsg);
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}

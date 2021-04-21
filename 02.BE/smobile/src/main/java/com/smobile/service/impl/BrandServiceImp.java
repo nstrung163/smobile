@@ -1,10 +1,9 @@
 package com.smobile.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -17,10 +16,11 @@ import com.smobile.model.ResponseDataModel;
 import com.smobile.repository.IBrandRepository;
 import com.smobile.service.IBrandService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class BrandServiceImp implements IBrandService {
-	
-	private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 	
 	@Value("${parent.folder.images.brand}")
 	private String brandLogoFolderPath;
@@ -30,7 +30,14 @@ public class BrandServiceImp implements IBrandService {
 
 	@Override
 	public List<BrandEntity> findAllBrand() {
-		return brandRepository.findAll();
+		List<BrandEntity> brandList = new ArrayList<BrandEntity>();
+		try {
+			brandList = brandRepository.findAll();
+			log.info("Lấy danh sách nhãn hiệu thành công!");
+		} catch (Exception e) {
+			log.error("Lấy danh sách nhãn hiệu thất bại!");
+		}
+		return brandList;
 	}
 
 	@Override
@@ -55,7 +62,7 @@ public class BrandServiceImp implements IBrandService {
 			}
 		} catch (Exception e) {
 			responseMsg = "Thêm mới nhãn hiệu thất bại!";
-			LOGGER.error("Thêm mới nhãn hiệu thất bại! " + e.getMessage());
+			log.error("Thêm mới nhãn hiệu thất bại! " + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -73,15 +80,13 @@ public class BrandServiceImp implements IBrandService {
 				if(logoFiles != null && logoFiles[0].getSize() > 0) {
 					String imagePath = FileHelper.editFile(brandLogoFolderPath, logoFiles, brandEntity.getLogo());
 					brandEntity.setLogo(imagePath);
-					brandRepository.saveAndFlush(brandEntity);
-					responseCode = Constants.RESULT_CD_SUCCESS;
-					responseMsg = "Cập nhật nhãn hiệu thành công!";
-				} else {
-					responseMsg = "Vui lòng chọn ảnh của nhãn hiệu!";
-				}
+				} 
+				brandRepository.saveAndFlush(brandEntity);
+				responseCode = Constants.RESULT_CD_SUCCESS;
+				responseMsg = "Cập nhật nhãn hiệu thành công!";
 			}
 		} catch (Exception e) {
-			LOGGER.error("Cập nhật nhãn hiệu thất bại! " + e.getMessage());
+			log.error("Cập nhật nhãn hiệu thất bại! " + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -103,14 +108,21 @@ public class BrandServiceImp implements IBrandService {
 			}
 		} catch (Exception e) {
 			responseMsg = "Xóa nhãn hiệu thất bại!";
-			LOGGER.error("Xóa nhãn hiệu thất bại! " + e.getMessage());
+			log.error("Xóa nhãn hiệu thất bại! " + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
 
 	@Override
 	public BrandEntity findByBrandId(Integer bradId) {
-		return brandRepository.findByBrandId(bradId);
+		BrandEntity brandEntity = new BrandEntity();
+		try {
+			brandEntity = brandRepository.findByBrandId(bradId);
+			log.info("Tìm kiếm nhãnhiệu theo id thành công!");
+		} catch (Exception e) {
+			log.error("Tìm kiếm nhãn hiệu theo id không thành công!");
+		}
+		return brandEntity;
 	}
 
 }

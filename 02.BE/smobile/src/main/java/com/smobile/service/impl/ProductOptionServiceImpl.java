@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +17,12 @@ import com.smobile.repository.IProductOptionRepository;
 import com.smobile.repository.IProductRepository;
 import com.smobile.service.IProductOptionService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class ProductOptionServiceImpl implements IProductOptionService{
 
-	private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-	
 	@Autowired
 	IProductOptionRepository proOptionRepository;
 
@@ -33,11 +32,11 @@ public class ProductOptionServiceImpl implements IProductOptionService{
 	@Override
 	public List<ProductOptionEntity> findAllProductOption() {
 		List<ProductOptionEntity> productOptions = new ArrayList<ProductOptionEntity>();
-		try {
+		try { 
 			productOptions = proOptionRepository.findAll();
-			LOGGER.info("Lấy danh sách tùy chọn sản phẩm thành công!");
+			log.info("Lấy danh sách tùy chọn sản phẩm thành công!");
 		} catch (Exception e) {
-			LOGGER.info("Lấy danh sách tùy chọn sản phẩm thất bại!");
+			log.info("Lấy danh sách tùy chọn sản phẩm thất bại!");
 		}
 		return productOptions;
 	}
@@ -47,9 +46,9 @@ public class ProductOptionServiceImpl implements IProductOptionService{
 		ProductOptionEntity productOptionEntity = new ProductOptionEntity();
 		try {
 			productOptionEntity = proOptionRepository.findByProductOptionId(productOptionId);
-			LOGGER.info("Lấy tùy chọn sản phẩm theo id thành công!");
+			log.info("Lấy tùy chọn sản phẩm theo id thành công!");
 		} catch (Exception e) {
-			LOGGER.info("Lấy tùy chọn sản phẩm theo id thất bại");
+			log.info("Lấy tùy chọn sản phẩm theo id thất bại");
 		}
 		return productOptionEntity;
 	}
@@ -66,14 +65,14 @@ public class ProductOptionServiceImpl implements IProductOptionService{
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Thêm mới lựa chọn sản phẩm thành công!";
 				data.put("productEntity", productEntity);
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			} else {
 				responseMsg = "Không tìm thấy sản phẩm cần cập nhât!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Thêm mới tùy chọn sản phẩm thất bại!";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg, data);
 	}
@@ -88,14 +87,14 @@ public class ProductOptionServiceImpl implements IProductOptionService{
 				proOptionRepository.saveAndFlush(productOptionEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Cập nhật thông tin tùy chọn sản phẩm thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			} else {
 				responseMsg = "Không tìm thấy sản phẩm cần cập nhật!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Cập nhật thông tin tùy chọn sản phẩm thất bại!";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -110,14 +109,14 @@ public class ProductOptionServiceImpl implements IProductOptionService{
 				proOptionRepository.deleteById(productOptionId);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Xóa tùy chọn của sản phẩm thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			} else {
 				responseMsg = "Không tìm thấy tùy chọn sản phẩm cần xóa!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Xóa tùy tùy chọn sản phẩm thất bại!";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}

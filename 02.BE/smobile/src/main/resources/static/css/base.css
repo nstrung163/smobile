@@ -7,44 +7,59 @@
   --gray-color: #333;
   --red-color: #d0021b;
 }
+
+:focus {
+	outline: 0 !important;
+	box-shadow: none !important;
+}
+
 html {
   font-family: "Roboto", sans-serif;
   font-size: 62.5%;
 }
+
 a:hover {
   text-decoration: none;
 }
+
 *,
 *:before,
 *:after {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
+
 img {
   display: block;
   max-width: 100%;
 }
+
 body {
   background: #f3f3f3;
 }
+
 .top-banner {
   background-color: #fbf200;
 }
+
 /* HEADER START */
 header {
   background: #4a90e2;
   height: 50px;
   color: var(--text-color);
 }
+
 .header-content {
   display: flex;
   justify-content: space-between;
 }
+
 /* Header left  */
 .header-left,
 .header-right {
   display: flex;
 }
+
 .logo {
   cursor: pointer;
   display: block;
@@ -64,6 +79,7 @@ header {
   background-color: var(--white-color);
   border-radius: 4px;
 }
+
 .search__input {
   width: 100%;
   height: 36px;
@@ -73,6 +89,7 @@ header {
   border: 0;
   outline: none;
 }
+
 .search__item {
   display: block;
   text-decoration: none;
@@ -83,6 +100,7 @@ header {
 }
 /* Search END */
 /* History */
+
 #history-buy {
   display: block;
   width: 74px;
@@ -95,6 +113,7 @@ header {
   line-height: 1.6rem;
   cursor: pointer;
 }
+
 #history-buy:hover {
   text-decoration: none;
 }
@@ -108,6 +127,7 @@ header {
   height: 20px;
   margin: 15px 0 0 5px;
 }
+
 .sign-up-btn {
   color: var(--white-color);
   font-size: 1.3rem;
@@ -115,6 +135,7 @@ header {
   display: block;
   margin: 15px 20px;
 }
+
 .sign-up-btn:hover {
   color: var(--white-color);
   text-decoration: none;
@@ -130,10 +151,12 @@ header {
   font-weight: 400;
   font-weight: bold;
 }
+
 .switchboard:hover {
   text-decoration: none;
   color: var(--white-color);
 }
+
 .switchboard span {
   font-size: 1.2rem;
   color: var(--text-color);
@@ -150,13 +173,16 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
 .nav-bar-menu {
   font-size: 1.5rem;
   background-color: #f6d331;
 }
+
 .bg-nav {
   background-color: #f6d331;
 }
+
 .navbar-nav-list {
   width: 100%;
   display: flex;
@@ -164,18 +190,17 @@ nav {
 }
 
 /* Txt banner */
-/* .txt-banner {
-  
-} */
 .txt-banner__list {
   display: flex;
   align-items: center;
   position: relative;
 }
+
 .hot-event .text {
   padding-left: 25px;
   font-weight: bold;
 }
+
 .hot-event .dot {
   width: 10px;
   height: 10px;
@@ -187,6 +212,7 @@ nav {
   margin-top: -5px;
   display: block;
 }
+
 .hot-event .dot .ping {
   border: 1px solid #d0021b;
   width: 10px;
@@ -198,16 +224,18 @@ nav {
   display: block;
   margin: 0;
 }
+
 .txt-banner__list--item {
   padding: 0 20px;
   font-size: 1.4rem;
   color: var(--black-color);
-  /* border-left: 1px solid #ccc; */
   position: relative;
 }
+
 .txt-banner__list--item:hover {
   text-decoration: none;
 }
+
 .bd-left::before {
   content: "";
   position: absolute;

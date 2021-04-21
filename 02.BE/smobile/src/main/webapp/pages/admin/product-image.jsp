@@ -1,27 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Trang chủ</title>
-    <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
-    <link href="/plugins/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="/plugins/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-    <link href="/plugins/datatables/css/buttons.dataTables.min.css" rel="stylesheet" />
-    <link href="/plugins/font-awesome/css/all.min.css" rel="stylesheet" />
-    <link href="/css/admin/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/admin/admin-index.css">
+    <meta name="description" content="Hệ thống quản lý điện thoại di động Smoble" />
+    <meta name="author" content="NST" />
+    <title>Trang chủ | Sản Phẩm</title>
+    <link href="<c:url value='/plugins/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
+    <link href="<c:url value='/plugins/datatables/css/dataTables.bootstrap.min.css'/>" rel="stylesheet" />
+    <link href="<c:url value='/plugins/datatables/css/dataTables.bootstrap4.min.css'/>" rel="stylesheet" />
+    <link href="<c:url value='/plugins/datatables/css/buttons.dataTables.min.css'/>" rel="stylesheet" />
+    <link href="<c:url value='/plugins/font-awesome/css/all.min.css'/>" rel="stylesheet" />
+    <link href="<c:url value='/css/admin/styles.css'/>" rel="stylesheet" />
+    <link href="<c:url value='/css/admin/admin-index.css'/>" rel="stylesheet">
 </head>
 
 <body class="sb-nav-fixed">
     <!-- HEADER -->
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="/admin/home">Smobile</a>
+        <a class="navbar-brand" href="/admin/home"><span class="logo-home"></span></a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle">
             <i class="fas fa-bars"></i>
         </button>
@@ -68,11 +71,12 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/admin/account/list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a> 
-                                <a class="nav-link" href="/admin/brand/list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
-                                <a class="nav-link" href="/admin/product/list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
-                                <a class="nav-link" href="/admin/product/list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
-                                <a class="nav-link" href="/admin/product/list"><i class="mr-2 fas fa-star-half-alt"></i>Đánh giá</a>
+                            	<a class="nav-link" href="/brand-list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
+                            	<a class="nav-link" href="/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
+                            	<a class="nav-link" href="/product-image-list"><i class="mr-2 fab fa-product-hunt"></i>Ảnh sản phẩm</a>
+                                <a class="nav-link" href="/account/list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a> 
+                                <a class="nav-link" href="/product/list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
+                                <a class="nav-link" href="/product/list"><i class="mr-2 fas fa-star-half-alt"></i>Đánh giá</a>
                             </nav>
                         </div>
                         <!-- Quản lý bán hàng -->
@@ -101,8 +105,8 @@
                         </a>
                         <div class="collapse" id="collapseStatistic" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/admin/statistic/product">Theo sản phẩm</a> <a class="nav-link"
-                                    href="/admin/statistic/order">Theo hóa đơn</a>
+                                <a class="nav-link" href="/admin/statistic/product">Theo sản phẩm</a>
+                                <a class="nav-link" href="/admin/statistic/order">Theo hóa đơn</a>
                             </nav>
                         </div>
                     </div>
@@ -118,10 +122,10 @@
                 <div class="container-fluid">
                     <!-- BODY -->
                     <ol  class="breadcrumb mb-4 mt-4">
-                        <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-                        <li class="breadcrumb-item active">Nhãn hiệu</li>
+                        <li class="breadcrumb-item"><a href="/admin/home">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Ảnh sản phẩm</li>
                     </ol>
-                    <h3 >Quản lý nhãn hiệu</h3>
+                    <h3 >Quản Lý Ảnh Sản Phẩm</h3>
                     <div id="announcemnet" role="alert" aria-live="assertive" aria-atomic="true" class="toast"
                         data-animation="true" data-autohide="true" data-delay="3000"
                         style="position: absolute; top: 70px; right: 30px; z-index: 100000;">
@@ -138,89 +142,94 @@
                     <!-- Alert -->
                     <div class="card mb-4">
                         <div class="card-header">
-                            <i class="fas fa-table mr-1"></i> Thông tin nhãn hiệu
+                            <i class="fas fa-table mr-1"></i> Thông tin ảnh nhãn hiệu
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped" id="dataTable" style="width=100%">
+                                <table class="table table-bordered table-striped" id="dataTable" style="width: 100%">
                                     <thead data-detail-formatter="detailFormatter">
                                         <tr id="list-header">
                                             <th>No</th>
-                                            <th>Mã nhãn hiệu</th>
-                                            <th>Tên nhãn hiệu</th>
+                                            <th>Tên Sản Phẩm</th>
                                             <th>Hình ảnh</th>
-                                            <th>Mô tả</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <!-- <tfoot>
+                                    <tfoot>
                                         <tr>
                                             <th>No</th>
-                                            <th>Category Code</th>
-                                            <th>Category Name</th>
-                                            <th>Action</th>
+                                            <th>Tên Sản Phẩm</th>
+                                            <th>Hình ảnh</th>
+                                            <th></th>
                                         </tr>
-                                    </tfoot> -->
+                                    </tfoot>
                                     <tbody>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <!-- The Modal -->
-                    <div class="modal fade" id="myModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Edit Category</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    <form action="" method="POST" id="categoryInfoForm">
-                                        <div class="form-group">
-                                            <label for="categoryId">Category Id: </label>
-                                            <input type="number" class="form-control" id="categoryId" readonly="readonly" required="required">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="categoryCode">Category Code:</label>
-                                            <input type="text" class="form-control" placeholder="Enter category code" id="categoryCode" name="categoryCode" required="required">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="categoryName">Category Name:</label>
-                                            <input type="text" class="form-control" placeholder="Enter category name" name="categoryName" id="categoryName" required="required">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary" id="btnSubmitCategory">Submit</button>
-                                    </form>
-                                </div>
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Delete category -->
-                    <div class="modal fade" id="confirmDeleteModal">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Delete Category</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Do you want to delete <b id="deleteCategoryName"></b>?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary" id="btnSubmitDelete">OK</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   <div class="modal fade" id="myModal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<!-- Modal Header -->
+							<div class="modal-header">
+								<h5 class="modal-title">Thêm Ảnh Sản Phẩm</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<!-- Modal body -->
+							<div class="modal-body">
+								<form action="" method="POST" id="productImageInfoForm" enctype="multipart/form-data">
+									<div class="form-group">
+										<label for="productImageId">Mã Ảnh Sản Phẩm: </label>
+										<input type="number" class="form-control" id="productImageId" name="productImageId" readonly="readonly" required="required" >
+									</div>
+									<div class="form-group">
+										<label for="productEntity">Tên Sản Phẩm:</label>
+										<select class="form-control" id="productId" name="productEntity.productId">
+											<c:forEach items="${productImageList}" var="product">
+												<option value="${product.productId}" class="form-select">${product.productName}</option>
+											</c:forEach>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="imageUrl">Hình ảnh: <span class="required-field">(*)</span></label>
+										<div class="preview-image-upload" id="image">
+											<img src="<c:url value='/images/image-demo.png'/>" alt="image">
+										</div>
+										<input type="file" class="form-control upload-image" name="imagesFile" accept="image/*" multiple="multiple" />
+										<input type="hidden" class="old-img" id="imageUrl" name="imageUrl">
+									</div>
+									<button type="submit" class="btn btn-primary" id="btnSubmitProductImage">Cập nhật</button>
+								</form>
+							</div>
+							<!-- Modal footer -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Delete category -->
+				<div class="modal fade" id="confirmDeleteModal" >
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Xóa Nhãn Hiệu</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p>Bạn có muốn xóa ảnh của <b id="deleteProductName"></b>?</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
+								<button type="button" class="btn btn-primary" id="btnSubmitDelete">Xác nhận</button>
+							</div>
+						</div>
+					</div>
+				</div>
                     <!-- END BODY -->
                 </div>
             </main>
@@ -230,7 +239,7 @@
                     <div class="d-flex align-items-center justify-content-between small">
                         <div class="text-muted">Copyright &copy; Smobile 2021</div>
                         <div>
-                            <a href="#">Chính sách bảo mật</a> &middot; <a href="#">Điều khoản &amp;Điều kiện</a>
+                            <a href="#">Chính sách bảo mật</a> &middot; <a href="#">Điều khoản &amp; Điều kiện</a>
                         </div>
                     </div>
                 </div>
@@ -238,12 +247,16 @@
             <!-- END FOOTER -->
         </div>
     </div>
-    <script src="/plugins/jquery/jquery-3.5.1.min.js"></script>
-    <script src="/plugins/jquery/jquery.validate.min.js"></script>
-    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/plugins/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="/plugins/datatables/js/dataTables.buttons.min.js"></script>
-    <script src="/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/js/scripts.js"></script>
+    <script src="<c:url value='/plugins/jquery/jquery-3.5.1.min.js'/>"></script>
+    <script src="<c:url value='/plugins/jquery/jquery.validate.min.js'/>"></script>
+    <script src="<c:url value='/plugins/bootstrap/js/bootstrap.min.js' />"></script>
+    <script src="<c:url value='/plugins/datatables/js/jquery.dataTables.min.js'/>"></script>
+    <script src="<c:url value='/plugins/datatables/js/dataTables.buttons.min.js'/>"></script>
+    <script src="<c:url value='/plugins/datatables/js/dataTables.bootstrap4.min.js'/>"></script>
+    <script src="<c:url value='/plugins/bootstrap/js/bootstrap-notify.min.js'/>"></script>
+	<script src="<c:url value='/plugins/ekko-lightbox/ekko-lightbox.min.js'/>"></script>
+    <script src="<c:url value='/js/admin/scripts.js'/>"></script>
+    <script src="<c:url value='/js/base.js'/>"></script>
+    <script src="<c:url value='/js/admin/product-image.js'/>"></script>
 </body>
 </html>

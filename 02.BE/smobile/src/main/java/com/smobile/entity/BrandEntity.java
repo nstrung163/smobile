@@ -2,7 +2,6 @@ package com.smobile.entity;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +15,6 @@ import javax.persistence.Transient;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,8 +23,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "BRAND")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor 
 public class BrandEntity {
 
 	@Id
@@ -46,9 +44,8 @@ public class BrandEntity {
 	@Transient
 	private MultipartFile[] logoFile;
 	
-	@JsonIgnoreProperties("brandEntity")
 	@JsonIgnore
-	@OneToMany(mappedBy = "brandEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "brandEntity", fetch = FetchType.LAZY)
 	private Set<ProductEntity> productSet;
-	
+
 }

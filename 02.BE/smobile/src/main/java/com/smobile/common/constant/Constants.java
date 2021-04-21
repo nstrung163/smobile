@@ -1,5 +1,8 @@
 package com.smobile.common.constant;
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 public class Constants {
 
 	/* Common character */

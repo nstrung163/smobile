@@ -8,10 +8,10 @@ $(document).ready(function() {
 			$this.parent().addClass("active");
 		}
 	});
-
 	// Upload image preview
 	$('input.upload-image').on('change', function() {
 		var url = window.URL || window.webkitURL;
+		
 		var file = this.files[0];
 		var fileUrl;
 		var $parent = $(this).parent();
@@ -20,7 +20,7 @@ $(document).ready(function() {
 			$parent.find(".error-message-invalid").removeClass(".error-message-invalid");
 		} else {
 			var oldImagePath = $parent.find(".old-img").val();
-			if (oldImagePath) {
+			if (oldImagePath && oldImagePath != "") {
 				fileUrl = oldImagePath;
 			} else {
 				fileUrl = "/images/image-demo.png";
@@ -32,16 +32,22 @@ $(document).ready(function() {
 $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 event.preventDefault();
                 $(this).ekkoLightbox();
-            });
+            }
+);
 
 /* Rest form add new brand*/
 function resetFormModal($formElement) {
-
 	$formElement[0].reset();
 	$formElement.find("input[type*='file']").val("");
 	$formElement.validate().destroy();
-	$formElement.find(".error-message-invalid").remove();
+	$formElement.find(".error-message-invalid").removeClass('error-message-invalid');
 	$formElement.find("img").attr('src', '');
+	
+//	$formElement[0].reset();
+//	$formElement.find("input[type*='file']").val("");
+//	$formElement.validate().destroy();
+//	$formElement.find(".error-message-invalid").remove();
+//	$formElement.find("img").attr('src', '');
 }
 
 /* Auto change title form add to edit or edit to add  */
@@ -104,4 +110,32 @@ function formValidate($formElement, validationInfo) {
 		ignore: 'input[type=hidden], .select2-input, .select2-focusser'
 	});
 	return $formElement.valid();
+}
+
+/**
+ * 
+ * Currency format 
+ * 
+ * @param price
+ * @returns price format
+ */
+function currencyFormat(price) {
+	return price.toLocaleString('vi-VN', { useGrouping: true });
+}
+
+/**
+ * 
+ * Format date 
+ * 
+ * @param date
+ * @returns dataFormat
+ */
+function getFormattedDate(saleDate) {
+	var date = new Date(saleDate);
+	var day = date.getDate();
+	var month = date.getMonth() + 1;
+	var year = date.getFullYear();
+	if (date < 10) { date = '0' + date }
+	if (month < 10) { month = '0' + month }
+	return day + '/' + month + '/' + year;
 }

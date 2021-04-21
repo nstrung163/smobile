@@ -1,5 +1,12 @@
 package com.smobile.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.smobile.common.constant.Constants;
 import com.smobile.entity.ProductEntity;
 import com.smobile.entity.ProductOptionEntity;
@@ -12,20 +19,12 @@ import com.smobile.repository.IPurchaseDetailRepository;
 import com.smobile.repository.IPurchaseRepository;
 import com.smobile.service.IPurchaseDetailService;
 
-import java.util.ArrayList;
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
-import org.slf4j.LoggerFactory;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+@Slf4j
 @Service
 public class PurchaseDetailServiceImpl implements IPurchaseDetailService{
 	
-	private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-
 	@Autowired
 	IPurchaseDetailRepository purchaseDetailRepository;
 	
@@ -43,9 +42,9 @@ public class PurchaseDetailServiceImpl implements IPurchaseDetailService{
 		List<PurchaseDetailEntity> purchaseDetailList = new ArrayList<PurchaseDetailEntity>();
 		try {
 			purchaseDetailList = purchaseDetailRepository.findAll();
-			LOGGER.info("Lấy danh sách hóa đơn mua hàng thành công!");
+			log.info("Lấy danh sách hóa đơn mua hàng thành công!");
 		} catch (Exception e) {
-			LOGGER.error("Lấy danh sách hóa đơn mua hành thất bại: " + e.getMessage());
+			log.error("Lấy danh sách hóa đơn mua hành thất bại: " + e.getMessage());
 		}
 		return purchaseDetailList;
 	}
@@ -55,9 +54,9 @@ public class PurchaseDetailServiceImpl implements IPurchaseDetailService{
 		PurchaseDetailEntity purchaseDetailEntity = new PurchaseDetailEntity();
 		try {
 			purchaseDetailEntity = purchaseDetailRepository.findByPurchaseDetailId(purchaseDetailId);
-			LOGGER.info("Tìm kiếm chi tiết hóa đơn theo id thành công!");
+			log.info("Tìm kiếm chi tiết hóa đơn theo id thành công!");
 		} catch (Exception e) {
-			LOGGER.error("Tìm kiếm chi tiết hóa đơn mua hàng theo id thất bại: " + e.getMessage());
+			log.error("Tìm kiếm chi tiết hóa đơn mua hàng theo id thất bại: " + e.getMessage());
 		}
 		return purchaseDetailEntity;
 	}
@@ -72,22 +71,22 @@ public class PurchaseDetailServiceImpl implements IPurchaseDetailService{
 			ProductOptionEntity productOptionEntity = productOptionRepository.findByProductOptionId(purchaseDetailEntity.getProductOptionEntity().getProductOptionId());
 			if(purchaseEntity == null) {
 				responseMsg = "Hóa đơn mua hàng không tồn tại!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else if(productEntity == null) {
 				responseMsg = "Sản phẩm không tồn tại!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else if(productOptionEntity == null) {
 				responseMsg = "Tùy chọn của sản phẩm không tồn tại!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else {
 				purchaseDetailRepository.saveAndFlush(purchaseDetailEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Thêm mới chi tiết hóa đơn thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Thêm mới chi tiết hóa đơn thất bại! ";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -102,22 +101,22 @@ public class PurchaseDetailServiceImpl implements IPurchaseDetailService{
 			ProductOptionEntity productOptionEntity = productOptionRepository.findByProductOptionId(purchaseDetailEntity.getProductOptionEntity().getProductOptionId());
 			if(purchaseEntity == null) {
 				responseMsg = "Hóa đơn mua hàng không tồn tại!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else if(productEntity == null) {
 				responseMsg = "Sản phẩm không tồn tại!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else if(productOptionEntity == null) {
 				responseMsg = "Tùy chọn của sản phẩm không tồn tại!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			} else {
 				purchaseDetailRepository.saveAndFlush(purchaseDetailEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Cập nhật hóa đơn chi tiết thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Cập nhật hóa đơn chi tiết thất bại! ";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
@@ -132,14 +131,14 @@ public class PurchaseDetailServiceImpl implements IPurchaseDetailService{
 				purchaseDetailRepository.deleteById(purchaseDetailId);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Xóa chi tiết hóa đơn thành công!";
-				LOGGER.info(responseMsg);
+				log.info(responseMsg);
 			} else {
 				responseMsg = "Không tìm thấy chi tiết hóa đơn cần xóa!";
-				LOGGER.warn(responseMsg);
+				log.warn(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Xóa chi tiết hóa đơn thất bại! ";
-			LOGGER.error(responseMsg + e.getMessage());
+			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
