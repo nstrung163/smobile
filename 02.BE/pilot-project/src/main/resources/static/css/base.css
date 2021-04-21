@@ -1,0 +1,258 @@
+@import
+	url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap")
+	;
+
+html {
+	font-family: "Roboto", sans-serif;
+}
+/* Remove outline of button when click */
+:focus {
+	outline: 0 !important;
+	box-shadow: none !important;
+}
+
+.navbar-light .navbar-brand {
+	font-size: 22px;
+	font-weight: 700;
+	color: #fff;
+}
+
+.navbar-light .navbar-brand:hover {
+	color: #fff;
+}
+
+.nav-bg {
+	background-color: #519FFF;
+}
+
+.navbar-light .navbar-nav .nav-link {
+	font-size: 20px;
+	font-weight: 600;
+	color: #f5f5f5;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+	color: #567c8e;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+	color: #03354c;
+}
+
+.sub-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 10px 0;
+	padding: 10px;
+	background-color: #f3f1f1;
+	border-radius: 5px;
+}
+
+.sub-header .sub-title {
+	font-weight: 700;
+	color: #333;
+	padding-left: 5px;
+	font-size: 20px;
+}
+
+.add-new {
+	color: #fff;
+}
+
+.icon-add {
+	padding-right: 10px;
+}
+
+.btn {
+	background-color: #28a745;
+}
+
+.btn-add {
+	background-color: #fff;
+}
+
+.fa-trash-alt {
+	color: #d9534f;
+}
+
+.edit-btn, .delete-btn {
+	cursor: pointer;
+}
+
+.action-btns {
+	color: #0080ff;
+	text-align: center;
+	line-height: 50px;
+	height: 30px;
+}
+/* SEARCH BRAND */
+.form-search {
+	width: 30%;
+	display: flex;
+	margin: 15px 0;
+}
+
+.form-search #searchBrand {
+	margin: 0 10px;
+	/* font-weight: 600; */
+}
+/* END SEARCH BRAND */
+/* RESULT SEARCH */
+#resultSearch p {
+	font-size: 20px;
+	text-align: center;
+	color: #345ebb;
+	font-weight: bold;
+	margin: 16px 0 0 10px;
+}
+/* ADD NEW */
+.btn-add {
+	background-color: #28a745;
+	color: #fff;
+	/* font-weight: 600; */
+}
+
+.btn-add:hover {
+	background-color: #519FFF;
+}
+
+.btn-secondary {
+	background-color: #6c757d;
+}
+/* FORM GROUP */
+.form-group {
+	margin-bottom: 0.7rem;
+}
+/*  */
+.reset-page {
+	/* font-weight: 600; */
+	background-color: #6c757d;
+}
+
+.modal-content .modal-header {
+	padding: 0.5rem 1rem;
+	background: #e9ecef;
+}
+
+.modal-content .modal-body {
+	padding-bottom: 0.5rem;
+}
+
+.preview-image-upload {
+	text-align: center;
+	margin-bottom: 12px;
+}
+
+.preview-image-upload img {
+	max-width: 50%;
+	height: 60px;
+	opacity: .7;
+}
+
+.message-area {
+	padding: 5px 15px;
+}
+
+div.error-message-invalid, div.error, label.error-message-invalid, label.error
+	{
+	background-color: #f8d7da;
+	position: relative;
+	padding: .375rem .75rem;
+	margin-top: .5rem;
+	border: 1px solid #f5c6cb !important;
+	color: #dc3545 !important;
+	width: 100%;
+	border-radius: .25rem;
+}
+/* Table */
+.table-bordered img {
+	max-width: 80px;
+}
+
+td {
+	font-size: 16px;
+}
+
+.tr-bg {
+	background-color: #c3d0e0;
+	text-align: center;
+}
+
+/* Modal add new  */
+.form-group {
+	margin-bottom: 0.8rem;
+}
+
+.modal-footer {
+	padding: .5rem;
+}
+
+.pagination a {
+	display: block;
+	color: #111;
+	text-align: center;
+	text-decoration: none;
+	min-width: 40px;
+}
+
+.pagination a.active {
+	color: #333;
+	background-color: #ccc;
+}
+
+.pagination a.disabled {
+	pointer-events: none;
+	color: #ccc;
+}
+
+.page-item {
+	display: block;
+	margin: 0 5px;
+}
+/* Ekko lightbox */
+.ekko-lightbox .modal-header {
+	display: block !important;
+}
+
+.ekko-lightbox .modal-contnet {
+	border-radius: 5px;
+}
+
+.ekko-lightbox .modal-body {
+	padding: 0.5rem;
+}
+
+.ekko-lightbox .modal-header {
+	height: 0px;
+	border: none;
+	position: relative;
+	padding: 0;
+	z-index: 1;
+}
+
+.ekko-lightbox .modal-header .close, .ekko-lightbox .modal-header .close:hover
+	{
+	opacity: 1;
+	color: #fff;
+}
+
+.ekko-lightbox .modal-header .close span {
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	border: 1px solid #6c757d;
+	background: #000;
+	border-radius: 50%;
+	padding: 0px 5px 4px 5px;
+	font-size: 1.2rem;
+}
+
+.ekko-lightbox .modal-header .close:hover span {
+	background: #212529;
+}
+
+.required-field {
+	color: red;
+	font-weight: bold;
+}
