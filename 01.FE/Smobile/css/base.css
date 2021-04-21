@@ -28,7 +28,7 @@ body {
   background: #f3f3f3;
 }
 .top-banner {
-  background-color: #fbf200;
+  background-color: #ecd97c;
 }
 /* HEADER START */
 header {
@@ -152,10 +152,10 @@ nav {
 }
 .nav-bar-menu {
   font-size: 1.5rem;
-  background-color: #f6d331;
+  background-color: #ecd97c;
 }
 .bg-nav {
-  background-color: #f6d331;
+  background-color: #ecd97c;
 }
 .navbar-nav-list {
   width: 100%;
