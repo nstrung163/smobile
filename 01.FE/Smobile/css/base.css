@@ -613,6 +613,7 @@ strong {
   background-color: #fff;
 }
 .experience-video-heading {
+  color: #4a90e2;
   height: 40px;
   line-height: 20px;
   font-size: 1.4rem;
@@ -621,6 +622,7 @@ strong {
   font-weight: 600;
   border-bottom: 1px solid #ccc;
 }
+
 .experience-video-heading::after {
   content: "";
   width: 0;
