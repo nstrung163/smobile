@@ -2,6 +2,7 @@ package com.smobile.model;
 
 import java.util.List;
 
+import com.smobile.entity.ProductCommentEntity;
 import com.smobile.entity.ProductEntity;
 import com.smobile.entity.ProductInfoEntity;
 import com.smobile.entity.ProductOptionEntity;
@@ -27,4 +28,5 @@ public class ProductDetailModel {
 	
 	private ProductOptionEntity productOption;
 	
+	private List<ProductCommentEntity> productCommentList;
 }
