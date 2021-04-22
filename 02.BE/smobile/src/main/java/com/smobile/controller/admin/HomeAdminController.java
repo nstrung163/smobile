@@ -17,7 +17,7 @@ public class HomeAdminController {
 	@Autowired
 	IProductService productService;
 	
-	@GetMapping(value = { "", "/admin/home", "/admin" })
+	@GetMapping(value = {"/admin/home", "/admin" })
 	public String initHomePage() {
 		return "admin/index-admin";
 	}
