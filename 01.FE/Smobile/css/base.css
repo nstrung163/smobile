@@ -937,7 +937,7 @@ footer {
   display: block;
 }
 .tab-content .tab-product {
-  display: none;
+  /* display: none; */
 }
 
 /* Footer START */
