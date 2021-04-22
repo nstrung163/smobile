@@ -20,6 +20,10 @@ a:hover {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
+:focus {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
 img {
   display: block;
   max-width: 100%;
@@ -162,7 +166,10 @@ nav {
   display: flex;
   justify-content: space-between;
 }
-
+.navbar-light .navbar-nav .active>.nav-link {
+  font-size: 1.7rem;
+  color: #000;
+}
 /* Txt banner */
 /* .txt-banner {
   
@@ -495,7 +502,8 @@ strong {
   padding: 10px 10px 15px 10px;
   position: relative;
 }
-.carousel-control-prev, .carousel-control-next {
+.carousel-control-prev,
+.carousel-control-next {
   width: 4%;
 }
 .carousel-sale .carousel-indicators {
@@ -838,6 +846,7 @@ footer {
   padding: 0;
   margin-top: 15px;
   background-color: var(--white-color);
+  padding: 1px;
 }
 .outstanding-phone__header {
   display: flex;
@@ -862,8 +871,28 @@ footer {
   margin: 15px 10px;
   line-height: 30px;
 }
+.view-all-product {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
+  width: 211px;
+  height: 50px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
+.view-all-product--link {
+    display: flex;
+    justify-content: space-between;
+}
+.icon-arrow-down {
+  padding-left: 5px;
+}
 .total-product {
   font-weight: bold;
+  padding: 0 5px;
 }
 
 .product-viewed-area {
@@ -889,12 +918,16 @@ footer {
 }
 .list-promotion .product-promo--item {
   background-color: var(--white-color);
-  width: 16.66666666%;
+  width: 19.555%;
   max-height: 400px;
   position: relative;
   padding: 10px;
-  border-right: 1px solid #eee;
+  border: 1px solid #eee;
   border-bottom: 1px solid #eee;
+  margin: 2px;
+}
+.list-promotion .product-promo--item:hover > img { 
+  max-width: 105%;
 }
 /* Tab content */
 .tab-content > .active {

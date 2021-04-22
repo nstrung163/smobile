@@ -65,27 +65,28 @@
         </nav>
       </div>
     </div>
-    <main class="container">
+    <main class="container box-card-container">
+      <div class="box-card__title">
+        <div class="box-card__title__left"><a href="/" class="box-card__title--back--home">Tiếp tục tìm kiếm sản phẩm <i class="fas fa-chevron-right"></i></a></div>
+        <div class="box-card__title__right"><h1>Giỏ hàng của bạn</h1></div>
+      </div>
         <div class="main-content box-card">
-            <div class="box-card__title">
-                <div class="box-card__title__left"><a href="/" class="box-card__titile--back--home">Tiếp tục tìm kiếm sản phẩm</a></div>
-                <div class="box-card__title__right"><h1>Giỏ hàng của bạn</h1></div>
-            </div>
+            
             <form action="" method="POST" id="formCheckout">
                 <ul class="product-info__list">
                     <li class="product-info__item">
                         <div class="product-info__item__image">
-                            <img src="/images/20200911-1442-ptau9h.png" alt="Image product">
+                            <img src="/images/gstc7.jpg" alt="Image product">
                         </div>
                         <div class="product-info__item__essential">
                             <span class="product-info__item__name">iPhone 12 Mini Chính hãng (VN/A)-Xanh Dương</span>
                             <span class="product-info__item__price">16.590.000 ₫</span>
                             <ul class="list-promo">
                                 <div class="list-promo__title"> - Khuyến mãi hãng:</div>
-                                <li class="list-produmo__item">Giảm thêm 500.000đ khi mua kèm Apple Watch Series 6</li>
+                                <li class="list-promo__item">Giảm thêm 500.000đ khi mua kèm Apple Watch Series 6</li>
                             </ul>
                             <div class="box-update-card">
-                                <a href="/" class="box-update-card__delete"></a>
+                                <a href="/" class="box-update-card__delete">Xóa khỏi giỏ</a>
                                 <ul class="pagination-list">
                                     <li class="pagination-list__item"><a href="/">-</a></li>
                                     <li class="pagination-list__item"><a href="/">3</a></li>
@@ -96,17 +97,17 @@
                     </li>
                     <li class="product-info__item">
                         <div class="product-info__item__image">
-                            <img src="/images/20200911-1442-ptau9h.png" alt="Image product">
+                            <img src="/images/gstc7.jpg" alt="Image product">
                         </div>
                         <div class="product-info__item__essential">
                             <span class="product-info__item__name">iPhone 12 Mini Chính hãng (VN/A)-Xanh Dương</span>
                             <span class="product-info__item__price">16.590.000 ₫</span>
                             <ul class="list-promo">
                                 <div class="list-promo__title"> - Khuyến mãi hãng:</div>
-                                <li class="list-produmo__item">Giảm thêm 500.000đ khi mua kèm Apple Watch Series 6</li>
+                                <li class="list-promo__item">Giảm thêm 500.000đ khi mua kèm Apple Watch Series 6</li>
                             </ul>
                             <div class="box-update-card">
-                                <a href="/" class="box-update-card__delete"></a>
+                                <a href="/" class="box-update-card__delete">Xóa khỏi giỏ</a>
                                 <ul class="pagination-list">
                                     <li class="pagination-list__item"><a href="/">-</a></li>
                                     <li class="pagination-list__item"><a href="/">3</a></li>
@@ -118,19 +119,26 @@
                 </ul>
             </form>
             <div class="form-group box-price">
-                <span class="box-price__code-discount"></span>
-                <span class="box-price__total-price">65.670.000 ₫</span>
+                <div class="box-price__code-discount">
+                  <span class="box-price__code-discount--title">- Mã giảm giá: </span>
+                  <span class="box-price__code-discount--price">0 ₫</span>
+                </div>
+                <div class="box-price__total-price">
+                  <span class="box-price__total-price--title">- Mã giảm giá: </span>
+                  <span class="box-price__total-price--price">65.670.000 ₫</span>
+                </div>
             </div>
             <div class="form-group box-shipping">
-                <div class="form-control box-shipping__title">* Miễm phí giao hàng</div>
+                <div class=" box-shipping__title">* Miễn phí giao hàng</div>
             </div>
             <div class="form-group info-user">
+                <span class="info-user__info-order">Thông tin mua hàng</span>
                 <div class="info-user__required">
-                    <div class="form-control">
+                    <div class="info-user__required--name">
                         <label for="userName">Họ và tên (bắt buộc)</label>
                         <input type=" text" id="fullName" name="fullName">
                     </div>
-                    <div class="form-control">
+                    <div class="info-user__required--phone">
                         <label for="phoneNumber">Số điện thoại (bắt buộc)</label>
                         <input type=" text" id="phoneNumber" name="phoneNumber">
                     </div>
@@ -140,17 +148,48 @@
                     <input type=" text" id="content-note" name="content-note">
                 </div>
             </div>
-            <div class="option-revice">
-                <div class="form-control">
-                    <label for="opptionReviceStore">Giữ hàng tại cửa hàng</label>
-                    <input type="radio" class="form-control" id="opptionReviceStore" name="opptionReviceStore">
+            <!-- <div class="option-receive">
+              <span class="option-receive__title">Thông tin mua hàng</span>
+                <div class="option-receive__store">
+                    <label for="optionReceiveStore">Giữ hàng tại cửa hàng</label>
+                    <input type="radio" id="optionReceiveStore" name="optionReceiveStore">
                 </div>
-                <div class="form-control">
-                    <label for="opptionReviceHome">Giao hàng tận nơi</label>
-                    <input type="radio" class="form-control" id="opptionReviceHome" name="opptionReviceHome">
+                <div class="option-receive__home">
+                    <label for="optionReceiveHome">Giao hàng tận nơi</label>
+                    <input type="radio" id="optionReceiveHome" name="optionReceiveHome">
                 </div>
-            </div>
-        </div>
+            </div> -->
+
+            <section class="box-payment">
+              <div class="box-paymen__other">
+                <button type="submit" class="btn btn-aqua" id="btnSubmitCheckout"><span>Đặt hàng thanh toán sau</span>(Trả tiền tại nhà hoăc tại cửa hàng)</button>
+              </div>
+              <div class="box-payment__separate-area">
+                <span class="box-payment__separate">HOẶC THANH TOÁN ONLINE</span>
+              </div>
+              <div class="box-payment__zalo">
+                <input type="radio" name="payment-method" id="zalo-method" value="Zalo Pay"/>
+                <label for="zalo-method">
+                  <i class="icon-zalopay"></i>
+                  <span>Cổng thanh toán ZaloPay</span>
+                  <i class="icon-atm"></i>
+                  <i class="icon-visa"></i>
+                  <i class="icon-master"></i>
+                </label>
+              </div>
+              <div class="box-payment__vnpay">
+                <input type="radio" name="payment-method" id="vn-method" value="VN Pay"/>
+                <label class="box-payment__vnpay--label" for="vnpay-method">
+                  <i class="icon-vnpay"></i>
+                  <span>Thanh toán qua VNPAY</span>
+                  <i class="icon-atm"></i>
+                </label>
+              </div>
+              <div class="box-payment__online">
+                <button type="submit" class="btn btn-aqua" id="btnSubmitCheckoutPayOnline"><span>Thanh toán online</span>(Thẻ Visa, Master, ATM, Momo…)</button>
+              </div>
+            </section>
+          </div>
     </main>
     <footer class="container-fluid">
       <div class="footer">
