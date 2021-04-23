@@ -17,24 +17,7 @@ public class ProductItemModel {
 	
 	private float averageRate;
 	
+	private double salePrice;
+	
 	private String imageItem;
-
-	public void setTotalRate(int totalRate) {
-		if(totalRate != 0) {
-			this.totalRate = totalRate;
-		} else {
-			this.totalRate = 0;
-		}
-	}
-
-	public void setAverageRate(float averageRate) {
-		if(averageRate != 0) {
-			this.averageRate = averageRate;
-		} else {
-			this.averageRate = 0;
-		}
-	}
-	
-	
-	
 }

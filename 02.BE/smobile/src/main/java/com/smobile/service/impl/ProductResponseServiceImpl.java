@@ -16,6 +16,7 @@ import com.smobile.entity.ProductInfoEntity;
 import com.smobile.entity.ProductOptionEntity;
 import com.smobile.model.ProductDetailModel;
 import com.smobile.model.ProductItemModel;
+import com.smobile.model.ProductMemoryPriceModel;
 import com.smobile.model.ResponseDataModel;
 import com.smobile.repository.IProductCommentRepository;
 import com.smobile.repository.IProductImageRepository;
@@ -60,11 +61,18 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 			for (ProductEntity product : productList) {
 				 int totalRate = rateRepository.getTotalRateByProductId(product.getProductId());
 				 float averagePointRate = 0;
-				 if(totalRate != 0) { // Check product have rated?
+				// Check product have rated?
+				 if(totalRate != 0) { 
 					 averagePointRate = rateRepository.getAveragePointRate(product.getProductId());
 				 }
+				 double salePrice = product.getUnitPrice();
+				//Check product exist
+				 ProductOptionEntity productOptionEntity = productOptionRepository.findProductOptionByProductId(product.getProductId());
+				 if(productOptionEntity != null) {
+					 salePrice = productOptionRepository.getSalePriceDefault(product.getProductId());
+				 }
 				 String imageProduct = productImageRepository.getFirstImageUrlByProductId(product.getProductId());
-				 ProductItemModel productItem = new ProductItemModel(product, totalRate, averagePointRate, imageProduct);
+				 ProductItemModel productItem = new ProductItemModel(product, totalRate, averagePointRate, salePrice, imageProduct);
 				 productItemList.add(productItem);
 			}
 			if(productItemList != null) {
@@ -80,17 +88,21 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 		return new ResponseDataModel(responseCode, responseMsg, data);
 	}
 
+	// Get product outstanding title
 	@Override
 	public ResponseDataModel getProductOutstanding() {
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
 		Map<String, Object> data = new HashMap<String, Object>();
 		try {
+			List<ProductEntity> productAllList = productRepository.findAll();
+			int totalProduct = productAllList.size();
 			List<ProductEntity> productList = productRepository.findProductOutstanding();
 			if(productList != null) {
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Lấy danh sách sản phẩm nổi bật thành công!";
 				data.put("listProductOutstanding", productList);
+				data.put("totalProduct", totalProduct);
 				log.info(responseMsg);
 			} else {
 				responseMsg = "Không tìm thấy sản phẩm!";
@@ -103,6 +115,7 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 		return new ResponseDataModel(responseCode, responseMsg, data);
 	}
 
+	// Get data for product detail page
 	@Override
 	public ResponseDataModel findProductDetailById(Integer productId) {
 		int repsonseCode = Constants.RESULT_CD_FAIL;
@@ -119,13 +132,14 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 			ProductInfoEntity productInfoEntity = productInfoRepository.findByProductId(productId);
 			ProductOptionEntity productOptionEntity = productOptionRepository.findProductOptionByProductId(productId);
 			List<ProductCommentEntity> productCommentList = productCommentRepository.getListProductCommentByProductId(productId);
+//			List<ProductMemoryPriceModel> productMemoryPriceModels = productOptionRepository.getListProductByMemoryPirce(productId);
 			ProductDetailModel productDetailModel = new ProductDetailModel(productEntity, totalRate, averagePointRate, imagesUrl, productInfoEntity, productOptionEntity, productCommentList);
 			data.put("productDetailModel", productDetailModel);
 			repsonseCode = Constants.RESULT_CD_SUCCESS;
 			responseMsg = "Lấy dữ liệu cho trang chi tiết sản phẩm thành công";
 			log.info(responseMsg);
 		} catch (Exception e) {
-			responseMsg = "Lấy dữ liệu cho trang chi tiết sản phẩm không thành công";
+			responseMsg = "Lấy dữ liệu cho trang chi tiết sản phẩm không thành công ";
 			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(repsonseCode, responseMsg, data);
@@ -150,6 +164,14 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 		}
 		return new ResponseDataModel(responseCode, responseMsg, data);
 	}
+
+//	@Overrides
+//	public ResponseDataModel getListOptionMemoryPrice(Integer productId) {
+//		int responseCode = Constants.RESULT_CD_FAIL;
+//		String responseMsg = StringUtils.EMPTY;
+//		Map<String, Ob>
+//		return null;
+//	}
 	
 	
 }

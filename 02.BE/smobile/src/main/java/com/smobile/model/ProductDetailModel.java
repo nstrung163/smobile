@@ -29,4 +29,6 @@ public class ProductDetailModel {
 	private ProductOptionEntity productOption;
 	
 	private List<ProductCommentEntity> productCommentList;
+	
+//	private List<ProductMemoryPriceModel> productMemoryPriceModels;
 }

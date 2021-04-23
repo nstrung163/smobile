@@ -15,7 +15,7 @@ public class HomeControllerApi {
 	@Autowired
 	IProductResponseService productResponseService;
 	
-	@GetMapping(value = "/product-item")
+	@GetMapping(value = "/product-items")
 	@ResponseBody
 	public ResponseDataModel getAllProductItem() {
 		return productResponseService.findAllProductItem();
@@ -27,7 +27,7 @@ public class HomeControllerApi {
 		return productResponseService.getProductOutstanding();
 	}
 	
-	@GetMapping(value = "/product-detail/{id}")
+	@GetMapping(value = "/api/product-detail/{id}")
 	@ResponseBody
 	public ResponseDataModel findProductDetailById(@PathVariable(value = "id") Integer id) {
 		return productResponseService.findProductDetailById(id);

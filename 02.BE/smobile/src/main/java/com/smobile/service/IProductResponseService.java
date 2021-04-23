@@ -12,4 +12,5 @@ public interface IProductResponseService {
 	
 	ResponseDataModel getListProductOptionByMemoryAndProductId(int memoryProduct, Integer productId);
 	
+//	ResponseDataModel getListOptionMemoryPrice(Integer productId);
 }
