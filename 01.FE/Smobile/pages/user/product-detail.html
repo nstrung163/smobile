@@ -97,7 +97,7 @@
         <form action="" method="POST" class="product-essential__form">
           <div class="product-essential__left">
               <div class="carousel-sale">
-                <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
+                <div id="myCarouselProduct" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <img class="d-block w-100" src="/images/gstc3.jpg"/>
@@ -112,60 +112,60 @@
                       <img class="d-block w-100" src="/images/gstc6.jpg"/>  
                     </div>
                   </div>
-                  <a class="carousel-control-prev" href="#myCarousel" role="button"  data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
                   <!-- Indicators -->
                   <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active">
+                    <li data-target="#myCarouselProduct" data-slide-to="0" class="active">
                       <img class="d-block w-40" src="/images/gstc3.jpg"/>
                     </li>
-                    <li data-target="#myCarousel" data-slide-to="1">
+                    <li data-target="#myCarouselProduct" data-slide-to="1">
                       <img class="d-block w-40" src="/images/gstc4.jpg"/>
                     </li>
-                    <li data-target="#myCarousel" data-slide-to="2">
+                    <li data-target="#myCarouselProduct" data-slide-to="2">
                       <img class="d-block w-40" src="/images/gstc5.jpg"/>
                     </li>
-                    <li data-target="#myCarousel" data-slide-to="3">
+                    <li data-target="#myCarouselProduct" data-slide-to="3">
                       <img class="d-block w-40" src="/images/gstc6.jpg"/>
                     </li>
                   </ol>
+
+                  <a class="carousel-control-prev" href="#myCarouselProduct" role="button"  data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#myCarouselProduct" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
                 </div>
               </div>
           </div>
           <div class="product-essential__right">
             <div class="product-price">
-                <span class="sale-price">29.800.000 ₫</span>
-                Giá niêm yết: 
-                <span class="unit-price">32.990.000 ₫</span>
-                <button type="button" class="btn btn-aqua btn-tra-gop">Trả góp 0%</button>
+                <div class="product-price__title">
+                  <span class="sale-price">29.800.000 ₫</span>
+                  Giá niêm yết: 
+                  <span class="unit-price">32.990.000 ₫</span>
+                  <button type="button" class="btn btn-aqua btn-tra-gop">Trả góp 0%</button>
+                </div>
                 <ul class="list-product-memory">
-                    <li class="item-product-memory li-enable">
-                        <input class="check" id="${brand.brandId}" type="checkbox" value="${brand.brandId}" name="brand.logo">
-                        <label for="${brand.brandId}">
+                    <li class="item-product-memory">
+                        <a href="#" class="item-product-memory--link">
+                            <span>512GB</span>
+                            <strong>38.500.000 ₫</strong>
+                        </a>
+                    </li>
+                    <li class="item-product-memory">
+                      <a href="#" class="item-product-memory--link">
                           <span>512GB</span>
                           <strong>38.500.000 ₫</strong>
-                        </label>
-                    </li>
-                    <li class="item-product-memory">
-                      <input class="check" id="${brand.brandId}" type="checkbox" value="${brand.brandId}" name="brand.logo">
-                      <label for="${brand.brandId}">
-                        <span>256GB</span>
-                        <strong>34.500.000 ₫</strong>
-                      </label>
-                   </li>
-                    <li class="item-product-memory">
-                      <input class="check" id="${brand.brandId}" type="checkbox" value="${brand.brandId}" name="brand.logo">
-                      <label for="${brand.brandId}">
-                        <span>128GB</span>
-                        <strong>30.500.000 ₫</strong>
-                      </label>
-                    </li>
+                      </a>
+                  </li>
+                  <li class="item-product-memory">
+                    <a href="#" class="item-product-memory--link">
+                        <span>512GB</span>
+                        <strong>38.500.000 ₫</strong>
+                    </a>
+                  </li>
                 </ul>
             </div>
             <div class="product-color">
@@ -193,14 +193,15 @@
                     </label>
                   </li>
               </ul>
-              <div class="box-promo">
-                <span class="box-promo__title">Nhận ngay khuyến mại đặc biệt</span>
-                <ul class="box-promo__list">
-                  <li><i class="icon-ok-circled fas fa-check-circle"></i>Trả góp 0%</li>
-                  <li><i class="icon-ok-circled fas fa-check-circle"></i>Tặng gói iCloud 50GB miễn phí 3 tháng</li>
-                  <li><i class="icon-ok-circled fas fa-check-circle"></i>Thu cũ đổi mới - Trợ giá ngay 15% </li>
-                </ul>
-              </div>
+              
+            </div>
+            <div class="box-promo">
+              <span class="box-promo__title">Nhận ngay khuyến mại đặc biệt</span>
+              <ul class="box-promo__list">
+                <li><i class="icon-ok-circled fas fa-check-circle"></i>Trả góp 0%</li>
+                <li><i class="icon-ok-circled fas fa-check-circle"></i>Tặng gói iCloud 50GB miễn phí 3 tháng</li>
+                <li><i class="icon-ok-circled fas fa-check-circle"></i>Thu cũ đổi mới - Trợ giá ngay 15% </li>
+              </ul>
             </div>
             <button class="btn btn-aqua btn-check-out" type="submit"><span>Mua Ngay</span>(Giao tận nơi hoặc lấy tại cửa hàng)</button>
           </div>

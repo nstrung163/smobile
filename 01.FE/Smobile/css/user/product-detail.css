@@ -80,7 +80,7 @@ main.container {
 .product-essential__left .carousel-sale {
 }
 
-.product-essential__left .carousel-sale #myCarousel {
+.product-essential__left .carousel-sale #myCarouselProduct {
   width: 60%;
 
   position: unset;
@@ -172,12 +172,33 @@ main.container {
   box-shadow: 0 2px 3px 0 rgb(0 0 0 / 15%);
   position: relative;
 }
+.item-product-memory--link {
+
+display: flex;
+
+flex-direction: column;
+
+justify-content: center;
+
+align-items: center;
+}
+
+.item-product-memory--link span {
+
+padding-bottom: 5px;
+
+color: #000;
+}
+
+.item-product-memory--link strong {
+
+  
+}
 
 .item-product-memory label {
 }
 
 .item-product-memory span {
-  padding-bottom: 5px;
 }
 
 .item-product-memory strong {
