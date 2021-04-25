@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.smobile.common.constant.Constants;
+import com.smobile.convert.ObjectToModel;
 import com.smobile.entity.ProductCommentEntity;
 import com.smobile.entity.ProductEntity;
 import com.smobile.entity.ProductInfoEntity;
 import com.smobile.entity.ProductOptionEntity;
+import com.smobile.model.ProductCommentModel;
 import com.smobile.model.ProductDetailModel;
 import com.smobile.model.ProductItemModel;
 import com.smobile.model.ProductMemoryPriceModel;
@@ -132,9 +134,14 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 			ProductInfoEntity productInfoEntity = productInfoRepository.findByProductId(productId);
 			ProductOptionEntity productOptionEntity = productOptionRepository.findProductOptionByProductId(productId);
 			List<ProductCommentEntity> productCommentList = productCommentRepository.getListProductCommentByProductId(productId);
-//			List<ProductMemoryPriceModel> productMemoryPriceModels = productOptionRepository.getListProductByMemoryPirce(productId);
-			ProductDetailModel productDetailModel = new ProductDetailModel(productEntity, totalRate, averagePointRate, imagesUrl, productInfoEntity, productOptionEntity, productCommentList);
+			List<ProductMemoryPriceModel> productMemoryPriceModels = ObjectToModel.convertToListProductMemoryPrice(productOptionRepository.getListProductByMemoryPrice(productId));
+			ProductDetailModel productDetailModel = new ProductDetailModel(productEntity, totalRate, averagePointRate, imagesUrl, productInfoEntity, productOptionEntity, productCommentList, productMemoryPriceModels);
+			List<ProductOptionEntity> productOptionListByPriceAndId = productOptionRepository.findByMemoryAndProductId(productOptionEntity.getMemoryProduct(), productId);
+			List<ProductCommentModel> productCommentModels = ObjectToModel.convertToListProductCommentModel(productCommentRepository.getProductCommentModel(productId));
+			
 			data.put("productDetailModel", productDetailModel);
+			data.put("productOptionListByPriceAndId", productOptionListByPriceAndId);
+			data.put("productCommentModels", productCommentModels);
 			repsonseCode = Constants.RESULT_CD_SUCCESS;
 			responseMsg = "Lấy dữ liệu cho trang chi tiết sản phẩm thành công";
 			log.info(responseMsg);

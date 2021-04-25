@@ -7,6 +7,7 @@
   --gray-color: #333;
   --red-color: #d0021b;
 }
+
 html {
   font-family: "Roboto", sans-serif;
   font-size: 62.5%;
@@ -1052,7 +1053,7 @@ footer {
   left: 97px;
   cursor: pointer;
 }
-.icondmx-dmca {
+/* .icondmx-dmca {
   background: url(../images/dmca_protected_sml_120n.png);
   background-repeat: no-repeat;
   width: 123px;
@@ -1061,7 +1062,7 @@ footer {
   bottom: -1px;
   left: 145px;
   cursor: pointer;
-}
+} */
 .col-footer .social {
   margin: 10px 0 10px 0;
 }

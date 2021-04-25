@@ -34,7 +34,7 @@ public class UserEntity {
 	@Column(name = "USER_ID", columnDefinition = "bigint")
 	private Integer userId;
 
-	@Column(name = "USER_NAME", columnDefinition = "nvarchar(45)", nullable = false)
+	@Column(name = "USER_NAME", columnDefinition = "nvarchar(45)", nullable = false, unique = true)
 	private String userName;
 
 	@Column(name = "PASSWORD", columnDefinition = "nvarchar(45)", nullable = false)
@@ -46,7 +46,7 @@ public class UserEntity {
 	@Column(name = "PHONE_NUMBER", columnDefinition = "nvarchar(13)", nullable = false)
 	private String phoneNumber;
 
-	@Column(name = "AVATA_URL", columnDefinition = "text", nullable = false)
+	@Column(name = "AVATAR_URL", columnDefinition = "text", nullable = false)
 	private String avatarUrl;
 
 	@Column(name = "EMAIL", columnDefinition = "nvarchar(50)", nullable = true)

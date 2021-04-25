@@ -110,33 +110,9 @@
               <div class="carousel-sale">
                 <div id="myCarouselProduct" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
                   <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img class="d-block w-100" src="/images/product/gstc3.jpg"/>
-                    </div>
-                    <div class="carousel-item">
-                      <img class="d-block w-100" src="/images/product/gstc4.jpg" />
-                    </div>
-                    <div class="carousel-item">
-                      <img class="d-block w-100" src="/images/product/gstc5.jpg"/>
-                    </div>
-                    <div class="carousel-item">
-                      <img class="d-block w-100" src="/images/product/gstc6.jpg"/>  
-                    </div>
                   </div>
                   <!-- Indicators -->
                   <ol class="carousel-indicators">
-                    <li data-target="#myCarouselProduct" data-slide-to="0" class="active">
-                      <img class="d-block w-40" src="/images/gstc3.jpg"/>
-                    </li>
-                    <li data-target="#myCarouselProduct" data-slide-to="1">
-                      <img class="d-block w-40" src="/images/gstc4.jpg"/>
-                    </li>
-                    <li data-target="#myCarouselProduct" data-slide-to="2">
-                      <img class="d-block w-40" src="/images/gstc5.jpg"/>
-                    </li>
-                    <li data-target="#myCarouselProduct" data-slide-to="3">
-                      <img class="d-block w-40" src="/images/gstc6.jpg"/>
-                    </li>
                   </ol>
                    <!-- Next & Previous -->
                   <a class="carousel-control-prev" href="#myCarouselProduct" role="button"  data-slide="prev">
@@ -151,58 +127,15 @@
               </div>
           </div>
           <div class="product-essential__right">
+          	<div class="product-price__title">
+            </div>
             <div class="product-price">
-                <div class="product-price__title">
-                  <span class="sale-price">29.800.000 ₫</span>
-                  Giá niêm yết: 
-                  <span class="unit-price">32.990.000 ₫</span>
-                  <button type="button" class="btn btn-aqua btn-tra-gop">Trả góp 0%</button>
-                </div>
                 <ul class="list-product-memory">
-                    <li class="item-product-memory">
-                        <a href="#" class="item-product-memory--link">
-                            <span>512GB</span>
-                            <strong>38.500.000 ₫</strong>
-                        </a>
-                    </li>
-                    <li class="item-product-memory">
-                      <a href="#" class="item-product-memory--link">
-                          <span>256GB</span>
-                          <strong>35.500.000 ₫</strong>
-                      </a>
-                  </li>
-                  <li class="item-product-memory">
-                    <a href="#" class="item-product-memory--link">
-                        <span>128GB</span>
-                        <strong>29.500.000 ₫</strong>
-                    </a>
-                  </li>
                 </ul>
             </div>
             <div class="product-color">
                 <h3>Chọn màu và xem giá sản phẩm</h3>
                 <ul class="list-product-color">
-                  <li class="item-product-color">
-                      <input class="check" id="${brand.brandId}" type="checkbox" value="${brand.brandId}" name="brand.logo">
-                      <label for="${brand.brandId}">
-                        <span>Bạc</span>
-                        <strong>30.00.000 ₫</strong>
-                      </label>
-                  </li>
-                  <li class="item-product-color">
-                    <input class="check" id="${brand.brandId}" type="checkbox" value="${brand.brandId}" name="brand.logo">
-                    <label for="${brand.brandId}">
-                      <span>Vàng</span>
-                      <strong>29.500.000 ₫</strong>
-                    </label>
-                 </li>
-                  <li class="item-product-color">
-                    <input class="check" id="${brand.brandId}" type="checkbox" value="${brand.brandId}" name="brand.logo">
-                    <label for="${brand.brandId}">
-                      <span>Xám</span>
-                      <strong>30.500.000 ₫</strong>
-                    </label>
-                  </li>
               </ul>
             </div>
             <div class="box-promo">
@@ -221,66 +154,88 @@
       <section class="box-product-info">
         <div class="box-product-info__left">
           <div class="box-product-info__left__title">
-              <h2>Điện thoại iPhone 12 Pro Max: Nâng tầm đẳng cấp sử dụng</h2>
+              <h2>Đặc điểm nổi bật của: iPhone 12 Pro Max</h2>
           </div>
           <div class="box-product-info__left__content">
-              <p>Cứ mỗi năm, đến dạo cuối tháng 8 và gần đầu tháng 9 thì mọi thông tin sôi sục mới về chiếc iPhone mới lại xuất hiện. Apple năm nay lại ra thêm một chiếc iPhone mới với tên gọi mới là <strong>iPhone 12 Pro Max</strong>, đây là một dòng điện thoại mới và mạnh mẽ nhất của nhà Apple năm nay. Mời bạn tham khảo thêm một số mô tả sản phẩm bên dưới để bạn có thể ra quyết định mua sắm.</p>
-              <p>Năm nay, công nghệ màn hình trên 12 Pro Max cũng được đổi mới và trang bị tốt hơn cùng kích thước lên đến 6.7 inch, lớn hơn so với điện thoại iPhone 12. Với công nghệ màn hình OLED cho khả năng hiển thị hình ảnh lên đến 2778 x 1284 pixels. Bên cạnh đó, màn hình này còn cho độ sáng tối đa cao nhất lên đến 800 nits, luôn đảm bảo cho bạn một độ sáng cao và dễ nhìn nhất ngoài nắng.</p>
+              <p>Cứ mỗi năm, đến dạo cuối tháng 8 và gần đầu tháng 9 thì mọi thông tin sôi sục mới về chiếc iPhone mới lại xuất hiện. Apple năm nay lại ra thêm một chiếc iPhone mới với tên gọi mới là <strong>iPhone 12 Pro Max</strong>, đây là một dòng điện thoại mới và mạnh mẽ nhất của nhà Apple năm nay. Mời bạn tham khảo thêm một số mô tả sản phẩm bên dưới để bạn có thể ra quyết định mua sắm.
+              Năm nay, công nghệ màn hình trên 12 Pro Max cũng được đổi mới và trang bị tốt hơn cùng kích thước lên đến 6.7 inch, lớn hơn so với điện thoại iPhone 12. Với công nghệ màn hình OLED cho khả năng hiển thị hình ảnh lên đến 2778 x 1284 pixels. Bên cạnh đó, màn hình này còn cho độ sáng tối đa cao nhất lên đến 800 nits, luôn đảm bảo cho bạn một độ sáng cao và dễ nhìn nhất ngoài nắng.</p>
           </div>
           <hr>
           <!-- Rate & Comment -->
-          <form action="" method="POST">
-            <section class="box-qa">
-              <h2 class="box-qa__title">Đánh giá & nhận xét iPhone 12 Pro Max I Chính hãng VN/A </h2>
-              <div class="box-qa__rate">
-                <div class="box-qa__rate__point">
-                  <h3>SAO TRUNG BÌNH</h3>
-                  <p class="averaRatings">4.9/5</p>
-                  <i class="fa fa-star icon-star" style="font-size: 40px"></i>
-                </div>
-                <div class="box-qa__rate__statistics">
-                  <ul>
-                    <li>
-                      <span>5<i class="icon-star fa fa-star"></i></span>
-                      <span>135 lượt đánh giá</span>
-                    </li>
-                    <li>
-                      <span>4<i class="icon-star fa fa-star"></i></span>
-                      <span>120 lượt đánh giá</span>
-                    </li>
-                    <li>
-                      <span>3<i class="icon-star fa fa-star"></i></span>
-                      <span>10 lượt đánh giá</span>
-                    </li>
-                    <li>
-                      <span>2<i class="icon-star fa fa-star"></i></span>
-                      <span>0 lượt đánh giá</span>
-                    </li>
-                    <li>
-                      <span>1<i class="icon-star fa fa-star"></i></span>
-                      <span>0 lượt đánh giá</span>
-                    </li>
-                  </ul>
-                </div>
-                <div class="box-qa__rate__show-form">
-                  <button type="button" class="btn btn-aqua btn-send-rate"> Gửi đánh giá của bạn</button>
-                </div>
-              </div>
-            </section>
-            <div class="box-qa__comment d-none">
-              <div class="box-qa__comment__data">
-                <div class="form-group comment-content">
-                  <label for="commentContent">Đánh giá</label>
-                  <textarea class="form-control" rows="5" id="commentContent" name="commentContent" spellcheck="false"></textarea>
-                </div>
-                <div class="form-group image-comment">
-                  <label for="imageComenet">Upload hình ảnh:</label>
-                  <input type="file" class="form-control" id="imageComenet" name="imageComenet" multiple="multiple"">
-                </div>
-              </div>
-              <button type="submit" class="btn btn-aqua btnSubmitRateComment">Gửi đánh giá</button>
-            </div>
-          </form>
+           <section class="box-qa">
+             <h2 class="box-qa__title">Đánh giá & nhận xét iPhone 12 Pro Max I Chính hãng VN/A </h2>
+             <div class="box-qa__rate">
+               <div class="box-qa__rate__point">
+                 <h3>SAO TRUNG BÌNH</h3>
+                 <p class="averaRatings">4.9/5</p>
+                 <i class="fa fa-star icon-star" style="font-size: 40px"></i>
+               </div>
+               <div class="box-qa__rate__statistics">
+                 <ul>
+                   <li>
+                     <span>5<i class="icon-star fa fa-star"></i></span>
+                     <span>135 lượt đánh giá</span>
+                   </li>
+                   <li>
+                     <span>4<i class="icon-star fa fa-star"></i></span>
+                     <span>120 lượt đánh giá</span>
+                   </li>
+                   <li>
+                     <span>3<i class="icon-star fa fa-star"></i></span>
+                     <span>10 lượt đánh giá</span>
+                   </li>
+                   <li>
+                     <span>2<i class="icon-star fa fa-star"></i></span>
+                     <span>0 lượt đánh giá</span>
+                   </li>
+                   <li>
+                     <span>1<i class="icon-star fa fa-star"></i></span>
+                     <span>0 lượt đánh giá</span>
+                   </li>
+                 </ul>
+               </div>
+               <div class="box-qa__rate__show-form">
+                 <button type="button" class="btn btn-aqua btn-send-rate"> Gửi đánh giá của bạn</button>
+               </div>
+             </div>
+             <div class="box-qa__comment d-none">
+             	 <form action="" method="POST">
+	              <div class="box-qa__comment__data">
+	              	<div class="box-qa__vote">
+	                  <div class="box-qa__vote__title">Vui lòng chọn đánh giá: </div>
+	                  <ul>
+	                    <li>
+	                      <span><i class="icon-star fa fa-star"></i></span>
+	                    </li>
+	                    <li>
+	                      <span><i class="icon-star fa fa-star"></i></span>
+	                    </li>
+	                    <li>
+	                      <span><i class="icon-star fa fa-star"></i></span>
+	                    </li>
+	                    <li>
+	                      <span><i class="icon-star fa fa-star"></i></span>
+	                    </li>
+	                    <li>
+	                      <span><i class="icon-star fa fa-star"></i></span>
+	                    </li>
+	                  </ul>
+	                </div>
+	                <div class="form-group comment-content">
+	                  <label for="commentContent">Đánh giá</label>
+	                  <textarea class="form-control" rows="5" id="commentContent" name="commentContent" spellcheck="false"></textarea>
+	                </div>
+	                
+	                <!-- <div class="form-group image-comment">
+	                  <label for="imageComenet">Upload hình ảnh:</label>
+	                  <input type="file" class="form-control" id="imageComenet" name="imageComenet" multiple="multiple">
+	                </div> -->
+	              </div>
+	              <button type="submit" class="btn btn-aqua btnSubmitRateComment">Gửi đánh giá của bạn</button>
+	            </form>
+	          </div>
+          </section>
+          
           <hr>
           <!-- List reviewer -->
           <section class="box-reviewer">

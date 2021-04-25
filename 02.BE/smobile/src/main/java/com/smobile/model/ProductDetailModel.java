@@ -30,5 +30,5 @@ public class ProductDetailModel {
 	
 	private List<ProductCommentEntity> productCommentList;
 	
-//	private List<ProductMemoryPriceModel> productMemoryPriceModels;
+	private List<ProductMemoryPriceModel> productMemoryPriceModels;
 }

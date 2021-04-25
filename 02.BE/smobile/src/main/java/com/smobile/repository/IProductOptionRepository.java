@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.smobile.entity.ProductOptionEntity;
-import com.smobile.model.ProductMemoryPriceModel;
 
 public interface IProductOptionRepository extends JpaRepository<ProductOptionEntity, Integer> {
 
@@ -24,7 +23,10 @@ public interface IProductOptionRepository extends JpaRepository<ProductOptionEnt
 	@Query(value = "SELECT MIN(SALE_PRICE) FROM PRODUCT_OPTION WHERE PRODUCT_ID = ?1", nativeQuery = true)
 	Double getSalePriceDefault(Integer productId);
 
-//	@Query(value = "SELECT new com.smobile.model.ProductMemoryPriceModel(p.product_id, p.memory_product, p.sale_price)  FROM PRODUCT_OPTION AS p")
-//	List<ProductMemoryPriceModel> getListProductByMemoryPirce(Integer productId);
+	@Query(value = "SELECT distinct p.product_id, p.memory_product, p.sale_price "
+				 + "FROM product_option p "
+				 + "WHERE p.product_id = ?1 "
+				 + "ORDER BY p.memory_product ASC", nativeQuery = true)
+	List<Object[]> getListProductByMemoryPrice(Integer productId);
 	
 }
