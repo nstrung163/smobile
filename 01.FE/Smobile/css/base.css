@@ -54,8 +54,9 @@ header {
   display: block;
   width: 177px;
   height: 46px;
-  background-position: 0px 11px;
-  background-image: url(../images/icondesktop@1x.v202007011410.png);
+  background-position: -4px -2px;
+  background-image: url(../images/logo-main.png);
+  background-repeat: no-repeat;
 }
 
 /* Search */
