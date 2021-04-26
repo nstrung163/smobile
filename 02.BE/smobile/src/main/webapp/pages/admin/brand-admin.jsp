@@ -71,11 +71,11 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                            	<a class="nav-link" href="/brand-list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
-                            	<a class="nav-link" href="/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
-                                <a class="nav-link" href="/account/list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a> 
-                                <a class="nav-link" href="/product/list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
-                                <a class="nav-link" href="/product/list"><i class="mr-2 fas fa-star-half-alt"></i>Đánh giá</a>
+                            	<a class="nav-link" href="/admin/brand-list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
+                            	<a class="nav-link" href="/admin/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
+                                <a class="nav-link" href="/admin/account-list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a> 
+                                <a class="nav-link" href="/admin/comment-list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
+                                <a class="nav-link" href="/admin/rate-list"><i class="mr-2 fas fa-star-half-alt"></i>Đánh giá</a>
                             </nav>
                         </div>
                         <!-- Quản lý bán hàng -->

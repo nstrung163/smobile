@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smobile.entity.ProductImageEntity;
@@ -17,6 +18,7 @@ import com.smobile.model.ResponseDataModel;
 import com.smobile.service.impl.ProductImageServiceImpl;
 
 @Controller
+@RequestMapping(value = "/admin")
 public class ProductImageController {
 
 	@Autowired

@@ -18,5 +18,10 @@
     "name": "parent.folder.images.account",
     "type": "java.lang.String",
     "description": "Store image accout with url: images/account'"
+  },
+  {
+    "name": "parent.folder.images.news",
+    "type": "java.lang.String",
+    "description": "A description for 'parent.folder.images.news'"
   }
 ]}

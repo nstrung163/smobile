@@ -18,6 +18,7 @@ import com.smobile.model.ResponseDataModel;
 import com.smobile.service.impl.BrandServiceImp;
 
 @Controller
+@RequestMapping(value = "/admin")
 public class BrandController {
 	
 	@Autowired

@@ -18,6 +18,7 @@ import com.smobile.model.ResponseDataModel;
 import com.smobile.service.impl.ProductServiceImpl;
 
 @Controller
+@RequestMapping(value = "/admin")
 public class ProductController {
 
 	@Autowired

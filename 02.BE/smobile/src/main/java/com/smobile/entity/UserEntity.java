@@ -34,8 +34,8 @@ public class UserEntity {
 	@Column(name = "USER_ID", columnDefinition = "bigint")
 	private Integer userId;
 
-	@Column(name = "USER_NAME", columnDefinition = "nvarchar(45)", nullable = false, unique = true)
-	private String userName;
+	@Column(name = "USERNAME", columnDefinition = "nvarchar(45)", nullable = false, unique = true)
+	private String username;
 
 	@Column(name = "PASSWORD", columnDefinition = "nvarchar(45)", nullable = false)
 	private String password;
@@ -58,8 +58,8 @@ public class UserEntity {
 	@Column(name = "GENDER", columnDefinition = "nvarchar(40)", nullable = false)
 	private String gender;
 
-	@Column(name = "ROLE_USER", columnDefinition = "nvarchar(40) default 'ROLE_USER'", nullable = true)
-	private String roleUser;
+	@Column(name = "ROLE", columnDefinition = "nvarchar(40) default 'ROLE_USER'", nullable = true)
+	private String role;
 
 	@Transient
 	private MultipartFile avatarFile;

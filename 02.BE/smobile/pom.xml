@@ -35,11 +35,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency> -->
-		
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search-orm -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -128,9 +127,8 @@
 		<dependency>
 		    <groupId>javax.xml.bind</groupId>
 		    <artifactId>jaxb-api</artifactId>
-		    </dependency>
+		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>

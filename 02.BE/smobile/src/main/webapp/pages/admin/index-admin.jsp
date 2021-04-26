@@ -71,11 +71,15 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                            	<a class="nav-link" href="/brand-list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
-                            	<a class="nav-link" href="/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
-                                <a class="nav-link" href="/account/list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a> 
-                                <a class="nav-link" href="/product/list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
-                                <a class="nav-link" href="/product/list"><i class="mr-2 fas fa-star-half-alt"></i>Đánh giá</a>
+                            	<a class="nav-link" href="/admin/brand-list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
+                            	<a class="nav-link" href="/admin/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
+                                <a class="nav-link" href="/admin/product-image-list"><i class="mr-2 fas fa-user-circle"></i>Hình ảnh sản phẩm</a>
+                                <a class="nav-link" href="/admin/product-option-list"><i class="mr-2 fas fa-star-half-alt"></i>Loại sản phẩm</a>
+                                <a class="nav-link" href="/admin/product-info-list"><i class="mr-2 fas fa-star-half-alt"></i>Thông tin chi tiết sản phẩm</a>
+                                <a class="nav-link" href="/admin/user-list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a>
+                                <a class="nav-link" href="/admin/comment-list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
+                                <a class="nav-link" href="/admin/rate-list"><i class="mr-2 fas fa-comments"></i>Đánh giá</a>
+                                <a class="nav-link" href="/admin/news-list"><i class="mr-2 fas fa-comments"></i>Tin tức</a>
                             </nav>
                         </div>
                         <!-- Quản lý bán hàng -->
@@ -89,8 +93,8 @@
                         </a>
                         <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/admin/account/list"><i class="mr-2 fas fa-user-circle"> </i>Hóa đơn</a> 
-                                <a class="nav-link" href="/admin/product/list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
+                               <a class="nav-link" href="/admin/purchase-list"><i class="mr-2 fas fa-star-half-alt"></i>Hóa đơn</a>
+                               <a class="nav-link" href="/admin/purchase-detail-list"><i class="mr-2 fas fa-star-half-alt"></i>Đơn đặt hàng</a>
                             </nav>
                         </div>
                         <!-- Thống kê -->
@@ -104,8 +108,8 @@
                         </a>
                         <div class="collapse" id="collapseStatistic" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/admin/statistic/product">Theo sản phẩm</a> <a class="nav-link"
-                                    href="/admin/statistic/order">Theo hóa đơn</a>
+                                <a class="nav-link" href="/admin/statistic/product">Theo sản phẩm</a>
+                                 <a class="nav-link" href="/admin/statistic/order">Theo hóa đơn</a>
                             </nav>
                         </div>
                     </div>
@@ -119,7 +123,6 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <!-- BODY -->
                     <ol  class="breadcrumb mb-4 mt-4">
                         <li class="breadcrumb-item welcome-admin">
                         	<a href="/admin/home">
@@ -129,7 +132,6 @@
                         	</a>
                         </li>
                     </ol>
-                    <!-- END BODY -->
                 </div>
             </main>
             <!-- FOOTER -->

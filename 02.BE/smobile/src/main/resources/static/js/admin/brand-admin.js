@@ -1,5 +1,5 @@
 var table;
-var url = '/brands';
+var url = '/admin/brands';
 function initTableData() {
 /** Data from an URL */
 $.get(url, function(responseData) {
@@ -13,7 +13,7 @@ $.get(url, function(responseData) {
 			{ data: 'brandId' },
 			{ data: 'brandName' },
 			{ render: function(data, type, row) {
-					return `<div class='text-center image-area-brand'><a href="${row.logo}" data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src="${row.logo}"></div>`;
+					return `<div class='text-center image-area-brand'><a href="/${row.logo}" data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src="/${row.logo}"></div>`;
 				} 
 			},
 			{ data: 'description' },
@@ -59,7 +59,7 @@ $(document).ready(function() {
 		$('.modal-title').text('Chỉnh Sửa Nhãn Hiệu');
 		$('#btnSubmitBrand').text('Cập nhật');
 		$.ajax({
-			url: '/brand/' + $(this).data('id'),
+			url: '/admin/brand/' + $(this).data('id'),
 			type: 'GET',
 			dataType: 'json',
 			contentType: 'application/json',
@@ -114,7 +114,7 @@ $(document).ready(function() {
 		});
 		if ($("#brandInfoForm").valid()) {
 			$.ajax({
-				url: 'brand/' + (isAddAction ? "add" : "update"),
+				url: '/admin/brand/' + (isAddAction ? "add" : "update"),
 				type: 'POST',
 				processData: false,
 				contentType: false,
@@ -155,7 +155,7 @@ $(document).ready(function() {
 	$("#btnSubmitDelete").on('click', function() {
 		console.log('.data("") = ' + $(this).data('id') + ', .attr= ' + $(this).attr('data-id'));
 		$.ajax({
-			url: 'brand/' + $(this).attr('data-id'),
+			url: '/admin/brand/' + $(this).attr('data-id'),
 			type: 'DELETE',
 			success: function(responseData) {
 				reloadDataTable();
