@@ -54,4 +54,12 @@ public interface IUserService{
 	 */
 	ResponseDataModel deleteUserById(Integer userId);
 	
+	/**
+	 * 
+	 * User login
+	 * 
+	 * @param username
+	 * @param password
+	 */
+	UserEntity login(String username, String password);
 }

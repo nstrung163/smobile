@@ -18,7 +18,7 @@ import com.smobile.model.ResponseDataModel;
 import com.smobile.service.impl.UserServiceImpl;
 
 @Controller
-@RequestMapping("/v1/api")
+@RequestMapping("/admin")
 public class UserController {
 
 	@Autowired

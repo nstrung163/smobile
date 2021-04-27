@@ -56,7 +56,7 @@ public class UserServiceImpl implements IUserService {
 	public UserEntity findByUserName(String userName) {
 		UserEntity user = new UserEntity();
 		try {
-			user = userRepository.findByUserName(userName);
+			user = userRepository.findByUsername(userName);
 			log.info("Tìm kiếm người dùng theo username thành công!");
 		} catch (Exception e) {
 			log.info("Tìm kiếm người dùng theo username thất bại!");
@@ -71,12 +71,13 @@ public class UserServiceImpl implements IUserService {
 		try {
 			MultipartFile avatarFile = userEntity.getAvatarFile();
 			if(avatarFile != null && avatarFile.getSize() > 0) {
-				if(findByUserName(userEntity.getUserName()) != null) {
+				if(findByUserName(userEntity.getUsername()) != null) {
 					responseMsg = "Tên người dùng đã tồn tại!";
 					log.warn(responseMsg);
 				} else {
 					String avataPath = FileHelper.addNewFile(accountFolderPath, avatarFile);
 					userEntity.setAvatarUrl(avataPath);
+//					userEntity.setPassword(FileHelper.enrcyptMD5(userEntity.getPassword() + Constants.ENCRYPT_CONSTANTS));
 					userRepository.saveAndFlush(userEntity);
 					responseCode = Constants.RESULT_CD_SUCCESS;
 					responseMsg = "Đăng ký tài khoản thành công!";
@@ -100,7 +101,7 @@ public class UserServiceImpl implements IUserService {
 		try {
 			MultipartFile avateFile = userEntity.getAvatarFile();
 			if(avateFile != null && avateFile.getSize() > 0) {
-				if(findByUserName(userEntity.getUserName()) != null) {
+				if(findByUserName(userEntity.getUsername()) != null) {
 					String avataPath = FileHelper.editFile(accountFolderPath, avateFile, userEntity.getAvatarUrl());
 					userEntity.setAvatarUrl(avataPath);
 					userRepository.saveAndFlush(userEntity);
@@ -143,6 +144,11 @@ public class UserServiceImpl implements IUserService {
 			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
+	}
+
+	@Override
+	public UserEntity login(String username, String password) {
+		return userRepository.findUserByUsernameAndPassword(username, password);
 	}
 
 }

@@ -1,5 +1,5 @@
 var table;
-var url = '/product-images';
+var url = '/admin/product-images';
 function initTableData() {
 /** Data from an URL */
 $.get(url, function(responseData) {
@@ -13,7 +13,7 @@ $.get(url, function(responseData) {
 			{ data: 'productImageId' },
 			{ data: 'productEntity.productName' },
 			{ render: function(data, type, row) {
-					return `<div class='text-center image-area-brand'><a href="${row.imageUrl}" data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src="${row.imageUrl}"></div>`;
+					return `<div class='text-center image-area-brand'><a href="/${row.imageUrl}" data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src="/${row.imageUrl}"></div>`;
 				} 
 			},
 			{
@@ -58,7 +58,7 @@ $(document).ready(function() {
 		$('.modal-title').text('Chỉnh Sửa Ảnh Sản Phẩm');
 		$('#btnSubmitProductImage').text('Cập nhật');
 		$.ajax({
-			url: '/product-image/' + $(this).data('id'),
+			url: '/admin/product-image/' + $(this).data('id'),
 			type: 'GET',
 			dataType: 'json',
 			contentType: 'application/json',
@@ -99,7 +99,7 @@ $(document).ready(function() {
 		});
 		if ($("#productImageInfoForm").valid()) {
 			$.ajax({
-				url: '/product-image/' + (isAddAction ? "add" : "update"),
+				url: '/admin/product-image/' + (isAddAction ? "add" : "update"),
 				type: isAddAction ? "POST" : "PUT",
 				processData: false,
 				contentType: false,
@@ -136,7 +136,7 @@ $(document).ready(function() {
 	/** Submit delete product image */
 	$("#btnSubmitDelete").on('click', function() {
 		$.ajax({
-			url: '/product-image/' + $(this).attr('data-id'),
+			url: '/admin/product-image/' + $(this).attr('data-id'),
 			type: 'DELETE',
 			success: function(responseData) {
 				if(responseData.responseCode == 100) {

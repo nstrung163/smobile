@@ -1,5 +1,5 @@
 var table;
-var url = '/products';
+var url = '/admin/products';
 function initTableData() {
 	/** Data from an URL */
 	$.get(url, function(responseData) {
@@ -73,7 +73,7 @@ $(document).ready(function() {
 		$('.modal-title').text('Chỉnh Sửa Nhãn Hiệu');
 		$('#btnSubmitProduct').text('Cập nhật');
 		$.ajax({
-			url: '/product/' + $(this).data('id'),
+			url: '/admin//product/' + $(this).data('id'),
 			type: 'GET',
 			dataType: 'json',
 			contentType: 'application/json',
@@ -173,7 +173,7 @@ $(document).ready(function() {
 			}
 			var formData = new FormData($('#productInfoForm')[0]);
 			$.ajax({
-				url: '/product/' + (isAddAction ? "add" : "update"),
+				url: '/admin/product/' + (isAddAction ? "add" : "update"),
 				type: isAddAction ? 'POST' : 'PUT',
 				processData: false,
 				contentType: false,
@@ -210,7 +210,7 @@ $(document).ready(function() {
 	/** Submit delete product*/
 	$("#btnSubmitDelete").on('click', function() {
 		$.ajax({
-			url: '/product/' + $(this).attr('data-id'),
+			url: '/admin/product/' + $(this).attr('data-id'),
 			type: 'DELETE',
 			success: function(responseData) {
 				console.log('responseCode: ' + responseData.responseCode);

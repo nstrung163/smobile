@@ -60,7 +60,7 @@ public class ProductCommentServiceImpl implements IProductCommentService {
 	public List<ProductCommentEntity> findByProductId(Integer productId) {
 		List<ProductCommentEntity> productCommentList = new ArrayList<ProductCommentEntity>();
 		try {
-			productCommentList = productCommentRepository.findByProductId(productId);
+			productCommentList = productCommentRepository.getListProductCommentByProductId(productId);
 			log.info("Lấy danh sách bình luận theo mã sản phẩm thành công!");
 		} catch (Exception e) {
 			log.warn("Lấy danh sách bình luận theo mã sản phẩm không thành công! " + e.getMessage());

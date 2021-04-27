@@ -28,6 +28,17 @@ $(document).ready(function() {
 		}
 		$parent.find('.preview-image-upload img').attr('src', fileUrl);
 	});
+	
+	/**Scroll to top */
+  	$(window).scroll(function () {
+      if ($(this).scrollTop()) {
+     	$("#goto-top").fadeIn();
+      } else {
+    	$("#goto-top").fadeOut();
+       }
+  	});
+	$("#goto-top").click(function () {
+    $("html, body").animate({ scrollTop: 0 }, 1000);});
 });
 $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 event.preventDefault();
@@ -42,12 +53,6 @@ function resetFormModal($formElement) {
 	$formElement.validate().destroy();
 	$formElement.find(".error-message-invalid").removeClass('error-message-invalid');
 	$formElement.find("img").attr('src', '');
-	
-//	$formElement[0].reset();
-//	$formElement.find("input[type*='file']").val("");
-//	$formElement.validate().destroy();
-//	$formElement.find(".error-message-invalid").remove();
-//	$formElement.find("img").attr('src', '');
 }
 
 /* Auto change title form add to edit or edit to add  */
