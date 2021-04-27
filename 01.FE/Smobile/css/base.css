@@ -54,7 +54,7 @@ header {
   display: block;
   width: 177px;
   height: 46px;
-  background-position: -4px -2px;
+  background-position: -4px 1px;
   background-image: url(../images/logo-main.png);
   background-repeat: no-repeat;
 }

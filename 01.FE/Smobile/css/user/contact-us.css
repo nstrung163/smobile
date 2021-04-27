@@ -1,0 +1,67 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+.box-contact-us {
+  background: #ffffff;
+  width: 900px;
+  height: 650px;
+  margin: 3% auto;
+  position: relative;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.box-contact-us .map {
+  width: 45%;
+  float: left;
+}
+.box-contact-us .contact-form {
+  width: 53%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.box-contact-us .contact-form .title {
+  font-size: 2.5em;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  color: #242424;
+  margin: 5% 8%;
+}
+.box-contact-us .contact-form .subtitle {
+  font-size: 1.2em;
+  font-weight: 400;
+  margin: 0 4% 5% 8%;
+}
+.box-contact-us .contact-form input,
+.box-contact-us .contact-form textarea {
+  width: 80%;
+  padding: 3%;
+  margin: 2% 8%;
+  color: #242424;
+  border: 1px solid #b7b7b7;
+}
+.box-contact-us .contact-form input::placeholder,
+.box-contact-us .contact-form textarea::placeholder {
+  color: #242424;
+}
+.box-contact-us .contact-form .btn-send {
+  background: #4a90e2;
+  width: 180px;
+  height: 42px;
+  color: #ffffff;
+  font-weight: 700;
+  margin: 1%;
+  border: none;
+}
+.area-submit {
+  display: flex;
+  justify-content: center;
+}
+.form-contact {
+  text-align: center;
+
+  position: relative;
+
+  left: 8px;
+}

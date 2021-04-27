@@ -31,7 +31,7 @@ body {
   width: 70%;
   display: flex;
   flex-direction: column;
-  margin: 10% auto;
+  margin: 1% auto;
 }
 .logo {
 }
@@ -75,9 +75,9 @@ body {
   cursor: pointer;
   display: block;
   width: 177px;
-  height: 46px;
-  background-position: -4px -2px;
-  background-image: url(/images/logo-main.png);
+  height: 52px;
+  background-position: -8px -2px;
+  background-image: url(/images/logo-login.png);
   background-repeat: no-repeat;
   display: flex;
   margin: 0 auto;
