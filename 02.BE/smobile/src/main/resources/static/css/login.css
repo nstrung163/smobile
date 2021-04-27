@@ -1,111 +1,85 @@
-@import
-	url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css")
-	;
-
-.login-block {
-	background: #de6262; /* fallback for old browsers */
-	background: -webkit-linear-gradient(to bottom, #ffb88c, #de6262);
-	/* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to bottom, #88e2fd, #1e7894);
-	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-	float: left;
-	width: 100%;
-	padding: 50px 0;
-	height: 100vh;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+html {
+  font-family: "Roboto", sans-serif;
+}
+a:hover {
+  text-decoration: none;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+:focus {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+body {
+  background: #dad8d8;
+}
+.sign-up-area {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  margin: 10% auto;
+}
+.logo {
+}
+.box-login {
+  background: #fff;
+  padding: 20px;
+  border-radius: 3px;
+  margin-top: 15px;
+  height: 475px;
+  box-shadow: 0 0 18px rgb(0 0 0 / 12%);
 }
 
-.banner-sec {
-	background: url(https://static.pexels.com/photos/33972/pexels-photo.jpg)
-		no-repeat left bottom;
-	background-size: cover;
-	min-height: 500px;
-	border-radius: 0 10px 10px 0;
-	padding: 0;
+.box-login__header {
+  text-align: center;
+  margin: 2rem;
 }
 
-.container {
-	background: #fff;
-	border-radius: 10px;
-	box-shadow: 15px 20px 0px rgba(0, 0, 0, 0.1);
+.box-login__body {
+  line-height: 3rem;
+}
+.form-login {
+}
+.forget-register {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 25px;
+}
+.input-group {
+  margin-bottom: 1.7rem;
 }
 
-.carousel-inner {
-	border-radius: 0 10px 10px 0;
+.input-group-prepend {
 }
 
-.carousel-caption {
-	text-align: left;
-	left: 5%;
+.input-group-text {
 }
 
-.login-sec {
-	padding: 50px 30px;
-	position: relative;
+#btnSubmit {
+  width: 100%;
+  font-weight: 500;
+  background: #409eff;
 }
-
-.login-sec .copy-text {
-	position: absolute;
-	width: 80%;
-	bottom: 20px;
-	font-size: 13px;
-	text-align: center;
+.logo {
+  cursor: pointer;
+  display: block;
+  width: 177px;
+  height: 54px;
+  background-position: -4px -2px;
+  background-image: url(/images/logo-login.PNG);
+  background-repeat: no-repeat;
+  display: flex;
+  margin: 0 auto;
 }
-
-.login-sec .copy-text i {
-	color: #feb58a;
-}
-
-.login-sec .copy-text a {
-	color: #e36262;
-}
-
-.login-sec h2 {
-	margin-bottom: 30px;
-	font-weight: 800;
-	font-size: 30px;
-	color: #538dc7;
-}
-
-.login-sec h2:after {
-	content: " ";
-	width: 100px;
-	height: 5px;
-	background: #8acefe;
-	display: block;
-	margin-top: 20px;
-	border-radius: 3px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.btn-login {
-	background: #6299de;
-	color: #fff;
-	font-weight: 600;
-}
-
-.banner-text {
-	width: 70%;
-	position: absolute;
-	bottom: 40px;
-	padding-left: 20px;
-}
-
-.banner-text h2 {
-	color: #fff;
-	font-weight: 600;
-}
-
-.banner-text h2:after {
-	content: " ";
-	width: 100px;
-	height: 5px;
-	background: #fff;
-	display: block;
-	margin-top: 20px;
-	border-radius: 3px;
-}
-
-.banner-text p {
-	color: #fff;
+.forget-register__links {
 }

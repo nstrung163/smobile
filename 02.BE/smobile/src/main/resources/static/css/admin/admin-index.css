@@ -4,8 +4,9 @@
     padding-right: 1rem;
     margin: 0;
     height: 46px;
-    background-position: 3px -7px;
-    background-image: url(/images/logo2.png);
+    background-position: 21px -11px;
+    background-repeat: no-repeat;
+    background-image: url(/images/logo-admin.png);
 } 
 .welcome-admin {
 	display: flex;
