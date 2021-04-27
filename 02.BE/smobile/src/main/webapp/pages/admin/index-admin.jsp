@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -115,7 +116,17 @@
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
-                    <div class="small">Đăng nhập với quyền:</div>admin
+                    <div class="small">Đăng nhập với quyền:</div>
+                    	<%-- <sec:authentication var="user" property="principal" />
+						<sec:authorize access="hasRole('ROLE_ADMIN') and isAuthenticated()">
+							${user.username}
+						</sec:authorize> --%>
+						<sec:authorize access="!isAuthenticated()">
+							  Đăng nhập
+						</sec:authorize>
+						<sec:authorize access="isAuthenticated()">
+						  Đăng xuât
+						</sec:authorize>
                 </div>
             </nav>
             <!-- END HEADER -->
