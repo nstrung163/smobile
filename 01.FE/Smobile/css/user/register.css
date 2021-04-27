@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+html {
+  font-family: "Roboto", sans-serif;
+}
+a:hover {
+  text-decoration: none;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+:focus {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+body {
+  background: #dad8d8;
+}
+.form-login-content {
+  display: flex;
+
+  justify-content: space-between;
+}
+.sign-up-area {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin: 10% auto;
+}
+.logo {
+}
+.box-login {
+  background: #fff;
+  padding: 20px;
+  border-radius: 3px;
+  margin-top: 15px;
+  height: 620px;
+  box-shadow: 0 0 18px rgb(0 0 0 / 12%);
+}
+
+.box-login__header {
+  text-align: center;
+  margin: 1.5rem;
+}
+
+.box-login__body {
+  padding: 11px;
+}
+
+.forget-register {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 25px;
+  margin-top: 25px;
+}
+
+.input-group-prepend {
+}
+
+.input-group-text {
+}
+
+#btnSubmit {
+  width: 50%;
+  font-weight: 500;
+}
+.logo {
+  cursor: pointer;
+  display: block;
+  width: 177px;
+  height: 46px;
+  background-position: -4px -2px;
+  background-image: url(/images/logo-main.png);
+  background-repeat: no-repeat;
+  display: flex;
+  margin: 0 auto;
+}
+.forget-register__links {
+}
+.form-login {
+}
+
+.form-login__left {
+  width: 40%;
+  margin-right: 10px;
+}
+
+.form-login__right {
+  width: 48%;
+}
+.radio-gender {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+}
+.submit-area {
+  display: flex;
+  justify-content: center;
+}

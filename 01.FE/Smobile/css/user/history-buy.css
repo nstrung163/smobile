@@ -36,9 +36,10 @@
 }
 .product-info__item {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: stretch;
   padding: 10px;
   border-bottom: 1px solid #eee;
+  font-size: 1.5rem;
 }
 .product-info__item:last-child {
   border-bottom: none;
@@ -47,10 +48,9 @@
   width: 30%; /* border-radius: 5px; */
 }
 .product-info__item__essential {
-  width: 70%;
   display: flex;
   flex-direction: column;
-  line-height: 2.5rem;
+  line-height: 3rem;
 }
 .product-info__item__name {
   font-size: 1.5rem;
@@ -60,20 +60,16 @@
   color: #e11b1e;
   font-weight: 500;
 }
-
-.list-promo {
+.status_purchase {
+  color: #4a90e2;
+  font-weight: 500;
 }
-.list-promo__title {
+.list-buy {
 }
-.list-promo__item {
-  font-size: 1.3rem;
-  list-style-type: disc;
-  color: #e11b1e;
-  margin-left: 15px;
+.list-buy__title {
 }
-.list-promo__item span {
-  font-size: 1.3rem;
-  color: #000;
+.list-buy__item {
+  /* font-size: 1.3rem; */
 }
 
 .box-update-card {
@@ -192,25 +188,25 @@
   margin-top: 5px;
 }
 /* .option-receive {
-                                  
-                                  }
-                                  
-                                  .option-receive__title {
-                                  
-                                  }
-                                  
-                                  .option-receive__store {
-                                  
-                                  }
-                                  
-                                  .option-receive__home {
-                                  
-                                  }
-                                  
-                                  #optionReceiveStore {
-                                  }
-                                  #optionReceiveHome {
-                                  } */
+                                    
+                                    }
+                                    
+                                    .option-receive__title {
+                                    
+                                    }
+                                    
+                                    .option-receive__store {
+                                    
+                                    }
+                                    
+                                    .option-receive__home {
+                                    
+                                    }
+                                    
+                                    #optionReceiveStore {
+                                    }
+                                    #optionReceiveHome {
+                                    } */
 /* End box shipping */
 /* Start payment method */
 .box-payment {

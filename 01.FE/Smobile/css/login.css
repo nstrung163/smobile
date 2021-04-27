@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+html {
+  font-family: "Roboto", sans-serif;
+}
+a:hover {
+  text-decoration: none;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+:focus {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+body {
+  background: #dad8d8;
+}
+.sign-up-area {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  margin: 10% auto;
+}
+.logo {
+}
+.box-login {
+  background: #fff;
+  padding: 20px;
+  border-radius: 3px;
+  margin-top: 15px;
+  height: 475px;
+  box-shadow: 0 0 18px rgb(0 0 0 / 12%);
+}
+
+.box-login__header {
+  text-align: center;
+  margin: 2rem;
+}
+
+.box-login__body {
+  line-height: 3rem;
+}
+.form-login {
+}
+.forget-register {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 25px;
+}
+.input-group {
+  margin-bottom: 1.7rem;
+}
+
+.input-group-prepend {
+}
+
+.input-group-text {
+}
+
+#btnSubmit {
+  width: 100%;
+  font-weight: 500;
+  background: #409eff;
+}
+.logo {
+  cursor: pointer;
+  display: block;
+  width: 177px;
+  height: 46px;
+  background-position: -4px -2px;
+  background-image: url(/images/logo-main.png);
+  background-repeat: no-repeat;
+  display: flex;
+  margin: 0 auto;
+}
+.forget-register__links {
+}

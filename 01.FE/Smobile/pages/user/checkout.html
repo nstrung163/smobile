@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Điện Máy Xanh</title>
+    <title>Smobile | Giỏ hàng</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link href="" rel="shortcut icon" type="image/x-icon"/>
     <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/plugins/font-awesome/css/all.min.css" />
     <link rel="stylesheet" href="/css/reset.css" />
@@ -12,25 +12,22 @@
     <link rel="stylesheet" href="/css/user/checkout.css">
   </head>
   <body class="d-flex flex-column h-100">
-    <div class="container-fluid top-banner">
-    </div>
     <header>
       <div class="container">
         <div class="container-fluid">
           <div class="row header-content">
             <div class="header-left">
-                <a class="logo"></a>
+                <a href="./index.html" class="logo"></a>
             </div>
             <div class="search">
                 <input type="text" class="search__input" placeholder="Bạn tìm gì..."/>
-                <a href="#" class="search__item"></a>
+                <a href="/pages/user/product.html" class="search__item"></a>
             </div>
             <div class="header-right">
-                <a href="#" id="history-buy">Lịch sử mua hàng</a>
-                <a href="#" id="cart-box"></a>
-                <a href="/" class="sign-up-btn">Đăng nhập</a>
-                <a href="tel:18001999" class="switchboard">
-                   1800.1999<span>Tổng đài miễm phí</span>
+                <a href="/pages/user/history-buy.html" id="history-buy">Lịch sử mua hàng</a>
+                <a href="/pages/user/checkout.html" id="cart-box"><span class="quantity-product">5</span></a>
+                <a href="/pages/login.html" class="sign-up-btn"><i class="fas fa-sign-in-alt"></i> Đăng nhập/Đăng ký</a>
+                <a href="tel:18001999" class="switchboard">1800.1999<span>Tổng đài miễm phí</span>
                 </a>
             </div>
           </div>
@@ -45,20 +42,17 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto navbar-nav-list">
-              <li class="nav-item ">
-                <a class="nav-link" href="/index.html">TRANG CHỦ<span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="/">SẢN PHẨM</a>
+              <li class="nav-item">
+                <a class="nav-link" href="index.html"><i class="icon-nav fas fa-home"></i>TRANG CHỦ<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">GIỚI THIỆU</a>
+                <a class="nav-link" href="/pages/user/product.html"><i class=" icon-nav fas fa-mobile-alt"></i>SẢN PHẨM</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">TIN TỨC</a>
+                <a class="nav-link" href="/pages/user/news.html"><i class="icon-nav far fa-newspaper"></i>TIN TỨC </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">LIÊN HỆ</a>
+                <a class="nav-link" href="/pages/user/contact-us.html"><i class="icon-nav fas fa-phone-square"></i>LIÊN HỆ</a>
               </li>
             </ul>
           </div>
@@ -76,14 +70,14 @@
                 <ul class="product-info__list">
                     <li class="product-info__item">
                         <div class="product-info__item__image">
-                            <img src="/images/gstc7.jpg" alt="Image product">
+                            <img src="/images/product/gstc7.jpg" alt="Image product">
                         </div>
                         <div class="product-info__item__essential">
-                            <span class="product-info__item__name">iPhone 12 Mini Chính hãng (VN/A)-Xanh Dương</span>
-                            <span class="product-info__item__price">16.590.000 ₫</span>
+                            <span class="product-info__item__name">iPhone 11 Mini Chính hãng (VN/A)-Xanh Dương</span>
+                            <span>Đơn giá: <span class="product-info__item__price">16.590.000 ₫</span></span>
                             <ul class="list-promo">
-                                <div class="list-promo__title"> - Khuyến mãi hãng:</div>
-                                <li class="list-promo__item">Giảm thêm 500.000đ khi mua kèm Apple Watch Series 6</li>
+                                <div class="list-promo__title"> - Trả góp:</div>
+                                <li class="list-promo__item"><span>Trả góp lãi suất 0% với Home Credit. Trả trước 50%, kỳ hạn 8 tháng (Áp dụng trên GIÁ NIÊM YẾT, không áp dụng cùng các khuyến mại khác)</span></li>
                             </ul>
                             <div class="box-update-card">
                                 <a href="/" class="box-update-card__delete">Xóa khỏi giỏ</a>
@@ -96,26 +90,26 @@
                         </div>
                     </li>
                     <li class="product-info__item">
-                        <div class="product-info__item__image">
-                            <img src="/images/gstc7.jpg" alt="Image product">
-                        </div>
-                        <div class="product-info__item__essential">
-                            <span class="product-info__item__name">iPhone 12 Mini Chính hãng (VN/A)-Xanh Dương</span>
-                            <span class="product-info__item__price">16.590.000 ₫</span>
-                            <ul class="list-promo">
-                                <div class="list-promo__title"> - Khuyến mãi hãng:</div>
-                                <li class="list-promo__item">Giảm thêm 500.000đ khi mua kèm Apple Watch Series 6</li>
-                            </ul>
-                            <div class="box-update-card">
-                                <a href="/" class="box-update-card__delete">Xóa khỏi giỏ</a>
-                                <ul class="pagination-list">
-                                    <li class="pagination-list__item"><a href="/">-</a></li>
-                                    <li class="pagination-list__item"><a href="/">3</a></li>
-                                    <li class="pagination-list__item"><a href="/">+</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
+                      <div class="product-info__item__image">
+                          <img src="/images/product/gstc3.jpg" alt="Image product">
+                      </div>
+                      <div class="product-info__item__essential">
+                          <span class="product-info__item__name">iPhone 12 Mini Chính hãng (VN/A)-Xanh Dương</span>
+                          <span>Đơn giá: <span class="product-info__item__price">26.590.000 ₫</span></span>
+                          <ul class="list-promo">
+                              <div class="list-promo__title"> - Trả góp:</div>
+                              <li class="list-promo__item"><span>Trả góp lãi suất 0% với Home Credit. Trả trước 50%, kỳ hạn 8 tháng (Áp dụng trên GIÁ NIÊM YẾT, không áp dụng cùng các khuyến mại khác)</span></li>
+                          </ul>
+                          <div class="box-update-card">
+                              <a href="/" class="box-update-card__delete">Xóa khỏi giỏ</a>
+                              <ul class="pagination-list">
+                                  <li class="pagination-list__item"><a href="/">-</a></li>
+                                  <li class="pagination-list__item"><a href="/">2</a></li>
+                                  <li class="pagination-list__item"><a href="/">+</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </li>
                 </ul>
             </form>
             <div class="form-group box-price">
