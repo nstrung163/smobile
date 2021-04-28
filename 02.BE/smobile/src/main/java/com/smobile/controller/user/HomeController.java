@@ -20,14 +20,45 @@ public class HomeController {
 		return "index";
 	}
 	
-	@GetMapping(value = "/product")
-	public String initProductPage() {
-		return "product";
+	// Cần chỉnh sửa sau
+	@GetMapping(value = "/user/search")
+	public String initSearchPage() {
+		return "user/product";
+	} 
+	
+	@GetMapping(value = "/user/history-buy")
+	public String initHistoryBuyPage() {
+		return "user/history-buy";
 	}
 	
-	@GetMapping(value = "/product-detail/{id}")
+	@GetMapping(value = "/user/cart")
+	public String initCartPage() {
+		return "user/cart";
+	}
+	
+	@GetMapping(value = "/user/register")
+	public String initRegisterPage() {
+		return "user/register";
+	}
+	
+	@GetMapping(value = "/user/product")
+	public String initProductPage() {
+		return "user/product";
+	}
+	
+	@GetMapping(value = "/user/news")
+	public String initNewsPage() {
+		return "user/news";
+	}
+	
+	@GetMapping(value = "/user/contact-us")
+	public String initContactUsPage() {
+		return "user/contact-us";
+	}
+	
+	@GetMapping(value = "/user/product-detail/{id}")
 	public String findProductDetailPage(@PathVariable(value = "id") Integer id) {
-		return "product-detail";
+		return "user/product-detail";
 	}
 	
 }

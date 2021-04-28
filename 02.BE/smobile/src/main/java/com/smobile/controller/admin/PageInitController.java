@@ -17,5 +17,5 @@ public class PageInitController {
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}
-
+	
 }

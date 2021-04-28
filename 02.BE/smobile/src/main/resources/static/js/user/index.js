@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 function findAllProductOutstanding() {
 	$.ajax({
-		url: '/product-items',
+		url: '/user/product-items',
 		type: 'GET',
 		dataType: 'JSON',
 		contentType: 'application/json',
@@ -22,7 +22,7 @@ function findAllProductOutstanding() {
 
 function findListOutstandingTitle() {
 	$.ajax({
-		url: '/product-outstanding',
+		url: '/user/product-outstanding',
 		type: 'GET',
 		dataType: 'JSON',
 		contentType: 'application/json',
@@ -44,7 +44,7 @@ function renderProductOutstanding(productList) {
 	$.each(productList, function(key, value) {
 		rowHTML = `
 				<li class="product-promo--item">
-	                <a href="/product-detail/${value.productEntity.productId}">
+	                <a href="user/product-detail/${value.productEntity.productId}">
 	                  <div class="img-container">
 	                    <span class="tra-gop">Trả góp 0%</span>
 	                    <img src="${value.imageItem}" alt="${value.productEntity.productName}"/>
@@ -73,7 +73,7 @@ function renderListOutstanding(listProductOutstanding, totalProduct) {
 	$.each(listProductOutstanding, function(key, value) {
 		rowHTML = `
 				<li class="item-outstanding">
-					<a href="/product-detail/${value.productId}" class="link-outstanding">${value.productName}</a>
+					<a href="user/product-detail/${value.productId}" class="link-outstanding">${value.productName}</a>
 				</li>
 				`;
 		$(".most-outstanding ul").append(rowHTML);

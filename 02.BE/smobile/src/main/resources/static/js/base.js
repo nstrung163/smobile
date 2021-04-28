@@ -46,6 +46,16 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
             }
 );
 
+/** Show more and hidden footer */
+$(".showMore").click(function () {
+    $(".col-hidden").css("display", "block");
+    $(".showMore").css("display", "none");
+  });
+  $(".showMore-2").click(function () {
+    $(".col-hidden-2").css("display", "block");
+    $(".showMore-2").css("display", "none");
+});
+
 /* Rest form add new brand*/
 function resetFormModal($formElement) {
 	$formElement[0].reset();

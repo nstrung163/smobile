@@ -13,7 +13,7 @@
     <link href="" rel="shortcut icon" type="image/x-icon"/>
     <link href="<c:url value='/plugins/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
     <link href="<c:url value='/plugins/font-awesome/css/all.min.css'/>" rel="stylesheet">
-    <link rel="stylesheet" href="/css/login.css"/>
+    <link href="<c:url value='/css/login.css'/>" rel="stylesheet" />
   </head>
   <body>
     <div class="container">
@@ -51,7 +51,7 @@
             </form>
             <div class="forget-register">
                 <a class="forget-register__links" href="#">Quên mât khẩu?</a>
-                <a class="forget-register__links" href="/pages/user/register.html" >Đăng ký tài khoản</a>
+                <a class="forget-register__links" href="/user/register" >Đăng ký tài khoản</a>
             </div>
           </div>
         </div>

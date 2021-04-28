@@ -13,8 +13,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 			.authorizeRequests()
-					.antMatchers("/","/css/**", "/js/**", "/images/**","/plugins/**","/login").permitAll()
-					.antMatchers("/user/**", "/checkout/**", "/comment/**").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+					.antMatchers("/","/css/**", "/js/**", "/images/**", "/plugins/**", "/login", "/home", "/user/**", "/user/**/**", "/user/**/**/**/**", "/user/**/**/**").permitAll()
+					.antMatchers("/account", "/checkout/**", "/comment/**").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 					.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
 					.anyRequest().authenticated()
 			.and().formLogin().loginPage("/login")
@@ -25,7 +25,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					.failureUrl("/login?error=true")
 			.and().logout().logoutSuccessUrl("/login")
 			.and().exceptionHandling().accessDeniedPage("/login");
-		
-			
 	}
 }

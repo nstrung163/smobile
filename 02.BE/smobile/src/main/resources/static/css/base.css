@@ -7,7 +7,6 @@
   --gray-color: #333;
   --red-color: #d0021b;
 }
-
 html {
   font-family: "Roboto", sans-serif;
   font-size: 62.5%;
@@ -55,8 +54,9 @@ header {
   display: block;
   width: 177px;
   height: 46px;
-  background-position: 0px 11px;
-  background-image: url(../images/icondesktop@1x.v202007011410.png);
+  background-position: -4px 1px;
+  background-image: url(/images/logo-main.png);
+  background-repeat: no-repeat;
 }
 
 /* Search */
@@ -84,7 +84,7 @@ header {
   width: 25px;
   height: 34px;
   background-position: -174px 10px;
-  background-image: url(../images/icondesktop@1x.v202007011410.png);
+  background-image: url(/images/icondesktop@1x.v202007011410.png);
 }
 /* Search END */
 /* History */
@@ -107,11 +107,26 @@ header {
 /* Cart */
 #cart-box {
   display: block;
-  background-image: url(../images/icondesktop@1x.v202007011410.png);
+  background-image: url(/images/icondesktop@1x.v202007011410.png);
   background-position: -265px 0;
   width: 26px;
   height: 20px;
   margin: 15px 0 0 5px;
+  position: relative;
+}
+
+#cart-box .quantity-product {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  line-height: 2rem;
+  background-color: #fd3620;
+  position: absolute;
+  top: -11px;
+  right: -10px;
+  border-radius: 15px;
 }
 .sign-up-btn {
   color: var(--white-color);
@@ -167,9 +182,15 @@ nav {
   display: flex;
   justify-content: space-between;
 }
-.navbar-light .navbar-nav .active>.nav-link {
+.navbar-light .navbar-nav .active > .nav-link {
   font-size: 1.7rem;
   color: #000;
+}
+
+.icon-nav {
+  font-size: 2rem;
+  font-weight: bold;
+  padding-right: 5px;
 }
 /* Txt banner */
 /* .txt-banner {
@@ -283,7 +304,7 @@ nav {
 }
 .icon-dmx {
   display: inline-block;
-  background-image: url(../images/icondesktop@1x.v202007011410.png);
+  background-image: url(/images/icondesktop@1x.v202007011410.png);
   width: 20px;
   height: 21px;
   margin-bottom: -5px;
@@ -528,7 +549,7 @@ strong {
   right: 0;
   width: 30px;
   height: 50px;
-  background: url(../images/icondesktop@1x.v202007011410.png) no-repeat;
+  background: url(/images/icondesktop@1x.v202007011410.png) no-repeat;
   background-position: -35px -35px;
   opacity: 0;
   visibility: hidden;
@@ -538,7 +559,7 @@ strong {
   left: 0;
   width: 30px;
   height: 50px;
-  background: url(../images/icondesktop@1x.v202007011410.png) no-repeat;
+  background: url(/images/icondesktop@1x.v202007011410.png) no-repeat;
   background-position: 0px -35px;
   opacity: 0;
   visibility: hidden;
@@ -592,6 +613,15 @@ strong {
   top: 50%;
   left: 0;
   border-right: 1px solid #ccc;
+  height: 20px;
+  transform: translateY(-50%);
+}
+.carousel-sale .carousel-indicators li:first-child span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-right: none;
   height: 20px;
   transform: translateY(-50%);
 }
@@ -678,7 +708,7 @@ strong {
 .product-promo::before {
   content: "";
   display: block;
-  background: url("/images/gsct.png") no-repeat center center;
+  background: url("/images/product/gsct.png") no-repeat center center;
   background-size: 310px 40px;
   width: 310px;
   height: 37px;
@@ -706,7 +736,7 @@ strong {
   position: absolute;
   top: 39%;
   left: 2px;
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-position: 8px -30px;
   width: 42px;
   height: 60px;
@@ -716,7 +746,7 @@ strong {
   position: absolute;
   top: 39%;
   right: 2px;
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-position: -31px -29px;
   width: 42px;
   height: 60px;
@@ -753,6 +783,19 @@ strong {
   line-height: 20px;
   background-color: #fbda00;
   border-radius: 2px;
+}
+.price-discount {
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: #cb1c22;
+  width: 70%;
+  height: 25px;
+  line-height: 2.5rem;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.price-discount span {
 }
 .img-label {
   width: 85%;
@@ -808,7 +851,7 @@ strong {
   padding-right: 10px;
 }
 .sl-rating {
-  color: #007BFF;
+  color: #666;
 }
 /* Product type 2 */
 .product-promo--item-type2 .product-price-old {
@@ -825,11 +868,12 @@ strong {
   font-size: 1.6rem;
 }
 .product-promo--item .qua-ngon {
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-position: -193px -254px;
   width: 120px;
   height: 21px;
 }
+
 /* Product type 3 */
 .price-sale {
   color: var(--gray-color);
@@ -887,8 +931,8 @@ footer {
 }
 
 .view-all-product--link {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 .icon-arrow-down {
   padding-left: 5px;
@@ -929,7 +973,7 @@ footer {
   border-bottom: 1px solid #eee;
   margin: 2px;
 }
-.list-promotion .product-promo--item:hover > img { 
+.list-promotion .product-promo--item:hover > img {
   max-width: 105%;
 }
 /* Tab content */
@@ -938,6 +982,9 @@ footer {
 }
 .tab-content .tab-product.active {
   display: block;
+}
+.tab-content .tab-product {
+  /* display: none; */
 }
 
 /* Footer START */
@@ -954,6 +1001,7 @@ footer {
 /* Footer row 1 START */
 .footer .row-footer-1 {
   display: flex;
+  justify-content: space-between;
 }
 .footer .row-footer-1 .col-footer {
   margin-right: 40px;
@@ -1032,7 +1080,7 @@ footer {
   color: var(--gray-color);
 }
 .icondmx-btc {
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-repeat: no-repeat;
   background-position: -67px -90px;
   width: 95px;
@@ -1043,7 +1091,7 @@ footer {
   cursor: pointer;
 }
 .icondmx-huychuong {
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-repeat: no-repeat;
   background-position: -251px -44px;
   width: 95px;
@@ -1053,27 +1101,24 @@ footer {
   left: 97px;
   cursor: pointer;
 }
-/* .icondmx-dmca {
-  background: url(../images/dmca_protected_sml_120n.png);
-  background-repeat: no-repeat;
-  width: 123px;
-  height: 30px;
-  position: absolute;
-  bottom: -1px;
-  left: 145px;
-  cursor: pointer;
-} */
+
+.li-list-icon {
+  position: relative;
+  top: 26px;
+  left: -8px;
+  margin-bottom: 6px;
+}
 .col-footer .social {
   margin: 10px 0 10px 0;
 }
 .col-footer .social .social__share {
-  margin: 0 12px;
+  margin: 0 10px;
 }
 .col-footer .social .social__share .iconfb {
   position: absolute;
   top: 7px;
   left: 0;
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-repeat: no-repeat;
   background-position: -235px 0;
   width: 10px;
@@ -1083,14 +1128,14 @@ footer {
   content: "";
   position: relative;
   top: 0;
-  left: 91px;
+  left: 80px;
   border: 1px solid #eee;
 }
 .col-footer .social .social__share .iconyt {
   position: absolute;
   top: 7px;
-  right: 93px;
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  right: -8px;
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-repeat: no-repeat;
   background-position: -245px 0;
   width: 16px;
@@ -1103,7 +1148,7 @@ footer {
   position: absolute;
   top: 20px;
   left: 0;
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-repeat: no-repeat;
   background-position: -235px -129px;
   width: 100px;
@@ -1114,7 +1159,7 @@ footer {
   position: absolute;
   top: 46px;
   left: 0;
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-repeat: no-repeat;
   background-position: -122px -129px;
   width: 112px;
@@ -1125,7 +1170,7 @@ footer {
   position: absolute;
   top: 73px;
   left: 0;
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-repeat: no-repeat;
   background-position: 4px -129px;
   width: 119px;
@@ -1149,15 +1194,18 @@ footer {
 /* Footer END */
 /* Go to top */
 #goto-top {
-   cursor: pointer;
-   position: fixed;
-   bottom: 30px;
-   right: 30px;
-   font-size: 2.3rem;
-   color: #fff;
-   width: 30px;
-   height: 30px;
-   text-align: center;
-   background-color: rgba(0, 0, 0, 0.6);
-   border-radius: 20px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  font-size: 2.3rem;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+}
+.footer .row-footer-1 .col-footer {
+  margin-right: 0px;
 }

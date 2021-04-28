@@ -209,6 +209,7 @@ main.container {
 .list-product-color {
 	display: flex;
 	margin: 10px 0;
+	flex-wrap: wrap;
 }
 
 .item-product-color {
@@ -223,6 +224,7 @@ main.container {
 	box-shadow: 0 2px 3px 0 rgb(0 0 0/ 15%);
 	position: relative;
 	border-radius: 3px;
+	margin-bottom: 10px;
 }
 
 .item-product-color label {
@@ -404,7 +406,7 @@ input[type="checkbox"]:checked+label:before {
 
 /* START RATE & COMMENT */
 .rating {
-	font-size: 1.4rem;
+	font-size: 1.5rem;
 }
 
 .box-qa {

@@ -3,12 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Smobile | Trang chủ</title>
+    <title>Smobile | Sản phẩm</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="" rel="shortcut icon" type="image/x-icon"/>
@@ -16,9 +14,10 @@
 	<link href="<c:url value='/plugins/font-awesome/css/all.min.css'/>" rel="stylesheet">
 	<link href="<c:url value='/css/reset.css'/>" rel="stylesheet">
 	<link href="<c:url value='/css/base.css'/>" rel="stylesheet">
+	<link href="<c:url value='/css/user/product.css'/>"rel="stylesheet" />
   </head>
   <body class="d-flex flex-column h-100">
-    <header>
+   <header>
       <div class="container">
         <div class="container-fluid">
           <div class="row header-content">
@@ -48,10 +47,10 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto navbar-nav-list">
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="/home"><i class="icon-nav fas fa-home"></i>TRANG CHỦ<span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link" href="/user/product"><i class=" icon-nav fas fa-mobile-alt"></i>SẢN PHẨM</a>
               </li>
               <li class="nav-item">
@@ -65,55 +64,28 @@
         </nav>
       </div>
     </div>
-    <nav>
-      <div class="container">
-        <div class="container-fluid main-navigation">
-          <div class="row">
-            <div class="txt-banner d-flex">
-              <ul class="txt-banner__list">
-                <li>
-                  <a href="/" class="hot-event txt-banner__list--item">
-                    <div class="dot">
-                      <span class="ping"></span>
-                    </div>
-                    <span class="text">IPHONE CHÍNH HÃNG VN/A – BẢO HÀNH 1 ĐỔI 1 18 THÁNG</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="/" class="txt-banner__list--item bd-left">
-                    Samsung Galaxy S21 Ultra 5G ưu đãi đến 34%
-                   </a>
-                </li>
-                <li>
-                  <a href="/" class="txt-banner__list--item bd-left">
-                    Samsung Galaxy S21 Plus 5G giảm 30%
-                  </a>
-                </li>
-              </ul>
-            </div> 
-          </div>
-        </div>
-      </div>
-    </nav>
     <main class="container">
+       <!-- Banner  -->
       <section class="container-fluid mixed-area">
-        <!-- Menu, carousel, hot new  -->
-        <section class="row">
+        <section class="row branner-carousel">
           <div class="carousel-sale">
             <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img class="d-block w-100" src="/images/carousel/carousel1.png"/>
+                  <img class="d-block w-100" src="/images/product/product-caroulse1.png"/>
                 </div>
                 <div class="carousel-item">
-                  <img class="d-block w-100" src="/images/carousel/carousel2.png" />
+                  <img class="d-block w-100" src="/images/product/product-caroulse2.png" />
                 </div>
                 <div class="carousel-item">
-                  <img class="d-block w-100" src="/images/carousel/carousel3.png"/>
+                  <img class="d-block w-100" src="/images/product/product-caroulse3.png"/>
                 </div>
                 <div class="carousel-item">
-                  <img class="d-block w-100" src="/images/carousel/carousel4.png"/>
+                  <img class="d-block w-100" src="/images/product/product-caroulse4.png"/>
                 </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="/images/product/product-caroulse5.png"/>
+                  </div>
               </div>
               <a class="carousel-control-prev" href="#myCarousel" role="button"  data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -123,338 +95,179 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
               </a>
-              <!-- Indicators -->
-              <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active">
-                  <span class="no-bd">Galaxy S21 Series 5G<br />Trả Góp 0%</span>
-                </li>
-                <li data-target="#myCarousel" data-slide-to="1">
-                  <span>OPPO Reno5<br />Giảm Ngay 300.000đ</span>
-                </li>
-                <li data-target="#myCarousel" data-slide-to="2">
-                  <span>Mi Fan Festival<br />Giảm Đến 1 Triệu</span>
-                </li>
-                <li data-target="#myCarousel" data-slide-to="3">
-                  <span>Sắm Realme<br />Giảm Đến 500.000đ</span>
-                </li>
-              </ol>
             </div>
           </div>
           <div class="hotnew">
             <div class="experience-video">
-              <h2 class="experience-video-heading"><a href="/pages/user/news.html"></a>Tin tức</a></h2>
-              <ul>
-                <li>
-                  <a href="/" class="experience-video--link">
-                    Săn ngay loạt OPPO Reno5, Reno4,… cũ thiết kế thời thượng đang giảm siêu sốc tới 30%,
-                    rẻ hơn máy mới nửa giá luôn đó
-                  </a>
-                </li>
-                <li>
-                  <a href="/" class="experience-video--link">
-                    Samsung Galaxy S20 Plus, mới ngày nào hơn 23 triệu, 
-                    mà giờ đây hàng đổi trả giá chỉ còn hơn 11 triệu, quá đáng mua
-                   </a>
-                </li>
-              </ul>
-            </div>
             <div class="img-sale">
-              <img src="/images/news/nav-tin-tuc1.png"/>
-              <img src="/images/news/nav-tin-tuc2.png"/>
+              <img src="/images/news/tin-tuc1.png"/>
+              <img src="/images/news/tin-tuc2.png"/>
             </div>
           </div>
         </section>
       </section> 
-      <!-- Promotion in month -->
-      <section class="container-fluid product-promo">
-        <div class="row">
-          <div class="img-label-title">
-          </div>
-          <!-- Carousel product promotions -->
-          <div id="product-promotions" class="carousel slide" data-ride="carousel" data-interval="500000">
-            <!-- The slideshow -->
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <ul class="product-promo__list">
-                  <!-- Product 1 -->
-                  <li class="product-promo--item">
-                    <a href="/pages/user/product-detail.html">
-                      <div class="img-container">
-                        <span class="tra-gop">Trả góp 0%</span>
-                        <img src="/images/product/gsct1.jpg" alt="" data-holder-rendered="true"/>
-                      </div>
-                      <div class="price-discount">
-                          <span>Giảm 1.000.000 ₫</span>
-                      </div>
-                      <p class="product-name">
-                        Samsung Galaxy A52 5G
-                        <span class="new-2020">Mới 2020</span>
-                      </p>
-                      <strong class="product-price-new">5.990.000₫</strong>
-                      <span class="product-price-old"> 6.990.000₫</span>
-                      <span class="percent-sale">(-14%)</span>
-                    </a>
 
-                    <div class="rating">
-                      <span class="rating__start">
-                        <b>4.2</b>/5
-                        <i class="fas fa-star"></i>
-                      </span>
-                      <span class="sl-rating">70 đánh giá</span>
-                    </div>
-                  </li>
-                  <!-- Product 2 -->
-                  <li class="product-promo--item">
-                    <a href="/">
-                      <div class="img-container">
-                        <span class="tra-gop">Trả góp 0%</span>
-                        <img class="product-promo--item-img" src="/images/product/gstc2.jpg" data-holder-rendered="true"/>
-                      </div>
-                      <div class="price-discount">
-                        <span>Giảm 1.000.000 ₫</span>
-                      </div>
-                      <p class="product-name">
-                        Xiami Redmi Note 10 Pro MFF
-                       
-                      </p>
-                      <strong class="product-price-new">6.990.000₫</strong>
-                      <span class="product-price-old"> 7.990.000₫</span>
-                      <span class="percent-sale">(-15%)</span>
-                    </a>
-                    <div class="rating">
-                      <span class="rating__start">
-                        <b>2.9</b>/5
-                        <i class="fas fa-star"></i>
-                      </span>
-                      <span class="sl-rating">11 đánh giá</span>
-                    </div>
-                  </li>
-                  <!-- Product 3 -->
-                  <li class="product-promo--item">
-                    <a href="/">
-                      <div class="img-container">
-                        <span class="tra-gop">Trả góp 0%</span>
-                        <img class="product-promo--item-img" src="/images/product/gstc3.jpg" alt="" data-holder-rendered="true"/>
-                      </div>
-                      <div class="price-discount">
-                        <span>Giảm 4.000.000 ₫</span>
-                      </div>
-                      <p class="product-name">IPhone 12 Pro Max 256GB
-                        <span class="new-2020">Mới 2020</span>
-                      </p>
-                      <strong class="product-price-new">29.990.000₫</strong>
-                      <span class="product-price-old">33.990.000₫</span>
-                      <span class="percent-sale">(-26%)</span>
-                    </a>
-                    <div class="rating">
-                      <span class="rating__start">
-                        <b>3.8</b>/5
-                        <i class="fas fa-star"></i>
-                      </span>
-                      <span class="sl-rating">24 đánh giá</span>
-                    </div>
-                  </li>
-                  <!-- Product 4 -->
-                  <li class="product-promo--item">
-                    <a href="/" data-holder-rendered="true">
-                      <div class="img-container">
-                        <span class="tra-gop">Trả góp 0%</span>
-                        <img class="product-promo--item-img" src="/images/product/gstc4.jpg" data-holder-rendered="true"/>
-                      </div>
-                      <div class="price-discount">
-                        <span>Giảm 2.000.000 ₫</span>
-                      </div>
-                      <p class="product-name">Samsung Galaxy A02</p>
-                      <strong class="product-price-new">5.990.000₫</strong>
-                      <span class="product-price-old">7.990.000₫</span>
-                      <span class="percent-sale">(-18%)</span>
-                    </a>
-                    <div class="rating">
-                      <span class="rating__start">
-                        <b>3.8</b>/5
-                        <i class="fas fa-star"></i>
-                      </span>
-                      <span class="sl-rating">156 đánh giá</span>
-                    </div>
-                  </li>
-                  <!-- Product 5 -->
-                  <li class="product-promo--item">
-                    <a href="/">
-                      <div class="img-container">
-                        <span class="tra-gop">Trả góp 0%</span>
-                        <img class="product-promo--item-img" src="/images/product/gstc5.jpg" alt=""/>
-                      </div>
-                      <div class="img-label">
-                        <img src="/images/online-giảm-sốc-1x.png" alt="Gia soc" />
-                      </div>
-                      <p class="product-name">Xiaomi Redmi 9T(4GB/64GB)</p>
-                      <strong class="product-price-new">9.690.000₫</strong>
-                      <span class="product-price-old">12.400.000₫ </span>
-                      <span class="percent-sale">(-22%)</span>
-                    </a>
-                    <div class="rating">
-                      <span class="rating__start">
-                        <b>3.9</b>/5
-                        <i class="fas fa-star"></i>
-                      </span>
-                      <span class="sl-rating">77 đánh giá</span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="carousel-item">
-                <ul class="product-promo__list">
-                  <!-- Product 1 -->
-                  <li class="product-promo--item">
-                    <a href="/">
-                      <div class="img-container">
-                        <span class="tra-gop">Trả góp 0%</span>
-                        <img class="product-promo--item-img" src="/images/product/gstc5.jpg" alt=""/>
-                      </div>
-                      <div class="img-label">
-                        <img src="/images/online-giảm-sốc-1x.png" alt="Gia soc" />
-                      </div>
-                      <p class="product-name">Xiaomi Redmi 9T(4GB/64GB)</p>
-                      <strong class="product-price-new">9.690.000₫</strong>
-                      <span class="product-price-old">12.400.000₫ </span>
-                      <span class="percent-sale">(-22%)</span>
-                    </a>
-                    <div class="rating">
-                      <span class="rating__start">
-                        <b>3.9</b>/5
-                        <i class="fas fa-star"></i>
-                      </span>
-                      <span class="sl-rating">77 đánh giá</span>
-                    </div>
-                  </li>
-                  <!-- Product 2 -->
-                  <li class="product-promo--item">
-                    <a href="/">
-                      <div class="img-container">
-                        <span class="tra-gop">Trả góp 0%</span>
-                        <img class="product-promo--item-img" src="/images/product/gstc2.jpg" data-holder-rendered="true"/>
-                      </div>
-                      <div class="price-discount">
-                        <span>Giảm 1.000.000 ₫</span>
-                      </div>
-                      <p class="product-name">
-                        Xiami Redmi Note 10 Pro MFF
-                      </p>
-                      <strong class="product-price-new">6.990.000₫</strong>
-                      <span class="product-price-old"> 7.990.000₫</span>
-                      <span class="percent-sale">(-15%)</span>
-                    </a>
-                    <div class="rating">
-                      <span class="rating__start">
-                        <b>2.9</b>/5
-                        <i class="fas fa-star"></i>
-                      </span>
-                      <span class="sl-rating">11 đánh giá</span>
-                    </div>
-                  </li>
-                  <!-- Product 3 -->
-                  <li class="product-promo--item">
-                    <a href="/">
-                      <div class="img-container">
-                        <span class="tra-gop">Trả góp 0%</span>
-                        <img class="product-promo--item-img" src="/images/product/gstc3.jpg" alt="" data-holder-rendered="true"/>
-                      </div>
-                      <div class="price-discount">
-                        <span>Giảm 4.000.000 ₫</span>
-                      </div>
-                      <p class="product-name">IPhone 12 Pro Max 256GB
-                        <span class="new-2020">Mới 2020</span>
-                      </p>
-                      <strong class="product-price-new">29.990.000₫</strong>
-                      <span class="product-price-old">33.990.000₫</span>
-                      <span class="percent-sale">(-26%)</span>
-                    </a>
-                    <div class="rating">
-                      <span class="rating__start">
-                        <b>3.8</b>/5
-                        <i class="fas fa-star"></i>
-                      </span>
-                      <span class="sl-rating">24 đánh giá</span>
-                    </div>
-                  </li>
-                  <!-- Product 4 -->
-                  <li class="product-promo--item">
-                    <a href="/" data-holder-rendered="true">
-                      <div class="img-container">
-                        <span class="tra-gop">Trả góp 0%</span>
-                        <img class="product-promo--item-img" src="/images/product/gstc4.jpg" data-holder-rendered="true"/>
-                      </div>
-                      <div class="price-discount">
-                        <span>Giảm 2.000.000 ₫</span>
-                      </div>
-                      <p class="product-name">Samsung Galaxy A02</p>
-                      <strong class="product-price-new">5.990.000₫</strong>
-                      <span class="product-price-old">7.990.000₫</span>
-                      <span class="percent-sale">(-18%)</span>
-                    </a>
-                    <div class="rating">
-                      <span class="rating__start">
-                        <b>3.8</b>/5
-                        <i class="fas fa-star"></i>
-                      </span>
-                      <span class="sl-rating">156 đánh giá</span>
-                    </div>
-                  </li>
-                  <!-- Product 5 -->
-                  <li class="product-promo--item">
-                    <a href="/">
-                      <div class="img-container">
-                        <span class="tra-gop">Trả góp 0%</span>
-                        <img src="/images/product/gsct1.jpg" alt="" data-holder-rendered="true"/>
-                      </div>
-                      <div class="price-discount">
-                          <span>Giảm 1.000.000 ₫</span>
-                      </div>
-                      <p class="product-name">
-                        Samsung Galaxy A52 5G
-                        <span class="new-2020">Mới 2020</span>
-                      </p>
-                      <strong class="product-price-new">5.990.000₫</strong>
-                      <span class="product-price-old"> 6.990.000₫</span>
-                      <span class="percent-sale">(-14%)</span>
-                    </a>
-                    <div class="rating">
-                      <span class="rating__start">
-                        <b>4.2</b>/5
-                        <i class="fas fa-star"></i>
-                      </span>
-                      <span class="sl-rating">70 đánh giá</span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              
+      <!-- Search area -->
+      <div class="search-area">
+        <div class="searchByBrand">
+          <ul class="listBrand">
+						<li class="list-brand__item">
+							<input class="check" id="23" type="checkbox" value="23" name="brand.logo">
+							<label class="label-item" for="23"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200911-1442-ptau9h.png"></label>
+						</li>
+						<li class="list-brand__item">
+							<input class="check" id="22" type="checkbox" value="22" name="brand.logo">
+							<label class="label-item" for="22"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2353-orclel.png"></label>
+						</li>
+					
+						<li class="list-brand__item">
+							<input class="check" id="21" type="checkbox" value="21" name="brand.logo">
+							<label class="label-item" for="21"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2352-c0alht.png"></label>
+						</li>
+					
+						<li class="list-brand__item">
+							<input class="check" id="20" type="checkbox" value="20" name="brand.logo">
+							<label class="label-item" for="20"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2351-f073vi.png"></label>
+						</li>
+					
+						<li class="list-brand__item">
+							<input class="check" id="19" type="checkbox" value="19" name="brand.logo">
+							<label class="label-item" for="19"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2346-1dlq9c.png"></label>
+						</li>
+					
+						<li class="list-brand__item">
+							<input class="check" id="18" type="checkbox" value="18" name="brand.logo">
+							<label class="label-item" for="18"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2345-vkteej.png"></label>
+						</li>
+					
+						<li class="list-brand__item">
+							<input class="check" id="17" type="checkbox" value="17" name="brand.logo">
+							<label class="label-item" for="17"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2344-qs4csq.png"></label>
+						</li>
+					
+						<li class="list-brand__item">
+							<input class="check" id="16" type="checkbox" value="16" name="brand.logo">
+							<label class="label-item" for="16"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2343-ao2e8g.png"></label>
+						</li>
+					
+						<li class="list-brand__item">
+							<input class="check" id="15" type="checkbox" value="15" name="brand.logo">
+							<label class="label-item" for="15"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2340-f7qdtb.png"></label>
+						</li>
+					
+						<li class="list-brand__item">
+							<input class="check" id="14" type="checkbox" value="14" name="brand.logo">
+							<label class="label-item" for="14"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2339-r0f3h9.png"></label>
+						</li>
+					
+						<li class="list-brand__item">
+							<input class="check" id="12" type="checkbox" value="12" name="brand.logo">
+							<label class="label-item" for="12"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2332-j1nq28.png"></label>
+						</li>
+					
+						<li class="list-brand__item">
+							<input class="check" id="11" type="checkbox" value="11" name="brand.logo">
+							<label class="label-item" for="11"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2334-8jnmkb.png"></label>
+						</li>
+					
+						<li class="list-brand__item">
+							<input class="check" id="10" type="checkbox" value="10" name="brand.logo">
+							<label class="label-item" for="10"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2337-7l406b.png"></label>
+						</li>
+					
+						<li class="list-brand__item" style="display: none;">
+							<input class="check" id="9" type="checkbox" value="9" name="brand.logo">
+							<label class="label-item" for="9"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2337-qaqn3i.png"></label>
+						</li>
+					
+						<li class="list-brand__item" style="display: none;">
+							<input class="check" id="8" type="checkbox" value="8" name="brand.logo">
+							<label class="label-item" for="8"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2337-s6s58g.png"></label>
+						</li>
+					
+						<li class="list-brand__item" style="display: none;">
+							<input class="check" id="7" type="checkbox" value="7" name="brand.logo">
+							<label class="label-item" for="7"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2337-57dutq.png"></label>
+						</li>
+					
+						<li class="list-brand__item" style="display: none;">
+							<input class="check" id="6" type="checkbox" value="6" name="brand.logo">
+							<label class="label-item" for="6"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2337-ou2874.png"></label>
+						</li>
+					
+						<li class="list-brand__item" style="display: none;">
+							<input class="check" id="5" type="checkbox" value="5" name="brand.logo">
+							<label class="label-item" for="5"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2337-f2ug5r.png"></label>
+						</li>
+					
+						<li class="list-brand__item" style="display: none;">
+							<input class="check" id="4" type="checkbox" value="4" name="brand.logo">
+							<label class="label-item" for="4"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2337-fjmlah.png"></label>
+						</li>
+					
+						<li class="list-brand__item" style="display: none;">
+							<input class="check" id="3" type="checkbox" value="3" name="brand.logo">
+							<label class="label-item" for="3"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2338-3lcmvh.png"></label>
+						</li>
+					
+						<li class="list-brand__item" style="display: none;">
+							<input class="check" id="2" type="checkbox" value="2" name="brand.logo">
+							<label class="label-item" for="2"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2338-lq96s7.png"></label>
+						</li>
+					
+						<li class="list-brand__item" style="display: none;">
+							<input class="check" id="1" type="checkbox" value="1" name="brand.logo">
+							<label class="label-item" for="1"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200905-1620-km28qa.png"></label>
+						</li>
+					<span class="show-more">Xem thêm<i class="icon fas fa-caret-down"></i></span>
+					<span class="hidden-item d-none">Ẩn bớt<i class="icon-up fas fa-sort-up"></i></span>
+				</ul>
+        </div>
+
+        <div class="search-product ">
+          <span>Khoảng giá:</span>
+          <div class="search-product__price">
+            <label class="price-labe price-labe-from" for="priceFrom">từ </label>
+            <select class="price priceFrom form-control" name="priceForm"  id="priceFrom">
+              <option value="">--- Giá Thấp Nhất ---</option>
+              <option value="1000000">1.000.000₫</option>
+              <option value="2000000">2.000.000₫</option>
+              <option value="3000000">3.000.000₫</option>
+              <option value="4000000">4.000.000₫</option>
+            </select>
+            <label class="price-labe price-labe-to" for="toPrice">đến </label>
+            <select class="price form-control" name="priceTo" id="priceTo">
+              <option value="" >--- Giá cao nhất---</option>
+              <option value="1000000">1.000.000₫</option>
+              <option value="2000000">2.000.000₫</option>
+              <option value="4000000">4.000.000₫</option>
+              <option value="8000000">8.000.000₫</option>
+              <option value="10000000">10.000.000₫</option>
+              <option value="20000000">20.000.000₫</option>
+            </select>
+          </div>
+          <!-- Filter -->
+          <div class="filter-area">
+            <div class="filter-box">
+              <span class="filter-box__title">Bộ lọc<i class="icon fas fa-caret-down"></i></span>
             </div>
-            <!-- Left and right controls -->
-            <a class="carousel-control-prev" href="#product-promotions" role="button" data-slide="prev">
-              <span class="btn-prev" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#product-promotions" role="button" data-slide="next">
-              <span class="btn-next" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
+            <div class="sort-box">
+              <span class="sort-box__title">Sắp xếp<i class="icon fas fa-caret-down"></i></span>
+            </div>
+          </div>
+          <!-- Button search -->
+          <div class="btn-search">
+            <button type="submit" id="searchByPrice" class="btn btn-success">Áp dụng</button>
           </div>
         </div>
-      </section>
-      <!-- Outstanding phone -->
+        
+      </div>
+      <div id="resultSearch">
+        <p></p>
+      </div>
       <section class="container-fluid outstanding-phone">
         <div class="outstanding-phone__header">
           <div class="title-outstanding">ĐIỆN THOẠI NỔI BẬT NHẤT</div>
-          <div class="most-outstanding">
-            <ul class="list-outstanding">
-              <li class="item-outstanding"><a href="/" class="link-outstanding">Samsung Galaxy A72</a></li>
-              <li class="item-outstanding"><a href="/" class="link-outstanding">iPhone 12 Pro Max 128GB</a></li>
-              <li class="item-outstanding"><a href="/" class="link-outstanding">OPPO Reno5</a></li>
-              <li class="item-outstanding"><a href="/" class="link-outstanding">iPhone 12 64GB</a></li>
-              <li class="item-outstanding"><a href="/" class="link-outstanding">Xem tất cả <span class="total-product">175</span> điện thoại</a></li>
-            </ul>
-          </div>
         </div>
         <div class="tab-content">
           <div class="tab-product">
@@ -844,9 +657,9 @@
       </div>
     </footer>
     <div id="goto-top">↑</div>
-    <script src="<c:url value='/plugins/jquery/jquery-3.5.1.min.js'/>"></script>
+	<script src="<c:url value='/plugins/jquery/jquery-3.5.1.min.js'/>"></script>
 	<script src="<c:url value='/plugins/bootstrap/js/bootstrap.min.js'/>"></script>
 	<script src="<c:url value='/js/base.js'/>"></script>
-	<script src="<c:url value='/js/user/index.js'/>"></script>
+	<script src="<c:url value='/js/user/product.js'/>"></script>
   </body>
 </html>

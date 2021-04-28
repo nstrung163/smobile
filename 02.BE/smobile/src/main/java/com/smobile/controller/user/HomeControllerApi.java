@@ -4,12 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smobile.model.ResponseDataModel;
 import com.smobile.service.IProductResponseService;
 
 @Controller
+@RequestMapping(value = "/user")
 public class HomeControllerApi {
 	
 	@Autowired
@@ -27,7 +29,7 @@ public class HomeControllerApi {
 		return productResponseService.getProductOutstanding();
 	}
 	
-	@GetMapping(value = "/api/product-detail/{id}")
+	@GetMapping(value = "/product-detail/{id}/api")
 	@ResponseBody
 	public ResponseDataModel findProductDetailById(@PathVariable(value = "id") Integer id) {
 		return productResponseService.findProductDetailById(id);

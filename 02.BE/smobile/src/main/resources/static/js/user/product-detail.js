@@ -1,5 +1,6 @@
-var url = '/api' + window.location.pathname;
+var url = window.location.pathname + '/api';
 console.log('Url: ' + url);
+var unitPrice = 0;
 $(document).ready(function() {
 	findProductDetailById();
 	initCheckColor();
@@ -10,6 +11,8 @@ $(".list-product-memory").on('click', 'li a.item-product-memory--link', (functio
 	event.preventDefault();
 	$('.item-product-memory').removeClass('memory-active');
 	var urlOption = $(this).attr("href");
+	urlOption = '/user' + urlOption;
+	/*console.log(`Đường dẫn của URL Option: ${urlOption}`)*/
 	$(this).parent().addClass('memory-active');
 	$.ajax({
 		url: urlOption,
@@ -20,10 +23,10 @@ $(".list-product-memory").on('click', 'li a.item-product-memory--link', (functio
 			var responsepPoductOption = responseData.data.productOptionList;
 			renderProductColor(responsepPoductOption);
 			$('.list-product-color input:eq(0)').prop("checked", true);
-			renderPriceTitle(responsepPoductOption[0].salePrice, responsepPoductOption[0].salePrice*1.1);
+			renderPriceTitle(responsepPoductOption[0].salePrice, unitPrice);
 		},
 		error: function(e) {
-			alert(`Hiển thị danh sách theo bộ nhớ và id của sản phẩm không thành công! ${e}`);
+			alert(`Hiển thị danh sách theo bộ nhớ và mã của sản phẩm không thành công! ${JSON.stringify(e)}`);
 		}
 	})
 	
@@ -59,9 +62,11 @@ function findProductDetailById() {
 		contentType: 'application/json',
 		success: function(responseData) {
 			if(responseData.responseCode == 100) {
+				
 				var responseProductDetail = responseData.data.productDetailModel;
 				var responseBrand = responseData.data.productDetailModel.productEntity.brandEntity;
 				var responseProduct = responseData.data.productDetailModel.productEntity;
+				unitPrice = responseProduct.unitPrice;
 				var responseProductInfoEntity = responseData.data.productDetailModel.productInfoEntity;
 				renderBreadcrumbs(responseBrand.brandId, responseBrand.brandName);
 				renderTopView(responseProduct.productName, responseProductDetail.averagePointRate, responseProductDetail.totalRate);
@@ -291,6 +296,12 @@ function renderBoxReviewerList(productCommentModels) {
 				          </div>
 				        </li>`;
 		$boxReivewerList.append(rowReviewer);
-		
 	})
+	$boxReivewerList.append(`
+							<li class="box-reviewer__item">
+								<a href="/" class="btn btn-view-all">
+									Xem tất cả đánh giá <i class="fas fa-chevron-right"></i>
+								</a>
+							</li>
+							`);
 }
