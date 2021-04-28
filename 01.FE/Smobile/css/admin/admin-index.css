@@ -1,0 +1,128 @@
+.sb-topnav .navbar-brand{
+	width: 225px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0;
+    height: 46px;
+    background-position: 21px -11px;
+    background-repeat: no-repeat;
+    background-image: url(/images/logo-admin.png);
+} 
+.welcome-admin {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 54%;
+}
+.welcome-admin > a {
+	width: 100%;
+}
+th {
+	text-align: center;
+}
+#previewonly >img {
+	margin: 10px;
+	width: auto;
+	height: 200px;
+	
+}
+.form-group > label{
+	font-weight: 600;
+}
+a {
+	cursor: pointer;
+	text-decoration: none;
+}
+div.error-message-invalid
+{
+	position: relative;
+	padding: .375rem .75rem;
+	margin-top: .5rem;
+	color: #dc3545 !important;
+	width: 100%;
+	border-radius: .25rem;
+}
+input.error-message-invalid
+{
+	position: relative;
+	padding: .375rem .75rem;
+	margin-top: .5rem;
+	border: 1px solid #f5c6cb !important;
+	color: #dc3545 !important;
+	width: 100%;
+	border-radius: .25rem;
+}
+
+div.error-message-invalid, div.error, label.error-message-invalid, label.error {
+    background-color: #f8d7da;
+    position: relative;
+    padding: .375rem .75rem;
+    margin-top: .5rem;
+    border: 1px solid #f5c6cb !important;
+    color: #dc3545 !important;
+    width: 100%;
+    border-radius: .25rem;
+}
+
+.fade {
+      transition: opacity 0.2s linear !important;
+}
+
+.img-brand {
+	width: 60px;
+	height: 60px;
+	display: flex;
+	margin: 0 auto;
+}
+.icon-edit-btn {
+	color: #4a90e2;
+}
+.icon-delete-btn {
+	color: #f13e3e;
+}
+
+.image-area {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.image-area-brand {
+	width: 100px;
+    margin: 0 auto;
+}
+
+/* START IMAGE FROM ADD/UPDATE */
+.preview-image-upload {
+	text-align: center;
+	margin-bottom: 12px;
+}
+
+.preview-image-upload img {
+	max-width: 50%;
+	opacity: .7;
+}
+/* END IMAGE FROM ADD/UPDATE */
+
+/* START EKKO-LIGHTBOX */
+.ekko-lightbox {
+	display: flex !important;
+	justify-content: center;
+	align-items: center;
+}
+/* END EKKO-LIGHTBOX */
+
+/* START CUSTOM DATATABLE */
+.unit-price {
+	text-align: right;
+    width: 130px;
+}
+
+.sale-date {
+	text-align: center;
+}
+
+.quantity-product {
+	text-align: center;
+}
+/* END CUSTOM DATATABLE */

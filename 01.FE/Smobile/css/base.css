@@ -55,7 +55,7 @@ header {
   width: 177px;
   height: 46px;
   background-position: -4px 1px;
-  background-image: url(../images/logo-main.png);
+  background-image: url(/images/logo-main.png);
   background-repeat: no-repeat;
 }
 
@@ -84,7 +84,7 @@ header {
   width: 25px;
   height: 34px;
   background-position: -174px 10px;
-  background-image: url(../images/icondesktop@1x.v202007011410.png);
+  background-image: url(/images/icondesktop@1x.v202007011410.png);
 }
 /* Search END */
 /* History */
@@ -107,7 +107,7 @@ header {
 /* Cart */
 #cart-box {
   display: block;
-  background-image: url(../images/icondesktop@1x.v202007011410.png);
+  background-image: url(/images/icondesktop@1x.v202007011410.png);
   background-position: -265px 0;
   width: 26px;
   height: 20px;
@@ -304,7 +304,7 @@ nav {
 }
 .icon-dmx {
   display: inline-block;
-  background-image: url(../images/icondesktop@1x.v202007011410.png);
+  background-image: url(/images/icondesktop@1x.v202007011410.png);
   width: 20px;
   height: 21px;
   margin-bottom: -5px;
@@ -549,7 +549,7 @@ strong {
   right: 0;
   width: 30px;
   height: 50px;
-  background: url(../images/icondesktop@1x.v202007011410.png) no-repeat;
+  background: url(/images/icondesktop@1x.v202007011410.png) no-repeat;
   background-position: -35px -35px;
   opacity: 0;
   visibility: hidden;
@@ -559,7 +559,7 @@ strong {
   left: 0;
   width: 30px;
   height: 50px;
-  background: url(../images/icondesktop@1x.v202007011410.png) no-repeat;
+  background: url(/images/icondesktop@1x.v202007011410.png) no-repeat;
   background-position: 0px -35px;
   opacity: 0;
   visibility: hidden;
@@ -736,7 +736,7 @@ strong {
   position: absolute;
   top: 39%;
   left: 2px;
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-position: 8px -30px;
   width: 42px;
   height: 60px;
@@ -746,7 +746,7 @@ strong {
   position: absolute;
   top: 39%;
   right: 2px;
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-position: -31px -29px;
   width: 42px;
   height: 60px;
@@ -868,7 +868,7 @@ strong {
   font-size: 1.6rem;
 }
 .product-promo--item .qua-ngon {
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-position: -193px -254px;
   width: 120px;
   height: 21px;
@@ -1080,7 +1080,7 @@ footer {
   color: var(--gray-color);
 }
 .icondmx-btc {
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-repeat: no-repeat;
   background-position: -67px -90px;
   width: 95px;
@@ -1091,7 +1091,7 @@ footer {
   cursor: pointer;
 }
 .icondmx-huychuong {
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-repeat: no-repeat;
   background-position: -251px -44px;
   width: 95px;
@@ -1118,7 +1118,7 @@ footer {
   position: absolute;
   top: 7px;
   left: 0;
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-repeat: no-repeat;
   background-position: -235px 0;
   width: 10px;
@@ -1135,7 +1135,7 @@ footer {
   position: absolute;
   top: 7px;
   right: -8px;
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-repeat: no-repeat;
   background-position: -245px 0;
   width: 16px;
@@ -1148,7 +1148,7 @@ footer {
   position: absolute;
   top: 20px;
   left: 0;
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-repeat: no-repeat;
   background-position: -235px -129px;
   width: 100px;
@@ -1159,7 +1159,7 @@ footer {
   position: absolute;
   top: 46px;
   left: 0;
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-repeat: no-repeat;
   background-position: -122px -129px;
   width: 112px;
@@ -1170,7 +1170,7 @@ footer {
   position: absolute;
   top: 73px;
   left: 0;
-  background: url(../images/icondesktop@1x.v202007011410.png);
+  background: url(/images/icondesktop@1x.v202007011410.png);
   background-repeat: no-repeat;
   background-position: 4px -129px;
   width: 119px;
