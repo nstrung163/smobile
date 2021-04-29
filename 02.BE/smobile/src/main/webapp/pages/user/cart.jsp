@@ -31,7 +31,7 @@
             </div>
             <div class="header-right">
                 <a href="/user/history-buy" id="history-buy">Lịch sử mua hàng</a>
-                <a href="/user/cart" id="cart-box"><span class="quantity-product">5</span></a>
+                <a href="/user/cart" id="cart-box"><span class="quantity-product"><c:if test="${ sessionScope.totalItem == null }">0</c:if><c:out value='${ sessionScope.totalItem }'></c:out></span></a>
                 <a href="/login" class="sign-up-btn"><i class="fas fa-sign-in-alt"></i> Đăng nhập/Đăng ký</a>
                 <a href="tel:18001999" class="switchboard">1800.1999<span>Tổng đài miễm phí</span>
                 </a>
@@ -71,10 +71,69 @@
         <div class="box-card__title__right"><h1>Giỏ hàng của bạn</h1></div>
       </div>
         <div class="main-content box-card">
-            
-            <form action="" method="POST" id="formCheckout">
-                <ul class="product-info__list">
-                    <li class="product-info__item">
+	            <form action="" method="POST" id="formCheckout">
+	             <c:choose>
+	                	<c:when test="${ sessionScope.totalItem == null }">
+	                		<div align="center" class="mb-4" style="width: 100%">
+							<h4 align="center">Bạn không có sản phẩm nào trong giỏ!</h4>
+							<br>
+							<h4 align="center">
+								Hãy tiếp tục <a class="button dark br-5" href="/home">Mua
+									Hàng</a>
+							</h4>
+						</div>
+	                	</c:when>
+	                	 <c:otherwise>
+				            <ul class="product-info__list">
+			                <c:forEach var="cart" items="${ sessionScope.cartItems }">
+			            		<li class="product-info__item">
+			                        <div class="product-info__item__image">
+			                            <img src="/images/product/gstc7.jpg" alt="Image product">
+			                        </div>
+			                        <div class="product-info__item__essential">
+			                            <span class="product-info__item__name">${cart.value.productName }</span>
+			                            <span>Đơn giá: <span class="product-info__item__price">16.590.000 ₫</span></span>
+			                            <ul class="list-promo">
+			                                <div class="list-promo__title"> - Trả góp:</div>
+			                                <li class="list-promo__item"><span>Trả góp lãi suất 0% với Home Credit. Trả trước 50%, kỳ hạn 8 tháng (Áp dụng trên GIÁ NIÊM YẾT, không áp dụng cùng các khuyến mại khác)</span></li>
+			                            </ul>
+			                            <div class="box-update-card">
+			                                <a href="/" class="box-update-card__delete">Xóa khỏi giỏ</a>
+			                                <ul class="pagination-list">
+			                                    <li class="pagination-list__item"><a href="/">-</a></li>
+			                                    <li class="pagination-list__item"><a href="/">3</a></li>
+			                                    <li class="pagination-list__item"><a href="/">+</a></li>
+			                                </ul>
+			                            </div>
+			                        </div>
+			                    </li>
+			            	</c:forEach>
+				        </c:otherwise>
+	              </c:choose>
+	             
+                 <!-- <ul class="product-info__list">
+            		<li class="product-info__item">
+                        <div class="product-info__item__image">
+                            <img src="/images/product/gstc7.jpg" alt="Image product">
+                        </div>
+                        <div class="product-info__item__essential">
+                            <span class="product-info__item__name">iPhone 11 Mini Chính hãng (VN/A)-Xanh Dương</span>
+                            <span>Đơn giá: <span class="product-info__item__price">16.590.000 ₫</span></span>
+                            <ul class="list-promo">
+                                <div class="list-promo__title"> - Trả góp:</div>
+                                <li class="list-promo__item"><span>Trả góp lãi suất 0% với Home Credit. Trả trước 50%, kỳ hạn 8 tháng (Áp dụng trên GIÁ NIÊM YẾT, không áp dụng cùng các khuyến mại khác)</span></li>
+                            </ul>
+                            <div class="box-update-card">
+                                <a href="/" class="box-update-card__delete">Xóa khỏi giỏ</a>
+                                <ul class="pagination-list">
+                                    <li class="pagination-list__item"><a href="/">-</a></li>
+                                    <li class="pagination-list__item"><a href="/">3</a></li>
+                                    <li class="pagination-list__item"><a href="/">+</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                   <li class="product-info__item">
                         <div class="product-info__item__image">
                             <img src="/images/product/gstc7.jpg" alt="Image product">
                         </div>
@@ -116,7 +175,7 @@
                           </div>
                       </div>
                   </li>
-                </ul>
+              </ul> -->
             </form>
             <div class="form-group box-price">
                 <div class="box-price__code-discount">

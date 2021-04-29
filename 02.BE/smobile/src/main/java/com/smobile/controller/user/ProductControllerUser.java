@@ -12,7 +12,7 @@ import com.smobile.service.IProductResponseService;
 
 @Controller
 @RequestMapping(value = "/user")
-public class HomeControllerApi {
+public class ProductControllerUser {
 	
 	@Autowired
 	IProductResponseService productResponseService;
@@ -40,4 +40,5 @@ public class HomeControllerApi {
 	public ResponseDataModel getListProductOptionByMemoryAndProductId(@PathVariable(value = "memory") int memory, @PathVariable(value = "productId") Integer productId) {
 		return productResponseService.getListProductOptionByMemoryAndProductId(memory, productId);
 	}
+	
 }

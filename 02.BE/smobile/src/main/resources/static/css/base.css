@@ -1209,3 +1209,13 @@ footer {
 .footer .row-footer-1 .col-footer {
   margin-right: 0px;
 }
+.alert-info, .alert-danger {
+    top: 120px !important;
+    font-size: 1.4rem;
+    padding: 10px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    line-height: 2rem;
+}

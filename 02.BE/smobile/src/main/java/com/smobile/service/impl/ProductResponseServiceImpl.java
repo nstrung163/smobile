@@ -15,6 +15,7 @@ import com.smobile.entity.ProductCommentEntity;
 import com.smobile.entity.ProductEntity;
 import com.smobile.entity.ProductInfoEntity;
 import com.smobile.entity.ProductOptionEntity;
+import com.smobile.model.CartModel;
 import com.smobile.model.ProductCommentModel;
 import com.smobile.model.ProductDetailModel;
 import com.smobile.model.ProductItemModel;
@@ -172,13 +173,20 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 		return new ResponseDataModel(responseCode, responseMsg, data);
 	}
 
-//	@Overrides
-//	public ResponseDataModel getListOptionMemoryPrice(Integer productId) {
-//		int responseCode = Constants.RESULT_CD_FAIL;
-//		String responseMsg = StringUtils.EMPTY;
-//		Map<String, Ob>
-//		return null;
-//	}
-	
+	@Override
+	public CartModel addProductToCart(Integer productOptionId) {
+		CartModel cartModel = new CartModel();
+		try {
+			ProductEntity productEntity = productRepository.findProductByProductOptionId(productOptionId);
+			ProductOptionEntity productOptionEntity  = productOptionRepository.findByProductOptionId(productOptionId);
+			double salePrice = productOptionEntity.getSalePrice();
+			String productName = productEntity.getProductName() + " "  + productOptionEntity.getColorProductName() + " " + productOptionEntity.getMemoryProduct();
+			cartModel = new CartModel(productOptionId, productEntity, 1, salePrice, productName);
+			log.error("Tạo sản phẩm để thêm vào cart thành công!");
+		} catch (Exception e) {
+			log.error("Tạo sản phẩm để thêm vào cart thất bại! " + e.getMessage());
+		}
+		return cartModel;
+	}
 	
 }

@@ -29,4 +29,13 @@ public interface IProductOptionRepository extends JpaRepository<ProductOptionEnt
 				 + "ORDER BY p.memory_product ASC", nativeQuery = true)
 	List<Object[]> getListProductByMemoryPrice(Integer productId);
 	
+	/**
+	 * 
+	 * Get sale price for cartModel
+	 * 
+	 * @param productOptionId
+	 * @return Double
+	 */
+	@Query(value = "SELECT SALE_PRICE FROM PRODUCT_OPTION WHERE PRODUCT_OPTION_ID = ?1", nativeQuery = true)
+	double getSalePriceByProductOptionId(Integer productOptionId);
 }

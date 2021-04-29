@@ -1,10 +1,41 @@
 var url = window.location.pathname + '/api';
 console.log('Url: ' + url);
 var unitPrice = 0;
+var productOptionId = 0;
 $(document).ready(function() {
 	findProductDetailById();
 	initCheckColor();
 })
+
+$('.list-product-color').on('click', '.check', function() {
+	console.log(`Giá trị của productOptionId mặc định trong sự kiện click là: ${productOptionId}`)
+	initCheckColor();
+	$(this).prop("checked", true);
+	productOptionId = $(this).val();
+	/*
+	productOptionId = $('.list-product-color').find('input:checked').val();
+	// Sẽ kiểm lúc submit form
+	if(!productOptionId) {
+		productOptionId = $('.list-product-color').find('input:eq(0)').val();
+	}*/
+	console.log(`Giá trị của productOptionId mới là: ${productOptionId}`)
+})
+
+$('.btn-check-out').on('click', function(event) {
+	event.preventDefault();
+	console.log(`Giá trị của productOptionId mới là: ${productOptionId}`);
+	$.ajax({
+		url: '/user/add-product/' + productOptionId,
+		type: 'POST',
+		success: function() {
+			showNotification(true, "Thêm sản phẩm thành công!");
+		},
+		error: function(e) {
+			showNotification(false, "Thêm sản phẩm thất bại!" + JSON.stringify(e));
+		}
+	});
+});
+
 
 /** Render list product color by price and memory */
 $(".list-product-memory").on('click', 'li a.item-product-memory--link', (function(event) {
@@ -75,6 +106,9 @@ function findProductDetailById() {
 				renderProductMemory(responseData.data.productDetailModel.productMemoryPriceModels);
 				renderProductColor(responseData.data.productOptionListByPriceAndId);
 				$('.list-product-color input:eq(0)').prop("checked", true);
+				productOptionId = $('.list-product-color input:eq(0)').val();
+				console.log(`Giá trị của thẻ input đầu tiên: ${$('.list-product-color input:eq(0)').val()}`)
+				console.log(`Giá trị của productOptionId mặc định: ${productOptionId}`)
 				renderProductInfoTitleAndContent(responseProduct.productName, responseProductInfoEntity.introduction);
 				renderSpecificationProduct(responseProductInfoEntity);
 				renderRateProductTitle(responseProduct.productName, responseProductDetail.averagePointRate);
@@ -196,14 +230,17 @@ function renderProductMemory(productMemoryPriceModels) {
 	})
 }
 
+
 function renderProductColor(productOptionList) {
 	var $productColor = $('.product-color ul');
 	$productColor.empty();
 	var rowProductColorItem = "";
+	/*<input type="hidden" value="${value.productEntity.productId}" name="${value.productEntity.productId}">*/
 	$.each(productOptionList, function(key, value) {
 		rowProductColorItem = `
 							 <li class="item-product-color">
-			                      <input class="check" id="${value.productOptionId}" type="checkbox" value="${value.productOptionId}" name="${value.colorProductName}">
+			                      <input class="check" id="${value.productOptionId}" type="checkbox" value="${value.productOptionId}" name="${value.productOptionId}">
+								  
 			                      <label for="${value.productOptionId}">
 			                        <span>${value.colorProductName}</span>
 			                        <strong>${currencyFormat(value.salePrice)} ₫</strong>

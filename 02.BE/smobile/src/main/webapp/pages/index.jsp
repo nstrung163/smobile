@@ -31,7 +31,7 @@
             </div>
             <div class="header-right">
                 <a href="/user/history-buy" id="history-buy">Lịch sử mua hàng</a>
-                <a href="/user/cart" id="cart-box"><span class="quantity-product">5</span></a>
+                <a href="/user/cart" id="cart-box"><span class="quantity-product"><c:if test="${ sessionScope.totalItem == null or sessionScope.totalItem == 0 }">0</c:if><c:out value='${ sessionScope.totalItem }'></c:out></span></a>
                 <a href="/login" class="sign-up-btn"><i class="fas fa-sign-in-alt"></i> Đăng nhập/Đăng ký</a>
                 <a href="tel:18001999" class="switchboard">1800.1999<span>Tổng đài miễm phí</span>
                 </a>

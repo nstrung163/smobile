@@ -24,16 +24,16 @@
         <div class="container-fluid">
           <div class="row header-content">
             <div class="header-left">
-                <a href="./index.html" class="logo"></a>
+                <a href="/home" class="logo"></a>
             </div>
             <div class="search">
                 <input type="text" class="search__input" placeholder="Bạn tìm gì..."/>
-                <a href="/pages/user/product.html" class="search__item"></a>
+                <a href="/user/search" class="search__item"></a>
             </div>
             <div class="header-right">
-                <a href="/pages/user/history-buy.html" id="history-buy">Lịch sử mua hàng</a>
-                <a href="/pages/user/cart.html" id="cart-box"><span class="quantity-product">5</span></a>
-                <a href="/pages/login.html" class="sign-up-btn"><i class="fas fa-sign-in-alt"></i> Đăng nhập/Đăng ký</a>
+                <a href="/user/history-buy" id="history-buy">Lịch sử mua hàng</a>
+                <a href="/user/cart" id="cart-box"><span class="quantity-product"><c:if test="${ sessionScope.totalItem == null }">0</c:if><c:out value='${ sessionScope.totalItem }'></c:out></span></a>
+                <a href="/login" class="sign-up-btn"><i class="fas fa-sign-in-alt"></i> Đăng nhập/Đăng ký</a>
                 <a href="tel:18001999" class="switchboard">1800.1999<span>Tổng đài miễm phí</span>
                 </a>
             </div>
@@ -49,17 +49,17 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto navbar-nav-list">
-              <li class="nav-item ">
-                <a class="nav-link" href="index.html"><i class="icon-nav fas fa-home"></i>TRANG CHỦ</a>
+              <li class="nav-item">
+                <a class="nav-link" href="/home"><i class="icon-nav fas fa-home"></i>TRANG CHỦ<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="/pages/user/product.html"><i class=" icon-nav fas fa-mobile-alt"></i>SẢN PHẨM</a>
+                <a class="nav-link" href="/user/product"><i class=" icon-nav fas fa-mobile-alt"></i>SẢN PHẨM</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/pages/user/news.html"><i class="icon-nav far fa-newspaper"></i>TIN TỨC </a>
+                <a class="nav-link" href="/user/news"><i class="icon-nav far fa-newspaper"></i>TIN TỨC </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/pages/user/contact-us.html"><i class="icon-nav fas fa-phone-square"></i>LIÊN HỆ</a>
+                <a class="nav-link" href="/user/contact-us"><i class="icon-nav fas fa-phone-square"></i>LIÊN HỆ</a>
               </li>
             </ul>
           </div>
@@ -462,6 +462,7 @@
     <div id="goto-top">↑</div>
     <script src="<c:url value='/plugins/jquery/jquery-3.5.1.min.js'/>"></script>
 	<script src="<c:url value='/plugins/bootstrap/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/plugins/bootstrap/js/bootstrap-notify.min.js'/>"></script>
 	<script src="<c:url value='/js/base.js'/>"></script>
 	<script src="<c:url value='/js/user/product-detail.js'/>"></script>
   </body>
