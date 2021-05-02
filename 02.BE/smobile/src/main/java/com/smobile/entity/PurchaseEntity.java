@@ -1,6 +1,6 @@
 package com.smobile.entity;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -36,6 +36,18 @@ public class PurchaseEntity {
 	
 	@Column(name = "DATE_OF_ORDER", columnDefinition = "date", nullable = false)
 	private Date dateOfOrder;
+	
+	@Column(name = "FULL_NAME", columnDefinition = "nvarchar(200)")
+	private String fullName;
+	
+	@Column(name = "PHONE_NUMBER", columnDefinition = "nvarchar(13)")
+	private String phoneNumber;
+	
+	@Column(name = "NOTE_PURCHASE", columnDefinition = "nvarchar(200)")
+	private String notePurchase;
+	
+	@Column(name = "DELIVERY_ADDRESS", columnDefinition = "nvarchar(200)")
+	private String deliveryAddress;
 	
 	@JsonIgnoreProperties(value = "purchaseEntitySet")
 	@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")

@@ -78,5 +78,5 @@ function renderListOutstanding(listProductOutstanding, totalProduct) {
 				`;
 		$(".most-outstanding ul").append(rowHTML);
 	})
-	$(".most-outstanding ul").append(`<li class="item-outstanding"><a href="/product" class="link-outstanding">Xem tất cả <span class="total-product">${totalProduct}</span>điện thoại</a></li>`);
+	$(".most-outstanding ul").append(`<li class="item-outstanding"><a href="/user/product" class="link-outstanding">Xem tất cả <span class="total-product">${totalProduct}</span>điện thoại</a></li>`);
 }

@@ -40,5 +40,4 @@ public class ProductControllerUser {
 	public ResponseDataModel getListProductOptionByMemoryAndProductId(@PathVariable(value = "memory") int memory, @PathVariable(value = "productId") Integer productId) {
 		return productResponseService.getListProductOptionByMemoryAndProductId(memory, productId);
 	}
-	
 }

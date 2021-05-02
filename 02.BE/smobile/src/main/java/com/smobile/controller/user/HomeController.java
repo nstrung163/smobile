@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.smobile.service.IProductService;
 
@@ -31,7 +33,7 @@ public class HomeController {
 		return "user/history-buy";
 	}
 	
-	@GetMapping(value = "/user/cart")
+	@RequestMapping(value = "/user/cart", method = {RequestMethod.GET, RequestMethod.POST})
 	public String initCartPage() {
 		return "user/cart";
 	}

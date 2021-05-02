@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,8 +31,17 @@
             </div>
             <div class="header-right">
                 <a href="/user/history-buy" id="history-buy">Lịch sử mua hàng</a>
-                <a href="/user/cart" id="cart-box"><span class="quantity-product">5</span></a>
-                <a href="/login" class="sign-up-btn"><i class="fas fa-sign-in-alt"></i> Đăng nhập/Đăng ký</a>
+                <a href="/user/cart" id="cart-box"><span class="quantity-product"><c:if test="${ sessionScope.totalItem == null }">0</c:if><c:out value='${ sessionScope.totalItem }'></c:out></span></a>
+                <sec:authentication var="user" property="principal"/>
+                <sec:authorize access="!isAuthenticated()">
+                	<a href="/login" class="sign-up-btn"><i class="fas fa-sign-in-alt"></i> Đăng nhập/Đăng ký</a>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                	<div class="user-menu">
+	                	<a href="/" class="user-menu__name">Xin chào:&nbsp${ user.fullName }</a>
+	                	<a href="/logout" class="user-menu--logout-btn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                	</div>
+                </sec:authorize> 
                 <a href="tel:18001999" class="switchboard">1800.1999<span>Tổng đài miễm phí</span>
                 </a>
             </div>

@@ -45,6 +45,9 @@ public class UserEntity {
 
 	@Column(name = "PHONE_NUMBER", columnDefinition = "nvarchar(13)", nullable = false)
 	private String phoneNumber;
+	
+	@Column(name = "ADDRESS_USER", columnDefinition = "nvarchar(200)", nullable = false)
+	private String addressUser;
 
 	@Column(name = "AVATAR_URL", columnDefinition = "text", nullable = false)
 	private String avatarUrl;

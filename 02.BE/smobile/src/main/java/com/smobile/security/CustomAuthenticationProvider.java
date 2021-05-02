@@ -15,12 +15,13 @@ import org.springframework.stereotype.Component;
 
 import com.smobile.common.util.FileHelper;
 import com.smobile.entity.UserEntity;
+import com.smobile.service.IUserService;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 	
 	@Autowired
-	com.smobile.service.IUserService userService;
+	IUserService userService;
 	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -34,7 +35,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		if (loginUser != null ) {
 			List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
 			grantedAuths.add(new SimpleGrantedAuthority(loginUser.getRole()));
-			usernamePassAuthToken = new UsernamePasswordAuthenticationToken(username, StringUtils.EMPTY, grantedAuths);
+			UserEntity userEntity = new UserEntity();
+			userEntity.setUserId(loginUser.getUserId());
+			userEntity.setUsername(username);
+			userEntity.setFullName(loginUser.getFullName());
+			userEntity.setPhoneNumber(loginUser.getPhoneNumber());
+			userEntity.setAddressUser(loginUser.getAddressUser());
+			usernamePassAuthToken = new UsernamePasswordAuthenticationToken(userEntity, StringUtils.EMPTY, grantedAuths);
 		}
 		return usernamePassAuthToken;
 	}

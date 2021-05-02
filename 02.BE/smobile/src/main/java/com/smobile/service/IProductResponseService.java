@@ -1,5 +1,6 @@
 package com.smobile.service;
 
+import com.smobile.entity.PurchaseEntity;
 import com.smobile.model.CartModel;
 import com.smobile.model.ResponseDataModel;
 
@@ -16,4 +17,10 @@ public interface IProductResponseService {
 //	ResponseDataModel getListOptionMemoryPrice(Integer productId);
 	
 	CartModel addProductToCart(Integer productOptionId);
+	
+	ResponseDataModel checkoutCart(PurchaseEntity purchaseEntity);
+	
+	ResponseDataModel addProductQuantity(Integer productOptionId);
+	
+//	ResponseDataModel getListHistoryBuy(Integer userId);
 }

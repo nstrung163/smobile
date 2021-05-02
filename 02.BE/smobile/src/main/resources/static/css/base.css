@@ -128,6 +128,10 @@ header {
   right: -10px;
   border-radius: 15px;
 }
+
+.user-menu {
+	width: 200px;
+}
 .sign-up-btn {
   color: var(--white-color);
   font-size: 1.3rem;
@@ -139,6 +143,29 @@ header {
   color: var(--white-color);
   text-decoration: none;
 }
+
+.user-menu__name {
+  color: var(--white-color);
+  font-size: 1.3rem;
+  text-align: center;
+  display: block;
+  margin: 8px 0px;
+}
+.user-menu__name:hover {
+  color: var(--white-color);
+  text-decoration: none;
+}
+.user-menu--logout-btn {
+  color: var(--white-color);
+  font-size: 1.3rem;
+  text-align: center;
+  display: block;
+}
+.user-menu--logout-btn:hover {
+  color: var(--white-color);
+  text-decoration: none;
+}
+
 /* Cart END */
 /* Switchboard */
 .switchboard {

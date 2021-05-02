@@ -7,43 +7,41 @@ $(document).ready(function() {
 	initCheckColor();
 })
 
-$('.list-product-color').on('click', '.check', function() {
+/** Change color event by checked */
+$('.list-product-color').on('change', '.check', function() {
 	console.log(`Giá trị của productOptionId mặc định trong sự kiện click là: ${productOptionId}`)
 	initCheckColor();
 	$(this).prop("checked", true);
 	productOptionId = $(this).val();
-	/*
-	productOptionId = $('.list-product-color').find('input:checked').val();
-	// Sẽ kiểm lúc submit form
-	if(!productOptionId) {
-		productOptionId = $('.list-product-color').find('input:eq(0)').val();
-	}*/
 	console.log(`Giá trị của productOptionId mới là: ${productOptionId}`)
 })
 
+/** Submit add product to cart */
 $('.btn-check-out').on('click', function(event) {
 	event.preventDefault();
-	console.log(`Giá trị của productOptionId mới là: ${productOptionId}`);
-	$.ajax({
-		url: '/user/add-product/' + productOptionId,
-		type: 'POST',
-		success: function() {
-			showNotification(true, "Thêm sản phẩm thành công!");
-		},
-		error: function(e) {
-			showNotification(false, "Thêm sản phẩm thất bại!" + JSON.stringify(e));
-		}
-	});
+	// Check user choose the color yet
+	if(!productOptionId) {
+		productOptionId = $('.list-product-color').find('input:eq(0)').val();
+		showNotification(false, `Vui lòng chọn màu cho sản phẩm`);
+	} else {
+		$.ajax({
+			url: '/user/add-product/' + productOptionId,
+			type: 'POST',
+			success: function() {
+				window.location = '/user/cart';
+			},
+			error: function(e) {
+				showNotification(false, "Thêm sản phẩm thất bại!" + JSON.stringify(e));
+			}
+		});
+	}
 });
-
 
 /** Render list product color by price and memory */
 $(".list-product-memory").on('click', 'li a.item-product-memory--link', (function(event) {
 	event.preventDefault();
 	$('.item-product-memory').removeClass('memory-active');
 	var urlOption = $(this).attr("href");
-	urlOption = '/user' + urlOption;
-	/*console.log(`Đường dẫn của URL Option: ${urlOption}`)*/
 	$(this).parent().addClass('memory-active');
 	$.ajax({
 		url: urlOption,
@@ -54,6 +52,8 @@ $(".list-product-memory").on('click', 'li a.item-product-memory--link', (functio
 			var responsepPoductOption = responseData.data.productOptionList;
 			renderProductColor(responsepPoductOption);
 			$('.list-product-color input:eq(0)').prop("checked", true);
+			productOptionId = $('.list-product-color input:eq(0)').val();
+			console.log(`Giá trị của productOptionId khi chuyển sang memory mới: ${productOptionId}`)
 			renderPriceTitle(responsepPoductOption[0].salePrice, unitPrice);
 		},
 		error: function(e) {
@@ -69,7 +69,7 @@ $('.list-product-color').on('change', '.item-product-color input', (function() {
 }))
 
 
-/** */
+/** Toggle Class form rate */
 $('.box-qa__rate__show-form').on('click', function() {
 	$('.box-qa__comment').toggleClass('d-none');
 	if($('.box-qa__comment').hasClass('d-none')) {
@@ -79,12 +79,15 @@ $('.box-qa__rate__show-form').on('click', function() {
 	}
 	
 })
+
+/** Initialization check color default false */
 function initCheckColor() {
 	$('input[type=checkbox]').each(function() {
 			this.checked = false;
 	})
 }
-	
+
+/** Find product detail by product id */
 function findProductDetailById() {
 	$.ajax({
 		url: url,
@@ -208,7 +211,7 @@ function renderProductMemory(productMemoryPriceModels) {
 	$listMemory.empty();
 	var rowMemoryItemActive = `
 							<li class="item-product-memory memory-active">
-	                        <a href="/product-option/${productMemoryPriceModels[0].memoryProduct}/${productMemoryPriceModels[0].productId}" class="item-product-memory--link">
+	                        <a href="/user/product-option/${productMemoryPriceModels[0].memoryProduct}/${productMemoryPriceModels[0].productId}" class="item-product-memory--link">
 	                            <span>${productMemoryPriceModels[0].memoryProduct} GB</span>
 	                            <strong>${currencyFormat(productMemoryPriceModels[0].salePrice)} ₫</strong>
 	                        </a>
@@ -220,7 +223,7 @@ function renderProductMemory(productMemoryPriceModels) {
 	$.each(productMemoryPriceModels, function(key, value) {
 		rowMemoryItem = `
 						<li class="item-product-memory">
-	                        <a href="/product-option/${value.memoryProduct}/${value.productId}" class="item-product-memory--link">
+	                        <a href="/user/product-option/${value.memoryProduct}/${value.productId}" class="item-product-memory--link">
 	                            <span>${value.memoryProduct} GB</span>
 	                            <strong>${currencyFormat(value.salePrice)} ₫</strong>
 	                        </a>

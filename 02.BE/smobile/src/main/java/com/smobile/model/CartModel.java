@@ -24,6 +24,8 @@ public class CartModel {
 
 	private String productName;
 	
+	private String imageUrl;
+	
 	public static double getTotalPrice(HashMap<Integer, CartModel> cardItems) {
 		double totalPrice = 0;
 		for (Map.Entry<Integer, CartModel> cartItem : cardItems.entrySet()) {
