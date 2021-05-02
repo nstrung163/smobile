@@ -406,4 +406,44 @@ i.icon-vnpay {
 	
 }
 
+.not-authenticated-area {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 240px;
+}
+
+.not-authenticated-area__title {
+	padding-bottom: 20px;
+	font-size: 1.6rem;
+}
+
+.not-authenticated-area--btn {
+	width: 30%;
+	font-size: 1.5rem;
+}
+
+.notification-empty-history {
+	text-align: center;
+	font-size: 1.5rem;
+	height: 250px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.notification-empty-history:before {
+	content: "";
+	display: block;
+	width: 104px;
+	height: 106px;
+	background-image: url(/images/cart-mobile.png);
+	background-repeat: no-repeat;
+	background-position: -80px -40px;
+	position: absolute;
+	top: -1%;
+}
+
 /* END BOX CARD */

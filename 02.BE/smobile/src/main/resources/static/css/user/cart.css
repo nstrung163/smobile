@@ -437,6 +437,7 @@ i.icon-vnpay {
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
+	height: 250px;
 }
 
 .cart-empty__image {

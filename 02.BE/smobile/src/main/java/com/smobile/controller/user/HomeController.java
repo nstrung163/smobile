@@ -1,13 +1,21 @@
 package com.smobile.controller.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.smobile.entity.UserEntity;
+import com.smobile.model.PurchaseModel;
+import com.smobile.service.IProductResponseService;
 import com.smobile.service.IProductService;
 
 @Controller
@@ -15,6 +23,9 @@ public class HomeController {
 
 	@Autowired
 	IProductService productService;
+	
+	@Autowired
+	IProductResponseService productResponseService;
 	
 	@GetMapping(value = "/home")
 	public String initHomePage(Model model) {
@@ -29,8 +40,19 @@ public class HomeController {
 	} 
 	
 	@GetMapping(value = "/user/history-buy")
-	public String initHistoryBuyPage() {
-		return "user/history-buy";
+	public ModelAndView initHistoryBuyPage() {
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String userEntity = authentication.getName();
+		if(userEntity.toString().equals("anonymousUser")) {
+			System.out.println("User anonymousUser");
+		} else {
+			UserEntity userEntityAuthendicatied = (UserEntity) authentication.getPrincipal();
+			List<PurchaseModel> listHistoryBuy = productResponseService.getListHistoryBuy(userEntityAuthendicatied.getUserId());
+			modelAndView.addObject("listHistoryBuy", listHistoryBuy);
+		}
+		modelAndView.setViewName("user/history-buy");
+		return modelAndView;
 	}
 	
 	@RequestMapping(value = "/user/cart", method = {RequestMethod.GET, RequestMethod.POST})

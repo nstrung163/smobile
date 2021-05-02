@@ -32,7 +32,14 @@
             </div>
             <div class="header-right">
                 <a href="/user/history-buy" id="history-buy">Lịch sử mua hàng</a>
-                <a href="/user/cart" id="cart-box"><span class="quantity-product"><c:if test="${ sessionScope.totalItem == null }">0</c:if><c:out value='${ sessionScope.totalItem }'></c:out></span></a>
+                <a href="/user/cart" id="cart-box">
+                	<span class="quantity-product">
+                		<c:choose>
+		                	<c:when test="${ sessionScope.totalItem == null}">0</c:when>
+		                	<c:otherwise>${ sessionScope.totalItem}</c:otherwise>
+		                </c:choose>
+                	</span>
+                </a>
                 <sec:authentication var="user" property="principal"/>
                 <sec:authorize access="!isAuthenticated()">
                 	<a href="/login" class="sign-up-btn"><i class="fas fa-sign-in-alt"></i> Đăng nhập/Đăng ký</a>
@@ -80,40 +87,42 @@
           <div class="box-card__title__left"><a href="/" class="box-card__title--back--home">Tiếp tục tìm kiếm sản phẩm <i class="fas fa-chevron-right"></i></a></div>
           <div class="box-card__title__right"><h1>Lịch sử mua hàng của bạn</h1></div>
         </div>
-          <div class="main-content box-card">
-                  <ul class="product-info__list">
-                      <li class="product-info__item">
-                          <div class="product-info__item__image">
-                              <img src="/images/product/gstc7.jpg" alt="Image product">
-                          </div>
-                          <div class="product-info__item__essential">
-                              <span class="product-info__item__name">iPhone 12 Mini Chính hãng (VN/A)-Xanh Dương</span>
-                              <span>Đơn giá: <span class="product-info__item__price">16.590.000 ₫</span></span>
-                              <ul class="list-buy">
-                                  <div class="list-buy__quantity">Số lượng: x1</div>
-                                  <li class="list-buy__item">Thành tiền: <span class="product-info__item__price">16.590.000 ₫</span></li>
-                              </ul>
-                              <span> Ngày mua: 10/03/2021 </span>
-                              <span> Trạng thái đơn hàng: <span class="status_purchase">Đã thanh toán</span> </span>
-                          </div>
-                      </li>
-                      <li class="product-info__item">
-                        <div class="product-info__item__image">
-                            <img src="/images/product/gstc4.jpg" alt="Image product">
-                        </div>
-                        <div class="product-info__item__essential">
-                            <span class="product-info__item__name">Samsung A02</span>
-                            <span>Đơn giá: <span class="product-info__item__price">4.200.00 ₫</span></span>
-                            <ul class="list-buy">
-                                <div class="list-buy__quantity">Số lượng: x2</div>
-                                <li class="list-buy__item">Thành tiền: <span class="product-info__item__price">8.400.000 ₫</span></li>
-                            </ul>
-                            <span> Ngày mua: 30/03/2021 </span>
-                            <span> Trạng thái đơn hàng: <span class="status_purchase">Đã thanh toán</span> </span>
-                        </div>
-                       </li>
-                  </ul>
-            </div>
+         <sec:authorize access="!isAuthenticated()">
+         	<div class="not-authenticated-area">
+         		<p class="not-authenticated-area__title">Vui lòng đăng nhập để xem lịch sử mua hàng</p>
+         		<a href="/login" role="button" class="btn btn-primary not-authenticated-area--btn">Đăng nhập</a>
+         	</div>
+         </sec:authorize>
+         <sec:authorize access="isAuthenticated()">
+         	<c:choose>
+	        	<c:when test="${ listHistoryBuy.size() == 0 }">
+	        		<p class="notification-empty-history">Lịch sử mua hàng của bạn đang trống</p>
+	        	</c:when>
+	        	<c:otherwise>
+	        		<div class="main-content box-card">
+			             <ul class="product-info__list">
+			             	<c:forEach var="purchase" items="${ listHistoryBuy }">
+				             	<li class="product-info__item">
+				                       <div class="product-info__item__image">
+				                           <img src="/${ purchase.imageUrl }" alt="${ purchase.productName }">
+				                       </div>
+				                       <div class="product-info__item__essential">
+				                           <span class="product-info__item__name">${ purchase.productName } ${ purchase.colorProductName } ${ purchase.memoryProduct }GB</span>
+				                           <span>Đơn giá: <span class="product-info__item__price"><fmt:formatNumber value="${ purchase.salePrice }" type="currency" minFractionDigits="0" currencySymbol=""/> ₫</span></span>
+				                           <ul class="list-buy">
+				                               <div class="list-buy__quantity">Số lượng: x${ purchase.quantity }</div>
+				                               <li class="list-buy__item">Thành tiền: <span class="product-info__item__price"><fmt:formatNumber value="${ purchase.salePrice * purchase.quantity }" type="currency" minFractionDigits="0" currencySymbol=""/> ₫</span></li>
+				                           </ul>
+				                           <span> Ngày mua: <fmt:formatDate pattern="dd-MM-yyyy" value="${ purchase.dateOfOrder }" /></span>
+				                           <span> Trạng thái đơn hàng: <span class="status_purchase">${ purchase.purchaseStatusName }</span> </span>
+				                       </div>
+				                   </li>
+			             	</c:forEach>
+			              </ul>
+			          </div>
+	        	</c:otherwise>
+	        </c:choose>
+         </sec:authorize>
       </main>
       <footer class="container-fluid">
         <div class="footer">

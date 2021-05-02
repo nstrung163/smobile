@@ -25,6 +25,7 @@ import com.smobile.model.ProductCommentModel;
 import com.smobile.model.ProductDetailModel;
 import com.smobile.model.ProductItemModel;
 import com.smobile.model.ProductMemoryPriceModel;
+import com.smobile.model.PurchaseModel;
 import com.smobile.model.ResponseDataModel;
 import com.smobile.repository.IProductCommentRepository;
 import com.smobile.repository.IProductImageRepository;
@@ -283,18 +284,15 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
 
-//	@Override
-//	public ResponseDataModel getListHistoryBuy(Integer userId) {
-//		int responseCode = Constants.RESULT_CD_FAIL;
-//		String responseMsg = Strings.EMPTY;
-//		try {
-//			List<Object[]> listHistoryBuy = purchaseRepository.getListPurchaseDetailByUserId(userId);
-//			System.out.println("Số lượng sản phẩm đã mua là: " + listHistoryBuy.size());
-//			log.info(responseMsg);
-//		} catch (Exception e) {
-//			responseMsg = "Lấy danh sách lịch sửa mua hàng thất bại!";
-//			log.error(responseMsg);
-//		}
-//		return new ResponseDataModel(responseCode, responseMsg);
-//	}
+	@Override
+	public List<PurchaseModel> getListHistoryBuy(Integer userId) {
+		List<PurchaseModel>  listHistoryBuy = new ArrayList<PurchaseModel>();
+		try {
+			 listHistoryBuy = ObjectToModel.convertToListPurchaseModel(purchaseRepository.getListPurchaseDetailByUserId(userId));
+			log.info("Lấy danh lịch sử mua hàng thành công!");
+		} catch (Exception e) {
+			log.error("Lấy danh sách lịch sửa mua hàng thất bại!");
+		}
+		return listHistoryBuy;
+	}
 }

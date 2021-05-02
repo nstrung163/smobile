@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.smobile.model.ProductCommentModel;
 import com.smobile.model.ProductMemoryPriceModel;
+import com.smobile.model.PurchaseModel;
 
 public class ObjectToModel {
 
@@ -35,6 +36,26 @@ public class ObjectToModel {
 			 productCommentModels.add(productCommentModel);
 		}
 		return productCommentModels;
+	}
+	
+	public static List<PurchaseModel> convertToListPurchaseModel(List<Object[]> arrObject) {
+		List<PurchaseModel> purchaseModelList = new ArrayList<PurchaseModel>();
+		for(Object[] obj : arrObject) {
+			BigInteger productDetailIdBig = (BigInteger) obj[0];
+			Integer productDetailId = productDetailIdBig.intValue();
+			String productName = (String) obj[1];
+			String colorProductName = (String) obj[2];
+			int memoryProduct = (int) obj[3];
+			double salePrice = (double) obj[4];
+			int quantity = (int) obj[5];
+			Date dateOfOrder = (Date) obj[6];
+			String purchaseStatusName = (String) obj[7];
+			String fullName = (String) obj[8];
+			String imageUrl = (String) obj[9];
+			PurchaseModel purchaseModel = new PurchaseModel(productDetailId, productName, colorProductName, memoryProduct, salePrice, quantity, dateOfOrder, purchaseStatusName, fullName, imageUrl);
+			purchaseModelList.add(purchaseModel);
+		}
+		return purchaseModelList;
 	}
 	
 }
