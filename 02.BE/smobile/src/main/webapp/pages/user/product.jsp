@@ -31,7 +31,14 @@
             </div>
             <div class="header-right">
                 <a href="/user/history-buy" id="history-buy">Lịch sử mua hàng</a>
-                <a href="/user/cart" id="cart-box"><span class="quantity-product"><c:if test="${ sessionScope.totalItem == null }">0</c:if><c:out value='${ sessionScope.totalItem }'></c:out></span></a>
+                <a href="/user/cart" id="cart-box">
+                	<span class="quantity-product">
+                		<c:choose>
+		                	<c:when test="${ sessionScope.totalItem == null}">0</c:when>
+		                	<c:otherwise>${ sessionScope.totalItem}</c:otherwise>
+		                </c:choose>
+                	</span>
+                </a>
                 <sec:authentication var="user" property="principal"/>
                 <sec:authorize access="!isAuthenticated()">
                 	<a href="/login" class="sign-up-btn"><i class="fas fa-sign-in-alt"></i> Đăng nhập/Đăng ký</a>
