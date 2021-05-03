@@ -1,0 +1,23 @@
+.sale-date {
+	width: 100px;
+}
+
+#purchaseDetailInfoForm {
+	
+}
+
+.purchase-detail {
+	
+}
+
+.purchase-detail__left {
+	
+}
+
+.purchase-detail__right {
+	
+}
+.group-row {
+	display: flex;
+	justify-content: space-between;
+}

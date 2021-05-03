@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.smobile.service.IBrandService;
 import com.smobile.service.IProductService;
+import com.smobile.service.IPurchaseStatusService;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -18,6 +19,9 @@ public class HomeAdminController {
 	
 	@Autowired
 	IProductService productService;
+	
+	@Autowired
+	IPurchaseStatusService purchaseStatusService;
 	
 	@GetMapping(value = {"/home", "" })
 	public String initHomePage() {
@@ -78,6 +82,7 @@ public class HomeAdminController {
 	
 	@GetMapping(value = "/purchase-detail-list")
 	public String initPurchaseDetailPage(Model model) {
+		model.addAttribute("purchaseStatusList", purchaseStatusService.findAllPurchaseStatus());
 		return "admin/purchase-detail-admin";
 	}
 	

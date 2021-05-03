@@ -1,8 +1,8 @@
 package com.smobile.convert;
 
 import java.math.BigInteger;
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.smobile.model.ProductCommentModel;
@@ -41,8 +41,8 @@ public class ObjectToModel {
 	public static List<PurchaseModel> convertToListPurchaseModel(List<Object[]> arrObject) {
 		List<PurchaseModel> purchaseModelList = new ArrayList<PurchaseModel>();
 		for(Object[] obj : arrObject) {
-			BigInteger productDetailIdBig = (BigInteger) obj[0];
-			Integer productDetailId = productDetailIdBig.intValue();
+			BigInteger purchaseDetailIdBig = (BigInteger) obj[0];
+			Integer purchaseDetailId = purchaseDetailIdBig.intValue();
 			String productName = (String) obj[1];
 			String colorProductName = (String) obj[2];
 			int memoryProduct = (int) obj[3];
@@ -52,7 +52,9 @@ public class ObjectToModel {
 			String purchaseStatusName = (String) obj[7];
 			String fullName = (String) obj[8];
 			String imageUrl = (String) obj[9];
-			PurchaseModel purchaseModel = new PurchaseModel(productDetailId, productName, colorProductName, memoryProduct, salePrice, quantity, dateOfOrder, purchaseStatusName, fullName, imageUrl);
+			BigInteger purchaseIdBig = (BigInteger) obj[10];
+			Integer purchaseId = purchaseIdBig.intValue();
+			PurchaseModel purchaseModel = new PurchaseModel(purchaseDetailId, productName, colorProductName, memoryProduct, salePrice, quantity, dateOfOrder, purchaseStatusName, fullName, imageUrl, purchaseId);
 			purchaseModelList.add(purchaseModel);
 		}
 		return purchaseModelList;

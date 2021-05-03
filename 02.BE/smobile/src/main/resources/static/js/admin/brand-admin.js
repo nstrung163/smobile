@@ -69,7 +69,7 @@ $(document).ready(function() {
 				$("#brandId").val(responseData.brandId);
 				$("#brandName").val(responseData.brandName);
 				$("#description").val(responseData.description);
-				var brandLogo = responseData.logo;
+				var brandLogo = '/' + responseData.logo;
 				console.log(brandLogo)
 				if(brandLogo == null || brandLogo == "") {
 					brandLogo = '/images/image-demo.png';

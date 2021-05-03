@@ -94,11 +94,11 @@ $('.minus-quantity').on('click', function(event) {
 		processData: false,
 		contentType: false,
 		success: function() {
-			alert(`Chỉnh sửa số lượng sản phẩm thành công`);
+			alert(`Giảm số lượng sản phẩm thành công`);
 			window.location = '/user/cart';
 		},
 		error: function(e) {
-			alert(`Chỉnh sửa số lượng sản phẩm thất bại do ${JSON.stringify(e)}`)
+			alert(`Giảm số lượng sản phẩm thất bại do ${JSON.stringify(e)}`)
 		}
 	})
 })
@@ -137,7 +137,6 @@ $('.remove-product').on('click', function(event) {
 		processData: false,
 		contentType: false,
 		success: function() {
-			alert(`Chỉnh sửa số lượng sản phẩm thành công`);
 			window.location = '/user/cart';
 		},
 		error: function(e) {

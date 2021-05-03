@@ -1,7 +1,7 @@
 package com.smobile.model;
 
 
-import java.util.Date;
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,5 +31,7 @@ public class PurchaseModel {
 	private String fullName;
 	
 	private String imageUrl;
+	
+	private Integer purchaseId;
 	
 }

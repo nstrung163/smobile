@@ -26,4 +26,8 @@ public interface IProductResponseService {
 	ResponseDataModel addProductQuantity(Integer productOptionId);
 	
 	List<PurchaseModel> getListHistoryBuy(Integer userId);
+	
+	List<PurchaseModel> getAllPurchaseDetail();
+	
+	List<PurchaseModel> getPurchaseDetailById(Integer purchaseDetailId);
 }

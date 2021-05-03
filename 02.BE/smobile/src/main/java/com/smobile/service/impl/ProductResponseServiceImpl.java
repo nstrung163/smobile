@@ -270,7 +270,7 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 					cartModel.setQuantity(cartModel.getQuantity() + 1);
 					cartItems.put(productOptionId, cartModel);
 					responseCode = Constants.RESULT_CD_SUCCESS;
-					responseMsg = "Chỉnh sửa số lượng sản phẩm thành công!";
+					responseMsg = "Tăng số lượng sản phẩm thành công!";
 					log.info(responseMsg);
 				}
 			}
@@ -294,5 +294,37 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 			log.error("Lấy danh sách lịch sửa mua hàng thất bại!");
 		}
 		return listHistoryBuy;
+	}
+
+	@Override
+	public List<PurchaseModel> getAllPurchaseDetail() {
+		String responseMsg = Strings.EMPTY;
+		List<PurchaseModel> purchaseModelList = new ArrayList<PurchaseModel>();
+		try {
+			 purchaseModelList = ObjectToModel.convertToListPurchaseModel(purchaseRepository.getAllPurchaseDetail());
+			if(purchaseModelList != null) {
+				responseMsg = "Lấy danh sách hóa đơn chi tiết thành công!";
+				log.info(responseMsg);
+			} else {
+				responseMsg = "Lấy dánh sách hóa đơn chi tiết không thành công!";
+				log.warn(responseMsg);
+			}
+		} catch (Exception e) {
+			responseMsg = "Lỗi khi lấy dánh sách hóa đơn chi tiết do: " + e.getMessage();
+			log.warn(responseMsg);
+		}
+		return purchaseModelList;
+	}
+
+	@Override
+	public List<PurchaseModel> getPurchaseDetailById(Integer purchaseDetailId) {
+		List<PurchaseModel> purchaseModelList = new ArrayList<PurchaseModel>();
+		try {
+			purchaseModelList = ObjectToModel.convertToListPurchaseModel(purchaseRepository.findPurchaseDetailById(purchaseDetailId));
+			log.info("Lấy chi tiết hóa đơn theo mã CTHĐ thành công!");
+		} catch (Exception e) {
+			log.error("Lấy chi tiết hóa đơn theo mã CTHĐ không thành công");
+		}
+		return purchaseModelList;
 	}
 }

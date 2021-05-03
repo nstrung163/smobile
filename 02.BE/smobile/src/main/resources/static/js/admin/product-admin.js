@@ -73,7 +73,7 @@ $(document).ready(function() {
 		$('.modal-title').text('Chỉnh Sửa Nhãn Hiệu');
 		$('#btnSubmitProduct').text('Cập nhật');
 		$.ajax({
-			url: '/admin//product/' + $(this).data('id'),
+			url: '/admin/product/' + $(this).data('id'),
 			type: 'GET',
 			dataType: 'json',
 			contentType: 'application/json',

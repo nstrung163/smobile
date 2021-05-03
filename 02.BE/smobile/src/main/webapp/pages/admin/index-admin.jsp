@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Hệ thống quản lý điện thoại di động Smoble" />
+    <meta name="description" content="Hệ thống quản lý điện thoại di động Smobile" />
     <meta name="author" content="NST" />
     <title>Trang chủ</title>
     <link href="<c:url value='/plugins/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
@@ -84,20 +84,11 @@
                             </nav>
                         </div>
                         <!-- Quản lý bán hàng -->
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <span class="sb-nav-link-icon">
-                                <i class="fas fa-shopping-cart"></i>
-                            </span> Quản lý bán hàng
-                            <span class="sb-sidenav-collapse-arrow">
-                                <i class="fas fa-angle-down"></i>
-                            </span>
-                        </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                               <a class="nav-link" href="/admin/purchase-list"><i class="mr-2 fas fa-star-half-alt"></i>Hóa đơn</a>
-                               <a class="nav-link" href="/admin/purchase-detail-list"><i class="mr-2 fas fa-star-half-alt"></i>Đơn đặt hàng</a>
-                            </nav>
-                        </div>
+                        <a class="nav-link" href="/admin/purchase-detail-list">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-shopping-cart"></i>
+							</div> Quản lý bán hàng
+						</a> 
                         <!-- Thống kê -->
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStatistic" aria-expanded="false" aria-controls="collapseStatistic">
                             <span class="sb-nav-link-icon">
@@ -116,16 +107,10 @@
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
-                    <div class="small">Đăng nhập với quyền:</div>
-                    	<%-- <sec:authentication var="user" property="principal" />
+                    <div class="small">Xin chào quản trị viên:</div>
+                    	<sec:authentication var="user" property="principal" />
 						<sec:authorize access="hasRole('ROLE_ADMIN') and isAuthenticated()">
-							${user.username}
-						</sec:authorize> --%>
-						<sec:authorize access="!isAuthenticated()">
-							  Đăng nhập
-						</sec:authorize>
-						<sec:authorize access="isAuthenticated()">
-						  Đăng xuât
+							${user.fullName}
 						</sec:authorize>
                 </div>
             </nav>
