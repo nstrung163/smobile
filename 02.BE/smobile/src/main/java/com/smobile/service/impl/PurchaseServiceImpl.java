@@ -10,12 +10,14 @@ import org.springframework.stereotype.Service;
 import com.smobile.common.constant.Constants;
 import com.smobile.entity.OptionShippingEntity;
 import com.smobile.entity.PaymentMethodEntity;
+import com.smobile.entity.PurchaseDetailEntity;
 import com.smobile.entity.PurchaseEntity;
 import com.smobile.entity.PurchaseStatusEntity;
 import com.smobile.entity.UserEntity;
 import com.smobile.model.ResponseDataModel;
 import com.smobile.repository.IOptionShippingRepository;
 import com.smobile.repository.IPaymentMethodRepository;
+import com.smobile.repository.IPurchaseDetailRepository;
 import com.smobile.repository.IPurchaseRepository;
 import com.smobile.repository.IPurchaseStatusRepository;
 import com.smobile.repository.IUserRepository;
@@ -41,6 +43,9 @@ public class PurchaseServiceImpl implements IPurchaseService{
 	
 	@Autowired
 	IOptionShippingRepository optionShippingRepository;
+	
+	@Autowired
+	IPurchaseDetailRepository purchaseDetailRepository;
 
 	@Override
 	public List<PurchaseEntity> findAllPurchase() {
@@ -132,7 +137,11 @@ public class PurchaseServiceImpl implements IPurchaseService{
 		String responseMsg = StringUtils.EMPTY;
 		try {
 			PurchaseEntity purchaseEntity = purchaseRepository.findByPurchaseId(purchaseId);
-			if(purchaseEntity != null) {
+			List<PurchaseDetailEntity> purchaseDetailList = purchaseDetailRepository.getListPurchaseDetailByPurchaseId(purchaseId);
+			if(purchaseEntity != null && purchaseDetailList != null && purchaseDetailList.size() != 0) {
+				for(PurchaseDetailEntity purchaseDetail : purchaseDetailList) {
+					purchaseDetailRepository.deleteById(purchaseDetail.getPurchaseDetailId());
+				}
 				purchaseRepository.deleteById(purchaseId);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Xóa hóa đơn thành công!";
@@ -153,9 +162,9 @@ public class PurchaseServiceImpl implements IPurchaseService{
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
 		try {
-			PurchaseEntity purchaseEntity = purchaseRepository.getOne(purchaseId);
+			PurchaseEntity purchaseEntity = purchaseRepository.findByPurchaseId(purchaseId);
 			if(purchaseEntity != null) {
-				PurchaseStatusEntity purchaseStatusEntity = purchaseStatusRepository.getOne(purchaseStatusId);
+				PurchaseStatusEntity purchaseStatusEntity = purchaseStatusRepository.findByPurchaseStatusId(purchaseStatusId);
 				purchaseEntity.setPurchaseStatusEntity(purchaseStatusEntity);
 				purchaseRepository.saveAndFlush(purchaseEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
@@ -166,7 +175,7 @@ public class PurchaseServiceImpl implements IPurchaseService{
 				log.warn(responseMsg);
 			}
 		} catch (Exception e) {
-			responseMsg = "Cật nhật trạng thái hóa đơn thất bại!";
+			responseMsg = "Cật nhật trạng thái hóa đơn thất bại do : " + e.getMessage();
 			log.warn(responseMsg);
 		}
 		return new ResponseDataModel(responseCode, responseMsg);

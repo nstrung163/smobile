@@ -36,12 +36,14 @@ $(document).ready(function() {
 		})
 	})
 
-	/*Get list brandId*/
-	var listBrandArr = [];
-	$('.check').on('click', function() {
-		listBrandArr = [];
-		$('.listBrand').find('input[name="brand.logo"]:checked').each(function() {
-			listBrandArr.push($(this).val());
-		});
-	})
 });
+
+/*Get list brandId*/
+var listBrandArr = [];
+$(".check").on('click', function() {
+	listBrandArr = [];
+	$('.listBrand').find('input[name="brand.logo"]:checked').each(function() {
+		listBrandArr.push($(this).val());
+	});
+	console.log(`Value of array: ${listBrandArr.length}`)
+})

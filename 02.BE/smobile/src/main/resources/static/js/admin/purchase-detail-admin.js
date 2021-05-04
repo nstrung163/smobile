@@ -34,10 +34,10 @@ $.get(url, function(responseData) {
 			{
 				render: function(data, type, row) {
 					return `<div class="action-btns text-center">
-							<a class="edit-btn" data-id="${row.purchaseId}" data-name="${row.productName}" data-toggle="modal" data-target="#myModal">
+							<a class="edit-btn" data-id="${row.purchaseDetailId}" data-name="${row.productName}" data-toggle="modal" data-target="#myModal">
 								<i class="icon-edit-btn fas fa-edit"></i>
 							</a> | 
-							<a class="delete-btn" data-id="${row.purchaseId}" data-name="${row.productName}" data-toggle="modal" data-target="#confirmDeleteModal">
+							<a class="delete-btn" data-id="${row.purchaseDetailId}" data-name="${row.productName}" data-toggle="modal" data-target="#confirmDeleteModal">
 								<i class="icon-delete-btn fas fa-trash-alt"></i>
 							</a>
 						</div>`;
@@ -115,7 +115,6 @@ $(document).ready(function() {
 						/**Reload datatable */
 						reloadDataTable();
 						$('#myModal').modal('toggle');
-						/*$('.modal-backdrop').remove();*/
 						$('#announcemnet strong:eq(0)').removeClass("text-warning").addClass("text-success");
 						$('#notification').text(responseData.responseMsg);
 						$("#announcemnet").toast('show');

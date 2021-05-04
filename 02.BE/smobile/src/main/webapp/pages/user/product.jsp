@@ -128,121 +128,19 @@
       <div class="search-area">
         <div class="searchByBrand">
           <ul class="listBrand">
-						<li class="list-brand__item">
-							<input class="check" id="23" type="checkbox" value="23" name="brand.logo">
-							<label class="label-item" for="23"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200911-1442-ptau9h.png"></label>
-						</li>
-						<li class="list-brand__item">
-							<input class="check" id="22" type="checkbox" value="22" name="brand.logo">
-							<label class="label-item" for="22"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2353-orclel.png"></label>
-						</li>
-					
-						<li class="list-brand__item">
-							<input class="check" id="21" type="checkbox" value="21" name="brand.logo">
-							<label class="label-item" for="21"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2352-c0alht.png"></label>
-						</li>
-					
-						<li class="list-brand__item">
-							<input class="check" id="20" type="checkbox" value="20" name="brand.logo">
-							<label class="label-item" for="20"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2351-f073vi.png"></label>
-						</li>
-					
-						<li class="list-brand__item">
-							<input class="check" id="19" type="checkbox" value="19" name="brand.logo">
-							<label class="label-item" for="19"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2346-1dlq9c.png"></label>
-						</li>
-					
-						<li class="list-brand__item">
-							<input class="check" id="18" type="checkbox" value="18" name="brand.logo">
-							<label class="label-item" for="18"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2345-vkteej.png"></label>
-						</li>
-					
-						<li class="list-brand__item">
-							<input class="check" id="17" type="checkbox" value="17" name="brand.logo">
-							<label class="label-item" for="17"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2344-qs4csq.png"></label>
-						</li>
-					
-						<li class="list-brand__item">
-							<input class="check" id="16" type="checkbox" value="16" name="brand.logo">
-							<label class="label-item" for="16"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2343-ao2e8g.png"></label>
-						</li>
-					
-						<li class="list-brand__item">
-							<input class="check" id="15" type="checkbox" value="15" name="brand.logo">
-							<label class="label-item" for="15"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2340-f7qdtb.png"></label>
-						</li>
-					
-						<li class="list-brand__item">
-							<input class="check" id="14" type="checkbox" value="14" name="brand.logo">
-							<label class="label-item" for="14"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2339-r0f3h9.png"></label>
-						</li>
-					
-						<li class="list-brand__item">
-							<input class="check" id="12" type="checkbox" value="12" name="brand.logo">
-							<label class="label-item" for="12"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2332-j1nq28.png"></label>
-						</li>
-					
-						<li class="list-brand__item">
-							<input class="check" id="11" type="checkbox" value="11" name="brand.logo">
-							<label class="label-item" for="11"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2334-8jnmkb.png"></label>
-						</li>
-					
-						<li class="list-brand__item">
-							<input class="check" id="10" type="checkbox" value="10" name="brand.logo">
-							<label class="label-item" for="10"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2337-7l406b.png"></label>
-						</li>
-					
-						<li class="list-brand__item" style="display: none;">
-							<input class="check" id="9" type="checkbox" value="9" name="brand.logo">
-							<label class="label-item" for="9"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2337-qaqn3i.png"></label>
-						</li>
-					
-						<li class="list-brand__item" style="display: none;">
-							<input class="check" id="8" type="checkbox" value="8" name="brand.logo">
-							<label class="label-item" for="8"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2337-s6s58g.png"></label>
-						</li>
-					
-						<li class="list-brand__item" style="display: none;">
-							<input class="check" id="7" type="checkbox" value="7" name="brand.logo">
-							<label class="label-item" for="7"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2337-57dutq.png"></label>
-						</li>
-					
-						<li class="list-brand__item" style="display: none;">
-							<input class="check" id="6" type="checkbox" value="6" name="brand.logo">
-							<label class="label-item" for="6"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2337-ou2874.png"></label>
-						</li>
-					
-						<li class="list-brand__item" style="display: none;">
-							<input class="check" id="5" type="checkbox" value="5" name="brand.logo">
-							<label class="label-item" for="5"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2337-f2ug5r.png"></label>
-						</li>
-					
-						<li class="list-brand__item" style="display: none;">
-							<input class="check" id="4" type="checkbox" value="4" name="brand.logo">
-							<label class="label-item" for="4"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2337-fjmlah.png"></label>
-						</li>
-					
-						<li class="list-brand__item" style="display: none;">
-							<input class="check" id="3" type="checkbox" value="3" name="brand.logo">
-							<label class="label-item" for="3"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2338-3lcmvh.png"></label>
-						</li>
-					
-						<li class="list-brand__item" style="display: none;">
-							<input class="check" id="2" type="checkbox" value="2" name="brand.logo">
-							<label class="label-item" for="2"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200823-2338-lq96s7.png"></label>
-						</li>
-					
-						<li class="list-brand__item" style="display: none;">
-							<input class="check" id="1" type="checkbox" value="1" name="brand.logo">
-							<label class="label-item" for="1"><img class="logo-brand" alt="Logo Brand" src="/images/brand/20200905-1620-km28qa.png"></label>
-						</li>
-					<span class="show-more">Xem thêm<i class="icon fas fa-caret-down"></i></span>
-					<span class="hidden-item d-none">Ẩn bớt<i class="icon-up fas fa-sort-up"></i></span>
-				</ul>
+			<c:forEach var="brand" items="${ listBrand }">
+				<li class="list-brand__item">
+					<input class="check" id="${ brand.brandId }" type="checkbox" value="${ brand.brandId }" name="brand.logo">
+					<label class="label-item" for="${ brand.brandId }"><img class="logo-brand" alt="Logo Brand" src="/${ brand.logo }"></label>
+				</li>
+			</c:forEach>
+				<span class="show-more">Xem thêm<i class="icon fas fa-caret-down"></i></span>
+				<span class="hidden-item d-none">Ẩn bớt<i class="icon-up fas fa-sort-up"></i></span>
+			</ul>
         </div>
 
         <div class="search-product ">
-          <span>Khoảng giá:</span>
+          <span class="search-product-master">Khoảng giá:</span>
           <div class="search-product__price">
             <label class="price-labe price-labe-from" for="priceFrom">từ </label>
             <select class="price priceFrom form-control" name="priceForm"  id="priceFrom">
@@ -269,15 +167,20 @@
               <span class="filter-box__title">Bộ lọc<i class="icon fas fa-caret-down"></i></span>
             </div>
             <div class="sort-box">
-              <span class="sort-box__title">Sắp xếp<i class="icon fas fa-caret-down"></i></span>
+              <span class="sort-box__title">Sắp xếp<i class="icon fas fa-caret-down"></i>.
+                  <div class="sort-area">
+                    <a class="sort-area--link sort-area__sort-asc" href="/"><i class="fas fa-sort-amount-down"></i>Giá cao</a>
+                    <a class="sort-area--link sort-area__sort-desc" href="/"><i class="fas fa-sort-amount-up"></i>Giá thấp</a>
+                    <a class="sort-area--link sort-area__sort-highlight" href="/"><i class="fas fa-star"></i>Nổi bật</a>
+                  </div>
+              </span>                     
             </div>
           </div>
           <!-- Button search -->
           <div class="btn-search">
-            <button type="submit" id="searchByPrice" class="btn btn-success">Áp dụng</button>
+            <button type="submit" id="searchByPrice" class="btn btn-success"><i class="fas fa-search"></i></button>
           </div>
         </div>
-        
       </div>
       <div id="resultSearch">
         <p></p>

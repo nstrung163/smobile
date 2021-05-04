@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.smobile.entity.UserEntity;
 import com.smobile.model.PurchaseModel;
+import com.smobile.service.IBrandService;
 import com.smobile.service.IProductResponseService;
 import com.smobile.service.IProductService;
 
@@ -26,6 +27,9 @@ public class HomeController {
 	
 	@Autowired
 	IProductResponseService productResponseService;
+	
+	@Autowired
+	IBrandService brandService;
 	
 	@GetMapping(value = "/home")
 	public String initHomePage(Model model) {
@@ -66,7 +70,8 @@ public class HomeController {
 	}
 	
 	@GetMapping(value = "/user/product")
-	public String initProductPage() {
+	public String initProductPage(Model model) {
+		model.addAttribute("listBrand", brandService.findAllBrand());
 		return "user/product";
 	}
 	

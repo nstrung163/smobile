@@ -243,7 +243,7 @@
 												<label for="brandEntity">Trạng thái: </label>
 												<select class="form-control" id="purchaseStatusName" name="purchaseStatusName">
 													<c:forEach items="${purchaseStatusList}" var="purchaseStatus">
-														<option value="${purchaseStatus.purchaseStatusId}" class="form-select">${purchaseStatus.purchaseStatusName}</option>
+														<option value="${purchaseStatus.purchaseStatusId}" class="form-select purchase-status-name">${purchaseStatus.purchaseStatusName}</option>
 													</c:forEach>
 												</select>
 											</div>
@@ -270,7 +270,7 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<p>Bạn có muốn xóa hóa đơn có sản phẩm <b id=deletePurchaseDetailId></b>?</p>
+								<p>Bạn có muốn xóa hóa đơn có sản phẩm <b id=deletePurchaseDetailId> trong giỏ hàng</b>?</p>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
