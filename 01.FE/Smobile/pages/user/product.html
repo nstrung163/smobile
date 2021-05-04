@@ -220,7 +220,7 @@
         </div>
 
         <div class="search-product ">
-          <span>Khoảng giá:</span>
+          <span class="search-product-master">Khoảng giá:</span>
           <div class="search-product__price">
             <label class="price-labe price-labe-from" for="priceFrom">từ </label>
             <select class="price priceFrom form-control" name="priceForm"  id="priceFrom">
@@ -245,14 +245,43 @@
           <div class="filter-area">
             <div class="filter-box">
               <span class="filter-box__title">Bộ lọc<i class="icon fas fa-caret-down"></i></span>
+              <div class="list-filter">
+                <ul class="list-filter__type-phone">
+                  <li  class="list-filter--title">Loại điện thoại</li>
+                  <li  class="list-filter--item">
+                    <input class="check" id="1" type="checkbox" value="1" name="android">
+							      <label class="label-item" for="1">Android</label>
+                  </li>
+                  <li  class="list-filter--item"></li>
+                  <li  class="list-filter--item"></li>
+                </ul>
+                <ul class="list-filter__ram">
+                  <li  class="list-filter--title"></li>
+                  <li  class="list-filter--item"></li>
+                  <li  class="list-filter--item"></li>
+                  <li  class="list-filter--item"></li>
+                </ul>
+                <ul class="list-filter__internal-memory">
+                  <li  class="list-filter--title"></li>
+                  <li  class="list-filter--item"></li>
+                  <li  class="list-filter--item"></li>
+                  <li  class="list-filter--item"></li>
+                </ul>
+              </div>
             </div>
             <div class="sort-box">
-              <span class="sort-box__title">Sắp xếp<i class="icon fas fa-caret-down"></i></span>
+              <span class="sort-box__title">Sắp xếp<i class="icon fas fa-caret-down"></i>.
+                  <div class="sort-area">
+                    <a class="sort-area--link sort-area__sort-asc" href="/"><i class="fas fa-sort-amount-down"></i>Giá cao</a>
+                    <a class="sort-area--link sort-area__sort-desc" href="/"><i class="fas fa-sort-amount-up"></i>Giá thấp</a>
+                    <a class="sort-area--link sort-area__sort-highlight" href="/"><i class="fas fa-star"></i>Nổi bật</a>
+                  </div>
+              </span>                     
             </div>
           </div>
           <!-- Button search -->
           <div class="btn-search">
-            <button type="submit" id="searchByPrice" class="btn btn-success">Áp dụng</button>
+            <button type="submit" id="searchByPrice" class="btn btn-success"><i class="fas fa-search"></i></button>
           </div>
         </div>
         

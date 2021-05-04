@@ -200,11 +200,73 @@ input[type="checkbox"]:checked + label:before {
 /* END SEARCH */
 /* START FILTER */
 .filter-area {
-  width: 30%;
+  width: 50%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
 }
 .filter-box {
+  display: flex;
+  width: 20%;
+  position: relative;
 }
 .filter-box__title {
+}
+.sort-box {
+  display: flex;
+
+  width: 100%;
+
+  justify-content: center;
+}
+
+.sort-box__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.sort-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sort-area__sort-asc {
+}
+
+.sort-area--link {
+  padding-left: 30px;
+}
+
+.sort-area__sort-desc {
+}
+
+.sort-area__sort-highlight {
+}
+.search-product-master {
+}
+
+.list-filter {
+
+}
+
+.list-filter__type-phone {
+
+}
+
+.list-filter--item {
+
+}
+
+.list-filter__ram {
+
+}
+
+.list-filter__internal-memory {
+
+}
+
+.list-filter--title {
+
 }
