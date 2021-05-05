@@ -10,6 +10,8 @@ import com.smobile.model.ResponseDataModel;
 public interface IProductResponseService {
 
 	ResponseDataModel findAllProductItem();
+	 
+	ResponseDataModel findAllProcuctApi(int pageNumber);
 	
 	ResponseDataModel getProductOutstanding();
 	

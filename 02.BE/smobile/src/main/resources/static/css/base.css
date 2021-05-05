@@ -1246,3 +1246,32 @@ footer {
     width: 20%;
     line-height: 2rem;
 }
+
+.pagination {
+	font-size: 1.5rem;
+	padding: 10px 0;
+}
+
+.pagination a {
+	display: block;
+	color: #111;
+	text-align: center;
+	text-decoration: none;
+	min-width: 40px;
+}
+
+.pagination a.active {
+	color: #333;
+	background-color: #ccc;
+}
+
+.pagination a.disabled {
+	pointer-events: none;
+	color: #ccc;
+}
+
+.page-item {
+	display: block;
+	margin: 0 5px;
+	border-radius: 3px;
+}

@@ -10,6 +10,10 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.smobile.common.constant.Constants;
@@ -21,6 +25,7 @@ import com.smobile.entity.ProductOptionEntity;
 import com.smobile.entity.PurchaseDetailEntity;
 import com.smobile.entity.PurchaseEntity;
 import com.smobile.model.CartModel;
+import com.smobile.model.PageModel;
 import com.smobile.model.ProductCommentModel;
 import com.smobile.model.ProductDetailModel;
 import com.smobile.model.ProductItemModel;
@@ -81,12 +86,12 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 			for (ProductEntity product : productList) {
 				 int totalRate = rateRepository.getTotalRateByProductId(product.getProductId());
 				 float averagePointRate = 0;
-				// Check product have rated?
+				 // Check product have rated?
 				 if(totalRate != 0) { 
 					 averagePointRate = rateRepository.getAveragePointRate(product.getProductId());
 				 }
 				 double salePrice = product.getUnitPrice();
-				//Check product exist
+				 //Check product exist
 				 ProductOptionEntity productOptionEntity = productOptionRepository.findProductOptionByProductId(product.getProductId());
 				 if(productOptionEntity != null) {
 					 salePrice = productOptionRepository.getSalePriceDefault(product.getProductId());
@@ -104,6 +109,50 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 		} catch (Exception e) {
 			responseMsg = "Lấy danh sách sản phẩm không thành công! ";
 			log.error(responseMsg + e.getMessage());
+		}
+		return new ResponseDataModel(responseCode, responseMsg, data);
+	}
+	
+
+	@Override
+	public ResponseDataModel findAllProcuctApi(int pageNumber) {
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMsg = StringUtils.EMPTY;
+		Map<String, Object> data = new HashMap<String, Object>();
+		List<ProductItemModel> productItemList = new ArrayList<ProductItemModel>();
+		try {
+			Sort sortList = Sort.by(Sort.Direction.ASC, "productId");
+			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortList);
+			Page<ProductEntity> productEntitiesPage = productRepository.findAll(pageable);
+			
+			List<ProductEntity> productList = productEntitiesPage.getContent();
+			for (ProductEntity product : productList) {
+				 int totalRate = rateRepository.getTotalRateByProductId(product.getProductId());
+				 float averagePointRate = 0;
+				 // Check product have rated?
+				 if(totalRate != 0) { 
+					 averagePointRate = rateRepository.getAveragePointRate(product.getProductId());
+				 }
+				 double salePrice = product.getUnitPrice();
+				 //Check product exist
+				 ProductOptionEntity productOptionEntity = productOptionRepository.findProductOptionByProductId(product.getProductId());
+				 if(productOptionEntity != null) {
+					 salePrice = productOptionRepository.getSalePriceDefault(product.getProductId());
+				 }
+				 String imageProduct = productImageRepository.getFirstImageUrlByProductId(product.getProductId());
+				 ProductItemModel productItem = new ProductItemModel(product, totalRate, averagePointRate, salePrice, imageProduct);
+				 productItemList.add(productItem);
+			}
+			if(productItemList != null) {
+				responseCode = Constants.RESULT_CD_SUCCESS;
+				responseMsg = "Lấy danh sách sản phẩm thành công!";
+				data.put("productItemList", productItemList);
+				data.put("paginationList", new PageModel(pageNumber, productEntitiesPage.getTotalPages()));
+				log.info(responseMsg);
+			}
+		} catch (Exception e) {
+			responseMsg = "Lấy danh sách sản phẩm không thành công! " + e.getMessage();
+			log.error(responseMsg);
 		}
 		return new ResponseDataModel(responseCode, responseMsg, data);
 	}

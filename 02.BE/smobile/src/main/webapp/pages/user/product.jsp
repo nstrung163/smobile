@@ -187,34 +187,11 @@
       </div>
       <section class="container-fluid outstanding-phone">
         <div class="outstanding-phone__header">
-          <div class="title-outstanding">ĐIỆN THOẠI NỔI BẬT NHẤT</div>
+          <div class="title-outstanding">Danh sách sản phẩm</div>
         </div>
         <div class="tab-content">
           <div class="tab-product">
             <ul class="list-promotion">
-              <!-- Product 1 -->
-              <li class="product-promo--item">
-                <a href="/pages/user/product-detail.html">
-                  <div class="img-container">
-                    <span class="tra-gop">Trả góp 0%</span>
-                    <img class="product-promo--item-img" src="/images/product/gstc5.jpg" alt=""/>
-                  </div>
-                  <div class="img-label">
-                    <img src="/images/online-giảm-sốc-1x.png" alt="Gia soc" />
-                  </div>
-                  <p class="product-name">Xiaomi Redmi 9T(4GB/64GB)</p>
-                  <strong class="product-price-new">9.690.000₫</strong>
-                  <span class="product-price-old">12.400.000₫ </span>
-                  <span class="percent-sale">(-22%)</span>
-                </a>
-                <div class="rating">
-                  <span class="rating__start">
-                    <b>3.9</b>/5
-                    <i class="fas fa-star"></i>
-                  </span>
-                  <span class="sl-rating">77 đánh giá</span>
-                </div>
-              </li>
               <!-- Product 2 -->
               <li class="product-promo--item">
                 <a href="/">
@@ -439,6 +416,9 @@
             </ul>
           </div>
         </div>
+       <div class="d-flex justify-content-center">
+		   <ul class="pagination"></ul>
+		</div>
       </section>
       <!-- Viewed Product  -->
       <section class="product-viewed-area">

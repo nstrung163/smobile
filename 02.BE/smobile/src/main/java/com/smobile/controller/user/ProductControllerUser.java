@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smobile.model.ResponseDataModel;
 import com.smobile.service.IProductResponseService;
+import com.smobile.service.IProductService;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -17,10 +18,19 @@ public class ProductControllerUser {
 	@Autowired
 	IProductResponseService productResponseService;
 	
+	@Autowired
+	IProductService productService;
+	
 	@GetMapping(value = "/product-items")
 	@ResponseBody
 	public ResponseDataModel getAllProductItem() {
 		return productResponseService.findAllProductItem();
+	}
+	
+	@GetMapping(value = "/api/product-items/{pageNumber}")
+	@ResponseBody
+	public ResponseDataModel getAllProductItemApi(@PathVariable(value = "pageNumber") int pageNumber) {
+		return productResponseService.findAllProcuctApi(pageNumber);
 	}
 	
 	@GetMapping(value = "/product-outstanding")
@@ -39,5 +49,11 @@ public class ProductControllerUser {
 	@ResponseBody
 	public ResponseDataModel getListProductOptionByMemoryAndProductId(@PathVariable(value = "memory") int memory, @PathVariable(value = "productId") Integer productId) {
 		return productResponseService.getListProductOptionByMemoryAndProductId(memory, productId);
+	}
+	
+	@GetMapping(value = "/api/product/{pageNumber}")
+	@ResponseBody
+	public ResponseDataModel findAllPageWithApi(@PathVariable(value = "pageNumber") int pageNumber) {
+		return productResponseService.findAllProcuctApi(pageNumber);
 	}
 }
