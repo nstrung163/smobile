@@ -3,11 +3,12 @@ package com.smobile.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import com.smobile.entity.ProductEntity;
 
-public interface IProductRepository extends JpaRepository<ProductEntity, Integer> {
+public interface IProductRepository extends JpaRepository<ProductEntity, Integer>, JpaSpecificationExecutor<ProductEntity> {
 
 	ProductEntity findByProductId(Integer productId);
 	
@@ -29,4 +30,7 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
 	
 	@Query(value = "SELECT P.* FROM PRODUCT_OPTION AS PO JOIN PRODUCT AS P ON PO.PRODUCT_ID = P.PRODUCT_ID WHERE PO.PRODUCT_OPTION_ID = ?1", nativeQuery = true)
 	ProductEntity findProductByProductOptionId(Integer productOptionId);
+	
+	// Search product
+	
 }

@@ -53,7 +53,16 @@ $(".check").on('click', function() {
 		listBrandArr.push($(this).val());
 	});
 	console.log(`Value of array: ${listBrandArr.length}`)
+	
+	var searchCondition = {
+		keyword: $('.search__input').val(),
+		priceFrom: $('#priceFrom'),
+		priceTo: $('#priceTo'),
+		listBrand: listBrandArr
+	}
+	console.log(`Điều kiện tìm kiếm: ${JSON.stringify(searchCondition)}`)
 })
+
 
 function findAllProductWithApi(pageNumber) {
 	$.ajax({
