@@ -82,7 +82,7 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 		Map<String, Object> data = new HashMap<String, Object>();
 		List<ProductItemModel> productItemList = new ArrayList<ProductItemModel>();
 		try {
-			List<ProductEntity> productList = productRepository.findAll();
+			List<ProductEntity> productList = productRepository.get10Product();
 			for (ProductEntity product : productList) {
 				 int totalRate = rateRepository.getTotalRateByProductId(product.getProductId());
 				 float averagePointRate = 0;
@@ -284,7 +284,7 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 					}
 				}
 				responseCode = Constants.RESULT_CD_SUCCESS;
-				responseMsg = "Thêm mới hóa đơn mua hàng thành công!";
+				responseMsg = "Đặt hàng thành công!";
 				log.info(responseMsg);
 				// Remove session relate to cart
 				session.removeAttribute("cartItems");
@@ -295,7 +295,7 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 				log.info(responseMsg);
 			}
 		} catch (Exception e) {
-			responseMsg = "Thêm mới hóa đơn mua hàng không thành công do: " + e.getMessage();
+			responseMsg = "Đặt hàng không thành công do: " + e.getMessage();
 			log.info(responseMsg);
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
