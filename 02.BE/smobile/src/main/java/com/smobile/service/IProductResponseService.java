@@ -1,9 +1,12 @@
 package com.smobile.service;
 
 import java.util.List;
+import java.util.Map;
 
+import com.smobile.entity.ProductEntity;
 import com.smobile.entity.PurchaseEntity;
 import com.smobile.model.CartModel;
+import com.smobile.model.ProductItemModel;
 import com.smobile.model.PurchaseModel;
 import com.smobile.model.ResponseDataModel;
 
@@ -32,4 +35,16 @@ public interface IProductResponseService {
 	List<PurchaseModel> getAllPurchaseDetail();
 	
 	List<PurchaseModel> getPurchaseDetailById(Integer purchaseDetailId);
+	
+	/**
+	 *  
+	 * Get search condition map
+	 * 
+	 * @param searchConditionMap
+	 * @return ResponseDataModel
+	 */
+	ResponseDataModel getSearchCondition(Map<String, Object> searchConditionMap, int pageNumber);
+	
+	List<ProductItemModel> convertProductEntityToProductItemModel(List<ProductEntity> productList);
 }
+

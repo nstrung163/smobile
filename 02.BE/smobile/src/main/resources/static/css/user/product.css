@@ -36,7 +36,6 @@
 
 .search-product {
 	display: flex;
-	/* justify-content: space-between; */
 	align-items: center;
 	margin: 12px;
 	font-size: 14px;
@@ -49,9 +48,23 @@
 }
 
 .search-product__price {
-	width: 55%;
+	width: 50%;
 	display: flex;
 	align-items: center;
+}
+
+.search-product-list {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.search-product--item {
+	
+}
+
+.search-product--link {
+	
 }
 
 .btn-search {
@@ -77,7 +90,6 @@
 #searchByPrice {
 	margin-right: 1rem;
 	font-size: 1.4rem;
-	/* flex-direction: row-reverse; */
 }
 
 .listBrand {
@@ -212,6 +224,7 @@ input[type="checkbox"]:checked+label:before {
 .filter-box {
 	display: flex;
 	width: 20%;
+	position: relative;
 }
 
 .filter-box__title {
@@ -243,7 +256,6 @@ input[type="checkbox"]:checked+label:before {
 
 .sort-area--link {
 	padding-left: 30px;
-	width: 100px;
 }
 
 .sort-area__sort-desc {
@@ -253,6 +265,35 @@ input[type="checkbox"]:checked+label:before {
 .sort-area__sort-highlight {
 	
 }
+
 .search-product-master {
-	width: 90px;
+	width: 105px;
+}
+
+.check-price {
+	font-weight: 600;
+}
+
+.list-filter {
+	
+}
+
+.list-filter__type-phone {
+	
+}
+
+.list-filter--item {
+	
+}
+
+.list-filter__ram {
+	
+}
+
+.list-filter__internal-memory {
+	
+}
+
+.list-filter--title {
+	
 }

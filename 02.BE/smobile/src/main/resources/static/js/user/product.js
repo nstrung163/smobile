@@ -4,13 +4,24 @@ $(document).ready(function() {
 	$('.pagination').on('click', '.page-link', function() {
 		var pageNumber = $(this).attr('data-index');
 		console.log(pageNumber)
-		findAllProductWithApi(pageNumber);
+		var keyword = $('.search__input').val();
+		var priceFrom = $('#priceForm').val();
+		var priceTo = $('#priceTo').val();
+		if(keyword != null || listBrandArr != "" || priceFrom != "" || priceTo != "") {
+			searchProductCondition(pageNumber, false);
+		} else {
+			findAllProductWithApi(pageNumber);
+		}
+		
 	})
 	/* Border for tag "li" on click*/
 	$('.check').change(function() {
 		$(this).parent().toggleClass("li-enable");
 	})
-
+	
+	/* Initial price item, remove all tag a have class check-price(actives) */
+	$(".search-product--link").removeClass('check-price');
+	
 	/* Show more and hidden logo brand */
 	var max = 9;
 	$('ul, li').each(function() {
@@ -47,21 +58,89 @@ $(document).ready(function() {
 
 /*Get list brandId*/
 var listBrandArr = [];
+var responseMsg = "";
+var priceFrom = "";
+var priceTo = "";
+
 $(".check").on('click', function() {
 	listBrandArr = [];
 	$('.listBrand').find('input[name="brand.logo"]:checked').each(function() {
 		listBrandArr.push($(this).val());
 	});
-	console.log(`Value of array: ${listBrandArr.length}`)
-	
+})
+
+$('.search-product-list .search-product--item .search-product--link').on('click', function(event) {
+	event.preventDefault();
+	priceFrom = "";
+	priceTo = "";
+	var $parent = $(this).parent();
+	if(!$parent.hasClass('check-price')) {
+		$parent.siblings().removeClass('check-price');
+		$parent.addClass('check-price');
+		var dataId = $(this).attr("data-id");
+		switch(dataId) {
+			case "5":
+				priceFrom = "0";
+				priceTo = "5000000";
+				break;
+			case "5-10":
+				priceFrom = "5000000";
+				priceTo = "10000000";
+				break;
+			case "10-15":
+				priceFrom = "10000000";
+				priceTo = "15000000";
+				break;
+			case "15-20":
+				priceFrom = "15000000";
+				priceTo = "20000000";
+				break;
+			case ">20":
+				priceFrom = "20000000";
+				break;
+			default:
+				priceFrom = "0";
+				priceTo = "0";
+		}
+	}
+	console.log(`Data-id on tag clicked: ${dataId}, price from: ${priceFrom}, price to: ${priceTo}`);
+})
+
+
+$('#btnSubmitSearch').on('click', function(event) {
+	event.preventDefault();
+	searchProductCondition(1, true);
+})
+
+function searchProductCondition(pageNumber, isClickSearchBtn) {
 	var searchCondition = {
 		keyword: $('.search__input').val(),
-		priceFrom: $('#priceFrom'),
-		priceTo: $('#priceTo'),
-		listBrand: listBrandArr
+		priceFrom: priceFrom,
+		priceTo: priceTo,
+		listBrandId: listBrandArr
 	}
 	console.log(`Điều kiện tìm kiếm: ${JSON.stringify(searchCondition)}`)
-})
+	$.ajax({
+		url: '/user/api/search-product/' + pageNumber,
+		type: 'POST',
+		dataType: 'JSON',
+		contentType: 'application/json',
+		data: JSON.stringify(searchCondition),
+		success: function(responseData) {
+			renderProductApi(responseData.data.productItemList);
+			if(isClickSearchBtn) {
+				showNotification(true, responseData.responseMsg);
+			}
+			renderPagination(responseData.data.paginationList);
+			if(responseData.data.paginationList.pageNumberList.length < 2) {
+				$('.pagination').addClass("d-none");
+			} else {
+				$('.pagination').removeClass("d-none");
+			}
+			
+		}
+	})
+}
 
 
 function findAllProductWithApi(pageNumber) {

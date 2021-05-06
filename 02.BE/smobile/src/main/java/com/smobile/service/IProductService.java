@@ -50,5 +50,5 @@ public interface IProductService {
 	 * @return ResponseDataModel
 	 */
 	ResponseDataModel deleteProductById(Integer productId);
-	
+
 }

@@ -142,8 +142,15 @@
         <div class="search-product ">
           <span class="search-product-master">Khoảng giá:</span>
           <div class="search-product__price">
-            <label class="price-labe price-labe-from" for="priceFrom">từ </label>
-            <select class="price priceFrom form-control" name="priceForm"  id="priceFrom">
+          	<ul class="search-product-list">
+              <li class="search-product--item"><a href="/" class="search-product--link check-price" data-id="5">Dưới 5 triệu</a></li>
+              <li class="search-product--item"><a href="/" class="search-product--link" data-id="5-10">Từ 5 - 10 triệu</a></li>
+              <li class="search-product--item"><a href="/" class="search-product--link" data-id="10-15">Từ 10 - 15 triệu</a></li>
+              <li class="search-product--item"><a href="/" class="search-product--link" data-id="15-20">Từ 15 - 20 triệu</a></li>
+              <li class="search-product--item"><a href="/" class="search-product--link" data-id=">20">Trên 20 triệu</a></li>
+            </ul>
+            <!-- <label class="price-labe price-labe-from" for="priceFrom">từ </label>
+            <select class="price priceFrom form-control" name="priceForm"  id="priceForm">
               <option value="">--- Giá Thấp Nhất ---</option>
               <option value="1000000">1.000.000₫</option>
               <option value="2000000">2.000.000₫</option>
@@ -159,7 +166,7 @@
               <option value="8000000">8.000.000₫</option>
               <option value="10000000">10.000.000₫</option>
               <option value="20000000">20.000.000₫</option>
-            </select>
+            </select> -->
           </div>
           <!-- Filter -->
           <div class="filter-area">
@@ -178,7 +185,7 @@
           </div>
           <!-- Button search -->
           <div class="btn-search">
-            <button type="submit" id="searchByPrice" class="btn btn-success"><i class="fas fa-search"></i></button>
+            <button type="submit" id="btnSubmitSearch" class="btn btn-success"><i class="fas fa-search"></i></button>
           </div>
         </div>
       </div>
@@ -559,6 +566,7 @@
     <div id="goto-top">↑</div>
 	<script src="<c:url value='/plugins/jquery/jquery-3.5.1.min.js'/>"></script>
 	<script src="<c:url value='/plugins/bootstrap/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/plugins/bootstrap/js/bootstrap-notify.min.js'/>"></script>
 	<script src="<c:url value='/js/base.js'/>"></script>
 	<script src="<c:url value='/js/user/product.js'/>"></script>
   </body>

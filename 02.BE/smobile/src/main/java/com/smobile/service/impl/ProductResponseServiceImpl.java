@@ -112,7 +112,6 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 		}
 		return new ResponseDataModel(responseCode, responseMsg, data);
 	}
-	
 
 	@Override
 	public ResponseDataModel findAllProcuctApi(int pageNumber) {
@@ -156,6 +155,37 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 		}
 		return new ResponseDataModel(responseCode, responseMsg, data);
 	}
+	
+	
+	@Override
+	public ResponseDataModel getSearchCondition(Map<String, Object> searchConditionMap, int pageNumber) {
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMsg = Strings.EMPTY;
+		Map<String, Object> data = new HashMap<String, Object>();
+		List<ProductItemModel> productItemList = new ArrayList<ProductItemModel>();
+		try {
+			Sort sortList = Sort.by(Sort.Direction.DESC, "unitPrice");
+			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortList);
+			Page<ProductEntity> productEntitiesPage = productRepository.findAll(IProductRepository.getSearchCondition(searchConditionMap), pageable);
+			List<ProductEntity> productList = productEntitiesPage.getContent();
+			// Convert product entity to product item model
+			productItemList = convertProductEntityToProductItemModel(productList);
+			responseCode = Constants.RESULT_CD_SUCCESS;
+			data.put("productItemList", productItemList);
+			data.put("paginationList", new PageModel(pageNumber, productEntitiesPage.getTotalPages()));
+			if(productEntitiesPage.getTotalElements() < 0) {
+				responseMsg = "Không tìm thấy sản phẩm!";
+			} else {
+				responseMsg = "Tìm thấy " + productEntitiesPage.getTotalElements() + " sản phẩm!";
+			}
+			log.info(responseMsg);
+		} catch (Exception e) {
+			responseMsg = e.getMessage();
+			log.error("Tìm kiếm theo điều kiên không thành công!", responseMsg);
+		}
+		return new ResponseDataModel(responseCode, responseMsg, data);
+	}
+	
 
 	// Get product outstanding title
 	@Override
@@ -375,5 +405,28 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 			log.error("Lấy chi tiết hóa đơn theo mã CTHĐ không thành công");
 		}
 		return purchaseModelList;
+	}
+
+	@Override
+	public List<ProductItemModel> convertProductEntityToProductItemModel(List<ProductEntity> productList) {
+		List<ProductItemModel> productItemList = new ArrayList<ProductItemModel>();
+		for (ProductEntity product : productList) {
+			 int totalRate = rateRepository.getTotalRateByProductId(product.getProductId());
+			 float averagePointRate = 0;
+			 // Check product have rated?
+			 if(totalRate != 0) { 
+				 averagePointRate = rateRepository.getAveragePointRate(product.getProductId());
+			 }
+			 double salePrice = product.getUnitPrice();
+			 //Check product exist
+			 ProductOptionEntity productOptionEntity = productOptionRepository.findProductOptionByProductId(product.getProductId());
+			 if(productOptionEntity != null) {
+				 salePrice = productOptionRepository.getSalePriceDefault(product.getProductId());
+			 }
+			 String imageProduct = productImageRepository.getFirstImageUrlByProductId(product.getProductId());
+			 ProductItemModel productItem = new ProductItemModel(product, totalRate, averagePointRate, salePrice, imageProduct);
+			 productItemList.add(productItem);
+		}
+		return productItemList;
 	}
 }

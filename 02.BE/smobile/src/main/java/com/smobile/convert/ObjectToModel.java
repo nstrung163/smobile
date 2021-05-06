@@ -5,11 +5,25 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.smobile.model.ProductCommentModel;
 import com.smobile.model.ProductMemoryPriceModel;
 import com.smobile.model.PurchaseModel;
+import com.smobile.repository.IProductImageRepository;
+import com.smobile.repository.IProductOptionRepository;
+import com.smobile.repository.IRateProductRepository;
 
 public class ObjectToModel {
+	
+	@Autowired
+	IProductImageRepository productImageRepository;
+	
+	@Autowired
+	IRateProductRepository rateRepository;
+	
+	@Autowired
+	IProductOptionRepository productOptionRepository;
 
 	public static List<ProductMemoryPriceModel> convertToListProductMemoryPrice(List<Object[]> arrObject) {
 		List<ProductMemoryPriceModel> productMemoryPriceList = new ArrayList<ProductMemoryPriceModel>();
