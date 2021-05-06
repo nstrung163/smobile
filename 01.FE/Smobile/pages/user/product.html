@@ -219,10 +219,16 @@
 				</ul>
         </div>
 
-        <div class="search-product ">
-          <span class="search-product-master">Khoảng giá:</span>
+        <div class="search-product">
+          <span class="search-product-master">Chọn mức giá:</span>
           <div class="search-product__price">
-            <label class="price-labe price-labe-from" for="priceFrom">từ </label>
+                <ul class="search-product-list">
+                  <li class="search-product--item"><a href="/" class="search-product--link check-price" data-id="2">Dưới 5 triệu</a></li>
+                  <li class="search-product--item"><a href="/" class="search-product--link" data-id="4">Từ 5 - 10 triệu</a></li>
+                  <li class="search-product--item"><a href="/" class="search-product--link" data-id="7">Từ 15 - 20 triệu</a></li>
+                  <li class="search-product--item"><a href="/" class="search-product--link" data-id="13">Trên 20 triệu</a></li>
+                </ul>
+            <!-- <label class="price-labe price-labe-from" for="priceFrom">từ </label>
             <select class="price priceFrom form-control" name="priceForm"  id="priceFrom">
               <option value="">--- Giá Thấp Nhất ---</option>
               <option value="1000000">1.000.000₫</option>
@@ -239,13 +245,13 @@
               <option value="8000000">8.000.000₫</option>
               <option value="10000000">10.000.000₫</option>
               <option value="20000000">20.000.000₫</option>
-            </select>
+            </select> -->
           </div>
           <!-- Filter -->
           <div class="filter-area">
             <div class="filter-box">
               <span class="filter-box__title">Bộ lọc<i class="icon fas fa-caret-down"></i></span>
-              <div class="list-filter">
+              <div class="list-filter d-none">
                 <ul class="list-filter__type-phone">
                   <li  class="list-filter--title">Loại điện thoại</li>
                   <li  class="list-filter--item">
