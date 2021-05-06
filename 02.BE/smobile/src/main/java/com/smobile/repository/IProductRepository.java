@@ -91,7 +91,7 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
 					
 					// Ram to predicate
 					if(Strings.isNotEmpty(ramTo)) {
-						predicates.add(criteriaBuilder.greaterThanOrEqualTo(productInfoRoot.get("ram"), Integer.parseInt(ramTo)));
+						predicates.add(criteriaBuilder.lessThanOrEqualTo(productInfoRoot.get("ram"), Integer.parseInt(ramTo)));
 					}
 					
 					
