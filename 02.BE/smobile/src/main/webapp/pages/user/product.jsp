@@ -140,7 +140,7 @@
         </div>
 
         <div class="search-product ">
-          <span class="search-product-master">Khoảng giá:</span>
+          <span class="search-product-master">Chọn mức giá:</span>
           <div class="search-product__price">
           	<ul class="search-product-list">
               <li class="search-product--item"><a href="/" class="search-product--link check-price" data-id="5">Dưới 5 triệu</a></li>
@@ -168,17 +168,55 @@
               <option value="20000000">20.000.000₫</option>
             </select> -->
           </div>
-          <!-- Filter -->
+           <!-- Filter -->
           <div class="filter-area">
             <div class="filter-box">
-              <span class="filter-box__title">Bộ lọc<i class="icon fas fa-caret-down"></i></span>
+              <div class="filter-box__title">Bộ lọc<i class="icon fas fa-caret-down"></i></div>
+              <div class="list-filter">
+                <ul class="list-filter__type-phone">
+                  <li  class="list-filter--title">Loại điện thoại</li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link list-filter--type-product" data-id="iPhone"><i class="icon-checkbox"></i>iPhone(iOS)</a>
+                  </li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link list-filter--type-product" data-id="Android"><i class="icon-checkbox"></i>Android</a>
+                  </li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link list-filter--type-product" data-id="Điện thoại phổ thông"><i class="icon-checkbox"></i>Điện thoại phổ thông</a>
+                  </li>
+                </ul>
+                <ul class="list-filter__ram">
+                  <li class="list-filter--title">Dung lượng RAM</li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link list-filter--ram" data-id="duoi-4g"><i class="icon-checkbox"></i>Dưới 4 GB</a>
+                  </li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link list-filter--ram" data-id="4gb-6gb"><i class="icon-checkbox"></i>4 - 6 GB</a>
+                  </li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link list-filter--ram" data-id="tren-8gb"><i class="icon-checkbox"></i>8 GB trở lên</a>
+                  </li>
+                </ul>
+                <ul class="list-filter__pin">
+                  <li class="list-filter--title">Dung lượng PIN</li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link list-filter--pin" data-id="duoi-3000"><i class="icon-checkbox"></i>Dưới 3000 mAh</a>
+                  </li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link list-filter--pin" data-id="tren-4000mah"><i class="icon-checkbox"></i>Trên 4000 mAh</a>
+                  </li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link list-filter--pin" data-id="sac-nhanh"><i class="icon-checkbox"></i>Sạc nhanh</a>
+                  </li>
+                </ul>
+              </div>
             </div>
             <div class="sort-box">
-              <span class="sort-box__title">Sắp xếp<i class="icon fas fa-caret-down"></i>.
+              <span class="sort-box__title">Sắp xếp theo:
                   <div class="sort-area">
                     <a class="sort-area--link sort-area__sort-asc" href="/"><i class="fas fa-sort-amount-down"></i>Giá cao</a>
                     <a class="sort-area--link sort-area__sort-desc" href="/"><i class="fas fa-sort-amount-up"></i>Giá thấp</a>
-                    <a class="sort-area--link sort-area__sort-highlight" href="/"><i class="fas fa-star"></i>Nổi bật</a>
+                    <a class="sort-area--link sort-area__sort-highlight check-sort" href="/"><i class="fas fa-star"></i>Nổi bật</a>
                   </div>
               </span>                     
             </div>
@@ -188,9 +226,6 @@
             <button type="submit" id="btnSubmitSearch" class="btn btn-success"><i class="fas fa-search"></i></button>
           </div>
         </div>
-      </div>
-      <div id="resultSearch">
-        <p></p>
       </div>
       <section class="container-fluid outstanding-phone">
         <div class="outstanding-phone__header">
@@ -426,6 +461,9 @@
        <div class="d-flex justify-content-center">
 		   <ul class="pagination"></ul>
 		</div>
+	   <div id="resultSearch">
+        <p></p>
+      </div>
       </section>
       <!-- Viewed Product  -->
       <section class="product-viewed-area">

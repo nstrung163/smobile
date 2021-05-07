@@ -228,9 +228,10 @@ CREATE TABLE `product_info` (
   `SCREEN` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `SIM` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `PRODUCT_ID` bigint DEFAULT NULL,
+  `TYPE_PRODUCT` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`PRODUCT_INFO_ID`),
   KEY `FKngpqxon4mkv8w80agvk33pm3i` (`PRODUCT_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,7 +240,7 @@ CREATE TABLE `product_info` (
 
 LOCK TABLES `product_info` WRITE;
 /*!40000 ALTER TABLE `product_info` DISABLE KEYS */;
-INSERT INTO `product_info` VALUES (1,'3687 mAh, Sạc nhanh','Apple A14 Bionic','	12 MP',128,'Vỏ Samsung CPU IPhone A14 A14','iOS 14',15,'	3 camera 12 MP','	OLED, 6.7\", Super Retina XDR','	1 Nano SIM & 1 eSIM, Hỗ trợ 5G',1),(2,'3687 mAh, Sạc nhanh','Apple A14 Bionic','	12 MP',128,'Vỏ Samsung CPU IPhone','iOS 14',6,'	3 camera 12 MP','	OLED, 6.7\", Super Retina XDR','	1 Nano SIM & 1 eSIM, Hỗ trợ 5G',2),(4,'3687 mAh, Sạc nhanh','Snapdragon 850','	12 MP',128,'Vỏ Samsung CPU IPhone','iOS 14',6,'	3 camera 12 MP','	OLED, 6.7\", Super Retina XDR','	1 Nano SIM & 1 eSIM, Hỗ trợ 5G',3);
+INSERT INTO `product_info` VALUES (1,'3687 mAh, Sạc nhanh','Apple A14 Bionic','	12 MP',128,'Sản phẩm đến từ nhà Táo','iOS 14',10,'	3 camera 12 MP','	OLED, 6.7\", Super Retina XDR','	1 Nano SIM & 1 eSIM, Hỗ trợ 5G',1,'iPhone'),(2,'3687 mAh, Sạc nhanh','Apple A14 Bionic','	12 MP',128,'Sản phẩm đến từ nhà Táo','iOS 14',6,'	3 camera 12 MP','	OLED, 6.7\", Super Retina XDR','	1 Nano SIM & 1 eSIM, Hỗ trợ 5G',2,'iPhone'),(4,'4000 mAh','Snapdragon 850','	12 MP',128,'Sản phẩm đến từ nhà Táo','iOS 14',6,'	3 camera 12 MP','	OLED, 6.7\", Super Retina XDR','	1 Nano SIM & 1 eSIM, Hỗ trợ 5G',3,'iPhone'),(5,'3687 mAh, Sạc nhanh','Snapdragon 850','	12 MP',128,'Vỏ Samsung CPU Samsung ','iOS 14',8,'	3 camera 12 MP','	OLED, 6.7\", Super Retina XDR','	1 Nano SIM & 1 eSIM, Hỗ trợ 5G',21,'Android');
 /*!40000 ALTER TABLE `product_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -458,4 +459,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-05 15:52:42
+-- Dump completed on 2021-05-07 17:31:13

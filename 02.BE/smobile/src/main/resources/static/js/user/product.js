@@ -3,11 +3,8 @@ $(document).ready(function() {
 	
 	$('.pagination').on('click', '.page-link', function() {
 		var pageNumber = $(this).attr('data-index');
-		console.log(pageNumber)
 		var keyword = $('.search__input').val();
-		var priceFrom = $('#priceForm').val();
-		var priceTo = $('#priceTo').val();
-		if(keyword != null || listBrandArr != "" || priceFrom != "" || priceTo != "") {
+		if(keyword != "" || listBrandArr.length != 0 || priceFrom != "" || priceTo != "") {
 			searchProductCondition(pageNumber, false);
 		} else {
 			findAllProductWithApi(pageNumber);
@@ -56,12 +53,13 @@ $(document).ready(function() {
 
 });
 
-/*Get list brandId*/
+/*Get condition search*/
 var listBrandArr = [];
-var responseMsg = "";
 var priceFrom = "";
 var priceTo = "";
-
+var listTypeProduct = [];
+var listRam = [];
+var listPin = [];
 $(".check").on('click', function() {
 	listBrandArr = [];
 	$('.listBrand').find('input[name="brand.logo"]:checked').each(function() {
@@ -106,18 +104,90 @@ $('.search-product-list .search-product--item .search-product--link').on('click'
 	console.log(`Data-id on tag clicked: ${dataId}, price from: ${priceFrom}, price to: ${priceTo}`);
 })
 
+/** Choose filter search */
+$('.list-filter--link').on('click', function (event) {
+    event.preventDefault();
+    if (!$(this).find('.icon-checkbox').hasClass('check-filter-box')) {
+        $(this).find('.icon-checkbox').addClass('check-filter-box')
+    } else {
+        $(this).find('.icon-checkbox').removeClass('check-filter-box')
+    }
+})
+
+/** Choose type product */
+$('.list-filter__type-phone .list-filter--type-product').on('click', function(event) {
+	event.preventDefault();
+	listTypeProduct = [];
+	$('.list-filter__type-phone li').find('.check-filter-box').each(function() {
+		var dataIdTypeProduct = $(this).parent().attr("data-id");
+		listTypeProduct.push(dataIdTypeProduct);
+	})
+	console.log(`Value of list type product: ${JSON.stringify(listTypeProduct)}`);
+})
+
+/** Choose ram */
+$('.list-filter__ram .list-filter--ram').on('click', function(event) {
+	event.preventDefault();
+	listRam = [];
+	$('.list-filter__ram li a').find('.check-filter-box').each(function() {
+		var dataIdRam = $(this).parent().attr("data-id");
+		if(dataIdRam == "duoi-4g") {
+			listRam.push(["", "4"]);
+		} else if(dataIdRam == "4gb-6gb") {
+			listRam.push(["4", "6"]);
+		} else if(dataIdRam == "tren-8gb") {
+			listRam.push(["8", ""]);
+		}
+	})
+	console.log(`Value of list RAM: ${JSON.stringify(listRam)}`);
+})
+
+/** Choose batery capicty */
+$('.list-filter__pin .list-filter--pin').on('click', function(event) {
+	event.preventDefault();
+	listPin = [];
+	$('.list-filter__pin li a').find('.check-filter-box').each(function() {
+		var dataIdPin = $(this).parent().attr("data-id");
+		if(dataIdPin == "duoi-3000") {
+			listPin.push("3000");
+		} else if(dataIdPin == "tren-4000mah") {
+			listPin.push("4000");
+		} else if(dataIdPin == "sac-nhanh") {
+			listPin.push("Sạc nhanh");
+		}
+	})
+	console.log(`Value of list pin: ${JSON.stringify(listPin)}`);
+})
 
 $('#btnSubmitSearch').on('click', function(event) {
 	event.preventDefault();
 	searchProductCondition(1, true);
 })
 
+/** Sort filter */
+$('.sort-area .sort-area--link').on('click', function (event)
+{
+    event.preventDefault();
+    if (!$(this).hasClass('check-sort'))
+    {
+        $(this).siblings().removeClass('check-sort');
+        $(this).addClass('check-sort');
+    }
+})
+
+/** Search product with condition 
+	@param pageNumber,
+	@param isClickSearchBtn
+	@returns List<ProdctItemModel>
+*/
 function searchProductCondition(pageNumber, isClickSearchBtn) {
 	var searchCondition = {
 		keyword: $('.search__input').val(),
 		priceFrom: priceFrom,
 		priceTo: priceTo,
-		listBrandId: listBrandArr
+		listBrandId: listBrandArr,
+		listTypeProduct: listTypeProduct,
+		listRam: listRam
 	}
 	console.log(`Điều kiện tìm kiếm: ${JSON.stringify(searchCondition)}`)
 	$.ajax({
@@ -128,21 +198,36 @@ function searchProductCondition(pageNumber, isClickSearchBtn) {
 		data: JSON.stringify(searchCondition),
 		success: function(responseData) {
 			renderProductApi(responseData.data.productItemList);
-			if(isClickSearchBtn) {
-				showNotification(true, responseData.responseMsg);
-			}
 			renderPagination(responseData.data.paginationList);
+			if(responseData.data.productItemList.length == 0) {
+				renderMessageSearch(responseData.responseMsg);
+			} else if(isClickSearchBtn) {
+				$('#resultSearch p').empty();
+				showNotification(true, responseData.responseMsg);
+			}else {
+				$('#resultSearch p').empty();
+			}
+				
 			if(responseData.data.paginationList.pageNumberList.length < 2) {
 				$('.pagination').addClass("d-none");
 			} else {
 				$('.pagination').removeClass("d-none");
 			}
 			
+			
 		}
 	})
 }
+/** Result search */
+function renderMessageSearch(responseMsg) {
+	$('#resultSearch p').empty();
+	$('#resultSearch p').append(responseMsg);
+}
 
-
+/** Find all product 
+	@param pageNumber
+	@returns List<ProductItemModel>
+*/
 function findAllProductWithApi(pageNumber) {
 	$.ajax({
 		url: '/user/api/product-items/' + pageNumber,
@@ -152,10 +237,15 @@ function findAllProductWithApi(pageNumber) {
 		success: function(responseData) {
 			renderProductApi(responseData.data.productItemList);
 			renderPagination(responseData.data.paginationList);
+			$('.pagination').removeClass("d-none");
+			$('#resultSearch p').empty();
 		}
 	})
 }
 
+/** Render product 
+	@param productItemList
+*/
 function renderProductApi(productItemList) {
 	var rowHTML = "";
 	$(".tab-content .tab-product  ul").empty();
@@ -190,18 +280,20 @@ function renderProductApi(productItemList) {
 		}
 	})
 }
-
+/** Render pagination 
+	@param paginationList  
+*/
 function renderPagination(paginationList) {
 	var paginationInnerHtml = "";
 	if (paginationList.pageNumberList.length > 0) {
 		$("ul.pagination").empty();
-		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.firstPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="' + paginationList.firstPage + '" > Fisrt  </a></li>'
-		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.prevPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="' + paginationList.prevPage + '" > Previous </a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.firstPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="' + paginationList.firstPage + '" > Trang Đầu  </a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.prevPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="' + paginationList.prevPage + '" > &larr; Lùi </a></li>'
 		$.each(paginationList.pageNumberList, function(key, value) {
 			paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (value == paginationList.currentPage ? 'active' : '') + '" href="javascript:void(0)" data-index="' + value + '">' + value + '</a></li>';
 		});
-		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.nextPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="' + paginationList.nextPage + '" > Next </a></li>'
-		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.lastPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="' + paginationList.lastPage + '" > Last </a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.nextPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="' + paginationList.nextPage + '" > Tiếp &rarr; </a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.lastPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="' + paginationList.lastPage + '" > Trang Cuối </a></li>'
 		$("ul.pagination").append(paginationInnerHtml);
 	}
 }

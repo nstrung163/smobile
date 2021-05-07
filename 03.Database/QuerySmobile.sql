@@ -68,3 +68,51 @@ FROM PRODUCT AS P
 SELECT P.* FROM PRODUCT_OPTION AS PO JOIN PRODUCT AS P ON PO.PRODUCT_ID = P.PRODUCT_ID WHERE PO.PRODUCT_OPTION_ID = 1;
 /* Lấy giá cho sản phẩm */
 SELECT SALE_PRICE FROM PRODUCT_OPTION WHERE PRODUCT_OPTION_ID = 1;
+
+/* Lấy danh sách sản hóa đơn theo mã hóa đơn ở bảng chi tiết hóa đơn mua hàng */
+SELECT * FROM PURCHASE_DETAIL WHERE PURCHASE_ID = 1;
+
+/* Test query*/
+select
+        productent0_.PRODUCT_ID as product_1_3_,
+        productent0_.BRAND_ID as brand_id7_3_,
+        productent0_.PRODUCT_NAME as product_2_3_,
+        productent0_.QUANTITY as quantity3_3_,
+        productent0_.SALE_DATE as sale_dat4_3_,
+        productent0_.STATUS_PRODUCT as status_p5_3_,
+        productent0_.UNIT_PRICE as unit_pri6_3_ 
+    from
+        PRODUCT productent0_ 
+    inner join
+        BRAND brandentit1_ 
+            on productent0_.BRAND_ID=brandentit1_.BRAND_ID 
+    inner join
+        PRODUCT_INFO productinf2_ 
+            on productent0_.PRODUCT_ID=productinf2_.PRODUCT_ID 
+    where
+        productinf2_.RAM>=6 
+        and productinf2_.RAM>=10 
+        and brandentit1_.BRAND_ID=2; 
+/* Test query 2*/
+   select
+        productent0_.PRODUCT_ID as product_1_3_,
+        productent0_.BRAND_ID as brand_id7_3_,
+        productent0_.PRODUCT_NAME as product_2_3_,
+        productent0_.QUANTITY as quantity3_3_,
+        productent0_.SALE_DATE as sale_dat4_3_,
+        productent0_.STATUS_PRODUCT as status_p5_3_,
+        productent0_.UNIT_PRICE as unit_pri6_3_ 
+    from
+        PRODUCT productent0_ 
+    inner join
+        BRAND brandentit1_ 
+            on productent0_.BRAND_ID=brandentit1_.BRAND_ID 
+    left outer join
+        PRODUCT_INFO productinf2_ 
+            on productent0_.PRODUCT_ID=productinf2_.PRODUCT_ID 
+    where
+        (
+            productinf2_.TYPE_PRODUCT="iPhone"
+            or productinf2_.TYPE_PRODUCT="Android"
+        ) 
+        and productinf2_.RAM<=8 

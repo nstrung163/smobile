@@ -2,11 +2,11 @@ package com.smobile.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -19,7 +19,8 @@ import org.springframework.util.CollectionUtils;
 
 import com.smobile.entity.BrandEntity;
 import com.smobile.entity.ProductEntity;
-import com.smobile.entity.ProductOptionEntity;
+import com.smobile.entity.ProductInfoEntity;
+import com.smobile.model.SearchCondition;
 
 public interface IProductRepository extends JpaRepository<ProductEntity, Integer>, JpaSpecificationExecutor<ProductEntity> {
 
@@ -46,7 +47,7 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
 	
 	// Search product
 	
-	public static Specification<ProductEntity> getSearchCondition(Map<String, Object> searchconditionMap) {
+	public static Specification<ProductEntity> getSearchCondition(SearchCondition searchCondition) {
 		return new Specification<ProductEntity>() {
 			
 			private static final long serialVersionUID = 1L;
@@ -55,17 +56,18 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
 			public Predicate toPredicate(Root<ProductEntity> productRoot, CriteriaQuery<?> query,
 					CriteriaBuilder criteriaBuilder) {
 				List<Predicate> predicates = new ArrayList<Predicate>();
-				if( searchconditionMap != null) {
-					String searchText = (String) searchconditionMap.get("keyword");
-					String priceFrom = (String) searchconditionMap.get("priceFrom");
-					String priceTo = (String) searchconditionMap.get("priceTo");
-					String ramFrom = (String) searchconditionMap.get("ramFrom");
-					String ramTo = (String) searchconditionMap.get("ramTo");
- 					@SuppressWarnings("unchecked")
-					List<String> brandIds = (List<String>) searchconditionMap.get("listBrandId");
+				if( searchCondition != null) {
+					String searchText = searchCondition.getKeyword();
+					String priceFrom = searchCondition.getPriceFrom();
+					String priceTo = searchCondition.getPriceTo();
+					
+					List<String> brandIds = searchCondition.getListBrandId();
+					List<String> listTypeProduct = searchCondition.getListTypeProduct();
+					List<String[]> listRam = searchCondition.getListRam();
+					List<String> listPin = searchCondition.getListPin();
+					
 					Join<ProductEntity, BrandEntity> brandRoot = productRoot.join("brandEntity");
-					Join<ProductEntity, ProductOptionEntity> productInfoRoot = productRoot.join("productInfoEntity");
-//					productInfoRoot.on(criteriaBuilder.equal(productRoot.get("productId"), productInfoRoot.get("productId")));
+					Join<ProductEntity, ProductInfoEntity> productInfoRoot = productRoot.join("productInfoEntity", JoinType.LEFT);
 					// Search text predicate
 					if(Strings.isNotEmpty(searchText)) {
 						predicates.add(criteriaBuilder.or(
@@ -84,17 +86,7 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
 						predicates.add(criteriaBuilder.lessThanOrEqualTo(productRoot.get("unitPrice"), Double.parseDouble(priceTo)));
 					}
 					
-					// Ram to predicate
-					if(Strings.isNotEmpty(ramFrom)) {
-						predicates.add(criteriaBuilder.greaterThanOrEqualTo(productInfoRoot.get("ram"), Integer.parseInt(ramFrom)));
-					}
-					
-					// Ram to predicate
-					if(Strings.isNotEmpty(ramTo)) {
-						predicates.add(criteriaBuilder.lessThanOrEqualTo(productInfoRoot.get("ram"), Integer.parseInt(ramTo)));
-					}
-					
-					
+					// Brand of product 
 					if(!CollectionUtils.isEmpty(brandIds)) {
 						List<Predicate> listPredicateBrandId = new ArrayList<Predicate>();
 						for(String brandId : brandIds) {
@@ -102,6 +94,45 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
 						}
 						predicates.add(criteriaBuilder.or(listPredicateBrandId.toArray(new Predicate[listPredicateBrandId.size()])));
 					}
+					
+					// Type of product condition
+					if(!CollectionUtils.isEmpty(listTypeProduct)) {
+						List<Predicate> listPredicateTypeProduct = new ArrayList<Predicate>();
+						for(String typeProduct : listTypeProduct) {
+							listPredicateTypeProduct.add(criteriaBuilder.equal(productInfoRoot.get("typeProduct"), typeProduct));
+						}
+						predicates.add(criteriaBuilder.or(listPredicateTypeProduct.toArray(new Predicate[listPredicateTypeProduct.size()])));
+					}
+					
+					// Ram condition
+					if(!CollectionUtils.isEmpty(listRam)) {
+						List<Predicate> listPredicateRam = new ArrayList<Predicate>();
+						for(String[] ram: listRam) {
+							String ramFrom = ram[0];
+							String ramTo = ram[1];
+							
+							// Ram from predicate
+							if(Strings.isNotEmpty(ramFrom)) {
+								listPredicateRam.add(criteriaBuilder.greaterThanOrEqualTo(productInfoRoot.get("ram"), Integer.parseInt(ramFrom)));
+							}
+							
+							// Ram to predicate
+							if(Strings.isNotEmpty(ramTo)) {
+								listPredicateRam.add(criteriaBuilder.lessThanOrEqualTo(productInfoRoot.get("ram"), Integer.parseInt(ramTo)));
+							}
+						}
+						predicates.add(criteriaBuilder.or(listPredicateRam.toArray(new Predicate[listPredicateRam.size()])));
+					}
+					
+					// Battery capacity predicate
+					if(!CollectionUtils.isEmpty(listPin)) {
+						List<Predicate> listPredicatePin = new ArrayList<Predicate>();
+						for(String pin: listPin) {
+							listPredicatePin.add(criteriaBuilder.like(productInfoRoot.get("batteryCapacity"), "%" + pin + "%"));
+						}
+						predicates.add(criteriaBuilder.or(listPredicatePin.toArray(new Predicate[listPredicatePin.size()])));
+					}
+					
 				}
 				return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
 			}

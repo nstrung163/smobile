@@ -1,7 +1,5 @@
 package com.smobile.controller.user;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smobile.model.ResponseDataModel;
+import com.smobile.model.SearchCondition;
 import com.smobile.service.IProductResponseService;
 import com.smobile.service.IProductService;
 
@@ -63,9 +62,9 @@ public class ProductControllerUser {
 	
 	@PostMapping(value = "/api/search-product/{pageNumber}")
 	@ResponseBody
-	public ResponseDataModel searchProduct(@RequestBody Map<String, Object> searchConditionMap,
-											@PathVariable(value = "pageNumber") int pageNumber) {
-		return productResponseService.getSearchCondition(searchConditionMap, pageNumber);
+	public ResponseDataModel searchProduct(@RequestBody SearchCondition searchCondition,
+										   @PathVariable(value = "pageNumber") int pageNumber) {
+		return productResponseService.getSearchCondition(searchCondition, pageNumber);
 	}
 	
 }

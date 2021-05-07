@@ -32,6 +32,7 @@ import com.smobile.model.ProductItemModel;
 import com.smobile.model.ProductMemoryPriceModel;
 import com.smobile.model.PurchaseModel;
 import com.smobile.model.ResponseDataModel;
+import com.smobile.model.SearchCondition;
 import com.smobile.repository.IProductCommentRepository;
 import com.smobile.repository.IProductImageRepository;
 import com.smobile.repository.IProductInfoRepository;
@@ -158,7 +159,7 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 	
 	
 	@Override
-	public ResponseDataModel getSearchCondition(Map<String, Object> searchConditionMap, int pageNumber) {
+	public ResponseDataModel getSearchCondition(SearchCondition searchCondition, int pageNumber) {
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = Strings.EMPTY;
 		Map<String, Object> data = new HashMap<String, Object>();
@@ -166,22 +167,22 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 		try {
 			Sort sortList = Sort.by(Sort.Direction.DESC, "unitPrice");
 			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortList);
-			Page<ProductEntity> productEntitiesPage = productRepository.findAll(IProductRepository.getSearchCondition(searchConditionMap), pageable);
+			Page<ProductEntity> productEntitiesPage = productRepository.findAll(IProductRepository.getSearchCondition(searchCondition), pageable);
 			List<ProductEntity> productList = productEntitiesPage.getContent();
 			// Convert product entity to product item model
 			productItemList = convertProductEntityToProductItemModel(productList);
 			responseCode = Constants.RESULT_CD_SUCCESS;
 			data.put("productItemList", productItemList);
 			data.put("paginationList", new PageModel(pageNumber, productEntitiesPage.getTotalPages()));
-			if(productEntitiesPage.getTotalElements() < 0) {
+			if(productEntitiesPage.getTotalElements() <= 0) {
 				responseMsg = "Không tìm thấy sản phẩm!";
 			} else {
 				responseMsg = "Tìm thấy " + productEntitiesPage.getTotalElements() + " sản phẩm!";
 			}
 			log.info(responseMsg);
 		} catch (Exception e) {
-			responseMsg = e.getMessage();
-			log.error("Tìm kiếm theo điều kiên không thành công!", responseMsg);
+			responseMsg = "Tìm kiếm theo điều kiên không thành công!" + e.getMessage();
+			log.error(responseMsg);
 		}
 		return new ResponseDataModel(responseCode, responseMsg, data);
 	}
