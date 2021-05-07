@@ -223,10 +223,11 @@
           <span class="search-product-master">Chọn mức giá:</span>
           <div class="search-product__price">
                 <ul class="search-product-list">
-                  <li class="search-product--item"><a href="/" class="search-product--link check-price" data-id="2">Dưới 5 triệu</a></li>
-                  <li class="search-product--item"><a href="/" class="search-product--link" data-id="4">Từ 5 - 10 triệu</a></li>
-                  <li class="search-product--item"><a href="/" class="search-product--link" data-id="7">Từ 15 - 20 triệu</a></li>
-                  <li class="search-product--item"><a href="/" class="search-product--link" data-id="13">Trên 20 triệu</a></li>
+                  <li class="search-product--item"><a href="/" class="search-product--link check-price" data-id="5">Dưới 5 triệu</a></li>
+                  <li class="search-product--item"><a href="/" class="search-product--link" data-id="5-10">Từ 5 - 10 triệu</a></li>
+                  <li class="search-product--item"><a href="/" class="search-product--link" data-id="10-15">Từ 10 - 15 triệu</a></li>
+                  <li class="search-product--item"><a href="/" class="search-product--link" data-id="15-20">Từ 15 - 20 triệu</a></li>
+                  <li class="search-product--item"><a href="/" class="search-product--link" data-id=">20">Trên 20 triệu</a></li>
                 </ul>
             <!-- <label class="price-labe price-labe-from" for="priceFrom">từ </label>
             <select class="price priceFrom form-control" name="priceForm"  id="priceFrom">
@@ -250,37 +251,52 @@
           <!-- Filter -->
           <div class="filter-area">
             <div class="filter-box">
-              <span class="filter-box__title">Bộ lọc<i class="icon fas fa-caret-down"></i></span>
-              <div class="list-filter d-none">
+              <div class="filter-box__title">Bộ lọc<i class="icon fas fa-caret-down"></i></div>
+              <div class="list-filter">
                 <ul class="list-filter__type-phone">
                   <li  class="list-filter--title">Loại điện thoại</li>
-                  <li  class="list-filter--item">
-                    <input class="check" id="1" type="checkbox" value="1" name="android">
-							      <label class="label-item" for="1">Android</label>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link" data-id="iphone"><i class="icon-checkbox"></i>iPhone(iOS)</a>
                   </li>
-                  <li  class="list-filter--item"></li>
-                  <li  class="list-filter--item"></li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link" data-id="android"><i class="icon-checkbox"></i>Android</a>
+                  </li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link" data-id="dien-thoai-pho-thong"><i class="icon-checkbox"></i>Điện thoại phổ thông</a>
+                  </li>
                 </ul>
                 <ul class="list-filter__ram">
-                  <li  class="list-filter--title"></li>
-                  <li  class="list-filter--item"></li>
-                  <li  class="list-filter--item"></li>
-                  <li  class="list-filter--item"></li>
+                  <li class="list-filter--title">Dung lượng RAM</li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link" data-id="duoi-4g"><i class="icon-checkbox"></i>Dưới 4 GB</a>
+                  </li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link" data-id="4gb-6gb"><i class="icon-checkbox"></i>4 - 6 GB</a>
+                  </li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link" data-id="tren-8gb"><i class="icon-checkbox"></i>8 GB trở lên</a>
+                  </li>
                 </ul>
-                <ul class="list-filter__internal-memory">
-                  <li  class="list-filter--title"></li>
-                  <li  class="list-filter--item"></li>
-                  <li  class="list-filter--item"></li>
-                  <li  class="list-filter--item"></li>
+                <ul class="list-filter__pin">
+                  <li class="list-filter--title">Dung lượng PIN</li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link" data-id="duoi-3000"><i class="icon-checkbox"></i>Dưới 3000 mAh</a>
+                  </li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link" data-id="3000-4000mah"><i class="icon-checkbox"></i>Từ 3000 - 4000 mAh</a>
+                  </li>
+                  <li class="list-filter--item">
+                    <a href="/" class="list-filter--link" data-id="tren-4000mah"><i class="icon-checkbox"></i>Pin khủng trên 4000 mAh</a>
+                  </li>
                 </ul>
               </div>
             </div>
             <div class="sort-box">
-              <span class="sort-box__title">Sắp xếp<i class="icon fas fa-caret-down"></i>.
+              <span class="sort-box__title">Sắp xếp theo:
                   <div class="sort-area">
                     <a class="sort-area--link sort-area__sort-asc" href="/"><i class="fas fa-sort-amount-down"></i>Giá cao</a>
                     <a class="sort-area--link sort-area__sort-desc" href="/"><i class="fas fa-sort-amount-up"></i>Giá thấp</a>
-                    <a class="sort-area--link sort-area__sort-highlight" href="/"><i class="fas fa-star"></i>Nổi bật</a>
+                    <a class="sort-area--link sort-area__sort-highlight check-sort" href="/"><i class="fas fa-star"></i>Nổi bật</a>
                   </div>
               </span>                     
             </div>

@@ -43,3 +43,27 @@ $('.check').on('click', function() {
         listBrandArr.push($(this).val());
     });
 })
+
+/** Choose filter search */
+$('.list-filter--link').on('click', function (event)
+{
+    event.preventDefault();
+    if (!$(this).find('.icon-checkbox').hasClass('check-filter-box'))
+    {
+        $(this).find('.icon-checkbox').addClass('check-filter-box')
+    } else
+    {
+        $(this).find('.icon-checkbox').removeClass('check-filter-box')
+    }
+    
+})
+/** Sort filter */
+$('.sort-area .sort-area--link').on('click', function (event)
+{
+    event.preventDefault();
+    if (!$(this).hasClass('check-sort'))
+    {
+        $(this).siblings().removeClass('check-sort');
+        $(this).addClass('check-sort');
+    }
+})
