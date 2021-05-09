@@ -2,25 +2,31 @@
   max-height: 200px;
   min-height: 180px;
 }
+
 .branner-carousel {
   max-height: 150px;
   min-height: 140px;
 }
+
 .hotnew {
   width: 30%;
   height: 150px;
   margin-top: 0;
 }
+
 .img-sale {
   margin-top: 10px;
   background-color: #fff;
 }
+
 .img-sale img {
   padding: 0;
 }
+
 .img-sale img:first-child {
   padding-bottom: 23px;
 }
+
 /* SEARCH PRODUCT */
 .search-area {
   padding: 10px;
@@ -123,13 +129,16 @@ input[type="radio"] {
   top: 0;
   left: 0;
 }
+
 input[type="checkbox"]:checked {
   opacity: 1;
 }
+
 /* Check change border of li */
 .li-enable {
   border: 1px solid #52a2e1;
 }
+
 /* END SEARCH */
 /*  RESULT SEARCH */
 #resultSearch p {
@@ -137,6 +146,7 @@ input[type="checkbox"]:checked {
   font-size: 1.5rem;
   text-align: center;
 }
+
 /* SHOW MORE, HIDDEN */
 .show-more,
 .hidden-item {
@@ -163,6 +173,7 @@ input[type="checkbox"]:checked {
   right: -15px;
   top: 20px;
 }
+
 /* END SHOW MORE */
 /* START CUSTOMIZE CHECKBOX */
 input[type="checkbox"] {
@@ -209,6 +220,7 @@ input[type="checkbox"]:checked + label:before {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
 /* END CUSTOMIZE CHECKBOX */
 /* END SEARCH */
 /* START FILTER */
@@ -219,11 +231,13 @@ input[type="checkbox"]:checked + label:before {
   align-items: center;
   margin: 10px;
 }
+
 .filter-box {
   display: flex;
   width: 15%;
   position: relative;
 }
+
 .filter-box__title {
   position: relative;
 }
@@ -236,6 +250,7 @@ input[type="checkbox"]:checked + label:before {
   justify-content: center;
   align-items: center;
 }
+
 .sort-area {
   display: flex;
   align-items: center;
@@ -247,6 +262,7 @@ input[type="checkbox"]:checked + label:before {
 .sort-area--link {
   padding-left: 15px;
 }
+
 .sort-area--link:first-child {
   padding-left: 10px;
 }
@@ -256,12 +272,15 @@ input[type="checkbox"]:checked + label:before {
 
 .sort-area__sort-highlight {
 }
+
 .search-product-master {
   width: 95px;
 }
+
 .check-price {
   font-weight: 600;
 }
+
 .list-filter {
   width: 550px;
   height: 170px;
@@ -271,17 +290,17 @@ input[type="checkbox"]:checked + label:before {
   top: 28px;
   left: -245px;
   z-index: 3;
-  visibility: hidden;
-  opacity: 0;
+  /* visibility: hidden;
+  opacity: 0; */
   box-shadow: 0px -1px 4px 0px rgb(204 204 204);
   display: flex;
   justify-content: space-between;
 }
 
-.filter-box:hover .list-filter {
+/* .filter-box:hover .list-filter {
   visibility: visible;
   opacity: 1;
-}
+} */
 .filter-box__title::before {
   /* content: ""; */
   width: 47px;
@@ -324,6 +343,7 @@ input[type="checkbox"]:checked + label:before {
   color: #333;
   padding-left: 20px;
 }
+
 .icon-checkbox {
   background-image: url(/images/icon-click.png);
   background-repeat: no-repeat;
@@ -338,9 +358,72 @@ input[type="checkbox"]:checked + label:before {
 .check-filter-box {
   background-position: -165px -30px;
 }
+
 .check-sort {
   text-decoration: underline;
 }
+
 .check-sort:hover {
   text-decoration: underline;
+}
+
+.btn-close-filter {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  background-image: url(/images/icon-click.png);
+  background-repeat: no-repeat;
+  background-position: -205px -28px;
+  position: absolute;
+  top: 7px;
+  right: 5px;
+}
+
+/* Condition search area*/
+.condition-search-box {
+  font-size: 1.4rem;
+  display: flex;
+}
+
+.condition-search__list {
+  display: flex;
+  justify-content: start;
+}
+
+.condition-search--item {
+  height: 30px;
+  line-height: 30px;
+  background: #288ad6;
+  margin-left: 10px;
+  border-radius: 5px;
+  padding: 0 5px;
+  position: relative;
+}
+
+.condition-search--link {
+  color: #fff;
+  display: block;
+  padding-right: 14px;
+}
+.condition-search--link:hover {
+  color: #fff;
+}
+.btn-close-condition {
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  background-image: url(/images/icon-click.png);
+  background-repeat: no-repeat;
+  background-position: -247px -29px;
+  position: absolute;
+  top: 8px;
+  right: 1px;
+}
+
+.btn-delete-all-box {
+  display: flex;
+}
+
+.btn-delete-all {
+  background: #c10017;
 }

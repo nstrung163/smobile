@@ -1,35 +1,46 @@
 /* Border for tag "li" on click*/
-$('.check').change(function() {
+$('.check').change(function ()
+{
     $(this).parent().toggleClass("li-enable");
 })
 
 /* Show more and hidden logo brand */
 var max = 9;
-$('ul, li').each(function() {
-    $(this).find('li').each(function(index) {
-        if (index >= max) {
+$('ul, li').each(function ()
+{
+    $(this).find('li').each(function (index)
+    {
+        if (index >= max)
+        {
             $(this).hide();
         }
     })
 })
-$('.hidden-item').on('click', function(event) {
+$('.hidden-item').on('click', function (event)
+{
     event.preventDefault();
     $('.hidden-item').addClass("d-none");
     $('.show-more').removeClass("d-none");
-    $('ul, li').each(function() {
-        $(this).find('li').each(function(index) {
-            if (index >= max) {
+    $('ul, li').each(function ()
+    {
+        $(this).find('li').each(function (index)
+        {
+            if (index >= max)
+            {
                 $(this).hide(1000);
             }
         })
     })
 })
-$('.show-more').on('click', function(event) {
+$('.show-more').on('click', function (event)
+{
     event.preventDefault();
     $('.hidden-item').removeClass("d-none");
     $('.show-more').addClass("d-none");
-    $('ul, li').each(function() {
-        $(this).find('li').each(function(index) {
+    $('ul, li').each(function ()
+    {
+        $(this).find('li').each(function (index)
+        {
             $(this).show(1000);
         })
     })
@@ -37,9 +48,11 @@ $('.show-more').on('click', function(event) {
 
 /*Get list brandId*/
 var listBrandArr = [];
-$('.check').on('click', function() {
+$('.check').on('click', function ()
+{
     listBrandArr = [];
-    $('.listBrand').find('input[name="brand.logo"]:checked').each(function() {
+    $('.listBrand').find('input[name="brand.logo"]:checked').each(function ()
+    {
         listBrandArr.push($(this).val());
     });
 })
@@ -55,7 +68,7 @@ $('.list-filter--link').on('click', function (event)
     {
         $(this).find('.icon-checkbox').removeClass('check-filter-box')
     }
-    
+
 })
 /** Sort filter */
 $('.sort-area .sort-area--link').on('click', function (event)
@@ -66,4 +79,14 @@ $('.sort-area .sort-area--link').on('click', function (event)
         $(this).siblings().removeClass('check-sort');
         $(this).addClass('check-sort');
     }
+})
+
+/** Toggle filter */
+$('.filter-box__title').click(function ()
+{
+    $('.list-filter').removeClass('d-none');
+})
+$('.btn-close-filter').click(function ()
+{
+    $('.list-filter').addClass('d-none');
 })
