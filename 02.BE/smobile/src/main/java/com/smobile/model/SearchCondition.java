@@ -23,5 +23,7 @@ public class SearchCondition {
 	
 	private List<String[]> listRam;
 	
-	private List<String> listPin;
+	private List<String[]> listPin;
+	
+	private String sortBy;
 }

@@ -10,6 +10,7 @@ import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -46,7 +47,6 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
 	ProductEntity findProductByProductOptionId(Integer productOptionId);
 	
 	// Search product
-	
 	public static Specification<ProductEntity> getSearchCondition(SearchCondition searchCondition) {
 		return new Specification<ProductEntity>() {
 			
@@ -64,7 +64,7 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
 					List<String> brandIds = searchCondition.getListBrandId();
 					List<String> listTypeProduct = searchCondition.getListTypeProduct();
 					List<String[]> listRam = searchCondition.getListRam();
-					List<String> listPin = searchCondition.getListPin();
+					List<String[]> listPin = searchCondition.getListPin();
 					
 					Join<ProductEntity, BrandEntity> brandRoot = productRoot.join("brandEntity");
 					Join<ProductEntity, ProductInfoEntity> productInfoRoot = productRoot.join("productInfoEntity", JoinType.LEFT);
@@ -77,7 +77,7 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
 					}
 					
 					// Price from predicate
-					if(Strings.isNotEmpty(priceFrom)) {
+					if(Strings.isNotEmpty(priceFrom)) { 
 						predicates.add(criteriaBuilder.greaterThanOrEqualTo(productRoot.get("unitPrice"), Double.parseDouble(priceFrom)));
 					}
 					
@@ -111,13 +111,14 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
 							String ramFrom = ram[0];
 							String ramTo = ram[1];
 							
-							// Ram from predicate
-							if(Strings.isNotEmpty(ramFrom)) {
+							if(StringUtils.isNotEmpty(ramFrom) && StringUtils.isNotEmpty(ramTo)) {
+								listPredicateRam.add(criteriaBuilder.and(
+													 criteriaBuilder.greaterThanOrEqualTo(productInfoRoot.get("ram"), Integer.parseInt(ramFrom)),
+													 criteriaBuilder.lessThanOrEqualTo(productInfoRoot.get("ram"), Integer.parseInt(ramTo))
+													 ));
+							} else if(Strings.isNotEmpty(ramFrom)) {
 								listPredicateRam.add(criteriaBuilder.greaterThanOrEqualTo(productInfoRoot.get("ram"), Integer.parseInt(ramFrom)));
-							}
-							
-							// Ram to predicate
-							if(Strings.isNotEmpty(ramTo)) {
+							} else if(Strings.isNotEmpty(ramTo)) {
 								listPredicateRam.add(criteriaBuilder.lessThanOrEqualTo(productInfoRoot.get("ram"), Integer.parseInt(ramTo)));
 							}
 						}
@@ -126,17 +127,27 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
 					
 					// Battery capacity predicate
 					if(!CollectionUtils.isEmpty(listPin)) {
-						List<Predicate> listPredicatePin = new ArrayList<Predicate>();
-						for(String pin: listPin) {
-							listPredicatePin.add(criteriaBuilder.like(productInfoRoot.get("batteryCapacity"), "%" + pin + "%"));
+						List<Predicate> listPredicatePin = new ArrayList<Predicate>(); 
+						for(String pin[]: listPin) {
+							String pinFrom = pin[0];
+							String pinTo = pin[1];
+							
+							if(StringUtils.isNotEmpty(pinFrom) && StringUtils.isNotEmpty(pinTo)) {
+								listPredicatePin.add(criteriaBuilder.and(
+													 criteriaBuilder.greaterThanOrEqualTo(productInfoRoot.get("numberOfBatteryCapacity"), Integer.parseInt(pinFrom)),
+													 criteriaBuilder.lessThanOrEqualTo(productInfoRoot.get("numberOfBatteryCapacity"), Integer.parseInt(pinTo))
+													 ));
+							} else if(StringUtils.isNotEmpty(pinFrom)) { 
+								listPredicatePin.add(criteriaBuilder.greaterThanOrEqualTo(productInfoRoot.get("numberOfBatteryCapacity"), Integer.parseInt(pinFrom)));
+							} else if(StringUtils.isNotEmpty(pinTo)) {
+								listPredicatePin.add(criteriaBuilder.lessThanOrEqualTo(productInfoRoot.get("numberOfBatteryCapacity"), Integer.parseInt(pinTo)));
+							}
 						}
 						predicates.add(criteriaBuilder.or(listPredicatePin.toArray(new Predicate[listPredicatePin.size()])));
 					}
-					
 				}
 				return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
 			}
-			
 		};
 	}
 	

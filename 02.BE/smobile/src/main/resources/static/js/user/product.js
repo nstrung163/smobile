@@ -11,6 +11,7 @@ $(document).ready(function() {
 		}
 		
 	})
+	
 	/* Border for tag "li" on click*/
 	$('.check').change(function() {
 		$(this).parent().toggleClass("li-enable");
@@ -18,6 +19,10 @@ $(document).ready(function() {
 	
 	/* Initial price item, remove all tag a have class check-price(actives) */
 	$(".search-product--link").removeClass('check-price');
+	
+	/** Initial condition search box  */
+	initialSeachCondtion();
+	$('.btn-delete-all-box').empty();
 	
 	/* Show more and hidden logo brand */
 	var max = 9;
@@ -60,25 +65,36 @@ var priceTo = "";
 var listTypeProduct = [];
 var listRam = [];
 var listPin = [];
+var sortBy = "";
+
+/** Check on brand */
 $(".check").on('click', function() {
 	listBrandArr = [];
+	var dataNameBrand = $(this).parent().attr("data-name");
+	console.log(dataNameBrand);
+	if(!checkExistConditionSearch(dataNameBrand)) {
+		renderConditionSearch(dataNameBrand, dataNameBrand)
+	} else {
+		removeConditionSearch(dataNameBrand);
+	}
 	$('.listBrand').find('input[name="brand.logo"]:checked').each(function() {
 		listBrandArr.push($(this).val());
+		
 	});
 })
 
+/** Check on search price */
 $('.search-product-list .search-product--item .search-product--link').on('click', function(event) {
 	event.preventDefault();
 	priceFrom = "";
 	priceTo = "";
 	var $parent = $(this).parent();
 	if(!$parent.hasClass('check-price')) {
+		var dataId = $(this).attr("data-id");
 		$parent.siblings().removeClass('check-price');
 		$parent.addClass('check-price');
-		var dataId = $(this).attr("data-id");
 		switch(dataId) {
 			case "5":
-				priceFrom = "0";
 				priceTo = "5000000";
 				break;
 			case "5-10":
@@ -100,6 +116,13 @@ $('.search-product-list .search-product--item .search-product--link').on('click'
 				priceFrom = "0";
 				priceTo = "0";
 		}
+		var dataIdPrice = $(this).attr("data-id");
+		console.log($(this).parent().hasClass('check-price'))
+		if(!checkExistConditionSearch(dataIdPrice) && $(this).parent().hasClass('check-price')) {
+			$('.condition-search-item--price').remove();
+			var nameCondition = $(this).text();
+			renderConditionSearchPrice(dataIdPrice, nameCondition)
+		}
 	}
 	console.log(`Data-id on tag clicked: ${dataId}, price from: ${priceFrom}, price to: ${priceTo}`);
 })
@@ -117,6 +140,13 @@ $('.list-filter--link').on('click', function (event) {
 /** Choose type product */
 $('.list-filter__type-phone .list-filter--type-product').on('click', function(event) {
 	event.preventDefault();
+	var dataTypeProduct = $(this).attr("data-id");
+	if(!checkExistConditionSearch(dataTypeProduct)) {
+		var nameCondition = $(this).text();
+		renderConditionSearch(dataTypeProduct, nameCondition)
+	} else {
+		removeConditionSearch(dataTypeProduct);
+	}
 	listTypeProduct = [];
 	$('.list-filter__type-phone li').find('.check-filter-box').each(function() {
 		var dataIdTypeProduct = $(this).parent().attr("data-id");
@@ -128,6 +158,14 @@ $('.list-filter__type-phone .list-filter--type-product').on('click', function(ev
 /** Choose ram */
 $('.list-filter__ram .list-filter--ram').on('click', function(event) {
 	event.preventDefault();
+	var dataIdRam = $(this).attr("data-id");
+	// Kiểm tra xem trong conditon search đã có dataId hay chưa nếu chưa thì render còn không thì remove
+	if(!checkExistConditionSearch(dataIdRam)) {
+		var nameCondition = $(this).parent().text();
+		renderConditionSearch(dataIdRam, nameCondition)
+	} else {
+		removeConditionSearch(dataIdRam);
+	}
 	listRam = [];
 	$('.list-filter__ram li a').find('.check-filter-box').each(function() {
 		var dataIdRam = $(this).parent().attr("data-id");
@@ -145,15 +183,24 @@ $('.list-filter__ram .list-filter--ram').on('click', function(event) {
 /** Choose batery capicty */
 $('.list-filter__pin .list-filter--pin').on('click', function(event) {
 	event.preventDefault();
+	console.log($(this))
+	var dataIdPin = $(this).attr("data-id");
+	// Kiểm tra xem trong conditon search đã có dataId hay chưa nếu chưa thì render còn không thì remove
+	if(!checkExistConditionSearch(dataIdPin)) {
+		var nameCondition = $(this).parent().text();
+		renderConditionSearch(dataIdPin, nameCondition)
+	} else {
+		removeConditionSearch(dataIdPin);
+	}
 	listPin = [];
 	$('.list-filter__pin li a').find('.check-filter-box').each(function() {
 		var dataIdPin = $(this).parent().attr("data-id");
 		if(dataIdPin == "duoi-3000") {
-			listPin.push("3000");
+			listPin.push(["", "3000"]);
+		} else if(dataIdPin == "tu-3000-4000") {
+			listPin.push(["3000", "4000"]);
 		} else if(dataIdPin == "tren-4000mah") {
-			listPin.push("4000");
-		} else if(dataIdPin == "sac-nhanh") {
-			listPin.push("Sạc nhanh");
+			listPin.push(["4000", ""]);
 		}
 	})
 	console.log(`Value of list pin: ${JSON.stringify(listPin)}`);
@@ -172,7 +219,141 @@ $('.sort-area .sort-area--link').on('click', function (event)
     {
         $(this).siblings().removeClass('check-sort');
         $(this).addClass('check-sort');
+		var dataIdSort = $(this).attr("data-id");
+		if(dataIdSort == "cao-den-thap") {
+			sortBy = "DESC";
+		} else if(dataIdSort == "thap-den-cao") {
+			sortBy = "ASC";
+		} else {
+			sortBy = "";
+		}
     }
+})
+
+/** Toggle filter */
+$('.filter-box__title').click(function (){
+	$('.list-filter').removeClass('d-none');
+})
+
+$('.btn-close-filter').click(function (){
+	$('.list-filter').addClass('d-none');
+})
+
+/** Remove condition search by event click */
+$('.condition-search__list').on('click', '.condition-search--link', function(event) {
+	event.preventDefault();
+	var dataIdRender = $(this).attr("data-id");
+	var index = "";
+	switch(dataIdRender) {
+		// PIN
+		case "duoi-3000":
+			index = 0;
+			break;
+		case "tu-3000-4000":
+			index = 1;
+			break;
+		case "tren-4000mah":
+			index = 2;
+			break;
+		// RAM
+		case "duoi-4g":
+			index = 0;
+			break;
+		case "4gb-6gb":
+			index = 1;
+			break;
+		case "tren-8gb":
+			index = 2;
+			break;
+		// Type product
+		case "iPhone":
+			index = listTypeProduct.indexOf('iPhone');
+			break;
+		case "Android":
+			index = listTypeProduct.indexOf('Android');
+			break;
+		case "Điện thoại phổ thông":
+			index = listTypeProduct.indexOf('Điện thoại phổ thông');
+			break;
+		// Price product
+		case "5":
+			priceFrom = "0";
+			priceTo = "5000000";
+			break;
+		case "5-10":
+			priceFrom = "5000000";
+			priceTo = "10000000";
+			break;
+		case "10-15":
+			priceFrom = "10000000";
+			priceTo = "15000000";
+			break;
+		case "15-20":
+			priceFrom = "15000000";
+			priceTo = "20000000";
+			break;
+		case ">20":
+			priceFrom = "20000000";
+			break;
+		
+	}
+	
+	/** Check and remove element list PIN */
+	$('.list-filter__pin li a').find('.check-filter-box').each(function() {
+		if($(this).parent().attr("data-id") == dataIdRender) {
+			// Remove checked filter box
+			$(this).removeClass('check-filter-box');
+			// Remove value of checked in list pin
+			if(index != -1) {
+				listPin.splice(index, 1);
+			}
+		}
+	})
+	
+	/** Check and remove element list RAM */
+	$('.list-filter__ram li a').find('.check-filter-box').each(function() {
+		if($(this).parent().attr("data-id") == dataIdRender) {
+			// Remove checked filter box
+			$(this).removeClass('check-filter-box');
+			// Remove value of checked in list ram
+			if(index != -1) {
+				listRam.splice(index, 1);
+			}
+		}
+	})
+	
+	/** Check and remove element list type product */
+	$('.list-filter__type-phone li a').find('.check-filter-box').each(function() {
+		if($(this).parent().attr("data-id") == dataIdRender) {
+			// Remove checked filter box price
+			$(this).removeClass('check-filter-box');
+			// Remove value of checked in list type
+			if(index != -1) {
+				listTypeProduct.splice(index, 1);
+			}
+		}
+	})
+	
+	/** Check and remove element price product */
+	$('.search-product__price .search-product-list li').each(function() {
+		$(this).removeClass('check-price');
+		priceFrom = "";
+		priceTo = "";
+	})
+	
+	/** Check and remove element brand*/
+	$('.listBrand').find('.li-enable').each(function() {
+		if($(this).hasClass('li-enable') && ($(this).attr("data-name") == dataIdRender)) {
+			var valueBrand = $(this).find('input[name="brand.logo"]').val()
+			$(this).find(`input[value="${valueBrand}"]`).prop("checked", false);
+			$(this).removeClass('li-enable');
+		}
+	})
+	
+	// Remove element condition search
+	$(this).parent().remove();
+	renderDeleteAll();
+	console.log('Value after change: ' + JSON.stringify(listPin))
 })
 
 /** Search product with condition 
@@ -181,13 +362,16 @@ $('.sort-area .sort-area--link').on('click', function (event)
 	@returns List<ProdctItemModel>
 */
 function searchProductCondition(pageNumber, isClickSearchBtn) {
+	$('.list-filter').addClass('d-none');
 	var searchCondition = {
 		keyword: $('.search__input').val(),
 		priceFrom: priceFrom,
 		priceTo: priceTo,
 		listBrandId: listBrandArr,
 		listTypeProduct: listTypeProduct,
-		listRam: listRam
+		listRam: listRam,
+		listPin: listPin,
+		sortBy: sortBy
 	}
 	console.log(`Điều kiện tìm kiếm: ${JSON.stringify(searchCondition)}`)
 	$.ajax({
@@ -213,8 +397,6 @@ function searchProductCondition(pageNumber, isClickSearchBtn) {
 			} else {
 				$('.pagination').removeClass("d-none");
 			}
-			
-			
 		}
 	})
 }
@@ -224,7 +406,63 @@ function renderMessageSearch(responseMsg) {
 	$('#resultSearch p').append(responseMsg);
 }
 
-/** Find all product 
+/** Initial Search Condition */
+function initialSeachCondtion() {
+	$('.condition-search-box .condition-search__list').empty();
+}
+
+/** Render condition search */
+function renderConditionSearch(dataId, nameCondition) {
+	var rowHTML = "";
+	rowHTML = ` <li class="condition-search--item"><a href="/" class="condition-search--link" data-id="${dataId}">${nameCondition}<i class="btn-close-condition"></i></a></li>`;
+	$('.condition-search-box .condition-search__list').append(rowHTML);
+	renderDeleteAll();
+}
+
+function renderConditionSearchPrice(dataId, nameCondition) {
+	var rowHTML = "";
+	rowHTML = `<li class="condition-search--item condition-search-item--price"><a href="/" class="condition-search--link" data-id="${dataId}">${nameCondition}<i class="btn-close-condition"></i></a></li>`;
+	$('.condition-search-box .condition-search__list').append(rowHTML);
+	renderDeleteAll();
+}
+
+/** Render delete all */
+function renderDeleteAll() {
+	$('.btn-delete-all-box').empty();
+	if($('.condition-search-box .condition-search__list li').length >= 2) {
+		$('.btn-delete-all-box').append(`
+			<span class="condition-search--item btn-delete-all">
+				<a href="/user/product" class="condition-search--link">
+					Xóa tất cả<i class="btn-close-condition"></i>
+				</a>
+			</span>
+		`);
+	} else {
+		$('.btn-delete-all').remove();
+	}
+}
+
+/** Remove condition search by id */
+function removeConditionSearch(dataId) {
+	$('.condition-search__list .condition-search--item a').each(function() {
+		if($(this).attr("data-id") == dataId) {
+			$(this).parent().remove();
+			renderDeleteAll();
+		}
+	})
+}
+
+
+/** Check exist condition search */
+function checkExistConditionSearch(dataId) {
+	var flag = false;
+	$('.condition-search__list .condition-search--item a').each(function() {
+		$(this).attr("data-id") == dataId ? flag = true : flag;
+	})
+	return flag;
+}
+
+/** Find all product
 	@param pageNumber
 	@returns List<ProductItemModel>
 */

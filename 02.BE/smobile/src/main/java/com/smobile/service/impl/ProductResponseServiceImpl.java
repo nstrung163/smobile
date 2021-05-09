@@ -160,12 +160,17 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 	
 	@Override
 	public ResponseDataModel getSearchCondition(SearchCondition searchCondition, int pageNumber) {
-		int responseCode = Constants.RESULT_CD_FAIL;
+		int responseCode = Constants.RESULT_CD_FAIL; 
 		String responseMsg = Strings.EMPTY;
 		Map<String, Object> data = new HashMap<String, Object>();
 		List<ProductItemModel> productItemList = new ArrayList<ProductItemModel>();
 		try {
-			Sort sortList = Sort.by(Sort.Direction.DESC, "unitPrice");
+			Sort sortList = null;
+			if(searchCondition.getSortBy().equals("ASC")) {
+				 sortList = Sort.by(Sort.Direction.ASC, "unitPrice");
+			} else {
+				 sortList = Sort.by(Sort.Direction.DESC, "unitPrice");
+			}
 			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortList);
 			Page<ProductEntity> productEntitiesPage = productRepository.findAll(IProductRepository.getSearchCondition(searchCondition), pageable);
 			List<ProductEntity> productList = productEntitiesPage.getContent();
@@ -175,7 +180,7 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 			data.put("productItemList", productItemList);
 			data.put("paginationList", new PageModel(pageNumber, productEntitiesPage.getTotalPages()));
 			if(productEntitiesPage.getTotalElements() <= 0) {
-				responseMsg = "Không tìm thấy sản phẩm!";
+				responseMsg = "Không tìm thấy kết quả nào phù hợp";
 			} else {
 				responseMsg = "Tìm thấy " + productEntitiesPage.getTotalElements() + " sản phẩm!";
 			}

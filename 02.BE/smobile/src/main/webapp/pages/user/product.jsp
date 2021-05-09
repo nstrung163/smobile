@@ -129,7 +129,7 @@
         <div class="searchByBrand">
           <ul class="listBrand">
 			<c:forEach var="brand" items="${ listBrand }">
-				<li class="list-brand__item">
+				<li class="list-brand__item" data-name="${ brand.brandName }" data-id="${ brand.brandId }">
 					<input class="check" id="${ brand.brandId }" type="checkbox" value="${ brand.brandId }" name="brand.logo">
 					<label class="label-item" for="${ brand.brandId }"><img class="logo-brand" alt="Logo Brand" src="/${ brand.logo }"></label>
 				</li>
@@ -138,41 +138,23 @@
 				<span class="hidden-item d-none">Ẩn bớt<i class="icon-up fas fa-sort-up"></i></span>
 			</ul>
         </div>
-
+		<!-- Choose price -->
         <div class="search-product ">
           <span class="search-product-master">Chọn mức giá:</span>
           <div class="search-product__price">
           	<ul class="search-product-list">
-              <li class="search-product--item"><a href="/" class="search-product--link check-price" data-id="5">Dưới 5 triệu</a></li>
+              <li class="search-product--item"><a href="/" class="search-product--link" data-id="5">Dưới 5 triệu</a></li>
               <li class="search-product--item"><a href="/" class="search-product--link" data-id="5-10">Từ 5 - 10 triệu</a></li>
               <li class="search-product--item"><a href="/" class="search-product--link" data-id="10-15">Từ 10 - 15 triệu</a></li>
               <li class="search-product--item"><a href="/" class="search-product--link" data-id="15-20">Từ 15 - 20 triệu</a></li>
               <li class="search-product--item"><a href="/" class="search-product--link" data-id=">20">Trên 20 triệu</a></li>
             </ul>
-            <!-- <label class="price-labe price-labe-from" for="priceFrom">từ </label>
-            <select class="price priceFrom form-control" name="priceForm"  id="priceForm">
-              <option value="">--- Giá Thấp Nhất ---</option>
-              <option value="1000000">1.000.000₫</option>
-              <option value="2000000">2.000.000₫</option>
-              <option value="3000000">3.000.000₫</option>
-              <option value="4000000">4.000.000₫</option>
-            </select>
-            <label class="price-labe price-labe-to" for="toPrice">đến </label>
-            <select class="price form-control" name="priceTo" id="priceTo">
-              <option value="" >--- Giá cao nhất---</option>
-              <option value="1000000">1.000.000₫</option>
-              <option value="2000000">2.000.000₫</option>
-              <option value="4000000">4.000.000₫</option>
-              <option value="8000000">8.000.000₫</option>
-              <option value="10000000">10.000.000₫</option>
-              <option value="20000000">20.000.000₫</option>
-            </select> -->
           </div>
-           <!-- Filter -->
+      	<!-- Filter -->
           <div class="filter-area">
             <div class="filter-box">
               <div class="filter-box__title">Bộ lọc<i class="icon fas fa-caret-down"></i></div>
-              <div class="list-filter">
+              <div class="list-filter d-none">
                 <ul class="list-filter__type-phone">
                   <li  class="list-filter--title">Loại điện thoại</li>
                   <li class="list-filter--item">
@@ -203,20 +185,21 @@
                     <a href="/" class="list-filter--link list-filter--pin" data-id="duoi-3000"><i class="icon-checkbox"></i>Dưới 3000 mAh</a>
                   </li>
                   <li class="list-filter--item">
-                    <a href="/" class="list-filter--link list-filter--pin" data-id="tren-4000mah"><i class="icon-checkbox"></i>Trên 4000 mAh</a>
+                    <a href="/" class="list-filter--link list-filter--pin" data-id="tu-3000-4000"><i class="icon-checkbox"></i>Từ 3000 - 4000 mAh</a>
                   </li>
                   <li class="list-filter--item">
-                    <a href="/" class="list-filter--link list-filter--pin" data-id="sac-nhanh"><i class="icon-checkbox"></i>Sạc nhanh</a>
+                    <a href="/" class="list-filter--link list-filter--pin" data-id="tren-4000mah"><i class="icon-checkbox">Siêu trâu: trên 4000 mAh</i></a>
                   </li>
                 </ul>
+                <div class="btn-close-filter"></div>
               </div>
             </div>
             <div class="sort-box">
               <span class="sort-box__title">Sắp xếp theo:
                   <div class="sort-area">
-                    <a class="sort-area--link sort-area__sort-asc" href="/"><i class="fas fa-sort-amount-down"></i>Giá cao</a>
-                    <a class="sort-area--link sort-area__sort-desc" href="/"><i class="fas fa-sort-amount-up"></i>Giá thấp</a>
-                    <a class="sort-area--link sort-area__sort-highlight check-sort" href="/"><i class="fas fa-star"></i>Nổi bật</a>
+                    <a href="/" class="sort-area--link sort-area__sort-asc" data-id="cao-den-thap"><i class="fas fa-sort-amount-down"></i>Giá cao</a>
+                    <a href="/" class="sort-area--link sort-area__sort-desc" data-id="thap-den-cao"><i class="fas fa-sort-amount-up"></i>Giá thấp</a>
+                    <a href="/" class="sort-area--link sort-area__sort-highlight check-sort" data-id="not-bat"><i class="fas fa-star"></i>Nổi bật</a>
                   </div>
               </span>                     
             </div>
@@ -226,7 +209,22 @@
             <button type="submit" id="btnSubmitSearch" class="btn btn-success"><i class="fas fa-search"></i></button>
           </div>
         </div>
+        <div class="condition-search-box">
+          <ul class="condition-search__list">
+            <li class="condition-search--item"><a href="/" class="condition-search--link" data-id="iphone">iPhone(Apple)<i class="btn-close-condition"></i></a></li>
+            <li class="condition-search--item"><a href="/" class="condition-search--link">Từ 10 - 15 triệu<i class="btn-close-condition"></i></a></li>
+            <li class="condition-search--item"><a href="/" class="condition-search--link">Dưới 4 GB<i class="btn-close-condition"></i></a></li>
+          </ul>
+          <div class="btn-delete-all-box">
+          	<span class="condition-search--item btn-delete-all">
+          		<a href="/" class="condition-search--link">
+          			Xóa tất cả<i class="btn-close-condition"></i>
+          		</a>
+          	</span>
+          </div>
+        </div>
       </div>
+      <!-- Condition box -->
       <section class="container-fluid outstanding-phone">
         <div class="outstanding-phone__header">
           <div class="title-outstanding">Danh sách sản phẩm</div>

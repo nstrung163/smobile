@@ -59,6 +59,9 @@ public class ProductInfoEntity {
 	@Column(name = "TYPE_PRODUCT", columnDefinition = "nvarchar(200)", nullable = false)
 	private String typeProduct;
 	
+	@Column(name = "NUMBER_OF_BATTERY_CAPACITY", columnDefinition = "int", nullable = false)
+	private int numberOfBatteryCapacity;
+	
 	@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")
 	@OneToOne(fetch = FetchType.EAGER)
 	private ProductEntity productEntity;
