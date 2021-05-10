@@ -8,13 +8,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.smobile.entity.UserEntity;
 import com.smobile.model.PurchaseModel;
+import com.smobile.model.RateCommentModel;
+import com.smobile.model.ResponseDataModel;
 import com.smobile.service.IBrandService;
 import com.smobile.service.IProductResponseService;
 import com.smobile.service.IProductService;
@@ -90,4 +95,9 @@ public class HomeController {
 		return "user/product-detail";
 	}
 	
+	@PostMapping(value = "/user/comment")
+	@ResponseBody
+	public ResponseDataModel addNewComment(@ModelAttribute RateCommentModel rateCommentModel) {
+		return productResponseService.addNewRateAndComment(rateCommentModel);
+	}
 }

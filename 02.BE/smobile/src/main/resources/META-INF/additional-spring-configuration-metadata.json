@@ -23,5 +23,10 @@
     "name": "parent.folder.images.news",
     "type": "java.lang.String",
     "description": "A description for 'parent.folder.images.news'"
+  },
+  {
+    "name": "parent.folder.images.comment",
+    "type": "java.lang.String",
+    "description": "A description for 'parent.folder.images.comment'"
   }
 ]}

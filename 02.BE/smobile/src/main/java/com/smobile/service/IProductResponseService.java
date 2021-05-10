@@ -7,6 +7,7 @@ import com.smobile.entity.PurchaseEntity;
 import com.smobile.model.CartModel;
 import com.smobile.model.ProductItemModel;
 import com.smobile.model.PurchaseModel;
+import com.smobile.model.RateCommentModel;
 import com.smobile.model.ResponseDataModel;
 import com.smobile.model.SearchCondition;
 
@@ -46,5 +47,7 @@ public interface IProductResponseService {
 	ResponseDataModel getSearchCondition(SearchCondition searchConditionMap, int pageNumber);
 	
 	List<ProductItemModel> convertProductEntityToProductItemModel(List<ProductEntity> productList);
+	
+	ResponseDataModel addNewRateAndComment(RateCommentModel rateCommentModel);
 }
 

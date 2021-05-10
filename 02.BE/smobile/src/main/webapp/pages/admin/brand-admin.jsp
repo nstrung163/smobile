@@ -122,7 +122,7 @@
                 <div class="container-fluid">
                     <!-- BODY -->
                     <ol  class="breadcrumb mb-4 mt-4">
-                        <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
                         <li class="breadcrumb-item active">Nhãn Hiệu</li>
                     </ol>
                     <h3 >Quản Lý Nhãn Hiệu</h3>

@@ -2,6 +2,8 @@ var url = window.location.pathname + '/api';
 console.log('Url: ' + url);
 var unitPrice = 0;
 var productOptionId = 0;
+var productId = 0;
+var rateNumber = 0;
 $(document).ready(function() {
 	findProductDetailById();
 	initCheckColor();
@@ -80,6 +82,40 @@ $('.box-qa__rate__show-form').on('click', function() {
 	
 })
 
+$('.rating label').on('click', function ()
+{
+    var labelSelected = $(this).attr("for");
+    $('.rating').find('input[name=rating]').each(function ()
+    {
+        if ($(this).attr("id") == labelSelected)
+        {
+			rateNumber = $(this).val();
+            return false;
+        }
+    })
+})
+
+
+$('.btnSubmitRateComment').on('click', function(event) {
+	event.preventDefault();
+	$("#rateNumber").val(rateNumber)
+	$("#dateOfComment").val(today)
+	var formRateComment = new FormData($('#from-rate-comment')[0])
+	$.ajax({
+		url: '/user/comment',
+		type: 'POST',
+		dataType: 'JSON',
+		processData: false,
+		contentType: false,
+		enctype: 'multipart/form-data',
+		data: formRateComment, 
+		success: function(responseData) {
+			// Refresh 
+			window.location = window.location.pathname;
+		}
+	})
+})
+
 /** Initialization check color default false */
 function initCheckColor() {
 	$('input[type=checkbox]').each(function() {
@@ -96,7 +132,6 @@ function findProductDetailById() {
 		contentType: 'application/json',
 		success: function(responseData) {
 			if(responseData.responseCode == 100) {
-				
 				var responseProductDetail = responseData.data.productDetailModel;
 				var responseBrand = responseData.data.productDetailModel.productEntity.brandEntity;
 				var responseProduct = responseData.data.productDetailModel.productEntity;
@@ -110,12 +145,14 @@ function findProductDetailById() {
 				renderProductColor(responseData.data.productOptionListByPriceAndId);
 				$('.list-product-color input:eq(0)').prop("checked", true);
 				productOptionId = $('.list-product-color input:eq(0)').val();
+				productId = responseProduct.productId;
 				console.log(`Giá trị của thẻ input đầu tiên: ${$('.list-product-color input:eq(0)').val()}`)
 				console.log(`Giá trị của productOptionId mặc định: ${productOptionId}`)
 				renderProductInfoTitleAndContent(responseProduct.productName, responseProductInfoEntity.introduction);
 				renderSpecificationProduct(responseProductInfoEntity);
 				renderRateProductTitle(responseProduct.productName, responseProductDetail.averagePointRate);
 				renderBoxReviewerList(responseData.data.productCommentModels);
+				renderTotalRate(responseData.data.listTotalRate, responseProduct.productId);
 			}
 		},
 		error: function(e) {
@@ -309,15 +346,36 @@ function renderSpecificationProduct(productInfo) {
 function renderRateProductTitle(productName, averagePointRate) {
 	var $productRateTitle = $('.box-qa__title');
 	var $totalRatePoint = $('.box-qa__rate__point');
-	var $statisticRate = $('.box-qa__rate__statistics');
 	$productRateTitle.empty();
 	$totalRatePoint.empty();
 	$productRateTitle.append(`Đánh giá &amp; nhận xét ${productName}`);
 	$totalRatePoint.append(`<h3>SAO TRUNG BÌNH</h3>
 			                  <p class="averaRatings">${averagePointRate.toFixed(1)}/5</p>
-			                  <i class="fa fa-star icon-star" style="font-size: 40px"></i>`);
+			                  <i class="fa fa-star icon-star" style="font-size: 40px"></i>
+							`);
 }
 
+/** Render total rate for each rate */
+function renderTotalRate(listTotalRate, productId) {
+	var $boxRateStatictis = $('.box-qa__rate__statistics ul');
+	var rateItem = "";
+	var ratePoint = 5;
+	$boxRateStatictis.empty();
+	$.each(listTotalRate, function(key, value) {
+		rateItem = `
+			<li>
+	          <span>${ratePoint}<i class="icon-star fa fa-star"></i></span>
+	          <span>${value} lượt đánh giá</span>
+	        </li>
+		`;
+		$boxRateStatictis.append(rateItem);
+		ratePoint--;
+	})
+	$boxRateStatictis.append(`<input type="hidden" id="productId" name="productEntity.productId" value="${ productId }">`)
+}
+
+
+/** Render box reviewer */
 function renderBoxReviewerList(productCommentModels) {
 	var $boxReivewerList = $('.box-reviewer__list');
 	var rowReviewer = "";
@@ -345,3 +403,15 @@ function renderBoxReviewerList(productCommentModels) {
 							</li>
 							`);
 }
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1;
+var yyyy = today.getFullYear();
+if(dd < 10) {
+	dd = '0' + dd;
+}
+if(mm < 10) { 
+	mm = '0' + mm;
+}
+today = yyyy + '-' + mm + '-' + dd;

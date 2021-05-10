@@ -38,5 +38,11 @@ public class RateProductEntity {
 	@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private UserEntity userEntity;
-	
+
+	public RateProductEntity(int rateNumber, ProductEntity productEntity, UserEntity userEntity) {
+		super();
+		this.rateNumber = rateNumber;
+		this.productEntity = productEntity;
+		this.userEntity = userEntity;
+	}
 }
