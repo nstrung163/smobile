@@ -188,7 +188,7 @@
                     <a href="/" class="list-filter--link list-filter--pin" data-id="tu-3000-4000"><i class="icon-checkbox"></i>Từ 3000 - 4000 mAh</a>
                   </li>
                   <li class="list-filter--item">
-                    <a href="/" class="list-filter--link list-filter--pin" data-id="tren-4000mah"><i class="icon-checkbox">Siêu trâu: trên 4000 mAh</i></a>
+                    <a href="/" class="list-filter--link list-filter--pin" data-id="tren-4000mah"><i class="icon-checkbox"></i>Siêu trâu: trên 4000 mAh</a>
                   </li>
                 </ul>
                 <div class="btn-close-filter"></div>

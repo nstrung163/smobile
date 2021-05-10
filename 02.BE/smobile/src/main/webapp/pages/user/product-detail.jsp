@@ -58,7 +58,7 @@
       </div>
     </header>
     <div class="nav-bar-menu">
-      <div class="container ">
+      <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-nav">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -232,7 +232,7 @@
           </div>
           <hr>
           <!-- Rate & Comment -->
-          <form action="" method="POST">
+          <form action="" method="POST" id="from-rate-comment"  enctype="multipart/form-data">
             <section class="box-qa">
               <h2 class="box-qa__title">Đánh giá & nhận xét iPhone 12 Pro Max I Chính hãng VN/A </h2>
               <div class="box-qa__rate">
@@ -274,34 +274,43 @@
               <div class="box-qa__comment__data">
                 <div class="box-qa__vote">
                   <div class="box-qa__vote__title">Vui lòng chọn đánh giá: </div>
-                  <ul>
-                    <li>
-                      <span><i class="icon-star fa fa-star"></i></span>
-                    </li>
-                    <li>
-                      <span><i class="icon-star fa fa-star"></i></span>
-                    </li>
-                    <li>
-                      <span><i class="icon-star fa fa-star"></i></span>
-                    </li>
-                    <li>
-                      <span><i class="icon-star fa fa-star"></i></span>
-                    </li>
-                    <li>
-                      <span><i class="icon-star fa fa-star"></i></span>
-                    </li>
-                  </ul>
+	                  <fieldset class="rating">
+	                      <input type="radio" id="star5" name="rating" value="5"/>
+	                      <label class="full" for="star5" title="Awesome - 5 stars"></label>
+	              
+	                      <input type="radio" id="star4" name="rating" value="4"/>
+	                      <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+	              
+	                      <input type="radio" id="star3" name="rating" value="3"/>
+	                      <label class="full" for="star3" title="Meh - 3 stars"></label>
+	              
+	                      <input type="radio" id="star2" name="rating" value="2" />
+	                      <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+	              
+	                      <input type="radio" id="star1" name="rating" value="1" />
+	                      <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+	                  </fieldset>
+	                  <input type="hidden" id="rateNumber" name="rateNumber" value="">
+	                   <input type="hidden" id="dateOfComment" name="dateOfComment" value="">
                 </div>
                 <div class="form-group comment-content">
                   <label for="commentContent">Đánh giá</label>
                   <textarea class="form-control" rows="5" id="commentContent" name="commentContent" spellcheck="false"></textarea>
                 </div>
-                <!-- <div class="form-group image-comment">
+               <div class="form-group image-comment">
                   <label for="imageComenet">Upload hình ảnh:</label>
-                  <input type="file" class="form-control" id="imageComenet" name="imageComenet" multiple="multiple"">
-                </div> -->
+                  <input type="file" class="form-control" id="imageFile" name="imageFile" multiple="multiple"">
+                </div> 
               </div>
-              <button type="submit" class="btn btn-aqua btnSubmitRateComment">Gửi đánh giá</button>
+              <sec:authorize access="!isAuthenticated()">
+                	<div class="box-login">
+		            	<a href="/login" role="button" class="btn btn-aqua-login"><span>Vui lòng đăng nhập để gửi đánh giá</span></a>
+		            </div>
+               </sec:authorize>
+               <sec:authorize access="isAuthenticated()">
+               		<input type="hidden" id="userId" name="userEntity.userId" value="${ user.userId }">
+               		<button type="submit" class="btn btn-aqua btnSubmitRateComment">Gửi đánh giá</button>
+               </sec:authorize>
             </div>
           </form>
           <hr>

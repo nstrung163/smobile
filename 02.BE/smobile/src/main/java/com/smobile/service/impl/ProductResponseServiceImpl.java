@@ -10,13 +10,16 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.smobile.common.constant.Constants;
+import com.smobile.common.util.FileHelper;
 import com.smobile.convert.ObjectToModel;
 import com.smobile.entity.ProductCommentEntity;
 import com.smobile.entity.ProductEntity;
@@ -24,6 +27,7 @@ import com.smobile.entity.ProductInfoEntity;
 import com.smobile.entity.ProductOptionEntity;
 import com.smobile.entity.PurchaseDetailEntity;
 import com.smobile.entity.PurchaseEntity;
+import com.smobile.entity.RateProductEntity;
 import com.smobile.model.CartModel;
 import com.smobile.model.PageModel;
 import com.smobile.model.ProductCommentModel;
@@ -31,6 +35,7 @@ import com.smobile.model.ProductDetailModel;
 import com.smobile.model.ProductItemModel;
 import com.smobile.model.ProductMemoryPriceModel;
 import com.smobile.model.PurchaseModel;
+import com.smobile.model.RateCommentModel;
 import com.smobile.model.ResponseDataModel;
 import com.smobile.model.SearchCondition;
 import com.smobile.repository.IProductCommentRepository;
@@ -49,6 +54,9 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class ProductResponseServiceImpl implements IProductResponseService{
 
+	@Value("${parent.folder.images.comment}")
+	private String commentFolderPath;
+	
 	@Autowired
 	IProductRepository productRepository;
 	
@@ -72,6 +80,9 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 	
 	@Autowired
 	IPurchaseDetailRepository purchaseDetailRepository;
+	
+	@Autowired 
+	IRateProductRepository rateProductRepository;
 	
 	@Autowired
 	HttpSession session;
@@ -241,10 +252,11 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 			ProductDetailModel productDetailModel = new ProductDetailModel(productEntity, totalRate, averagePointRate, imagesUrl, productInfoEntity, productOptionEntity, productCommentList, productMemoryPriceModels);
 			List<ProductOptionEntity> productOptionListByPriceAndId = productOptionRepository.findByMemoryAndProductId(productOptionEntity.getMemoryProduct(), productId);
 			List<ProductCommentModel> productCommentModels = ObjectToModel.convertToListProductCommentModel(productCommentRepository.getProductCommentModel(productId));
-			
+			List<Integer> listTotalRate = rateRepository.getListTotalRateEachRate(productId);
 			data.put("productDetailModel", productDetailModel);
 			data.put("productOptionListByPriceAndId", productOptionListByPriceAndId);
 			data.put("productCommentModels", productCommentModels);
+			data.put("listTotalRate", listTotalRate);
 			repsonseCode = Constants.RESULT_CD_SUCCESS;
 			responseMsg = "Lấy dữ liệu cho trang chi tiết sản phẩm thành công";
 			log.info(responseMsg);
@@ -434,5 +446,32 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 			 productItemList.add(productItem);
 		}
 		return productItemList;
+	}
+
+	@Override
+	public ResponseDataModel addNewRateAndComment(RateCommentModel rateCommentModel) {
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMsg = Strings.EMPTY;
+		try {
+			RateProductEntity rateProductEntity = new RateProductEntity(rateCommentModel.getRateNumber(), rateCommentModel.getProductEntity(), rateCommentModel.getUserEntity());
+			rateProductRepository.saveAndFlush(rateProductEntity);
+			log.info("Tạo mới lượt đánh giá thành công!");
+			
+			MultipartFile imageFile = rateCommentModel.getImageFile();
+			if(imageFile != null & imageFile.getSize() > 0) {
+				String imageUrlPath = FileHelper.addNewFile(commentFolderPath, imageFile);
+				ProductCommentEntity productCommentEntity = new ProductCommentEntity(rateCommentModel.getCommentContent(),rateCommentModel.getDateOfComment(),
+																					 imageUrlPath, rateCommentModel.getUserEntity(), rateCommentModel.getProductEntity());
+				productCommentRepository.saveAndFlush(productCommentEntity);
+				log.info("Tạo mới bình luân thành công");
+			}
+			responseMsg = "Đánh giá và bình luận thành công";
+			responseCode = Constants.RESULT_CD_SUCCESS;
+			log.info(responseMsg);
+		} catch (Exception e) {
+			responseMsg = "Đánh giá và bình luận không thành công!";
+			log.error(responseMsg);
+		}
+		return new ResponseDataModel(responseCode, responseMsg);
 	}
 }

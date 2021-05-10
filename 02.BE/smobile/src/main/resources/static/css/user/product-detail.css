@@ -1,3 +1,5 @@
+@import
+	url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 /* START BREADCRUMBS */
 * {
 	font-size: 1.4rem;
@@ -492,7 +494,7 @@ input[type="checkbox"]:checked+label:before {
 .box-qa__comment__data {
 	display: flex;
 	flex-direction: column;
-    align-items: center;
+	align-items: center;
 }
 
 .comment-content {
@@ -515,10 +517,10 @@ input[type="checkbox"]:checked+label:before {
 }
 
 #commentContent {
-	
+	font-size: 1.4rem;
 }
 
-#imageComenet {
+#imageFile {
 	font-size: 1.4rem;
 }
 
@@ -576,6 +578,67 @@ input[type="checkbox"]:checked+label:before {
 }
 
 .btn-aqua:hover {
+	color: #fff;
+}
+
+/* Rate star */
+
+/****** Style Star Rating Widget *****/
+.rating {
+	border: none;
+	float: left;
+}
+
+.rating>input {
+	display: none;
+}
+
+.rating>label:before {
+	margin: 5px;
+	font-size: 1.25em;
+	font-family: FontAwesome;
+	display: inline-block;
+	content: "\f005";
+}
+
+.rating>.half:before {
+	content: "\f089";
+	position: absolute;
+}
+
+.rating>label {
+	color: #ddd;
+	float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+.rating>input:checked ~label, /* show gold star when clicked */ .rating:not(:checked)>label:hover,
+	/* hover current star */ .rating:not(:checked)>label:hover ~label {
+	color: #ffd700;
+}
+
+/* hover previous stars in list */
+.rating>input:checked+label:hover,
+	/* hover current star when changing rating */ .rating>input:checked ~label:hover,
+	.rating>label:hover ~input:checked ~label,
+	/* lighten current selection */ .rating>input:checked ~label:hover ~label
+	{
+	color: #ffed85;
+}
+
+.box-login {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn-aqua-login {
+	font-size: 1.4rem;
+	background: #288ad6;
+	color: #fff;
+	font-weight: 400;
+}
+.btn-aqua-login:hover {
 	color: #fff;
 }
 /* END RATE & COMMENT */
