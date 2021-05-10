@@ -1,4 +1,0 @@
-admin1
-123
-
-Chạy bằng Java Application chứ không phải Spring Boot
