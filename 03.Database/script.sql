@@ -179,7 +179,7 @@ CREATE TABLE `product_comment` (
 
 LOCK TABLES `product_comment` WRITE;
 /*!40000 ALTER TABLE `product_comment` DISABLE KEYS */;
-INSERT INTO `product_comment` VALUES (1,'Nếu mua tôi vẫn chọn mua ở Smobile, Rất uy tín.','2021-04-05',1,1,NULL),(2,'Tốt, nhân viên thân thiện','2021-04-07',1,2,NULL),(3,'Sản phẩm Oki','2021-03-07',2,3,NULL),(4,'Sản phẩm tốt Pin trâu','2021-04-04',1,3,NULL),(5,'Đúng như mong chờ 5 sao','2021-04-01',3,3,NULL),(6,'Sản phẩm tốt','2021-05-10',1,3,'images/comment/20210510-1528-hpim5h.png'),(7,'Sản phẩm tốt nhưng giá hơi cao ','2021-05-10',1,2,'images/comment/20210510-1532-29ae74.jpg'),(8,'Good','2021-05-10',1,2,'images/comment/20210510-1534-od81vv.jpg');
+INSERT INTO `product_comment` VALUES (1,'Nếu mua tôi vẫn chọn mua ở Smobile, Rất uy tín.','2021-04-05',1,1,NULL),(2,'Tốt, nhân viên thân thiện','2021-04-07',1,2,NULL),(3,'Sản phẩm Oki','2021-03-07',2,3,NULL),(4,'Sản phẩm tốt Pin trâu','2021-04-04',1,3,NULL),(5,'Đúng như mong chờ 5 sao','2021-04-01',3,3,NULL),(6,'Sản phẩm tốt','2021-05-10',1,4,'images/comment/20210510-1528-hpim5h.png'),(7,'Sản phẩm tốt nhưng giá hơi cao ','2021-05-10',1,2,'images/comment/20210510-1532-29ae74.jpg'),(8,'Good','2021-05-10',1,5,'images/comment/20210510-1534-od81vv.jpg');
 /*!40000 ALTER TABLE `product_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,7 +262,7 @@ CREATE TABLE `product_option` (
   `IMAGE_URL` text NOT NULL,
   PRIMARY KEY (`PRODUCT_OPTION_ID`),
   KEY `FKce5s9kcidsu22c94cepxr6hco` (`PRODUCT_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,7 +271,7 @@ CREATE TABLE `product_option` (
 
 LOCK TABLES `product_option` WRITE;
 /*!40000 ALTER TABLE `product_option` DISABLE KEYS */;
-INSERT INTO `product_option` VALUES (1,'Bạc',128,29500000,1,'images/product/iphone-12-pro-max-bac.jpg'),(2,'Vàng ',128,29500000,1,'images/product/iphone-12-pro-max-vang.jpg'),(3,'Đen',128,29500000,1,'images/product/iphone-12-pro-max-xam.jpg'),(4,'Xanh dương',128,29500000,1,'images/product/iphone-12-pro-max-xanh-duong.jpg'),(5,'Bạc',256,32000000,1,'images/product/iphone-12-pro-max-bac.jpg'),(6,'Vàng ',256,32000000,1,'images/product/iphone-12-pro-max-vang.jpg'),(7,'Xám',256,32000000,1,'images/product/iphone-12-pro-max-xam.jpg'),(9,'Bạc',512,38500000,1,'images/product/iphone-12-pro-max-bac.jpg'),(10,'Vàng ',512,38500000,1,'images/product/iphone-12-pro-max-vang.jpg'),(12,'Xám',512,38500000,1,'images/product/iphone-12-pro-max-xam.jpg'),(14,'Vàng',512,36990000,2,'images/product/iphone-12-pro-max-vang.jpg'),(15,'Đen',512,36990000,2,'images/product/iphone-12-pro-max-den.jpg'),(16,'Đen',64,26000000,2,'images/product/iphone-12-pro-max-den.jpg'),(17,'Vàng',64,26000000,2,'images/product/iphone-11-pro-max-vang.jpg'),(18,'Bạc',64,26000000,2,'images/product/iphone-11-pro-max-trang.jpg'),(20,'Đen',256,32000000,2,'images/product/iphone-12-pro-max-den.jpg'),(21,'Vàng',256,32000000,2,'images/product/iphone-11-pro-max-vang.jpg'),(22,'Bạc',256,32000000,2,'images/product/iphone-11-pro-max-trang.jpg'),(35,'Đỏ',256,16990000,4,'images/product/iphone-xr.jpg'),(24,'Trắng',64,15800000,3,'images/product/iphone-11-trang.jpg'),(25,'Đỏ',64,15800000,3,'images/product/iphone-11-do.jpg'),(26,'Vàng',64,15800000,3,'images/product/iphone-11-vang.jpg'),(27,'Tím',64,15800000,3,'images/product/iphone-11-tim.jpg'),(28,'Trắng',128,18000000,3,'images/product/iphone-11-trang.jpg'),(29,'Đỏ',128,18000000,3,'images/product/iphone-11-do.jpg'),(30,'Vàng',128,18000000,3,'images/product/iphone-11-vang.jpg'),(31,'Tím',128,18000000,3,'images/product/iphone-11-tim.jpg'),(32,'Đỏ',256,21900000,3,'images/product/iphone-11-do.jpg'),(33,'Vàng',256,21900000,3,'images/product/iphone-11-vang.jpg'),(34,'Tím',256,21900000,3,'images/product/iphone-11-tim.jpg'),(38,'Đỏ',64,21900000,6,'images/product/iphone-12-do.jpg'),(37,'Trắng',128,17790000,5,'images/product/iphone-12-xanh.jpg'),(40,'Vàng Đồng',256,20990000,21,'images/product/samsung-ultra-5g.jpg'),(41,'Đen',256,20990000,21,'images/product/samsung-ultra-5g-den.jpg'),(42,'Vàng Đồng',512,25990000,21,'images/product/samsung-ultra-5g.jpg');
+INSERT INTO `product_option` VALUES (1,'Bạc',128,29500000,1,'images/product/iphone-12-pro-max-bac.jpg'),(2,'Vàng ',128,29500000,1,'images/product/iphone-12-pro-max-vang.jpg'),(3,'Đen',128,29500000,1,'images/product/iphone-12-pro-max-xam.jpg'),(4,'Xanh dương',128,29500000,1,'images/product/iphone-12-pro-max-xanh-duong.jpg'),(5,'Bạc',256,32000000,1,'images/product/iphone-12-pro-max-bac.jpg'),(6,'Vàng ',256,32000000,1,'images/product/iphone-12-pro-max-vang.jpg'),(7,'Xám',256,32000000,1,'images/product/iphone-12-pro-max-xam.jpg'),(9,'Bạc',512,38500000,1,'images/product/iphone-12-pro-max-bac.jpg'),(10,'Vàng ',512,38500000,1,'images/product/iphone-12-pro-max-vang.jpg'),(12,'Xám',512,38500000,1,'images/product/iphone-12-pro-max-xam.jpg'),(14,'Vàng',512,36990000,2,'images/product/iphone-12-pro-max-vang.jpg'),(15,'Đen',512,36990000,2,'images/product/iphone-12-pro-max-den.jpg'),(16,'Đen',64,26000000,2,'images/product/iphone-12-pro-max-den.jpg'),(17,'Vàng',64,26000000,2,'images/product/iphone-11-pro-max-vang.jpg'),(18,'Bạc',64,26000000,2,'images/product/iphone-11-pro-max-trang.jpg'),(20,'Đen',256,32000000,2,'images/product/iphone-12-pro-max-den.jpg'),(21,'Vàng',256,32000000,2,'images/product/iphone-11-pro-max-vang.jpg'),(22,'Bạc',256,32000000,2,'images/product/iphone-11-pro-max-trang.jpg'),(35,'Đỏ',256,16990000,4,'images/product/iphone-xr.jpg'),(24,'Trắng',64,15800000,3,'images/product/iphone-11-trang.jpg'),(25,'Đỏ',64,15800000,3,'images/product/iphone-11-do.jpg'),(26,'Vàng',64,15800000,3,'images/product/iphone-11-vang.jpg'),(27,'Tím',64,15800000,3,'images/product/iphone-11-tim.jpg'),(28,'Trắng',128,18000000,3,'images/product/iphone-11-trang.jpg'),(29,'Đỏ',128,18000000,3,'images/product/iphone-11-do.jpg'),(30,'Vàng',128,18000000,3,'images/product/iphone-11-vang.jpg'),(31,'Tím',128,18000000,3,'images/product/iphone-11-tim.jpg'),(32,'Đỏ',256,21900000,3,'images/product/iphone-11-do.jpg'),(33,'Vàng',256,21900000,3,'images/product/iphone-11-vang.jpg'),(34,'Tím',256,21900000,3,'images/product/iphone-11-tim.jpg'),(38,'Đỏ',64,21900000,6,'images/product/iphone-12-do.jpg'),(37,'Trắng',128,17790000,5,'images/product/iphone-12-xanh.jpg'),(40,'Vàng Đồng',256,20990000,21,'images/product/samsung-ultra-5g.jpg'),(41,'Đen',256,20990000,21,'images/product/samsung-ultra-5g-den.jpg'),(42,'Vàng Đồng',512,25990000,21,'images/product/samsung-ultra-5g.jpg'),(43,'Bạc',128,30500000,22,'images/product/samsung-galaxy-s21-ultra.jpg'),(44,'Tím',128,8500000,23,'images/product/samsung-galaxy-a52-tim.jpg'),(45,'Vàng Đồng',128,19000000,26,'images/product/SS20-vang-dong.jpg'),(46,'Bạc',128,2500000,24,'images/product/samsung-galaxy-s21-plus-bac.jpg'),(47,'Xanh',256,10500000,25,'images/product/samsung-galaxy-s21-plus-bac.jpg'),(48,'Trắng',128,5900000,27,'images/product/samsung-galaxy-a32-trang.jpg'),(49,'Vàng Đồng',256,47500000,28,'images/product/galaxy-z-fold2-5g-vang-dong.jpg'),(50,'Đỏ',64,3300000,29,'images/product/samsung-galaxy-a02s-do.jpg'),(51,'Xanh Rêu',256,15000000,30,'images/product/SSNOTE20-XANH.jpg'),(52,'Tím',128,5350000,31,'images/product/ssA31-TIM.jpg'),(53,'Xanh',128,4600000,32,'images/product/xiaomi-redmi-note-10-trang.jpg');
 /*!40000 ALTER TABLE `product_option` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -390,7 +390,7 @@ CREATE TABLE `rate_product` (
 
 LOCK TABLES `rate_product` WRITE;
 /*!40000 ALTER TABLE `rate_product` DISABLE KEYS */;
-INSERT INTO `rate_product` VALUES (1,4,1,1),(2,5,1,2),(3,5,1,3),(4,4,1,4),(5,5,3,3),(6,5,1,3),(7,4,1,2),(8,4,1,2);
+INSERT INTO `rate_product` VALUES (1,4,1,1),(2,5,1,2),(3,5,2,3),(4,4,1,3),(5,5,3,3),(6,5,1,4),(7,4,1,2),(8,4,1,5);
 /*!40000 ALTER TABLE `rate_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -436,4 +436,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-10 16:25:47
+-- Dump completed on 2021-05-10 17:27:05
