@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "root.storage.folder",
+    "type": "java.lang.String",
+    "description": "A description for 'root.storage.folder'"
+  },
+  {
+    "name": "parent.folder.images.brand",
+    "type": "java.lang.String",
+    "description": "Store image brand with url: images/brand/"
+  },
+  {
+    "name": "parent.folder.images.product",
+    "type": "java.lang.String",
+    "description": "Store image brand with url: images/product/"
+  },
+  {
+    "name": "parent.folder.images.account",
+    "type": "java.lang.String",
+    "description": "Store image accout with url: images/account'"
+  },
+  {
+    "name": "parent.folder.images.news",
+    "type": "java.lang.String",
+    "description": "A description for 'parent.folder.images.news'"
+  }
+]}
