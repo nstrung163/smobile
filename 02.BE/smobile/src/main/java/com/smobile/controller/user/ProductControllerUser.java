@@ -33,7 +33,7 @@ public class ProductControllerUser {
 	@GetMapping(value = "/api/product-items/{pageNumber}")
 	@ResponseBody
 	public ResponseDataModel getAllProductItemApi(@PathVariable(value = "pageNumber") int pageNumber) {
-		return productResponseService.findAllProcuctApi(pageNumber);
+		return productResponseService.findAllProductApi(pageNumber);
 	}
 	
 	@GetMapping(value = "/product-outstanding")
@@ -57,7 +57,7 @@ public class ProductControllerUser {
 	@GetMapping(value = "/api/product/{pageNumber}")
 	@ResponseBody
 	public ResponseDataModel findAllPageWithApi(@PathVariable(value = "pageNumber") int pageNumber) {
-		return productResponseService.findAllProcuctApi(pageNumber);
+		return productResponseService.findAllProductApi(pageNumber);
 	}
 	
 	@PostMapping(value = "/api/search-product/{pageNumber}")
@@ -65,6 +65,12 @@ public class ProductControllerUser {
 	public ResponseDataModel searchProduct(@RequestBody SearchCondition searchCondition,
 										   @PathVariable(value = "pageNumber") int pageNumber) {
 		return productResponseService.getSearchCondition(searchCondition, pageNumber);
+	}
+	
+	@GetMapping(value = "/product-detail/api/get-all-comment/{productId}")
+	@ResponseBody
+	public ResponseDataModel getAllComment(@PathVariable(value = "productId") Integer productId) {
+		return productResponseService.getAllCommentProduct(productId);
 	}
 	
 }

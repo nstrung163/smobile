@@ -298,7 +298,7 @@
                   <textarea class="form-control" rows="5" id="commentContent" name="commentContent" spellcheck="false"></textarea>
                 </div>
                <div class="form-group image-comment">
-                  <label for="imageComenet">Upload hình ảnh:</label>
+                  <label for="imageComment">Upload hình ảnh:</label>
                   <input type="file" class="form-control" id="imageFile" name="imageFile" multiple="multiple"">
                 </div> 
               </div>
@@ -488,6 +488,7 @@
     <script src="<c:url value='/plugins/jquery/jquery-3.5.1.min.js'/>"></script>
 	<script src="<c:url value='/plugins/bootstrap/js/bootstrap.min.js'/>"></script>
 	<script src="<c:url value='/plugins/bootstrap/js/bootstrap-notify.min.js'/>"></script>
+	<script src="<c:url value='/plugins/ekko-lightbox/ekko-lightbox.min.js'/>"></script>
 	<script src="<c:url value='/js/base.js'/>"></script>
 	<script src="<c:url value='/js/user/product-detail.js'/>"></script>
   </body>

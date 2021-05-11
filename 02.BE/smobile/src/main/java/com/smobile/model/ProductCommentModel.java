@@ -13,9 +13,13 @@ import lombok.Data;
 @NoArgsConstructor
 public class ProductCommentModel {
 
+	private Integer productId;
+	
 	private String commentContent;
 	
 	private Date dateOfComment;
+	
+	private String imageCommentUrl;
 	
 	private String fullName;
 	

@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.smobile.entity.ProductCommentEntity;
 import com.smobile.entity.UserEntity;
 import com.smobile.model.PurchaseModel;
-import com.smobile.model.RateCommentModel;
 import com.smobile.model.ResponseDataModel;
 import com.smobile.service.IBrandService;
 import com.smobile.service.IProductResponseService;
@@ -97,7 +97,7 @@ public class HomeController {
 	
 	@PostMapping(value = "/user/comment")
 	@ResponseBody
-	public ResponseDataModel addNewComment(@ModelAttribute RateCommentModel rateCommentModel) {
-		return productResponseService.addNewRateAndComment(rateCommentModel);
+	public ResponseDataModel addNewComment(@ModelAttribute ProductCommentEntity productCommentEntity) {
+		return productResponseService.addNewRateAndComment(productCommentEntity);
 	}
 }

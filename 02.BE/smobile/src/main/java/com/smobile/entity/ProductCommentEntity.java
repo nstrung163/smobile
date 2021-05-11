@@ -1,6 +1,6 @@
 package com.smobile.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,35 +30,38 @@ public class ProductCommentEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "COMMENT_ID", columnDefinition = "bigint")
 	private Integer commentId;
-	
+
 	@Column(name = "COMMENT_CONTENT", columnDefinition = "text", nullable = false)
 	private String commentContent;
-	
+
 	@Column(name = "DATE_OF_COMMENT", columnDefinition = "date", nullable = false)
 	private Date dateOfComment;
-	
+
 	@Column(name = "IMAGE_COMMENT_URL", columnDefinition = "text", nullable = true)
 	private String imageCommentUrl;
-	
+
+	@Column(name = "RATE_NUMBER", columnDefinition = "int", nullable = false)
+	private int rateNumber;
+
 	@Transient
 	private MultipartFile imageFile;
-	
+
 	@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private UserEntity userEntity;
-	
+
 	@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private ProductEntity productEntity;
 
-	public ProductCommentEntity(String commentContent, Date dateOfComment, String imageCommentUrl,
+	public ProductCommentEntity(String commentContent, Date dateOfComment, String imageCommentUrl, int rateNumber,
 			UserEntity userEntity, ProductEntity productEntity) {
 		super();
 		this.commentContent = commentContent;
 		this.dateOfComment = dateOfComment;
 		this.imageCommentUrl = imageCommentUrl;
+		this.rateNumber = rateNumber;
 		this.userEntity = userEntity;
 		this.productEntity = productEntity;
 	}
-	
 }

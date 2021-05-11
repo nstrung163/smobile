@@ -82,6 +82,7 @@ $('.box-qa__rate__show-form').on('click', function() {
 	
 })
 
+/** Set value for rate number on event click */
 $('.rating label').on('click', function ()
 {
     var labelSelected = $(this).attr("for");
@@ -95,7 +96,30 @@ $('.rating label').on('click', function ()
     })
 })
 
+/** View all rate and comment product */
+$('.box-reviewer__list').on('click', '.btn-view-all', function(event){
+	event.preventDefault();
+	var urlGetAllRateComment = $(this).attr("href");
+	$.ajax({
+		url: urlGetAllRateComment,
+		type: 'GET',
+		dataType: 'JSON',
+		contentType: 'application/json',
+		success: function(responseData) {
+			if(responseData.responseCode == 100) {
+				renderBoxReviewerList(responseData.data.productCommentModels);
+				$('.btn-view-all').addClass('d-none');
+			} else {
+				showNotification(false, responseData.responseMsg);
+			}
+		},
+		error: function(e) {
+			alert(`Xem danh sách tất cả bình luận không thàng công do: ${JSON.stringify(e)}`)
+		} 		
+	})
+})
 
+/** Submit rate and comment product */
 $('.btnSubmitRateComment').on('click', function(event) {
 	event.preventDefault();
 	$("#rateNumber").val(rateNumber)
@@ -110,7 +134,7 @@ $('.btnSubmitRateComment').on('click', function(event) {
 		enctype: 'multipart/form-data',
 		data: formRateComment, 
 		success: function(responseData) {
-			// Refresh 
+			// Refresh page
 			window.location = window.location.pathname;
 		}
 	})
@@ -377,27 +401,43 @@ function renderTotalRate(listTotalRate, productId) {
 
 /** Render box reviewer */
 function renderBoxReviewerList(productCommentModels) {
+	$('.btn-view-all').removeClass('d-none');
 	var $boxReivewerList = $('.box-reviewer__list');
 	var rowReviewer = "";
+	var productId = 0;
 	$boxReivewerList.empty();
 	$.each(productCommentModels, function(key, value) {
+		productId = value.productId;
 		rowReviewer = `<li class="box-reviewer__item">
-				          <img class="img-avt w-30" src="/${value.avatarUrl}" alt="${value.avatarUrl}">
-				          <div>
-				            <span class="box-reviewer__item--name">${value.fullName}</span> 
-				            <br>
-				            <span class="box-reviewer__item--star">
-							  Đánh giá: <span class="box-reviewer__item--number">${ value.rateNumber }</span> <i class="fa fa-star checked"></i>
-				              <span class="box-reviewer__item--date">Ngày ${getFormattedDate(value.dateOfComment)}</span>
-				            </span>
-				            <p class="box-reviewer__item--content">${value.commentContent}</p>
-				          </div>
+						  <div class="box-reviewer__content">
+							  <img class="img-avt w-30" src="/${value.avatarUrl}" alt="${value.avatarUrl}">
+					          <div>
+					            <span class="box-reviewer__item--name">${value.fullName}</span> 
+					            <br>
+					            <span class="box-reviewer__item--star">
+								  Đánh giá: <span class="box-reviewer__item--number">${ value.rateNumber }</span> <i class="fa fa-star checked"></i>
+					              <span class="box-reviewer__item--date">Ngày ${getFormattedDate(value.dateOfComment)}</span>
+					            </span>
+					            <p class="box-reviewer__item--content">${value.commentContent}</p>
+					          </div>
+						  </div>
+				          <div class="box-reviewer__img comment-${key}">
+							<div class='box-reviewer--item-img'>
+								<a href="/${value.imageCommentUrl}" data-toggle='lightbox' data-max-width='1000'>
+									<img class='img-fluid' src="/${value.imageCommentUrl}">
+								</a>
+							</div>
+		                  </div>
 				        </li>`;
 		$boxReivewerList.append(rowReviewer);
+		console.log(value.imageCommentUrl)
+		if(value.imageCommentUrl == null || value.imageCommentUrl == "") {
+			$(`.comment-${key}`).addClass('d-none');
+		}
 	})
 	$boxReivewerList.append(`
 							<li class="box-reviewer__item">
-								<a href="/" class="btn btn-view-all">
+								<a href="api/get-all-comment/${productId}" class="btn btn-view-all">
 									Xem tất cả đánh giá <i class="fas fa-chevron-right"></i>
 								</a>
 							</li>

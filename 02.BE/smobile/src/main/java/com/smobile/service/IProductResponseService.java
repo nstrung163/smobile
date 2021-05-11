@@ -2,12 +2,12 @@ package com.smobile.service;
 
 import java.util.List;
 
+import com.smobile.entity.ProductCommentEntity;
 import com.smobile.entity.ProductEntity;
 import com.smobile.entity.PurchaseEntity;
 import com.smobile.model.CartModel;
 import com.smobile.model.ProductItemModel;
 import com.smobile.model.PurchaseModel;
-import com.smobile.model.RateCommentModel;
 import com.smobile.model.ResponseDataModel;
 import com.smobile.model.SearchCondition;
 
@@ -15,15 +15,13 @@ public interface IProductResponseService {
 
 	ResponseDataModel findAllProductItem();
 	 
-	ResponseDataModel findAllProcuctApi(int pageNumber);
+	ResponseDataModel findAllProductApi(int pageNumber);
 	
 	ResponseDataModel getProductOutstanding();
 	
 	ResponseDataModel findProductDetailById(Integer productId);
 	
 	ResponseDataModel getListProductOptionByMemoryAndProductId(int memoryProduct, Integer productId);
-	
-//	ResponseDataModel getListOptionMemoryPrice(Integer productId);
 	
 	CartModel addProductToCart(Integer productOptionId);
 	
@@ -48,6 +46,8 @@ public interface IProductResponseService {
 	
 	List<ProductItemModel> convertProductEntityToProductItemModel(List<ProductEntity> productList);
 	
-	ResponseDataModel addNewRateAndComment(RateCommentModel rateCommentModel);
+	ResponseDataModel addNewRateAndComment(ProductCommentEntity productCommentEntity);
+	
+	ResponseDataModel getAllCommentProduct(Integer productId);
 }
 
