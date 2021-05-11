@@ -484,10 +484,12 @@ input[type="checkbox"]:checked + label:before {
 }
 #commentContent {
 }
-#imageComenet {
+#imageComment {
   font-size: 1.4rem;
 }
-
+#imageFile {
+  font-size: 1.4rem;
+}
 /* Start show list reviewer */
 .box-reviewer {
 }
@@ -495,14 +497,13 @@ input[type="checkbox"]:checked + label:before {
 }
 .img-avt {
   width: 100px;
-  height: 75px;
+  height: 80px;
   margin-right: 14px;
 }
 .box-reviewer__item {
   display: flex;
-  justify-content: stretch;
-  align-items: center;
-  padding: 5px 0;
+  flex-direction: column;
+  padding: 10px 0;
   border-bottom: 1px solid #d4d4d4;
 }
 
@@ -530,6 +531,18 @@ input[type="checkbox"]:checked + label:before {
 .btn-aqua:hover {
   color: #fff;
 }
+.box-reviewer__content {display: flex;padding-bottom: 10px;}
+.box-reviewer__img {
+
+}
+
+.box-reviewer--item-img {
+
+width: 100px;
+
+height: 130px;
+}
+
 
 /* Rate star */
 
@@ -578,5 +591,21 @@ input[type="checkbox"]:checked + label:before {
         /* lighten current selection */
         .rating>input:checked~label:hover~label {
   color: #ffed85;
+}
+
+.box-login {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn-aqua-login {
+	font-size: 1.4rem;
+	background: #288ad6;
+	color: #fff;
+	font-weight: 400;
+}
+.btn-aqua-login:hover {
+	color: #fff;
 }
 /* END RATE & COMMENT */
