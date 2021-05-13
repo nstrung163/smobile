@@ -31,14 +31,15 @@ $('#btnSubmitCheckout').on('click', function(event) {
 			},
 			deliveryAddress: {
 				required: true,
-				minlength: 2,
+				minlength: 10,
 				maxlength: 200
 			},
 			phoneNumber: {
 				required: true,
 				number: true,
 				minlength: 9,
-				maxlength: 13
+				maxlength: 13,
+				valid_phone: true
 			},
 		},
 		messages: {
@@ -49,14 +50,15 @@ $('#btnSubmitCheckout').on('click', function(event) {
 			},
 			deliveryAddress: {
 				required: "Địa nhận hàng là trường bắt buộc",
-				minlength: "Chiều dài địa nhận hàng không được nhỏ hơn 2 ký tự",
+				minlength: "Chiều dài địa nhận hàng không được nhỏ hơn 10 ký tự",
 				maxlength: "Chiều dài địa nhận hàng không được lơn hơn 200 ký tự"
 			},
 			phoneNumber: {
-				required: "Địa nhận hàng là trường bắt buộc",
+				required: "Số điện thoại là trường bắt buộc",
 				number: "Vui lòng nhập dạng số cho số điện thoại",
-				minlength: "Chiều dài địa nhận hàng không được nhỏ hơn 2 ký tự",
-				maxlength: "Chiều dài địa nhận hàng không được lơn hơn 200 ký tự"
+				minlength: "Số điện thoại không được nhỏ hơn 10 số",
+				maxlength: "Chiều dài địa nhận hàng không được lớn hơn 13 số",
+				valid_phone: "Vui lòng nhập đúng định dạng số điện thoại Việt Nam"
 			},
 		},
 		errorElement: "div",
@@ -103,6 +105,7 @@ $('.minus-quantity').on('click', function(event) {
 	})
 })
 
+
 $('.plus-quantity').on('click', function(event) {
 	event.preventDefault();
 	var urlMinus = $(this).attr("href");
@@ -144,4 +147,11 @@ $('.remove-product').on('click', function(event) {
 		}
 	})
 })
+$('.box-card__title--back--home').click(function(event) {
+	event.preventDefault();
+	window.history.back();
+})
 
+jQuery.validator.addMethod('valid_phone', function (value) {
+    return /([\+84|84|0]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8})\b/.test(value);
+});

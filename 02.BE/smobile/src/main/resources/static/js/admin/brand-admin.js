@@ -9,6 +9,9 @@ $.get(url, function(responseData) {
 		fixedHeader: true,
 		processing: true,
 		data: responseData,
+		"columnDefs": [ 
+			{ className: "td-action", "targets": [ 4 ] },
+		  ],
 		columns: [
 			{ data: 'brandId' },
 			{ data: 'brandName' },

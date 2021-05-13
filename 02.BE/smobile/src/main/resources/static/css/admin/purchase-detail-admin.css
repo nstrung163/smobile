@@ -11,13 +11,106 @@
 }
 
 .purchase-detail__left {
-	
+	display: flex;
 }
 
 .purchase-detail__right {
 	
 }
+
 .group-row {
 	display: flex;
 	justify-content: space-between;
 }
+
+.td-ma-cthd {
+	width: 5%;
+}
+
+.td-product-name {
+	width: 20%;
+}
+
+.td-sale-price {
+	width: 5%;
+}
+
+.td-quantity {
+	width: 5%;
+}
+
+.td-sale-date {
+	width: 13%;
+}
+
+.td-action {
+	width: 5%;
+}
+
+.td-full-name {
+	width: 14%;
+}
+
+.td-purchase-status-name {
+	width: 14%;
+	position: relative;
+}
+
+.product-quantity {
+	text-align: center;
+}
+
+.wating, .cancel, .sended, .sending, .processing {
+	min-width: 100px;
+    text-align: center;
+    color: #fff;
+    border: 1px solid #ccc;
+    padding: 2px 5px;
+    border-radius: 4px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wating {
+	background: #28a745;
+}
+
+.cancel {
+	background: #dc3545;
+}
+
+.sended {
+	background: #007bff;
+}
+
+.sending {
+	background: #6c757d;
+}
+
+.processing {
+	background: #6f42c1;
+}
+
+.td-small {
+	width: 130px;
+}
+/* START FORM PURCHASE */
+.image-product-area {
+	width: 57%;
+}
+
+.group-row-right {
+	
+}
+/* END FORM  PURCHASE */
+/* START EDIT MODAL */
+.modal-content {
+	top: -20px;
+}
+.btn-box {
+	display: flex;
+    justify-content: space-evenly;
+}
+/* END EDIT MODAL */

@@ -9,8 +9,18 @@ $.get(url, function(responseData) {
 		fixedHeader: true,
 		processing: true,
 		data: responseData,
+		"order": [[ 1, 'desc' ]],
+		"columnDefs": [ 
+			{ className: "td-ma-cthd", "targets": [ 0 ] },
+			{ className: "td-product-name", "targets": [ 2 ] },
+			{ className: "td-sale-price", "targets": [ 3 ] },
+			{ className: "td-quantity", "targets": [ 4 ] },
+			{ className: "td-sale-date", "targets": [ 5 ] },
+			{ className: "td-full-name", "targets": [ 6 ] },
+			{ className: "td-purchase-status-name", "targets": [ 7 ] },
+			{ className: "td-action", "targets": [ 8 ] },
+		  ],
 		columns: [
-			{ data: 'purchaseId' },
 			{ data: 'purchaseDetailId' },
 			{ render: function(data, type, row) {
 					return `<div class='text-center image-area-brand'><a href="/${row.imageUrl}" data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src="/${row.imageUrl}"></div>`;
@@ -24,13 +34,31 @@ $.get(url, function(responseData) {
 					return `<div class="unit-price"> ${currencyFormat(row.salePrice)} ₫</div>`;
 				} 
 			},
-			{ data: 'quantity' },
+			{ render: function(data, type, row) {
+					return `<div class="product-quantity"> ${row.quantity}</div>`;
+				} 
+			},
 			{ render: function(data, type, row) {
 					return `<div class="sale-date"> ${getFormattedDate(row.dateOfOrder)}</div>`;
 				} 
 			},
-			{ data: 'fullName' },
-			{ data: 'purchaseStatusName' },
+			{ render: function(data, type, row) {
+					return `<div class="full-name"> ${row.fullName}</div>`;
+				} 
+			},
+			{ render: function(data, type, row) {
+					if(row.purchaseStatusName == "Hủy đơn hàng") {
+						return `<div class="purchase-status-name cancel"> ${row.purchaseStatusName}</div>`;
+					} else if(row.purchaseStatusName == "Đang giao hàng") {
+						return `<div class="purchase-status-name sending"> ${row.purchaseStatusName}</div>`;
+					} else if(row.purchaseStatusName == "Đã giao") {
+						return `<div class="purchase-status-name sended"> ${row.purchaseStatusName}</div>`;
+					}else if(row.purchaseStatusName == "Đang xử lý") {
+						return `<div class="purchase-status-name processing"> ${row.purchaseStatusName}</div>`;
+					}else 
+						return `<div class="purchase-status-name wating"> ${row.purchaseStatusName}</div>`;
+				} 
+			},
 			{
 				render: function(data, type, row) {
 					return `<div class="action-btns text-center">
@@ -42,7 +70,7 @@ $.get(url, function(responseData) {
 							</a>
 						</div>`;
 				}
-			}
+			},
 		],
 	});
 }).fail(function() {
@@ -54,7 +82,7 @@ $(document).ready(function() {
 	initTableData();
 	/** Show modal form update purchase detail */
 	$("#dataTable").on('click', '.edit-btn', function() {
-		$('.modal-title').text('Chỉnh Sửa Hóa Đơn');
+		$('.modal-title').text('Duyệt Đơn Hàng');
 		$('#btnSubmitPurchaseDetail').text('Cập nhật');
 		$.ajax({
 			url: '/admin/purchase-detail/' + $(this).data('id'),
@@ -70,7 +98,7 @@ $(document).ready(function() {
 				$("#salePrice").val(responseData[0].salePrice);
 				$("#quantity").val(responseData[0].quantity);
 				$("#dateOfOrder").val(responseData[0].dateOfOrder);
-				$("#purchaseStatusName").val(responseData[0].purchaseStatusName);
+				/*$("#purchaseStatusName").val(responseData[0].purchaseStatusName);*/
 				$("#fullName").val(responseData[0].fullName);
 				$("#description").val(responseData[0].description);
 				var imageUrl =  '/' + responseData[0].imageUrl;
@@ -157,6 +185,16 @@ $(document).ready(function() {
 			}
 		})
 	})
+})
+
+/** Toggle with of tag td */
+$('.btn-change-width').click(function() {
+	console.log($('#dataTable').find('.cancel'))
+	$('#dataTable').find('.processing').toggleClass('td-small');
+	$('#dataTable').find('.sending').toggleClass('td-small');
+	$('#dataTable').find('.wating').toggleClass('td-small');
+	$('#dataTable').find('.sended').toggleClass('td-small');
+	$('#dataTable').find('.cancel').toggleClass('td-small');
 })
 
 function reloadDataTable() {

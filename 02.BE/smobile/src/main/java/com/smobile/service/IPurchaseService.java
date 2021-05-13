@@ -51,6 +51,13 @@ public interface IPurchaseService {
 	 */
 	ResponseDataModel deletePurchaseById(Integer purchaseId);
 	
-	
+	/**
+	 * 
+	 * Update status purchase by purchase Id and purchase status id
+	 * 
+	 * @param purchaseId
+	 * @param purchaseStatusId
+	 * @return ResponseDataModel
+	 */
 	ResponseDataModel updateStatusPurchase(Integer purchaseId, Integer purchaseStatusId);
 }

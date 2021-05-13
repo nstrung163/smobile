@@ -29,6 +29,7 @@ th {
 }
 .form-group > label{
 	font-weight: 600;
+	margin-bottom: 3px;
 }
 a {
 	cursor: pointer;
@@ -99,7 +100,7 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error {
 }
 
 .preview-image-upload img {
-	max-width: 50%;
+	max-width: 40%;
 	opacity: .7;
 }
 /* END IMAGE FROM ADD/UPDATE */
@@ -125,4 +126,26 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error {
 .quantity-product {
 	text-align: center;
 }
+
+.td-action {
+	position: relative;
+}
+
+.action-btns {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 /* END CUSTOM DATATABLE */
+
+/* CUSTOM WITDH CONTENT  */
+.sb-nav-fixed #layoutSidenav #layoutSidenav_content {
+	padding-left: 245px;
+    top: 60px;;
+}
+
+.sb-nav-fixed #layoutSidenav #layoutSidenav_nav {
+    width: 250px;
+    height: 100vh;
+}

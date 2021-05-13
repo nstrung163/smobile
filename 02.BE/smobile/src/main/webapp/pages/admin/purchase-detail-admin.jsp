@@ -28,7 +28,7 @@
     <!-- HEADER -->
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand" href="/admin/home"><span class="logo-home"></span></a>
-        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle">
+        <button class="btn btn-link btn-sm order-1 order-lg-0 btn-change-width" id="sidebarToggle">
             <i class="fas fa-bars"></i>
         </button>
         <!-- Navbar Search-->
@@ -150,7 +150,6 @@
                                 <table class="table table-bordered table-striped" id="dataTable" style="width: 100%">
                                     <thead data-detail-formatter="detailFormatter">
                                         <tr id="list-header">
-                                        	<th>Mã HĐ</th>
                                             <th>Mã HĐCT</th>
                                             <th>Hình ảnh sản phẩm</th>
                                             <th>Tên sản phẩm</th>
@@ -164,7 +163,6 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                          <th>Mã hóa đơn</th>
                                           <th>Mã hóa đơn CT</th>
                                           <th>Hình ảnh sản phẩm</th>
                                           <th>Tên sản phẩm</th>
@@ -187,7 +185,7 @@
 						<div class="modal-content">
 							<!-- Modal Header -->
 							<div class="modal-header">
-								<h5 class="modal-title">Thêm hóa đơn chi tiết</h5>
+								<h5 class="modal-title">Duyệt Đơn Hàng</h5>
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 							</div>
 							<!-- Modal body -->
@@ -195,53 +193,56 @@
 								<form  action="" method="POST" id="purchaseDetailInfoForm" enctype="multipart/form-data">
 									<div class="purchase-detail">
 										<div class="purchase-detail__left">
-											<div class="form-group">
-												<label for="logo">Hình sản phẩm: <span class="required-field">(*)</span></label>
-												<div class="preview-image-upload" id="logoImg">
-													<img src="<c:url value='/images/image-demo.png'/>" alt="image">
+											<div class="image-product-area">
+												<div class="form-group ">
+													<label for="logo">Hình sản phẩm: <span class="required-field">(*)</span></label>
+													<div class="preview-image-upload" id="logoImg">
+														<img src="<c:url value='/images/image-demo.png'/>" alt="image">
+													</div>
+													<!-- <input type="file" class="form-control upload-image" name="logoFile" readonly="readonly" accept="image/*" /> -->
+													<input type="hidden" class="old-img" id="logo" name="logo">
 												</div>
-												<!-- <input type="file" class="form-control upload-image" name="logoFile" readonly="readonly" accept="image/*" /> -->
-												<input type="hidden" class="old-img" id="logo" name="logo">
 											</div>
-										</div>
-										<div class="purchase-detail__right">
-											<div class="group-row">
+											<div class="group-row-right">
 												<div class="form-group">
 													<label for="purchaseId">Mã Hóa Đơn: </label>
 													<input type="number" class="form-control" id="purchaseId" name="purchaseId" readonly="readonly" required="required" >
 												</div>
 												<div class="form-group">
-													<label for="purchaseDetailId">Mã HĐCT: </label>
+													<label for="purchaseDetailId">Mã Chi Tiết Hóa Đơn: </label>
 													<input type="number" class="form-control" id="purchaseDetailId" name="purchaseDetailId" readonly="readonly" required="required" >
 												</div>
 											</div>
+										</div>
+										<div class="purchase-detail__right">
 											<div class="form-group">
-												<label for="productName">Tên sản phẩm: </label>
+												<label for="productName">Tên Sản Phẩm: </label>
 												<input type="text" class="form-control" id="productName" name="productName" readonly="readonly" required="required" >
 											</div>
 											<div class="group-row">
 												<div class="form-group">
-													<label for="salePrice">Giá bán: </label>
+													<label for="salePrice">Giá Bán: </label>
 													<input type="number" class="form-control" id="salePrice" name="salePrice" readonly="readonly" required="required" >
 												</div>
 												<div class="form-group">
-													<label for="quantity">Số lượng: </label>
+													<label for="quantity">Số Lượng: </label>
 													<input type="number" class="form-control" id="quantity" name="quantity" readonly="readonly" required="required" >
 												</div>
 											</div>
 											<div class="group-row">
 												<div class="form-group">
-													<label for="dateOfOrder">Ngày đặt hàng: </label>
+													<label for="dateOfOrder">Ngày Đặt Hàng: </label>
 													<input type="date" class="form-control" id="dateOfOrder" name="dateOfOrder" readonly="readonly" required="required" >
 												</div>
 												<div class="form-group">
-													<label for="fullName">Người đặt: </label>
+													<label for="fullName">Người Mua: </label>
 													<input type="text" class="form-control" id="fullName" name="fullName" readonly="readonly" required="required" >
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="brandEntity">Trạng thái: </label>
+												<label for="brandEntity">Trạng Thái: </label>
 												<select class="form-control" id="purchaseStatusName" name="purchaseStatusName">
+													<option class="selected" value="">Chọn trạng thái đơn hàng</option>
 													<c:forEach items="${purchaseStatusList}" var="purchaseStatus">
 														<option value="${purchaseStatus.purchaseStatusId}" class="form-select purchase-status-name">${purchaseStatus.purchaseStatusName}</option>
 													</c:forEach>
@@ -249,12 +250,11 @@
 											</div>
 										</div>
 									</div>
-									<button type="submit" class="btn btn-primary" id="btnSubmitPurchaseDetail">Cập nhật</button>
+									<div class="btn-box">
+										<button type="submit" class="btn btn-primary" id="btnSubmitPurchaseDetail">Cập nhật</button>
+										<button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+									</div>
 								</form>
-							</div>
-							<!-- Modal footer -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
 							</div>
 						</div>
 					</div>

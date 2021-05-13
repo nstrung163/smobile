@@ -7,7 +7,6 @@ var rateNumber = 0;
 $(document).ready(function() {
 	findProductDetailById();
 	initCheckColor();
-	console.log(productId);
 })
 
 /** Change color event by checked */
@@ -30,11 +29,15 @@ $('.btn-check-out').on('click', function(event) {
 		$.ajax({
 			url: '/user/add-product/' + productOptionId,
 			type: 'POST',
-			success: function() {
-				window.location = '/user/cart';
+			success: function(responseData) {
+				if(responseData.responseCode == 100) {
+					window.location = '/user/cart';
+				} else {
+					showNotification(false, `Thêm sản phẩm vào giỏ hàng thất bại!`);
+				}
 			},
 			error: function(e) {
-				showNotification(false, "Thêm sản phẩm thất bại!" + JSON.stringify(e));
+				showNotification(false, "Thêm sản phẩm vào giỏ hàng thất bại!" + JSON.stringify(e));
 			}
 		});
 	}

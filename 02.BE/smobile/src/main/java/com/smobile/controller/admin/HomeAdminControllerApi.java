@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smobile.model.PurchaseModel;
 import com.smobile.model.ResponseDataModel;
+import com.smobile.service.ICartService;
 import com.smobile.service.IProductResponseService;
 import com.smobile.service.IPurchaseDetailService;
 import com.smobile.service.IPurchaseService;
@@ -31,16 +32,19 @@ public class HomeAdminControllerApi {
 	@Autowired
 	IPurchaseDetailService purchaseDetailService;
 	
+	@Autowired
+	ICartService cartService;
+	
 	@GetMapping(value = "/purchase-details")
 	@ResponseBody
 	public List<PurchaseModel> getAllPurchaseDetail() {
-		return productResponseService.getAllPurchaseDetail();
+		return cartService.getAllPurchaseDetail();
 	}
 	
 	@GetMapping(value = "/purchase-detail/{id}")
 	@ResponseBody
 	public List<PurchaseModel> findPurchaseDetailById(@PathVariable(value = "id") Integer id) {
-		return productResponseService.getPurchaseDetailById(id);
+		return cartService.getPurchaseDetailById(id);
 	}
 	
 	@RequestMapping(value = "/purchase-detail/update", method = {RequestMethod.POST, RequestMethod.PUT})

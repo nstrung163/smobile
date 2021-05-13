@@ -21,6 +21,7 @@ import com.smobile.entity.UserEntity;
 import com.smobile.model.PurchaseModel;
 import com.smobile.model.ResponseDataModel;
 import com.smobile.service.IBrandService;
+import com.smobile.service.ICartService;
 import com.smobile.service.IProductResponseService;
 import com.smobile.service.IProductService;
 
@@ -32,6 +33,9 @@ public class HomeController {
 	
 	@Autowired
 	IProductResponseService productResponseService;
+	
+	@Autowired
+	ICartService cartService;
 	
 	@Autowired
 	IBrandService brandService;
@@ -57,7 +61,7 @@ public class HomeController {
 			System.out.println("User anonymousUser");
 		} else {
 			UserEntity userEntityAuthendicatied = (UserEntity) authentication.getPrincipal();
-			List<PurchaseModel> listHistoryBuy = productResponseService.getListHistoryBuy(userEntityAuthendicatied.getUserId());
+			List<PurchaseModel> listHistoryBuy = cartService.getListHistoryBuy(userEntityAuthendicatied.getUserId());
 			modelAndView.addObject("listHistoryBuy", listHistoryBuy);
 		}
 		modelAndView.setViewName("user/history-buy");

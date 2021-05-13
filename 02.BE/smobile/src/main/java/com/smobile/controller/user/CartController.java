@@ -1,7 +1,6 @@
 package com.smobile.controller.user;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.smobile.entity.PurchaseEntity;
 import com.smobile.model.CartModel;
 import com.smobile.model.ResponseDataModel;
+import com.smobile.service.ICartService;
 import com.smobile.service.IProductResponseService;
 
 @Controller
@@ -26,48 +26,20 @@ public class CartController {
 
 	@Autowired
 	IProductResponseService productResponseService;
+	
+	@Autowired
+	ICartService cartService;
 
-	@SuppressWarnings("unchecked")
 	@PostMapping(value = "/add-product/{productOptionId}")
 	@ResponseBody
-	public void addProductToCart(@PathVariable(value = "productOptionId") Integer productOptionId,
-			HttpSession session) {
-		HashMap<Integer, CartModel> cartItems = (HashMap<Integer, CartModel>) session.getAttribute("cartItems");
-		CartModel cartModel = new CartModel();
-		if (cartItems == null) {
-			cartItems = new HashMap<Integer, CartModel>();
-			cartModel = productResponseService.addProductToCart(productOptionId);
-		} else {
-			if (cartItems.containsKey(productOptionId)) { // check product exists
-				cartModel = cartItems.get(productOptionId);
-				cartModel.setQuantity(cartModel.getQuantity() + 1);
-			} else {
-				cartModel = productResponseService.addProductToCart(productOptionId);
-			}
-		}
-
-		cartItems.put(productOptionId, cartModel);
-		session.setAttribute("cartItems", cartItems);
-		session.setAttribute("totalItem", cartItems.size());
-		session.setAttribute("totalPrice", CartModel.getTotalPrice(cartItems));
-
-		for (Map.Entry<Integer, CartModel> cartItem : cartItems.entrySet()) {
-			System.out.println("Key: " + cartItem.getKey());
-			System.out.println("Tên sản phẩm: " + cartItem.getValue().getProductName());
-			System.out.println("Số lượng: " + cartItem.getValue().getQuantity());
-			System.out.println("Đường dẫn ảnh: " + cartItem.getValue().getImageUrl());
-			System.out.println("------------------------------------------");
-		}
-
-		System.out.println("Tổng số phẩn tử của cart: " + cartItems.size());
-		System.out.println("Tổng giá của giỏ hàng: " + CartModel.getTotalPrice(cartItems));
-		
+	public ResponseDataModel addProductToCart(@PathVariable(value = "productOptionId") Integer productOptionId) {
+		return cartService.addProductItemToCart(productOptionId);
 	}
 	
 	@PostMapping(value = "/checkout")
 	@ResponseBody
 	public ResponseDataModel checkOutCart(@ModelAttribute PurchaseEntity purchaseEntity, HttpSession session) {
-		return productResponseService.checkoutCart(purchaseEntity);
+		return cartService.checkoutCart(purchaseEntity);
 	}
 	
 	@PutMapping(value = "/cart/minus/{id}")
@@ -93,7 +65,7 @@ public class CartController {
 	@PutMapping(value = "/cart/plus/{id}")
 	@ResponseBody
 	public ResponseDataModel plusQuantityCart(@PathVariable(value = "id") Integer productOptionId) {
-		return productResponseService.addProductQuantity(productOptionId);
+		return cartService.addProductQuantity(productOptionId);
 	}
 	
 	@DeleteMapping(value = "/cart/remove/{id}")

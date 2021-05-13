@@ -34,6 +34,44 @@ body {
 .top-banner {
   background-color: #ecd97c;
 }
+a {
+	cursor: pointer;
+	text-decoration: none;
+}
+div.error-message-invalid
+{
+	position: relative;
+	padding: .375rem .75rem;
+	margin-top: .5rem;
+	color: #dc3545 !important;
+	width: 100%;
+	border-radius: .25rem;
+}
+input.error-message-invalid
+{
+	position: relative;
+	padding: .375rem .75rem;
+	margin-top: .5rem;
+	border: 1px solid #f5c6cb !important;
+	color: #dc3545 !important;
+	width: 100%;
+	border-radius: .25rem;
+}
+
+div.error-message-invalid, div.error, label.error-message-invalid, label.error {
+    background-color: #f8d7da;
+    position: relative;
+    padding: 1rem 1rem;
+    margin-top: .5rem;
+    border: 1px solid #f5c6cb !important;
+    color: #dc3545 !important;
+    width: 100%;
+    border-radius: .25rem;
+}
+
+.fade {
+      transition: opacity 0.2s linear !important;
+}
 /* HEADER START */
 header {
   background: #4a90e2;
@@ -824,8 +862,8 @@ strong {
   border-radius: 5px;
 }
 
-.price-discount span {
-}
+/* .price-discount span {
+} */
 .img-label {
   width: 85%;
 }
@@ -1032,9 +1070,6 @@ footer {
 }
 .tab-content .tab-product.active {
   display: block;
-}
-.tab-content .tab-product {
-  /* display: none; */
 }
 
 /* Footer START */
