@@ -83,6 +83,7 @@
             </span>
       </section>
       <hr>
+      <!-- Product essentinal -->
       <section class="product-essential">
         <form action="" method="POST" class="product-essential__form">
           <div class="product-essential__left">
@@ -197,7 +198,7 @@
           </div>
         </form>
       </section>
-
+      <!-- Product information -->
       <section class="box-product-info">
         <div class="box-product-info__left">
           <div class="box-product-info__left__title">
@@ -208,7 +209,7 @@
               <p>Năm nay, công nghệ màn hình trên 12 Pro Max cũng được đổi mới và trang bị tốt hơn cùng kích thước lên đến 6.7 inch, lớn hơn so với điện thoại iPhone 12. Với công nghệ màn hình OLED cho khả năng hiển thị hình ảnh lên đến 2778 x 1284 pixels. Bên cạnh đó, màn hình này còn cho độ sáng tối đa cao nhất lên đến 800 nits, luôn đảm bảo cho bạn một độ sáng cao và dễ nhìn nhất ngoài nắng.</p>
           </div>
           <hr>
-          <!-- Rate & Comment -->
+          <!-- Form Rate & Comment -->
           <form action="" method="POST">
             <section class="box-qa">
               <h2 class="box-qa__title">Đánh giá & nhận xét iPhone 12 Pro Max I Chính hãng VN/A </h2>
@@ -247,6 +248,7 @@
                 </div>
               </div>
             </section>
+            <!-- Rate $ comment product -->
             <div class="box-qa__comment">
               <div class="box-qa__comment__data">
                 <div class="box-qa__vote">
@@ -273,8 +275,8 @@
                   <textarea class="form-control" rows="5" id="commentContent" name="commentContent" spellcheck="false"></textarea>
                 </div>
                 <div class="form-group image-comment">
-                  <label for="imageComment">Upload hình ảnh:</label>
-                  <input type="file" class="form-control" id="imageFile" name="imageFile" multiple="multiple"">
+                  <label class="image-label" for="imageFile"> Gửi hình chụp thực tế</label>
+                  <input type="file" class="form-control" id="imageFile" name="imageFile" multiple="multiple" hidden>
                 </div> 
               </div>
               <button type="submit" class="btn btn-aqua btnSubmitRateComment">Gửi đánh giá</button>
@@ -413,6 +415,89 @@
                 </tbody>
               </table>
             </div>
+          </div>
+        </div>
+      </section>
+      <!-- Product related -->
+      <section class="product-related">
+        <p class="product-related__title"> Các sản phẩm tương tự</p>
+        <div class="product-related__content tab-content">
+          <div class="tab-product active">
+            <ul class="list-promotion">
+                <!-- Product 1 -->
+                <li class="product-promo--item">
+                  <a href="/pages/user/product-detail.html">
+                    <div class="img-container">
+                      <span class="tra-gop">Trả góp 0%</span>
+                      <img class="product-promo--item-img" src="/images/product/gstc5.jpg" alt=""/>
+                    </div>
+                    <div class="img-label">
+                      <img src="/images/online-giảm-sốc-1x.png" alt="Gia soc" />
+                    </div>
+                    <p class="product-name">Xiaomi Redmi 9T(4GB/64GB)</p>
+                    <strong class="product-price-new">9.690.000₫</strong>
+                    <span class="product-price-old">12.400.000₫ </span>
+                    <span class="percent-sale">(-22%)</span>
+                  </a>
+                  <div class="rating">
+                    <span class="rating__start">
+                      <b>3.9</b>/5
+                      <i class="fas fa-star"></i>
+                    </span>
+                    <span class="sl-rating">77 đánh giá</span>
+                  </div>
+                </li>
+                <!-- Product 2 -->
+                <li class="product-promo--item">
+                  <a href="/">
+                    <div class="img-container">
+                      <span class="tra-gop">Trả góp 0%</span>
+                      <img class="product-promo--item-img" src="/images/product/gstc2.jpg" data-holder-rendered="true"/>
+                    </div>
+                    <div class="price-discount">
+                      <span>Giảm 1.000.000 ₫</span>
+                    </div>
+                    <p class="product-name">
+                      Xiami Redmi Note 10 Pro MFF
+                    </p>
+                    <strong class="product-price-new">6.990.000₫</strong>
+                    <span class="product-price-old"> 7.990.000₫</span>
+                    <span class="percent-sale">(-15%)</span>
+                  </a>
+                  <div class="rating">
+                    <span class="rating__start">
+                      <b>2.9</b>/5
+                      <i class="fas fa-star"></i>
+                    </span>
+                    <span class="sl-rating">11 đánh giá</span>
+                  </div>
+                </li>
+                <!-- Product 3 -->
+                <li class="product-promo--item">
+                  <a href="/">
+                    <div class="img-container">
+                      <span class="tra-gop">Trả góp 0%</span>
+                      <img class="product-promo--item-img" src="/images/product/gstc3.jpg" alt="" data-holder-rendered="true"/>
+                    </div>
+                    <div class="price-discount">
+                      <span>Giảm 4.000.000 ₫</span>
+                    </div>
+                    <p class="product-name">IPhone 12 Pro Max 256GB
+                      <span class="new-2020">Mới 2020</span>
+                    </p>
+                    <strong class="product-price-new">29.990.000₫</strong>
+                    <span class="product-price-old">33.990.000₫</span>
+                    <span class="percent-sale">(-26%)</span>
+                  </a>
+                  <div class="rating">
+                    <span class="rating__start">
+                      <b>3.8</b>/5
+                      <i class="fas fa-star"></i>
+                    </span>
+                    <span class="sl-rating">24 đánh giá</span>
+                  </div>
+                </li>
+            </ul>
           </div>
         </div>
       </section>

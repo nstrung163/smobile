@@ -470,9 +470,34 @@ input[type="checkbox"]:checked + label:before {
   width: 70%;
   margin-right: 10px;
 }
+
+
 .image-comment {
   font-size: 1.4rem;
   width: 45%;
+  height: 30px;
+  line-height: 30px;
+  margin-top: 14px;
+}
+
+.image-label {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  color: #2f80ed;
+  cursor: pointer;
+}
+
+.image-label::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 37px;
+  width: 40px;
+  height: 32px;
+  background-image: url(/images/icon_chitiet2x.png);
+  background-repeat: no-repeat;
+  background-position: -530px -150px;
 }
 .btnSubmitRateComment {
   font-size: 1.4rem;
@@ -512,6 +537,7 @@ input[type="checkbox"]:checked + label:before {
 }
 
 .box-reviewer__item a {
+  width: 30%;
   color: red;
   font-size: 1.4rem;
   border-radius: 5px;
@@ -531,18 +557,18 @@ input[type="checkbox"]:checked + label:before {
 .btn-aqua:hover {
   color: #fff;
 }
-.box-reviewer__content {display: flex;padding-bottom: 10px;}
+.box-reviewer__content {
+  display: flex;
+  padding-bottom: 10px;
+}
 .box-reviewer__img {
-
 }
 
 .box-reviewer--item-img {
+  width: 100px;
 
-width: 100px;
-
-height: 130px;
+  height: 130px;
 }
-
 
 /* Rate star */
 
@@ -594,18 +620,32 @@ height: 130px;
 }
 
 .box-login {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn-aqua-login {
-	font-size: 1.4rem;
-	background: #288ad6;
-	color: #fff;
-	font-weight: 400;
+  font-size: 1.4rem;
+  background: #288ad6;
+  color: #fff;
+  font-weight: 400;
 }
 .btn-aqua-login:hover {
-	color: #fff;
+  color: #fff;
 }
 /* END RATE & COMMENT */
+/* START PRODUCT RELATED */
+.product-related {
+  border-top: 1px solid #e0e0e0;
+}
+
+.product-related__title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  padding: 15px 0 15px 0;
+}
+
+.product-related__content {
+}
+/* END PRODUCT RELATED */

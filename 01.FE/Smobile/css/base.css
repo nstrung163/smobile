@@ -809,14 +809,14 @@ strong {
 }
 .product-price-new {
   display: block;
-  font-size: 1.6em;
+  font-size: 1.6rem;
   color: var(--red-color);
   margin-top: 5px;
   line-height: 25px;
 }
 .product-price-old {
   text-decoration: line-through;
-  font-size: 1.4em;
+  font-size: 1.4rem;
   color: #999;
   display: inline-block;
   line-height: 25px;
@@ -908,9 +908,14 @@ footer {
   font-size: 1.4rem;
 }
 .item-outstanding {
-  padding-right: 1.8rem;
+  padding: 6px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-right: 5px;
 }
-
+.link-outstanding {
+  color: #333;
+}
 .outstanding-phone .title-outstanding {
   color: #cf1717;
   font-size: 22px;
@@ -946,14 +951,26 @@ footer {
   background-color: var(--white-color);
 }
 .product-viewed__header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   color: #cf1717;
   font-size: 22px;
   font-weight: 600;
-  margin: 15px 10px;
-  line-height: 30px;
+  margin: 10px 10px 0px;
 }
 .title-product-viewed {
   padding: 15px 10px;
+}
+
+.product-viewed--link-remove {
+  font-size: 1.4rem;
+  height: 30px;
+  color: #cf1717;
+  border: 1px solid #e0e0e0;
+  border-radius: 7px;
+  padding: 0 6px;
+  line-height: 30px;
 }
 
 /* List of products */
@@ -1045,6 +1062,7 @@ footer {
 .showMore {
   color: #288ad6;
   font-weight: 600;
+  cursor: pointer;
 }
 .showMore::after {
   content: "";
@@ -1059,6 +1077,7 @@ footer {
 .showMore-2 {
   color: #288ad6;
   font-weight: 600;
+  cursor: pointer;
 }
 .showMore-2::after {
   content: "";
