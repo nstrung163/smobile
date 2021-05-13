@@ -59,7 +59,7 @@ public class ProductOptionServiceImpl implements IProductOptionService{
 		String responseMsg = StringUtils.EMPTY;
 		Map<String, Object> data = new HashMap<String, Object>();
 		try {
-			ProductEntity productEntity = productRepository.checkExistesProductTest(productOptionEntity.getProductEntity().getProductId());
+			ProductEntity productEntity = productRepository.checkExistProduct(productOptionEntity.getProductEntity().getProductId());
 			if(productEntity != null) {
 				proOptionRepository.saveAndFlush(productOptionEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
@@ -82,7 +82,7 @@ public class ProductOptionServiceImpl implements IProductOptionService{
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
 		try {
-			ProductEntity productEntity = productRepository.checkExistesProductTest(productOptionEntity.getProductEntity().getProductId());
+			ProductEntity productEntity = productRepository.checkExistProduct(productOptionEntity.getProductEntity().getProductId());
 			if(productEntity != null) {
 				proOptionRepository.saveAndFlush(productOptionEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;

@@ -1,13 +1,3 @@
-
-select
-purchaseen0_.PURCHASE_ID as purchase1_8_4_,
-purchaseen0_.DATE_OF_ORDER as date_of_2_8_4_,
-purchaseen0_.OPTION_SHIPPING_ID as option_s3_8_4_,
-purchaseen0_.PAYMENT_METHOD_ID as payment_4_8_4_,
-purchaseen0_.PURCHASE_STATUS_ID as purchase5_8_4_,
-purchaseen0_.USER_ID as user_id6_8_4_,
-optionship1_.OPTION_SHIPPING_ID as option_s1_1_0_,
-
 /* START QUERY PRODUCT DETAIL PAGE*/
 /* Product Option Lấy danh sách màu theo bộ nhớ và id của sản phẩm */
 SELECT * FROM PRODUCT_OPTION WHERE MEMORY_PRODUCT = 128 AND PRODUCT_ID = 1;
@@ -98,8 +88,15 @@ SELECT COUNT(RATE_NUMBER) AS RATE_TOTAL FROM PRODUCT_COMMENT WHERE PRODUCT_ID = 
 /* Lấy danh sách ảnh của sản phẩm theo product id */
 SELECT IMAGE_URL FROM PRODUCT_IMAGE WHERE PRODUCT_ID = 17 LIMIT 1;
 
-/* Lấy danh sách điện thoại nổi bật */
-SELECT * FROM PRODUCT LIMIT 5;
+/* Truy vấn lấy danh sách 3 điện thoại bán chạy */
+SELECT P.* 
+FROM PRODUCT AS P 
+	JOIN (SELECT PD.PRODUCT_ID, COUNT(PD.PRODUCT_ID) AS TOTAL_SALE
+		  FROM PURCHASE_DETAIL AS PD
+		  GROUP BY PD.PRODUCT_ID LIMIT 3) AS PD ON PD.PRODUCT_ID = P.PRODUCT_ID
+ORDER BY PD.TOTAL_SALE DESC;
+
+
 
 /* START QUERY PRODUCT DETAIL PAGE*/
 /* Lấy danh sách màu theo bộ nhớ và id của sản phẩm */
@@ -133,7 +130,7 @@ SELECT * FROM  USER  WHERE USERNAME = 'admin' AND PASSWORD = 'ad17b460ce87deba47
 SELECT PC.PRODUCT_ID, PC.COMMENT_CONTENT, PC.DATE_OF_COMMENT, PC.IMAGE_COMMENT_URL, PC.RATE_NUMBER, U.FULL_NAME, U.AVATAR_URL
 FROM PRODUCT_COMMENT AS PC JOIN USER AS U ON PC.USER_ID = U.USER_ID
 WHERE PC.PRODUCT_ID = 1
-ORDER BY PC.PRODUCT_COMMENT_ID DESC LIMIT 3;
+ORDER BY PC.COMMENT_ID DESC LIMIT 3;
 
 /* START ADD TO CARD*/
 /* Lấy productEntity theo productOptionId */
@@ -142,5 +139,44 @@ SELECT P.* FROM PRODUCT_OPTION AS PO JOIN PRODUCT AS P ON PO.PRODUCT_ID = P.PROD
 SELECT SALE_PRICE FROM PRODUCT_OPTION WHERE PRODUCT_OPTION_ID = 1;
 
 /*---------------------------------*/
-/* Lấy danh sách sản hóa đơn theo mã hóa đơn ở bảng chi tiết hóa đơn mua hàng */
-SELECT * FROM PURCHASE_DETAIL WHERE PURCHASE_ID = 1;
+/* Chọn 10 sản phẩm có giá giảm cao nhất */
+SELECT DISTINCT P.*
+FROM PRODUCT AS P JOIN PRODUCT_OPTION AS PO ON P.PRODUCT_ID = PO.PRODUCT_ID
+ORDER BY ( P.UNIT_PRICE - PO.SALE_PRICE) DESC LIMIT 10;
+
+/*----------------------------------*/
+/* Truy vấn lấy danh sách điện thoại nổi bật:
+	+ Sắp xếp theo tổng lượt đánh giá cao xuống thấp
+    + Ưu tiên sắp xếp: 
+		1. Tổng số bình luận
+        2. Điểm bình luận trung bình
+    */
+SELECT P.* 
+FROM PRODUCT AS P 
+	LEFT JOIN (SELECT PM.PRODUCT_ID, AVG(RATE_NUMBER) AS AVERAGE_RATE, COUNT(RATE_NUMBER) AS TOTAL_RATE
+			  FROM PRODUCT_COMMENT AS PM
+			  GROUP BY PM.PRODUCT_ID) AS PM ON P.PRODUCT_ID = PM.PRODUCT_ID
+ORDER BY PM.TOTAL_RATE DESC, PM.AVERAGE_RATE DESC LIMIT 10;
+
+/*----------------------------------*/
+/* Truy vấn lấy danh sách sản phẩm liên quan 
+	+ Lấy sản phẩm có mức giá lớn hơn hoặc bé hơn 1 triệu đồng so với sản phẩm đang chọn
+    + Ưu tiên sắp xếp đánh giá theo tổng đánh giá và trung bình đánh giá
+*/
+SELECT P.*
+FROM PRODUCT AS P
+	 LEFT JOIN (SELECT PM.PRODUCT_ID, AVG(RATE_NUMBER) AS AVERAGE_RATE, COUNT(RATE_NUMBER) AS TOTAL_RATE
+			  FROM PRODUCT_COMMENT AS PM
+			  GROUP BY PM.PRODUCT_ID) AS PM ON P.PRODUCT_ID = PM.PRODUCT_ID
+WHERE (P.UNIT_PRICE BETWEEN (SELECT UNIT_PRICE FROM PRODUCT WHERE PRODUCT_ID = 4) - 3000000 
+						AND (SELECT UNIT_PRICE FROM PRODUCT WHERE PRODUCT_ID = 4) + 3000000) 
+	  AND P.PRODUCT_ID NOT IN (SELECT PT.PRODUCT_ID  FROM PRODUCT AS PT WHERE PT.PRODUCT_ID = 4)
+ORDER BY PM.TOTAL_RATE DESC, PM.AVERAGE_RATE DESC LIMIT 5;
+
+/*----------------------------------*/
+/* Truy vấn lấy danh sách phẩm phẩm nổi bật*/
+SELECT PRODUCT.*
+			FROM PRODUCT
+			LEFT JOIN (SELECT PRODUCT_ID, AVG(RATE_NUMBER) AS AVERAGE_RATE, COUNT(RATE_NUMBER) AS TOTAL_RATE
+						   FROM PRODUCT_COMMENT 
+					   GROUP BY PRODUCT_ID) AS PM ON PRODUCT.PRODUCT_ID = PM.PRODUCT_ID;

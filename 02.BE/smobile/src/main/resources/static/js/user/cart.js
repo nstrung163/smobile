@@ -18,8 +18,8 @@ $('#btnSubmitCheckout').on('click', function(event) {
 	var dateOfOrder = formData.get("dateOfOrder");
 	var fullName = formData.get("fullName");
 	console.log(`Value of userId:  ${userId}`);
-	console.log(`Value of userId:  ${dateOfOrder}`);
-	console.log(`Value of userId:  ${fullName}`);
+	console.log(`Value of dateOfOrder:  ${dateOfOrder}`);
+	console.log(`Value of fullName:  ${fullName}`);
 
 	$formCheckout.validate({
 		ignore: [],
@@ -133,7 +133,7 @@ $('.remove-product').on('click', function(event) {
 	console.log(`Url minus: ${urlMinus}`)
 	$.ajax({
 		url: urlMinus,
-		type: 'PUT',
+		type: 'DELETE',
 		processData: false,
 		contentType: false,
 		success: function() {

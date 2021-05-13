@@ -391,13 +391,14 @@ input[type="checkbox"]:checked+label:before {
 .condition-search__list {
   display: flex;
   justify-content: start;
+  flex-wrap: wrap;
 }
 
 .condition-search--item {
   height: 30px;
   line-height: 30px;
   background: #288ad6;
-  margin-left: 10px;
+  margin: 0 0 10px 10px;
   border-radius: 5px;
   padding: 0 5px;
   position: relative;
@@ -430,3 +431,19 @@ input[type="checkbox"]:checked+label:before {
 .btn-delete-all {
   background: #c10017;
 }
+/* START PRODUCT RELATED */
+.product-related {
+	border-top: 1px solid #e0e0e0;
+}
+
+.product-related__title {
+	font-size: 2.1rem;
+	font-weight: 600;
+	padding: 15px 0 15px 0;
+	color: #cf1717;
+}
+
+.product-related__content {
+	
+}
+/* END PRODUCT RELATED */

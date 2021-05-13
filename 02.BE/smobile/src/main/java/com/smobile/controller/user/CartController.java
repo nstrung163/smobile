@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -95,7 +96,7 @@ public class CartController {
 		return productResponseService.addProductQuantity(productOptionId);
 	}
 	
-	@PutMapping(value = "/cart/remove/{id}")
+	@DeleteMapping(value = "/cart/remove/{id}")
 	@ResponseBody
 	public void removeQuantityCart(@PathVariable(value = "id") Integer productOptionId, HttpSession session) {
 		@SuppressWarnings("unchecked")

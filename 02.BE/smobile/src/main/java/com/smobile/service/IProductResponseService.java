@@ -14,6 +14,8 @@ import com.smobile.model.SearchCondition;
 public interface IProductResponseService {
 
 	ResponseDataModel findAllProductItem();
+	
+	ResponseDataModel getTenProductDiscountHighest();
 	 
 	ResponseDataModel findAllProductApi(int pageNumber);
 	
@@ -49,5 +51,13 @@ public interface IProductResponseService {
 	ResponseDataModel addNewRateAndComment(ProductCommentEntity productCommentEntity);
 	
 	ResponseDataModel getAllCommentProduct(Integer productId);
+	
+	ResponseDataModel addProductViewed(Integer productId);
+	
+	ResponseDataModel removeProductViewed();
+	
+	ProductItemModel convertProductToProductItemModel(Integer productId);
+	
+	ResponseDataModel findProductRelatedByProductId(Integer productId);
 }
 

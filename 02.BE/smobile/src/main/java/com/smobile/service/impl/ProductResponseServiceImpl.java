@@ -85,7 +85,7 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 		Map<String, Object> data = new HashMap<String, Object>();
 		List<ProductItemModel> productItemList = new ArrayList<ProductItemModel>();
 		try {
-			List<ProductEntity> productList = productRepository.get10Product();
+			List<ProductEntity> productList = productRepository.findAllProductItem();
 			productItemList = convertProductEntityToProductItemModel(productList);
 			if(productItemList != null) {
 				responseCode = Constants.RESULT_CD_SUCCESS;
@@ -99,6 +99,29 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 		}
 		return new ResponseDataModel(responseCode, responseMsg, data);
 	}
+	
+	@Override
+	public ResponseDataModel getTenProductDiscountHighest() {
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMsg = StringUtils.EMPTY;
+		Map<String, Object> data = new HashMap<String, Object>();
+		List<ProductItemModel> productItemList = new ArrayList<ProductItemModel>();
+		try {
+			List<ProductEntity> productList = productRepository.getTenProductDiscountHighest();
+			productItemList = convertProductEntityToProductItemModel(productList);
+			if(productItemList != null) {
+				responseCode = Constants.RESULT_CD_SUCCESS;
+				responseMsg = "Lấy danh sách sản phẩm giảm giá cao nhất thành công!";
+				data.put("productItemList", productItemList);
+				log.info(responseMsg);
+			}
+		} catch (Exception e) {
+			responseMsg = "Lấy danh sách sản phẩm giảm giá cao nhất thành công! ";
+			log.error(responseMsg + e.getMessage());
+		}
+		return new ResponseDataModel(responseCode, responseMsg, data);
+	}
+	
 
 	@Override
 	public ResponseDataModel findAllProductApi(int pageNumber) {
@@ -107,9 +130,16 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 		Map<String, Object> data = new HashMap<String, Object>();
 		List<ProductItemModel> productItemList = new ArrayList<ProductItemModel>();
 		try {
+			// Add list order sort by total rate and average rate
+//			List<Order> orders = new ArrayList<Sort.Order>();
+//			Order orderTotalRate = new Order(Sort.Direction.DESC, "PM.TOTAL_RATE");
+//			orders.add(orderTotalRate);
+//			Order orderAverageRate = new Order(Sort.Direction.DESC, "PM.AVERAGE_RATE");
+//			orders.add(orderAverageRate);
+//			Sort sortList = Sort.by(orders);
 			Sort sortList = Sort.by(Sort.Direction.ASC, "productId");
 			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortList);
-			Page<ProductEntity> productEntitiesPage = productRepository.findAll(pageable);
+			Page<ProductEntity> productEntitiesPage =  productRepository.findAll(pageable);
 			List<ProductEntity> productList = productEntitiesPage.getContent();
 			productItemList = convertProductEntityToProductItemModel(productList);
 			if(productItemList != null) {
@@ -209,7 +239,10 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 			List<ProductMemoryPriceModel> productMemoryPriceModels = ObjectToModel.convertToListProductMemoryPrice(productOptionRepository.getListProductByMemoryPrice(productId));
 			ProductDetailModel productDetailModel = new ProductDetailModel(productEntity, totalRate, averagePointRate, imagesUrl, productInfoEntity, productOptionEntity, productCommentList, productMemoryPriceModels);
 			
-			List<ProductOptionEntity> productOptionListByPriceAndId = productOptionRepository.findByMemoryAndProductId(productOptionEntity.getMemoryProduct(), productId);
+			List<ProductOptionEntity> productOptionListByPriceAndId = new ArrayList<ProductOptionEntity>();
+			if(productInfoEntity != null) {
+				productOptionListByPriceAndId = productOptionRepository.findByMemoryAndProductId(productOptionEntity.getMemoryProduct(), productId);
+			}
 			List<ProductCommentModel> productCommentModels = ObjectToModel.convertToListProductCommentModel(productCommentRepository.getTop3ProductCommentModel(productId));
 			List<Integer> listTotalRate = productCommentRepository.getListTotalRateEachRate(productId);
 			data.put("productDetailModel", productDetailModel);
@@ -448,4 +481,97 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 		}
 		return new ResponseDataModel(responseCode, responseMsg, data);
 	}
+
+	@Override
+	public ResponseDataModel addProductViewed(Integer productId) {
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMsg = Strings.EMPTY;
+		try {
+			@SuppressWarnings("unchecked")
+			Map<Integer, ProductItemModel> productsViewed = (HashMap<Integer, ProductItemModel>) session.getAttribute("productsViewed");
+			ProductItemModel productItemModel = new ProductItemModel();
+			if (productsViewed == null) {
+				productsViewed = new HashMap<Integer, ProductItemModel>();
+				productItemModel = convertProductToProductItemModel(productId);
+				productsViewed.put(productId, productItemModel);
+			} else {
+				// Check exist product in session productsViewed
+				if(!productsViewed.containsKey(productId)) {
+					productItemModel = convertProductToProductItemModel(productId);
+					productsViewed.put(productId, productItemModel);
+				}
+			}
+			session.setAttribute("productsViewed", productsViewed);
+			responseCode = Constants.RESULT_CD_SUCCESS;
+			responseMsg = "Đã thêm sản phẩm vào danh mục sản phẩm đã xem!";
+			log.info(responseMsg);
+		} catch (Exception e) {
+			responseMsg = "Thêm sản phẩm vào danh mục sản phẩm đã xem không thành công do: " + e.getMessage();
+			log.error(responseMsg); 
+		}
+		
+		return new ResponseDataModel(responseCode, responseMsg);
+	}
+
+	@Override
+	public ResponseDataModel removeProductViewed() {
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMsg = Strings.EMPTY;
+		try {
+			@SuppressWarnings("unchecked")
+			Map<Integer, ProductItemModel> productsViewed = (HashMap<Integer, ProductItemModel>) session.getAttribute("productsViewed");
+			if(productsViewed != null) {
+				session.removeAttribute("productsViewed");
+				responseCode = Constants.RESULT_CD_SUCCESS;
+				responseMsg = "Xóa danh mục sản phẩm đã xem thành công!";
+				log.info(responseMsg);
+			}
+		} catch (Exception e) {
+			responseMsg = "Xóa danh mục sản phẩm đã xem không thành công do: " + e.getMessage();
+			log.info(responseMsg);
+		}
+		return new ResponseDataModel(responseCode, responseMsg);
+	}
+
+	@Override
+	public ProductItemModel convertProductToProductItemModel(Integer productId) {
+		ProductEntity product = productRepository.findByProductId(productId);
+		int totalRate = productCommentRepository.getTotalRateByProductId(product.getProductId());
+		float averagePointRate = 0;
+		// Check product have rated?
+		if (totalRate != 0) {
+			averagePointRate = productCommentRepository.getAveragePointRate(product.getProductId());
+		}
+		double salePrice = product.getUnitPrice();
+		// Check product exist and set sale price
+		ProductOptionEntity productOptionEntity = productOptionRepository.findProductOptionByProductId(product.getProductId());
+		if (productOptionEntity != null) {
+			salePrice = productOptionRepository.getSalePriceDefault(product.getProductId());
+		}
+		String imageProduct = productImageRepository.getFirstImageUrlByProductId(product.getProductId());
+		ProductItemModel productItemModel = new ProductItemModel(product, totalRate, averagePointRate, salePrice, imageProduct);
+		return productItemModel;
+	}
+
+	@Override
+	public ResponseDataModel findProductRelatedByProductId(Integer productId) {
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMsg = Strings.EMPTY;
+		Map<String, Object> data = new HashMap<String, Object>();
+		try {
+			List<ProductEntity> productList = productRepository.findProductRelatedByProductId(productId);
+			List<ProductItemModel> productItemModels = convertProductEntityToProductItemModel(productList);
+			if(productItemModels != null) {
+				data.put("productItemModels", productItemModels);
+				responseCode = Constants.RESULT_CD_SUCCESS;
+				responseMsg = "Lấy danh sách sản phẩm liên quan thành công!";
+				log.info(responseMsg);
+			}
+		} catch (Exception e) {
+			responseMsg = "Lấy danh sách sản phẩm liên quan không thành công do: " + e.getMessage();
+			log.error(responseMsg);
+		}
+		return new ResponseDataModel(responseCode, responseMsg, data);
+	}
+
 }

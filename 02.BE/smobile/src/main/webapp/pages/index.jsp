@@ -88,7 +88,7 @@
             <div class="txt-banner d-flex">
               <ul class="txt-banner__list">
                 <li>
-                  <a href="/" class="hot-event txt-banner__list--item">
+                  <a href="/user/product-detail/1" class="hot-event txt-banner__list--item">
                     <div class="dot">
                       <span class="ping"></span>
                     </div>
@@ -96,12 +96,12 @@
                   </a>
                 </li>
                 <li>
-                  <a href="/" class="txt-banner__list--item bd-left">
-                    Samsung Galaxy S21 Ultra 5G ưu đãi đến 34%
+                  <a href="/user/product-detail/21" class="txt-banner__list--item bd-left">
+                    Samsung Galaxy S21 Ultra 5G ưu đãi đến 37%
                    </a>
                 </li>
                 <li>
-                  <a href="/" class="txt-banner__list--item bd-left">
+                  <a href="/user/product-detail/24" class="txt-banner__list--item bd-left">
                     Samsung Galaxy S21 Plus 5G giảm 30%
                   </a>
                 </li>
@@ -158,16 +158,16 @@
           </div>
           <div class="hotnew">
             <div class="experience-video">
-              <h2 class="experience-video-heading"><a href="/pages/user/news.html"></a>Tin tức</a></h2>
+              <h2 class="experience-video-heading"><a href="/user/news"></a>Tin tức</a></h2>
               <ul>
                 <li>
-                  <a href="/" class="experience-video--link">
+                  <a href="/user/news" class="experience-video--link">
                     Săn ngay loạt OPPO Reno5, Reno4,… cũ thiết kế thời thượng đang giảm siêu sốc tới 30%,
                     rẻ hơn máy mới nửa giá luôn đó
                   </a>
                 </li>
                 <li>
-                  <a href="/" class="experience-video--link">
+                  <a href="/user/news" class="experience-video--link">
                     Samsung Galaxy S20 Plus, mới ngày nào hơn 23 triệu, 
                     mà giờ đây hàng đổi trả giá chỉ còn hơn 11 triệu, quá đáng mua
                    </a>
@@ -190,7 +190,7 @@
           <div id="product-promotions" class="carousel slide" data-ride="carousel" data-interval="500000">
             <!-- The slideshow -->
             <div class="carousel-inner">
-              <div class="carousel-item active">
+              <div class="carousel-item active carousel-item-fisrt">
                 <ul class="product-promo__list">
                   <!-- Product 1 -->
                   <li class="product-promo--item">
@@ -315,7 +315,7 @@
                   </li>
                 </ul>
               </div>
-              <div class="carousel-item">
+              <div class="carousel-item carousel-item-second">
                 <ul class="product-promo__list">
                   <!-- Product 1 -->
                   <li class="product-promo--item">
@@ -441,7 +441,6 @@
                   </li>
                 </ul>
               </div>
-              
             </div>
             <!-- Left and right controls -->
             <a class="carousel-control-prev" href="#product-promotions" role="button" data-slide="prev">
@@ -722,88 +721,43 @@
       </section>
       <!-- Viewed Product  -->
       <section class="product-viewed-area">
-        <div class="product-viewed__header">
-          <div class="title-product-viewed">Sản phẩm đã xem</div>
-        </div>
-        <div class="tab-content">
-          <div class="tab-product active">
-            <ul class="list-promotion">
-                <!-- Product 1 -->
-                <li class="product-promo--item">
-                  <a href="/pages/user/product-detail.html">
-                    <div class="img-container">
-                      <span class="tra-gop">Trả góp 0%</span>
-                      <img class="product-promo--item-img" src="/images/product/gstc5.jpg" alt=""/>
-                    </div>
-                    <div class="img-label">
-                      <img src="/images/online-giảm-sốc-1x.png" alt="Gia soc" />
-                    </div>
-                    <p class="product-name">Xiaomi Redmi 9T(4GB/64GB)</p>
-                    <strong class="product-price-new">9.690.000₫</strong>
-                    <span class="product-price-old">12.400.000₫ </span>
-                    <span class="percent-sale">(-22%)</span>
-                  </a>
-                  <div class="rating">
-                    <span class="rating__start">
-                      <b>3.9</b>/5
-                      <i class="fas fa-star"></i>
-                    </span>
-                    <span class="sl-rating">77 đánh giá</span>
-                  </div>
-                </li>
-                <!-- Product 2 -->
-                <li class="product-promo--item">
-                  <a href="/">
-                    <div class="img-container">
-                      <span class="tra-gop">Trả góp 0%</span>
-                      <img class="product-promo--item-img" src="/images/product/gstc2.jpg" data-holder-rendered="true"/>
-                    </div>
-                    <div class="price-discount">
-                      <span>Giảm 1.000.000 ₫</span>
-                    </div>
-                    <p class="product-name">
-                      Xiami Redmi Note 10 Pro MFF
-                    </p>
-                    <strong class="product-price-new">6.990.000₫</strong>
-                    <span class="product-price-old"> 7.990.000₫</span>
-                    <span class="percent-sale">(-15%)</span>
-                  </a>
-                  <div class="rating">
-                    <span class="rating__start">
-                      <b>2.9</b>/5
-                      <i class="fas fa-star"></i>
-                    </span>
-                    <span class="sl-rating">11 đánh giá</span>
-                  </div>
-                </li>
-                <!-- Product 3 -->
-                <li class="product-promo--item">
-                  <a href="/">
-                    <div class="img-container">
-                      <span class="tra-gop">Trả góp 0%</span>
-                      <img class="product-promo--item-img" src="/images/product/gstc3.jpg" alt="" data-holder-rendered="true"/>
-                    </div>
-                    <div class="price-discount">
-                      <span>Giảm 4.000.000 ₫</span>
-                    </div>
-                    <p class="product-name">IPhone 12 Pro Max 256GB
-                      <span class="new-2020">Mới 2020</span>
-                    </p>
-                    <strong class="product-price-new">29.990.000₫</strong>
-                    <span class="product-price-old">33.990.000₫</span>
-                    <span class="percent-sale">(-26%)</span>
-                  </a>
-                  <div class="rating">
-                    <span class="rating__start">
-                      <b>3.8</b>/5
-                      <i class="fas fa-star"></i>
-                    </span>
-                    <span class="sl-rating">24 đánh giá</span>
-                  </div>
-                </li>
-            </ul>
-          </div>
-        </div>
+      	<c:choose>
+      		<c:when test="${ sessionScope.productsViewed != null }">
+      			<div class="product-viewed__header">
+		          <div class="title-product-viewed">Sản phẩm đã xem</div>
+		          <a class="product-viewed--link-remove" href="/">Xóa lịch sử</a>
+		        </div>
+		        <div class="tab-content">
+		          <div class="tab-product">
+		            <ul class="list-promotion">
+						<c:forEach items="${ sessionScope.productsViewed }" var="productItem">
+							<li class="product-promo--item">
+				                <a href="/user/product-detail/${ productItem.value.productEntity.productId }">
+				                  <div class="img-container">
+				                    <span class="tra-gop">Trả góp 0%</span>
+				                    <img class="product-promo--item-img" src="${ productItem.value.imageItem }" alt="${ productItem.value.productEntity.productName }"/>
+				                  </div>
+				                  <p class="product-name">${ productItem.value.productEntity.productName }</p>
+				                  <strong class="product-price-new"><fmt:formatNumber value="${ productItem.value.salePrice }" type="currency" minFractionDigits="0" currencySymbol=""/>₫</strong>
+				                  <c:if test="${ productItem.value.productEntity.unitPrice - productItem.value.salePrice  > 0  }">
+					                  <span class="product-price-old"><fmt:formatNumber value="${ productItem.value.productEntity.unitPrice }" type="currency" minFractionDigits="0" currencySymbol=""/>₫ </span>
+					                  <span class="percent-sale">(-<fmt:formatNumber value="${ (1 - (productItem.value.salePrice / productItem.value.productEntity.unitPrice)) * 100 }" type="number" maxFractionDigits = "0"/>%)</span>
+				                  </c:if>
+				                </a>
+				                <div class="rating"> 
+				                  <span class="rating__start">
+				                    <b><fmt:formatNumber value="${ productItem.value.averageRate }" type="number" maxFractionDigits = "1"/></b>/5
+				                    <i class="fas fa-star"></i>
+				                  </span>
+				                  <span class="sl-rating">${ productItem.value.totalRate } đánh giá</span>
+				                </div>
+		             	   </li>
+		              </c:forEach>
+		           </ul>
+		          </div>
+		        </div>
+      		</c:when>
+      	</c:choose>
       </section>
     </main>
     <footer class="container-fluid">

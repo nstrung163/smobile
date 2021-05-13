@@ -2,6 +2,7 @@ package com.smobile.controller.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +29,12 @@ public class ProductControllerUser {
 	@ResponseBody
 	public ResponseDataModel getAllProductItem() {
 		return productResponseService.findAllProductItem();
+	}
+	
+	@GetMapping(value = "/product-items-highest")
+	@ResponseBody
+	public ResponseDataModel getTenProductDiscountHighest() {
+		return productResponseService.getTenProductDiscountHighest();
 	}
 	
 	@GetMapping(value = "/api/product-items/{pageNumber}")
@@ -73,4 +80,21 @@ public class ProductControllerUser {
 		return productResponseService.getAllCommentProduct(productId);
 	}
 	
+	@PostMapping(value = "/products-viewed/{productId}")
+	@ResponseBody
+	public ResponseDataModel addProductViewed(@PathVariable(value = "productId") Integer productId) {
+		return productResponseService.addProductViewed(productId);
+	}
+	
+	@DeleteMapping(value = "/products-viewed/remove")
+	@ResponseBody
+	public ResponseDataModel removeProductViewed() {
+		return productResponseService.removeProductViewed();
+	}
+	
+	@GetMapping(value = "/product-related/{productId}")
+	@ResponseBody
+	public ResponseDataModel getProductRelated(@PathVariable(value = "productId") Integer productId) {
+		return productResponseService.findProductRelatedByProductId(productId);
+	}
 }

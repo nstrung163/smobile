@@ -31,20 +31,51 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
 	
 	ProductEntity findByProductNameAndProductIdNot(String productName, Integer productId);
 	
-	@Query(value = "SELECT COUNT(P.PRODUCT_ID) FROM PRODUCT AS P WHERE P.PRODUCT_ID = ?1", nativeQuery = true)
-	Integer checkExistesProduct(Integer producId);
-	
 	@Query(value = "SELECT P.* FROM PRODUCT AS P WHERE P.PRODUCT_ID = ?1", nativeQuery = true)
-	ProductEntity checkExistesProductTest(Integer producId);
+	ProductEntity checkExistProduct(Integer producId);
 	
-	@Query(value = "SELECT * FROM PRODUCT LIMIT 5", nativeQuery = true)
+	@Query(value = "SELECT P.* \r\n"
+					+ "FROM PRODUCT AS P \r\n"
+					+ "JOIN (SELECT PD.PRODUCT_ID, COUNT(PD.PRODUCT_ID) AS TOTAL_SALE\r\n"
+					+ "		  FROM PURCHASE_DETAIL AS PD\r\n"
+					+ "		  GROUP BY PD.PRODUCT_ID LIMIT 3) AS PD ON PD.PRODUCT_ID = P.PRODUCT_ID\r\n"
+					+ "ORDER BY PD.TOTAL_SALE DESC", nativeQuery = true)
 	List<ProductEntity> findProductOutstanding();
 	
-	@Query(value = "SELECT * FROM PRODUCT LIMIT 10", nativeQuery = true)
-	List<ProductEntity> get10Product();
+	// Query ten product to have discount highest
+	@Query(value = "SELECT DISTINCT P.*\r\n"
+					+ "FROM PRODUCT AS P JOIN PRODUCT_OPTION AS PO ON P.PRODUCT_ID = PO.PRODUCT_ID\r\n"
+					+ "ORDER BY ( P.UNIT_PRICE - PO.SALE_PRICE) DESC LIMIT 10", nativeQuery = true)
+	List<ProductEntity> getTenProductDiscountHighest();
+	
+	@Query(value = "SELECT P.* \r\n"
+					+ "FROM PRODUCT AS P \r\n"
+					+ "LEFT JOIN (SELECT PM.PRODUCT_ID, AVG(RATE_NUMBER) AS AVERAGE_RATE, COUNT(RATE_NUMBER) AS TOTAL_RATE\r\n"
+					+ "			   FROM PRODUCT_COMMENT AS PM\r\n"
+					+ "			   GROUP BY PM.PRODUCT_ID) AS PM ON P.PRODUCT_ID = PM.PRODUCT_ID\r\n"
+					+ "ORDER BY PM.TOTAL_RATE DESC, PM.AVERAGE_RATE DESC LIMIT 10", nativeQuery = true)
+	List<ProductEntity> findAllProductItem();
 	
 	@Query(value = "SELECT P.* FROM PRODUCT_OPTION AS PO JOIN PRODUCT AS P ON PO.PRODUCT_ID = P.PRODUCT_ID WHERE PO.PRODUCT_OPTION_ID = ?1", nativeQuery = true)
 	ProductEntity findProductByProductOptionId(Integer productOptionId);
+	
+	@Query(value = "SELECT P.*\r\n"
+					+ "FROM PRODUCT AS P\r\n"
+					+ "	 LEFT JOIN (SELECT PM.PRODUCT_ID, AVG(RATE_NUMBER) AS AVERAGE_RATE, COUNT(RATE_NUMBER) AS TOTAL_RATE\r\n"
+					+ "			  FROM PRODUCT_COMMENT AS PM\r\n"
+					+ "			  GROUP BY PM.PRODUCT_ID) AS PM ON P.PRODUCT_ID = PM.PRODUCT_ID\r\n"
+					+ "WHERE (P.UNIT_PRICE BETWEEN (SELECT UNIT_PRICE FROM PRODUCT WHERE PRODUCT_ID = ?1) - 3000000 \r\n"
+					+ "						   AND (SELECT UNIT_PRICE FROM PRODUCT WHERE PRODUCT_ID = ?1) + 3000000) \r\n"
+					+ "	  AND P.PRODUCT_ID NOT IN (SELECT PT.PRODUCT_ID  FROM PRODUCT AS PT WHERE PT.PRODUCT_ID = ?1)\r\n"
+					+ "ORDER BY PM.TOTAL_RATE DESC, PM.AVERAGE_RATE DESC LIMIT 5", nativeQuery = true)
+	List<ProductEntity> findProductRelatedByProductId(Integer productId);
+	
+//	@Query(value = "SELECT PRODUCT.*\r\n"
+//			+ "			FROM PRODUCT\r\n"
+//			+ "			LEFT JOIN (SELECT PRODUCT_ID, AVG(RATE_NUMBER) AS AVERAGE_RATE, COUNT(RATE_NUMBER) AS TOTAL_RATE\r\n"
+//			+ "						   FROM PRODUCT_COMMENT \r\n"
+//			+ "					   GROUP BY PRODUCT_ID) AS PM ON PRODUCT.PRODUCT_ID = PM.PRODUCT_ID", nativeQuery = true)
+//	Page<ProductEntity> findAllOutStanding(Pageable pageable);
 	
 	// Search product
 	public static Specification<ProductEntity> getSearchCondition(SearchCondition searchCondition) {

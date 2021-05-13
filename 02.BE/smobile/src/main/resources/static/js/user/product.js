@@ -247,23 +247,23 @@ $('.condition-search__list').on('click', '.condition-search--link', function(eve
 	switch(dataIdRender) {
 		// PIN
 		case "duoi-3000":
-			index = 0;
+			index = ["", "3000"];
 			break;
 		case "tu-3000-4000":
-			index = 1;
+			index = ["3000", "4000"];
 			break;
 		case "tren-4000mah":
-			index = 2;
+			index = ["4000", ""];
 			break;
 		// RAM
 		case "duoi-4g":
-			index = 0;
+			index = ["", "4"];
 			break;
 		case "4gb-6gb":
-			index = 1;
+			index = ["4", "6"];
 			break;
 		case "tren-8gb":
-			index = 2;
+			index = ["8", ""];
 			break;
 		// Type product
 		case "iPhone":
@@ -304,8 +304,10 @@ $('.condition-search__list').on('click', '.condition-search--link', function(eve
 			// Remove checked filter box
 			$(this).removeClass('check-filter-box');
 			// Remove value of checked in list pin
-			if(index != -1) {
-				listPin.splice(index, 1);
+			if(listPin.indexOf2d(index)) {
+				var indexRemove = findIndexOfNestedArray(index, listPin);
+				console.log(indexRemove);
+				listPin.splice(indexRemove, 1);
 			}
 		}
 	})
@@ -316,8 +318,10 @@ $('.condition-search__list').on('click', '.condition-search--link', function(eve
 			// Remove checked filter box
 			$(this).removeClass('check-filter-box');
 			// Remove value of checked in list ram
-			if(index != -1) {
-				listRam.splice(index, 1);
+			if(listRam.indexOf2d(index)) {
+				var indexRemove = findIndexOfNestedArray(index, listRam);
+				console.log(indexRemove);
+				listRam.splice(indexRemove, 1);
 			}
 		}
 	})
@@ -345,6 +349,10 @@ $('.condition-search__list').on('click', '.condition-search--link', function(eve
 	$('.listBrand').find('.li-enable').each(function() {
 		if($(this).hasClass('li-enable') && ($(this).attr("data-name") == dataIdRender)) {
 			var valueBrand = $(this).find('input[name="brand.logo"]').val()
+			index = listBrandArr.indexOf(valueBrand);
+			if(index != -1) {
+				listBrandArr.splice(index, 1);
+			}
 			$(this).find(`input[value="${valueBrand}"]`).prop("checked", false);
 			$(this).removeClass('li-enable');
 		}
@@ -353,7 +361,38 @@ $('.condition-search__list').on('click', '.condition-search--link', function(eve
 	// Remove element condition search
 	$(this).parent().remove();
 	renderDeleteAll();
-	console.log('Value after change: ' + JSON.stringify(listPin))
+})
+
+function findIndexOfNestedArray(nestedArray, searchArray) {
+  return searchArray.findIndex(item => {
+    return item.length === nestedArray.length && item.every((a, i) => a === nestedArray[i])
+  })
+}
+
+
+Array.prototype.indexOf2d = function(item) {
+    arrCoords = JSON.stringify(this.map(function(a){return a[0] + "|" + a[1]}));
+    return arrCoords.indexOf(item[0] + "|" + item[1]) !== -1;
+}
+
+/** Remove all history clicked on product */
+$('.product-viewed--link-remove').on('click', function(event) {
+	event.preventDefault();
+	$.ajax({
+		url: '/user/products-viewed/remove',
+		type: 'DELETE',
+		success: function(responseData){
+			if(responseData.responseCode == 100) {
+				console.log('Xóa danh mục mua hàng thành công!');
+				$('.product-viewed-area').empty();
+			} else {
+				console.log('Xóa danh mục mua hàng không thành công!');
+			}
+		},
+		error: function(e) {
+			console.log(`Xóa danh mục mua hàng không thành công do: ${JSON.stringify(e)}`);
+		}
+	})
 })
 
 /** Search product with condition 
@@ -486,7 +525,8 @@ function findAllProductWithApi(pageNumber) {
 */
 function renderProductApi(productItemList) {
 	var rowHTML = "";
-	$(".tab-content .tab-product  ul").empty();
+	var $outstandingPhone = $(".outstanding-phone .tab-content .tab-product  ul");
+	$outstandingPhone.empty();
 	$.each(productItemList, function(key, value) {
 		rowHTML = `
 				<li class="product-promo--item">
@@ -512,7 +552,7 @@ function renderProductApi(productItemList) {
 	                </div>
 	              </li>
 		    `;
-		$(".tab-content .tab-product  ul").append(rowHTML);
+		$outstandingPhone.append(rowHTML);
 		if(value.productEntity.unitPrice - value.salePrice <= 0) {
 			$(`.product-${value.productEntity.productId}`).addClass("d-none");
 		}
