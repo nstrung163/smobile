@@ -60,7 +60,7 @@ CREATE TABLE `brand` (
   `DESCRIPTION` text,
   `LOGO` text NOT NULL,
   PRIMARY KEY (`BRAND_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +140,7 @@ CREATE TABLE `product` (
   `BRAND_ID` bigint DEFAULT NULL,
   PRIMARY KEY (`PRODUCT_ID`),
   KEY `FKsj2lk079hwjngnn3o9o183b6q` (`BRAND_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,7 +149,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,' iPhone 12 Pro Max',23,'2021-01-02','Còn hàng',31990000,1),(2,' iPhone 11 Pro Max Chính hãng VN/A ',16,'2021-10-20','Còn hàng',29500000,1),(3,'iPhone 11 Chính hãng VN/A ',10,'2020-11-11','Còn hàng',19900000,1),(4,'iPhone XR Chính hãng VN/A ',10,'2020-04-20','Còn hàng',20000000,1),(5,'iPhone 12 mini Chính hãng VN/A',20,'2020-03-20','Còn hàng',22990000,1),(6,'iPhone 12 Chính hãng VN/A ',20,'2020-05-23','Còn hàng',20990000,1),(7,'Apple iPhone 8 Plus Chính hãng VN/A ',20,'2020-04-23','Còn hàng',16000000,1),(8,'iPhone 7 Plus Chính hãng VN/A ',20,'2021-04-23','Còn hàng',9990000,1),(9,'iPhone SE 2020 128GB Chính hãng VN/A ',20,'2020-04-23','Còn hàng',14990000,1),(21,'Samsung Galaxy Note 20 Ultra 5G',19,'2020-04-15','Còn hàng',25990000,2),(22,'Samsung Galaxy S21 Ultra 5G',20,'2020-04-23','Còn hàng',30990000,2),(23,'Samsung Galaxy A52',20,'2020-04-23','Còn hàng',9290000,2),(24,'Samsung Galaxy S21 Plus 5G',20,'2020-05-23','Còn hàng',25990000,2),(25,'Samsung Galaxy A72',20,'2020-05-23','Còn hàng',11490000,2),(26,'Samsung Galaxy Note 20 Ultra',20,'2020-05-23','Còn hàng',29990000,2),(27,'Samsung Galaxy A32',20,'2019-05-10','Còn hàng',6690000,2),(28,'Samsung Galaxy Z Fold2 5G (Phiên bản mùa hè)',20,'2020-07-23','Còn hàng',3590000,2),(29,'Samsung Galaxy A02s',20,'2019-06-24','Còn hàng',3590000,2),(30,'Samsung Galaxy Note 20',20,'2020-05-07','Còn hàng',23990000,2),(31,'Samsung Galaxy A31',20,'2019-05-25','Còn hàng',5790000,2),(32,'Xiaomi Redmi Note 10',20,'2019-06-24','Còn hàng',5490000,3),(33,'Xiaomi Redmi Note 10 Pro 8GB',20,'2019-06-24','Còn hàng',5490000,3),(34,'Xiaomi Mi 11 5G',20,'2020-07-23','Còn hàng',21990000,3),(35,'Xiaomi POCO X3 NFC',20,'2019-06-24','Còn hàng',6990000,3),(36,'Xiaomi Redmi Note 10 4GB',20,'2019-05-10','Còn hàng',4690000,3),(37,'Xiaomi Redmi 9A',10,'2019-05-25','Còn hàng',1990000,3),(38,'Xiaomi Mi 10T Pro 5G 8GB',20,'2019-06-24','Còn hàng',11990000,3),(39,'Xiaomi Mi 10T Pro 5G',20,'2020-05-07','Còn hàng',12990000,3);
+INSERT INTO `product` VALUES (1,' iPhone 12 Pro Max',23,'2021-01-02','Còn hàng',31990000,1),(2,' iPhone 11 Pro Max Chính hãng VN/A ',15,'2021-10-20','Còn hàng',29500000,1),(3,'iPhone 11 Chính hãng VN/A ',8,'2020-11-11','Còn hàng',19900000,1),(4,'iPhone XR Chính hãng VN/A ',10,'2020-04-20','Còn hàng',20000000,1),(5,'iPhone 12 mini Chính hãng VN/A',20,'2020-03-20','Còn hàng',22990000,1),(6,'iPhone 12 Chính hãng VN/A ',20,'2020-05-23','Còn hàng',20990000,1),(7,'Apple iPhone 8 Plus Chính hãng VN/A ',20,'2020-04-23','Còn hàng',16000000,1),(8,'iPhone 7 Plus Chính hãng VN/A ',20,'2021-04-23','Còn hàng',9990000,1),(9,'iPhone SE 2020 128GB Chính hãng VN/A ',20,'2020-04-23','Còn hàng',14990000,1),(21,'Samsung Galaxy Note 20 Ultra 5G',19,'2020-04-15','Còn hàng',25990000,2),(22,'Samsung Galaxy S21 Ultra 5G',20,'2020-04-23','Còn hàng',30990000,2),(23,'Samsung Galaxy A52',20,'2020-04-23','Còn hàng',9290000,2),(24,'Samsung Galaxy S21 Plus 5G',19,'2020-05-23','Còn hàng',25990000,2),(25,'Samsung Galaxy A72',19,'2020-05-23','Còn hàng',11490000,2),(26,'Samsung Galaxy Note 20 Ultra',20,'2020-05-23','Còn hàng',29990000,2),(27,'Samsung Galaxy A32',20,'2019-05-10','Còn hàng',6690000,2),(28,'Samsung Galaxy Z Fold2 5G (Phiên bản mùa hè)',20,'2020-07-23','Còn hàng',3590000,2),(29,'Samsung Galaxy A02s',20,'2019-06-24','Còn hàng',3590000,2),(30,'Samsung Galaxy Note 20',19,'2020-05-07','Còn hàng',23990000,2),(31,'Samsung Galaxy A31',20,'2019-05-25','Còn hàng',5790000,2),(32,'Xiaomi Redmi Note 10',20,'2019-06-24','Còn hàng',5490000,3),(33,'Xiaomi Redmi Note 10 Pro 8GB',20,'2019-06-24','Còn hàng',5490000,3),(34,'Xiaomi Mi 11 5G',20,'2020-07-23','Còn hàng',21990000,3),(35,'Xiaomi POCO X3 NFC',20,'2019-06-24','Còn hàng',6990000,3),(36,'Xiaomi Redmi Note 10 4GB',20,'2019-05-10','Còn hàng',4690000,3),(37,'Xiaomi Redmi 9A',10,'2019-05-25','Còn hàng',1990000,3),(38,'Xiaomi Mi 10T Pro 5G 8GB',20,'2019-06-24','Còn hàng',11990000,3),(39,'Xiaomi Mi 10T Pro 5G',20,'2020-05-07','Còn hàng',12990000,3);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,7 +171,7 @@ CREATE TABLE `product_comment` (
   PRIMARY KEY (`COMMENT_ID`),
   KEY `FKgekib0m3vt6whjenb3cukabl1` (`PRODUCT_ID`),
   KEY `FKi185n02wjp4twvkstiwlo2dkl` (`USER_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,7 +180,7 @@ CREATE TABLE `product_comment` (
 
 LOCK TABLES `product_comment` WRITE;
 /*!40000 ALTER TABLE `product_comment` DISABLE KEYS */;
-INSERT INTO `product_comment` VALUES (1,'Nếu mua tôi vẫn chọn mua ở Smobile, Rất uy tín.','2021-04-05',1,1,'images/comment/comment1.jpg',4),(2,'Tốt, nhân viên thân thiện','2021-04-07',1,2,'images/comment/comment2.jpg',5),(3,'Sản phẩm Oki','2021-03-07',2,3,'images/comment/comment3.jpg',4),(4,'Sản phẩm tốt Pin trâu','2021-04-04',1,3,'images/comment/comment4.jpg',5),(5,'Đúng như mong chờ 5 sao','2021-04-01',3,3,'images/comment/comment5.jpg',5),(6,'Sản phẩm tốt','2021-05-10',1,4,'images/comment/comment4.jpg',4),(7,'Sản phẩm tốt nhưng giá hơi cao ','2021-05-10',1,2,'images/comment/comment3.jpg',3),(8,'Good','2021-05-10',1,5,'images/comment/comment6.jpg',5),(9,'Tuyệt vời','2021-05-11',1,3,'',4),(10,'Tốt','2021-05-11',1,3,'images/comment/comment8.jpg',5),(11,'Hiệu năng cao đúng như mong đợi','2021-05-11',1,2,'images/comment/comment1.jpg',5),(12,'Sản phẩm nhanh hết pin','2021-05-11',4,3,'images/comment/comment8.jpg',3),(13,'Màn hình sắc nét độ phân giải cao. Tốt','2021-05-12',24,5,NULL,5),(14,'Sản phẩm đẹp, hiệu năng cao','2021-05-12',30,5,NULL,5),(15,'Màn hình, hiệu năng Oki, hạn chết là nhanh hết pin nhưng vẫn Good','2021-05-12',2,7,'images/comment/20210512-2326-36lpnr.jpg',5),(16,'Màn hình, hiệu năng Oki, hạn chết là nhanh hết pin nhưng vẫn Good','2021-05-12',2,7,'images/comment/20210512-2326-10kfpf.jpg',5),(17,'Tốt','2021-05-12',2,7,'images/comment/20210512-2327-dgf8cd.jpg',5),(18,'Chất lương tốt','2021-05-12',3,7,'images/comment/20210512-2333-bquhbd.jpg',5);
+INSERT INTO `product_comment` VALUES (1,'Nếu mua tôi vẫn chọn mua ở Smobile, Rất uy tín.','2021-04-05',1,1,'images/comment/comment1.jpg',4),(2,'Tốt, nhân viên thân thiện','2021-04-07',1,2,'images/comment/comment2.jpg',5),(3,'Sản phẩm Oki','2021-03-07',2,3,'images/comment/comment3.jpg',4),(4,'Sản phẩm tốt Pin trâu','2021-04-04',1,3,'images/comment/comment4.jpg',5),(5,'Đúng như mong chờ 5 sao','2021-04-01',3,3,'images/comment/comment5.jpg',5),(6,'Sản phẩm tốt','2021-05-10',1,4,'images/comment/comment4.jpg',4),(7,'Sản phẩm tốt nhưng giá hơi cao ','2021-05-10',1,2,'images/comment/comment3.jpg',3),(8,'Good','2021-05-10',1,5,'images/comment/comment6.jpg',5),(9,'Tuyệt vời','2021-05-11',1,3,'images/comment/comment6.jpg',4),(10,'Tốt','2021-05-11',1,3,'images/comment/comment8.jpg',5),(11,'Hiệu năng cao đúng như mong đợi','2021-05-11',1,2,'images/comment/comment1.jpg',5),(12,'Sản phẩm nhanh hết pin','2021-05-11',4,3,'images/comment/comment8.jpg',3),(13,'Màn hình sắc nét độ phân giải cao. Tốt','2021-05-12',24,5,NULL,5),(14,'Sản phẩm đẹp, hiệu năng cao','2021-05-12',30,5,NULL,5),(15,'Màn hình, hiệu năng Oki, hạn chết là nhanh hết pin nhưng vẫn Good','2021-05-12',2,7,'images/comment/20210512-2326-36lpnr.jpg',5),(16,'Màn hình, hiệu năng Oki, hạn chết là nhanh hết pin nhưng vẫn Good','2021-05-12',2,7,'images/comment/20210512-2326-10kfpf.jpg',5),(17,'Tốt','2021-05-12',2,7,'images/comment/20210512-2327-dgf8cd.jpg',5),(18,'Chất lương tốt','2021-05-12',3,7,'images/comment/20210512-2333-bquhbd.jpg',5);
 /*!40000 ALTER TABLE `product_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,7 +197,7 @@ CREATE TABLE `product_image` (
   `PRODUCT_ID` bigint DEFAULT NULL,
   PRIMARY KEY (`PRODUCT_IMAGE_ID`),
   KEY `FKgab836d8rxqg8vv55nm02r65i` (`PRODUCT_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,7 +206,7 @@ CREATE TABLE `product_image` (
 
 LOCK TABLES `product_image` WRITE;
 /*!40000 ALTER TABLE `product_image` DISABLE KEYS */;
-INSERT INTO `product_image` VALUES (1,'images/product/iphone-12-pro-max_2__7.jpg',1),(2,'images/product/iphone-12-pro-max-xanh-duong.jpg',1),(3,'images/product/iphone-12-pro-max-vang.jpg',1),(4,'images/product/iphone-12-pro-max-bac.jpg',1),(51,'images/product/samsung-ultra-5g.jpg',21),(50,'images/product/iphone-se.jpg',9),(49,'images/product/iphone-7-plus.jpg',8),(48,'images/product/iphone-se.jpg',9),(47,'images/product/iphone-se.jpg',9),(46,'images/product/iphone_8_plus.jpg',7),(45,'images/product/iphone-12-do.jpg',6),(44,'images/product/iphone-12-trang.jpg',5),(43,'images/product/iphone-12-do.jpg',5),(42,'images/product/iphone-xr.jpg',4),(29,'images/product/iphone-11-tim.jpg',3),(28,'images/product/iphone-11-trang.jpg',3),(5,'images/product/iphone-11-do.jpg',3),(30,'images/product/iphone-11-vang.jpg',3),(27,'images/product/iphone-11-pro-max-vang.jpg',2),(6,'images/product/iphone-11-pro-max-xanh-reu.jpg',2),(52,'images/product/samsung-ultra-5g-den.jpg',22),(7,'images/product/iphone-11-pro-max-trang.jpg',2),(53,'images/product/samsung-galaxy-a52-tim.jpg',23),(54,'images/product/samsung-galaxy-s21-plus-bac.jpg',24),(55,'images/product/samsung-galaxy-s21-plus-bac.jpg',25),(56,'images/product/SS20-vang-dong.jpg',26),(57,'images/product/samsung-galaxy-a32-trang.jpg',27),(58,'images/product/galaxy-z-fold2-5g-vang-dong.jpg',28),(59,'images/product/samsung-galaxy-a02s-do.jpg',29),(60,'images/product/SSNOTE20-XANH.jpg',30),(61,'images/product/ssA31-TIM.jpg',31),(62,'images/product/xiaomi-redmi-note-10-trang.jpg',32),(63,'images/product/xiaomi-redmi-note-10-pro-cam.jpg',33),(64,'images/product/xiaomi-mi-11-128gb-1.jpg',34),(65,'images/product/xiaomi-poco-x3-pro-2.jpg',35),(66,'images/product/xiaomi-redmi-note-10_1_1_1.jpg',36),(67,'images/product/redmi_9a_0002_layer_1_1.jpg',37),(68,'images/product/xiaomi-mi-10t-pro_2__3.jpg',38),(69,'images/product/xiaomi-mi-10t-pro_1__1.jpg',39);
+INSERT INTO `product_image` VALUES (1,'images/product/iphone-12-pro-max_2__7.jpg',1),(2,'images/product/iphone-12-pro-max-xanh-duong.jpg',1),(3,'images/product/iphone-12-pro-max-vang.jpg',1),(4,'images/product/iphone-12-pro-max-bac.jpg',1),(51,'images/product/samsung-ultra-5g.jpg',21),(50,'images/product/iphone-se.jpg',9),(49,'images/product/iphone-7-plus.jpg',8),(48,'images/product/iphone-se.jpg',9),(47,'images/product/iphone-se.jpg',9),(46,'images/product/iphone_8_plus.jpg',7),(45,'images/product/iphone-12-do.jpg',6),(44,'images/product/iphone-12-trang.jpg',5),(43,'images/product/iphone-12-do.jpg',5),(42,'images/product/iphone-xr.jpg',4),(29,'images/product/iphone-11-tim.jpg',3),(28,'images/product/iphone-11-trang.jpg',3),(5,'images/product/iphone-11-do.jpg',3),(30,'images/product/iphone-11-vang.jpg',3),(27,'images/product/iphone-11-pro-max-vang.jpg',2),(6,'images/product/iphone-11-pro-max-xanh-reu.jpg',2),(52,'images/product/samsung-ultra-5g-den.jpg',22),(7,'images/product/iphone-11-pro-max-trang.jpg',2),(53,'images/product/samsung-galaxy-a52-tim.jpg',23),(54,'images/product/samsung-galaxy-s21-plus-bac.jpg',24),(55,'images/product/samsung-galaxy-s21-plus-bac.jpg',25),(56,'images/product/SS20-vang-dong.jpg',26),(57,'images/product/samsung-galaxy-a32-trang.jpg',27),(58,'images/product/galaxy-z-fold2-5g-vang-dong.jpg',28),(59,'images/product/samsung-galaxy-a02s-do.jpg',29),(60,'images/product/SSNOTE20-XANH.jpg',30),(61,'images/product/ssA31-TIM.jpg',31),(62,'images/product/xiaomi-redmi-note-10-trang.jpg',32),(63,'images/product/xiaomi-redmi-note-10-pro-cam.jpg',33),(64,'images/product/xiaomi-mi-11-128gb-1.jpg',34),(65,'images/product/xiaomi-poco-x3-pro-2.jpg',35),(66,'images/product/xiaomi-redmi-note-10_1_1_1.jpg',36),(67,'images/product/redmi_9a_0002_layer_1_1.jpg',37),(68,'images/product/xiaomi-mi-10t-pro_2__3.jpg',38),(69,'images/product/xiaomi-mi-10t-pro_1__1.jpg',39),(74,'images/product/20210514-0101-gf0d7f.jpg',1);
 /*!40000 ALTER TABLE `product_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -299,7 +299,7 @@ CREATE TABLE `purchase` (
   KEY `FKhx222gmp8q34el3oyvqup3n1s` (`PAYMENT_METHOD_ID`),
   KEY `FKja3u312154o3ei3wtwhftg0py` (`PURCHASE_STATUS_ID`),
   KEY `FKnjygkwde7uvntspyx9ogws0nb` (`USER_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -308,7 +308,7 @@ CREATE TABLE `purchase` (
 
 LOCK TABLES `purchase` WRITE;
 /*!40000 ALTER TABLE `purchase` DISABLE KEYS */;
-INSERT INTO `purchase` VALUES (1,'2021-05-04',1,1,3,3,'77 Nguyễn Huệ, Huế','Chung Thái ','Giao hàng lúc 11h trưa tại cổng trước ĐH Khoa Học Huế','123456700'),(2,'2021-05-04',1,1,3,7,'70 Nguyễn Lương Bằng, Huế','Trần Hồng Thức','','123456789'),(3,'2021-05-04',1,1,2,2,'7 Tản Đà, Huế','Trần Văn Nam','Giao hàng lúc 11h trưa tại cổng trước ĐH Khoa Học Huế','123456782'),(4,'2021-05-04',1,1,3,7,'70 Nguyễn Lương Bằng, Huế','Trần Hồng Thức','Test trang thái đơn hàng','123456789'),(5,'2021-05-05',1,1,1,3,'3 Đinh Tiên Hoàng, Huế','Chung Thái ','','123456700'),(6,'2021-05-05',1,1,1,3,'3 Đinh Tiên Hoàng, Huế','Trần Đại Cường','Giao hàng lúc 11h trưa tại cổng trước ĐH Khoa Học Huế','123456700'),(7,'2021-05-10',1,1,2,3,'3 Đinh Tiên Hoàng, Huế','Trần Đại Cường','Giao hàng lúc 11h trưa tại cổng trước ĐH Khoa Học Huế','0988617210'),(8,'2021-05-12',1,1,3,3,'77 Nguyễn Huệ, Huế','Trần Đại Cường','Giao hàng lúc 10h tại cổng trước ĐH Khoa Học','123456700'),(9,'2021-05-13',1,1,2,3,'77 Nguyễn Huệ, Huế','Nguyễn Sanh Trưng','Giao hàng lúc 11h - 13h ','123456711');
+INSERT INTO `purchase` VALUES (1,'2021-05-04',1,1,3,3,'77 Nguyễn Huệ, Huế','Chung Thái ','Giao hàng lúc 11h trưa tại cổng trước ĐH Khoa Học Huế','123456700'),(2,'2021-05-04',1,1,3,7,'70 Nguyễn Lương Bằng, Huế','Trần Hồng Thức','','123456789'),(3,'2021-05-04',1,1,2,2,'7 Tản Đà, Huế','Trần Văn Nam','Giao hàng lúc 11h trưa tại cổng trước ĐH Khoa Học Huế','123456782'),(4,'2021-05-04',1,1,3,7,'70 Nguyễn Lương Bằng, Huế','Trần Hồng Thức','Test trang thái đơn hàng','123456789'),(5,'2021-05-05',1,1,1,3,'3 Đinh Tiên Hoàng, Huế','Chung Thái ','','123456700'),(6,'2021-05-05',1,1,4,3,'3 Đinh Tiên Hoàng, Huế','Trần Đại Cường','Giao hàng lúc 11h trưa tại cổng trước ĐH Khoa Học Huế','123456700'),(7,'2021-05-10',1,1,5,3,'3 Đinh Tiên Hoàng, Huế','Trần Đại Cường','Giao hàng lúc 11h trưa tại cổng trước ĐH Khoa Học Huế','0988617210'),(8,'2021-05-12',1,1,3,3,'77 Nguyễn Huệ, Huế','Trần Đại Cường','Giao hàng lúc 10h tại cổng trước ĐH Khoa Học','123456700'),(9,'2021-05-13',1,1,2,3,'77 Nguyễn Huệ, Huế','Nguyễn Sanh Trưng','Giao hàng lúc 11h - 13h ','123456711'),(10,'2021-05-13',1,1,5,7,'77 Nguyễn Huệ, Huế','Nguyễn Sanh Trưng','Giao hàng lúc 11h - 13h ','0366422648'),(11,'2021-05-13',1,1,1,7,'77 N','Nguyễn Sanh Trưng','','0988617215'),(12,'2021-05-13',1,1,1,7,'70 Nguyễn Lương Bằng, Huế','Nguyễn Sanh Trưng','','1111111111'),(13,'2021-05-13',1,1,1,7,'70 Nguyễn Lương Bằng, Huế','Nguyễn Sanh Trưng','','1111111111'),(14,'2021-05-13',1,1,1,7,'70 Nguyễn Lương Bằng, Huế','Nguyễn Sanh Trưng','','1111111111'),(15,'2021-05-13',1,1,3,7,'70 Nguyễn Lương Bằng, Huế','Nguyễn Sanh Trưng','','841234567890'),(16,'2021-05-13',1,1,4,1,'30 Lý Liên Kiệt, Huế','Trần Đức Dương','','0312345678');
 /*!40000 ALTER TABLE `purchase` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -330,7 +330,7 @@ CREATE TABLE `purchase_detail` (
   KEY `FKqhgvtlnm9wskydfj9e1dl3yxf` (`PRODUCT_ID`),
   KEY `FKl8ovx625te7mp40vrsis0trmf` (`PRODUCT_OPTION_ID`),
   KEY `FK5t3yaodc1d5pcfqldu9bv2ftq` (`PURCHASE_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -339,7 +339,7 @@ CREATE TABLE `purchase_detail` (
 
 LOCK TABLES `purchase_detail` WRITE;
 /*!40000 ALTER TABLE `purchase_detail` DISABLE KEYS */;
-INSERT INTO `purchase_detail` VALUES (1,1,38500000,1,12,1),(3,1,38500000,1,12,2),(6,1,36990000,2,15,5),(7,1,29500000,1,3,6),(8,1,20990000,21,41,6),(9,2,29500000,1,2,7),(10,1,29500000,1,3,8),(11,1,32000000,1,5,9);
+INSERT INTO `purchase_detail` VALUES (1,1,38500000,1,12,1),(3,1,38500000,1,12,2),(6,1,36990000,2,15,5),(7,1,29500000,1,3,6),(8,1,20990000,21,41,6),(9,2,29500000,1,2,7),(10,1,29500000,1,3,8),(11,1,32000000,1,5,9),(12,1,10500000,25,47,10),(13,1,15800000,3,25,11),(14,1,15800000,3,24,12),(15,1,25000000,24,46,14),(17,1,15000000,30,51,16);
 /*!40000 ALTER TABLE `purchase_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -386,6 +386,7 @@ CREATE TABLE `user` (
   `ROLE` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT 'ROLE_USER',
   `USERNAME` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `ADDRESS_USER` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `STATUS_USER` int DEFAULT '1',
   PRIMARY KEY (`USER_ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -396,7 +397,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'images/account/avt.jpg','1999-10-10','a@email.com','Trần Đức Dương','Nam','ad17b460ce87deba47d925fa26fe9520','123456789','ROLE_USER','user3','30 Lý Liên Kiệt, Huế'),(2,'images/account/avt.jpg','1999-10-20','B@email.com','Trần Văn Nam','Nam','ad17b460ce87deba47d925fa26fe9520','123456782','ROLE_USER','user2','7 Tản Đà, Huế'),(3,'images/account/avt.jpg','1998-10-20','c@email.com','Trần Đại Cường','Nữ','ad17b460ce87deba47d925fa26fe9520','123456700','ROLE_USER','user','3 Đinh Tiên Hoàng, Huế'),(4,'images/account/avt.jpg','1998-10-20','c@email.com','Trần Thị B','Nữ','ad17b460ce87deba47d925fa26fe9520','123456700','ROLE_USER','nvd','1 Nguyễn Huệ, Huế'),(5,'images/account/avt.jpg','2020-10-10','bc@gmail.com','Thanh Trúc','Nữ','ad17b460ce87deba47d925fa26fe9520','123456189','ROLE_USER','user4','40 Hùng Vương. Huế'),(7,'images/account/avt.jpg','1999-10-20','admin@gamil.com','Nguyễn Sanh Trưng','Nam','ad17b460ce87deba47d925fa26fe9520','123456789','ROLE_ADMIN','admin','70 Nguyễn Lương Bằng, Huế');
+INSERT INTO `user` VALUES (1,'images/account/avt.jpg','1999-10-10','a@email.com','Trần Đức Dương','Nam','ad17b460ce87deba47d925fa26fe9520','123456789','ROLE_USER','user3','30 Lý Liên Kiệt, Huế',1),(2,'images/account/avt.jpg','1999-10-20','B@email.com','Trần Văn Nam','Nam','ad17b460ce87deba47d925fa26fe9520','123456782','ROLE_USER','user2','7 Tản Đà, Huế',1),(3,'images/account/avt.jpg','1998-10-20','c@email.com','Trần Đại Cường','Nữ','ad17b460ce87deba47d925fa26fe9520','123456700','ROLE_USER','user','3 Đinh Tiên Hoàng, Huế',1),(4,'images/account/avt.jpg','1998-10-20','c@email.com','Trần Thị B','Nữ','ad17b460ce87deba47d925fa26fe9520','123456700','ROLE_USER','nvd','1 Nguyễn Huệ, Huế',1),(5,'images/account/avt.jpg','2020-10-10','bc@gmail.com','Thanh Trúc','Nữ','ad17b460ce87deba47d925fa26fe9520','123456189','ROLE_USER','user4','40 Hùng Vương. Huế',1),(7,'','1999-10-20','admin@gamil.com','Nguyễn Sanh Trưng','Nam','ad17b460ce87deba47d925fa26fe9520','123456789','ROLE_ADMIN','admin','70 Nguyễn Lương Bằng, Huế',1),(6,'images/account/avt.jpg','1999-10-20','admin@gamil.com','Thanh Trúc','Nữ','ad17b460ce87deba47d925fa26fe9520','123456789','ROLE_USER','user5','70 Nguyễn Lương Bằng, Huế',0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -409,4 +410,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-13 21:06:32
+-- Dump completed on 2021-05-14 22:23:55
