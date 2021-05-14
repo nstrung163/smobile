@@ -8,6 +8,7 @@ import com.smobile.model.ResponseDataModel;
 public interface IProductService {
 
 	/**
+	 * 
 	 * Get all product
 	 * 
 	 * @returnList<ProductEntity>
@@ -15,6 +16,7 @@ public interface IProductService {
 	List<ProductEntity> findAllProduct();
 	
 	/**
+	 * 
 	 * Find product by id
 	 * 
 	 * @param productId
@@ -23,6 +25,7 @@ public interface IProductService {
 	ProductEntity findByProductId(Integer productId);
 	
 	/**
+	 * 
 	 * Add new product
 	 * 
 	 * @param productEntity
@@ -31,6 +34,7 @@ public interface IProductService {
 	ResponseDataModel addNewProduct(ProductEntity productEntity);
 	
 	/**
+	 * 
 	 * Update product 
 	 * 
 	 * @param productEntity
@@ -39,11 +43,12 @@ public interface IProductService {
 	ResponseDataModel updateProduct(ProductEntity productEntity);
 	
 	/**
+	 * 
 	 * Delete product by product id
 	 * 
 	 * @param productId
 	 * @return ResponseDataModel
 	 */
 	ResponseDataModel deleteProductById(Integer productId);
-	
+
 }

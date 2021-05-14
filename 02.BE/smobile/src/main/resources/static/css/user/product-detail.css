@@ -1,3 +1,5 @@
+@import
+	url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 /* START BREADCRUMBS */
 * {
 	font-size: 1.4rem;
@@ -8,7 +10,7 @@ main.container {
 }
 
 .breadcrumbs {
-	padding: 10px 0;
+	padding: 10px 0 5px;
 }
 
 .breadcrumbs>ul {
@@ -34,12 +36,12 @@ main.container {
 	justify-content: flex-start;
 	align-items: center;
 	position: relative;
-	padding: 0;
+	padding: 3px 0;
 }
 
 .top-view>h1 {
 	margin-right: 10px;
-	font-size: 2.0rem;
+	font-size: 1.8rem;
 	font-weight: 600;
 }
 
@@ -73,7 +75,7 @@ main.container {
 /* Start product essential left */
 .product-essential__left {
 	max-width: 50%;
-	height: 90%;
+	height: 95%;
 	position: relative;
 	border: 1px solid #ccc;
 	border-radius: 6px;
@@ -193,12 +195,16 @@ main.container {
 	color: #000;
 }
 
+.item-product-memory--link strong {
+	
+}
+
 .item-product-memory label {
 	
 }
 
 .item-product-memory span {
-	padding-bottom: 5px;
+	
 }
 
 .item-product-memory strong {
@@ -235,10 +241,6 @@ main.container {
 
 .item-product-color strong {
 	color: #e11b1e;
-}
-
-.li-enable {
-	background-color: #bae8ff;
 }
 /* Start product color */
 .check {
@@ -403,10 +405,6 @@ input[type="checkbox"]:checked+label:before {
 /* END BOX PRODUCT INFORMATION */
 
 /* START RATE & COMMENT */
-.rating {
-	font-size: 1.4rem;
-}
-
 .box-qa {
 	padding: 5px;
 	border: 1px solid #ccc;
@@ -470,7 +468,6 @@ input[type="checkbox"]:checked+label:before {
 	border: 1px solid #288ad6;
 	background: #288ad6;
 	color: #fff;
-	width: 150px;
 }
 
 .averaRatings {
@@ -490,7 +487,7 @@ input[type="checkbox"]:checked+label:before {
 .box-qa__comment__data {
 	display: flex;
 	flex-direction: column;
-    align-items: center;
+	align-items: center;
 }
 
 .comment-content {
@@ -501,6 +498,43 @@ input[type="checkbox"]:checked+label:before {
 .image-comment {
 	font-size: 1.4rem;
 	width: 45%;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 14px;
+	position: relative;
+}
+
+.image-label {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	color: #2f80ed;
+	cursor: pointer;
+}
+
+.image-label::after {
+	content: "";
+	position: absolute;
+	top: -4px;
+	left: 37px;
+	width: 40px;
+	height: 32px;
+	background-image: url(/images/icon_chitiet2x.png);
+	background-repeat: no-repeat;
+	background-position: -530px -150px;
+}
+
+.preview-image-upload {
+	position: absolute;
+	right: -1px;
+	top: -16px;
+	width: 61px;
+	height: 70px;
+}
+
+.preview-image-upload img {
+	width: 50px;
+	height: 50px;
 }
 
 .btnSubmitRateComment {
@@ -513,10 +547,14 @@ input[type="checkbox"]:checked+label:before {
 }
 
 #commentContent {
-	
+	font-size: 1.4rem;
 }
 
-#imageComenet {
+#imageComment {
+	font-size: 1.4rem;
+}
+
+#imageFile {
 	font-size: 1.4rem;
 }
 
@@ -531,15 +569,14 @@ input[type="checkbox"]:checked+label:before {
 
 .img-avt {
 	width: 100px;
-	height: 75px;
+	height: 80px;
 	margin-right: 14px;
 }
 
 .box-reviewer__item {
 	display: flex;
-	justify-content: stretch;
-	align-items: center;
-	padding: 5px 0;
+	flex-direction: column;
+	padding: 10px 0;
 	border-bottom: 1px solid #d4d4d4;
 }
 
@@ -547,17 +584,16 @@ input[type="checkbox"]:checked+label:before {
 	border-bottom: none;
 }
 
-.box-reviewer__item--number {
-	color: #f3c900;
-	font-weight: bold;
-}
-
 .box-reviewer__item a {
+	width: 30%;
 	color: red;
 	font-size: 1.4rem;
 	border-radius: 5px;
-	border: 1px solid red;
 	margin: 10px 0;
+}
+
+.btn-view-all {
+	border: 1px solid red;
 }
 
 .box-reviewer__item--name {
@@ -573,7 +609,105 @@ input[type="checkbox"]:checked+label:before {
 	color: #9e9797;
 }
 
+.box-reviewer__item--number {
+	color: #f5d331;
+	font-weight: bold;
+}
+
 .btn-aqua:hover {
 	color: #fff;
 }
+
+.box-reviewer__content {
+	display: flex;
+	padding-bottom: 10px;
+}
+
+.box-reviewer__img {
+	
+}
+
+.box-reviewer--item-img {
+	width: 100px;
+	height: 130px;
+}
+
+/* Rate star */
+
+/****** Style Star Rating Widget *****/
+.rating {
+	border: none;
+	float: left;
+	font-size: 1.4rem;
+}
+
+.rating>input {
+	display: none;
+}
+
+.rating>label:before {
+	margin: 5px;
+	font-size: 1.25em;
+	font-family: FontAwesome;
+	display: inline-block;
+	content: "\f005";
+}
+
+.rating>.half:before {
+	content: "\f089";
+	position: absolute;
+}
+
+.rating>label {
+	color: #ddd;
+	float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+.rating>input:checked ~label, /* show gold star when clicked */ .rating:not(:checked)>label:hover,
+	/* hover current star */ .rating:not(:checked)>label:hover ~label {
+	color: #ffd700;
+}
+
+/* hover previous stars in list */
+.rating>input:checked+label:hover,
+	/* hover current star when changing rating */ .rating>input:checked ~label:hover,
+	.rating>label:hover ~input:checked ~label,
+	/* lighten current selection */ .rating>input:checked ~label:hover ~label
+	{
+	color: #ffed85;
+}
+
+.box-login {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn-aqua-login {
+	font-size: 1.4rem;
+	background: #288ad6;
+	color: #fff;
+	font-weight: 400;
+}
+
+.btn-aqua-login:hover {
+	color: #fff;
+}
 /* END RATE & COMMENT */
+/* START PRODUCT RELATED */
+.product-related {
+	border-top: 1px solid #e0e0e0;
+}
+
+.product-related__title {
+	font-size: 2.1rem;
+	font-weight: 600;
+	padding: 15px 0 15px 0;
+	color: #cf1717;
+}
+
+.product-related__content {
+	
+}
+/* END PRODUCT RELATED */

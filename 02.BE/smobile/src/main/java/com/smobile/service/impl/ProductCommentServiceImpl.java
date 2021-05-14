@@ -11,6 +11,7 @@ import com.smobile.common.constant.Constants;
 import com.smobile.entity.ProductCommentEntity;
 import com.smobile.entity.ProductEntity;
 import com.smobile.entity.UserEntity;
+import com.smobile.model.CommentModel;
 import com.smobile.model.ResponseDataModel;
 import com.smobile.repository.IProductCommentRepository;
 import com.smobile.repository.IProductRepository;
@@ -39,7 +40,7 @@ public class ProductCommentServiceImpl implements IProductCommentService {
 			productCommentList = productCommentRepository.findAll();
 			log.info("Lấy danh sách bình luận của sản phẩm thành công!");
 		} catch (Exception e) {
-			log.error("Lấy danh sách bình luận của sản phẩm thất bại: " + e.getMessage());
+			log.error("Lấy danh sách bình luận của sản phẩm không thành công do: " + e.getMessage());
 		}
 		return productCommentList;
 	}
@@ -141,6 +142,26 @@ public class ProductCommentServiceImpl implements IProductCommentService {
 			log.error(responseMsg + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
+	}
+
+	@Override
+	public List<CommentModel> convertCommentEntityToCommentModel(List<ProductCommentEntity> productCommentList) {
+		List<CommentModel> productCommentModels = new ArrayList<CommentModel>();
+		try {
+			for(ProductCommentEntity commentEntity : productCommentList) {
+				ProductEntity productEntity = productRepository.findByProductId(commentEntity.getProductEntity().getProductId());
+				UserEntity userEntity = userRepository.findByUserId(commentEntity.getUserEntity().getUserId());
+				CommentModel commentModel = new CommentModel();
+				commentModel.setProductCommentEntity(commentEntity);
+				commentModel.setFullName(userEntity.getFullName());
+				commentModel.setProductName(productEntity.getProductName());
+				productCommentModels.add(commentModel);
+			}
+			log.info("Chuyển danh sách bình luận sang danh sách bình luận model thành công");
+		} catch (Exception e) {
+			log.info("Chuyển danh sách bình luận sang danh sách bình luận model thất bại do: " + e.getMessage());
+		}
+		return productCommentModels;
 	}
 
 }

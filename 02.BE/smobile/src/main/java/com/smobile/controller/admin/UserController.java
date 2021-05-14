@@ -36,13 +36,13 @@ public class UserController {
 		return userService.findByUserId(id);
 	}
 	
-	@PostMapping(value = "/user")
+	@PostMapping(value = "/user/add")
 	@ResponseBody
 	public ResponseDataModel addNewUser(@ModelAttribute UserEntity userEntity) {
 		return userService.addNewUser(userEntity);
 	}
 	
-	@PutMapping(value = "/user")
+	@PutMapping(value = "/user/update")
 	@ResponseBody
 	public ResponseDataModel updateUser(@ModelAttribute UserEntity userEntity) {
 		return userService.updateUser(userEntity);

@@ -32,7 +32,7 @@ public class UserServiceImpl implements IUserService {
 	public List<UserEntity> findAllUser() {
 		List<UserEntity> users = new ArrayList<UserEntity>();
 		try {
-			users = userRepository.findAll();
+			users = userRepository.findAllUser();
 			log.info("Lấy danh sách người dùng thành công!");
 		} catch (Exception e) {
 			log.error("Lây danh sách người dùng thất bại!");
@@ -101,21 +101,13 @@ public class UserServiceImpl implements IUserService {
 		try {
 			MultipartFile avateFile = userEntity.getAvatarFile();
 			if(avateFile != null && avateFile.getSize() > 0) {
-				if(findByUserName(userEntity.getUsername()) != null) {
 					String avataPath = FileHelper.editFile(accountFolderPath, avateFile, userEntity.getAvatarUrl());
 					userEntity.setAvatarUrl(avataPath);
-					userRepository.saveAndFlush(userEntity);
-					responseCode = Constants.RESULT_CD_SUCCESS;
-					responseMsg = "Cập nhật tài khoản thành công!";
-					log.info(responseMsg);
-				} else {
-					responseMsg = "Không tìm thấy tài khoản!";
-					log.warn(responseMsg);
-				}
-			} else {
-				responseMsg = "Vui lòng chọn ảnh đại diện!";
-				log.warn(responseMsg);
 			}
+			userRepository.saveAndFlush(userEntity);
+			responseCode = Constants.RESULT_CD_SUCCESS;
+			responseMsg = "Cập nhật tài khoản thành công!";
+			log.info(responseMsg);
 		} catch (Exception e) {
 			responseMsg = "Cập nhật tài khoản thất bại";
 			log.error(responseMsg + e.getMessage());
@@ -130,7 +122,8 @@ public class UserServiceImpl implements IUserService {
 		try {
 			UserEntity userEntity = findByUserId(userId);
 			if(userEntity != null) {
-				userRepository.deleteById(userId);
+				userEntity.setStatusUser(0);
+				userRepository.saveAndFlush(userEntity);
 				FileHelper.deleteFile(userEntity.getAvatarUrl());
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Xóa tài khoản thành công!";

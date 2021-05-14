@@ -45,6 +45,9 @@ public class UserEntity {
 
 	@Column(name = "PHONE_NUMBER", columnDefinition = "nvarchar(13)", nullable = false)
 	private String phoneNumber;
+	
+	@Column(name = "ADDRESS_USER", columnDefinition = "nvarchar(200)", nullable = false)
+	private String addressUser;
 
 	@Column(name = "AVATAR_URL", columnDefinition = "text", nullable = false)
 	private String avatarUrl;
@@ -60,13 +63,12 @@ public class UserEntity {
 
 	@Column(name = "ROLE", columnDefinition = "nvarchar(40) default 'ROLE_USER'", nullable = true)
 	private String role;
+	
+	@Column(name = "STATUS_USER", columnDefinition = "int default 1", nullable = true)
+	private int statusUser;
 
 	@Transient
 	private MultipartFile avatarFile;
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "userEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<RateProductEntity> rateProductSet;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "userEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

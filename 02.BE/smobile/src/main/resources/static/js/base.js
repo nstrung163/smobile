@@ -46,6 +46,16 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
             }
 );
 
+/** Show more and hidden footer */
+$(".showMore").click(function () {
+    $(".col-hidden").css("display", "block");
+    $(".showMore").css("display", "none");
+  });
+  $(".showMore-2").click(function () {
+    $(".col-hidden-2").css("display", "block");
+    $(".showMore-2").css("display", "none");
+});
+
 /* Rest form add new brand*/
 function resetFormModal($formElement) {
 	$formElement[0].reset();
@@ -78,7 +88,7 @@ function showNotification(isSuccess, message) {
 			message: message
 		}, {
 			type: 'danger',
-			delay: 6000
+			delay: 4000
 		});
 	}
 }
@@ -140,7 +150,12 @@ function getFormattedDate(saleDate) {
 	var day = date.getDate();
 	var month = date.getMonth() + 1;
 	var year = date.getFullYear();
-	if (date < 10) { date = '0' + date }
+	if (day < 10) { day = '0' + day }
 	if (month < 10) { month = '0' + month }
 	return day + '/' + month + '/' + year;
 }
+
+/** Check valid phone number */
+jQuery.validator.addMethod('valid_phone', function (value) {
+    return /([\+84|84|0]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8})\b/.test(value);
+});

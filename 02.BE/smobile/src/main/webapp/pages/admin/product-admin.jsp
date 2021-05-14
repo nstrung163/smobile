@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,28 +73,23 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/brand-list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
-                                <a class="nav-link" href="/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
-                                <a class="nav-link" href="/account-list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a> 
-                                <a class="nav-link" href="/product-list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
-                                <a class="nav-link" href="/product-list"><i class="mr-2 fas fa-star-half-alt"></i>Đánh giá</a>
+                            	<a class="nav-link" href="/admin/brand-list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
+                            	<a class="nav-link" href="/admin/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
+                                <a class="nav-link" href="/admin/product-image-list"><i class="mr-2 fas fa-user-circle"></i>Hình ảnh sản phẩm</a>
+                                <a class="nav-link" href="/admin/product-option-list"><i class="mr-2 fas fa-star-half-alt"></i>Loại sản phẩm</a>
+                                <a class="nav-link" href="/admin/product-info-list"><i class="mr-2 fas fa-star-half-alt"></i>Thông tin chi tiết sản phẩm</a>
+                                <a class="nav-link" href="/admin/user-list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a>
+                                <a class="nav-link" href="/admin/comment-list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
+                                <a class="nav-link" href="/admin/rate-list"><i class="mr-2 fas fa-comments"></i>Đánh giá</a>
+                                <a class="nav-link" href="/admin/news-list"><i class="mr-2 fas fa-comments"></i>Tin tức</a>
                             </nav>
                         </div>
                         <!-- Quản lý bán hàng -->
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <span class="sb-nav-link-icon">
-                                <i class="fas fa-shopping-cart"></i>
-                            </span> Quản lý bán hàng
-                            <span class="sb-sidenav-collapse-arrow">
-                                <i class="fas fa-angle-down"></i>
-                            </span>
-                        </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/admin/account/list"><i class="mr-2 fas fa-user-circle"> </i>Hóa đơn</a> 
-                                <a class="nav-link" href="/admin/product/list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
-                            </nav>
-                        </div>
+                        <a class="nav-link" href="/admin/purchase-detail-list">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-shopping-cart"></i>
+							</div> Quản lý bán hàng
+						</a> 
                         <!-- Thống kê -->
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStatistic" aria-expanded="false" aria-controls="collapseStatistic">
                             <span class="sb-nav-link-icon">
@@ -104,14 +101,18 @@
                         </a>
                         <div class="collapse" id="collapseStatistic" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/admin/statistic/product">Theo sản phẩm</a> <a class="nav-link"
-                                    href="/admin/statistic/order">Theo hóa đơn</a>
+                                <a class="nav-link" href="/admin/statistic/product">Theo sản phẩm</a>
+                                 <a class="nav-link" href="/admin/statistic/order">Theo hóa đơn</a>
                             </nav>
                         </div>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
-                    <div class="small">Đăng nhập với quyền:</div>admin
+                    <div class="small">Xin chào quản trị viên:</div>
+                    	<sec:authentication var="user" property="principal" />
+						<sec:authorize access="hasRole('ROLE_ADMIN') and isAuthenticated()">
+							${user.fullName}
+						</sec:authorize>
                 </div>
             </nav>
             <!-- END HEADER -->
@@ -121,23 +122,10 @@
                 <div class="container-fluid">
                     <!-- BODY -->
                     <ol  class="breadcrumb mb-4 mt-4">
-                        <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/home">Trang chủ</a></li>
                         <li class="breadcrumb-item active">Sản Phẩm</li>
                     </ol>
                     <h3>Quản Lý Sản Phẩm</h3>
-                    <div id="announcemnet" role="alert" aria-live="assertive" aria-atomic="true" class="toast"
-                        data-animation="true" data-autohide="true" data-delay="3000"
-                        style="position: absolute; top: 70px; right: 30px; z-index: 100000;">
-                        <div class="toast-header alert-success">
-                            <strong class="mr-auto text-success">Thông báo</strong>
-                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="toast-body">
-                            <strong id="notification">Thành công</strong>
-                        </div>
-                    </div>
                     <!-- Alert -->
                     <div class="card mb-4">
                         <div class="card-header">

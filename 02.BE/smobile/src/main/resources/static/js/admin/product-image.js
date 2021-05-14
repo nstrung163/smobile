@@ -9,6 +9,11 @@ $.get(url, function(responseData) {
 		fixedHeader: true,
 		processing: true,
 		data: responseData,
+		"columnDefs": [ 
+			{ className: "td-id", "targets": [ 0 ] },
+			{ className: "td-action", "targets": [ 3 ] }
+		],
+		"order": [[ 0, 'desc' ]],
 		columns: [
 			{ data: 'productImageId' },
 			{ data: 'productEntity.productName' },
@@ -71,7 +76,7 @@ $(document).ready(function() {
 					image = '/images/image-demo.png';
 				}
 				
-				$("#image img").attr('src', image)
+				$("#image img").attr('src','/' + image)
 				$("#imageUrl").val(image);
 			}
 		})
@@ -81,8 +86,8 @@ $(document).ready(function() {
 	$("#btnSubmitProductImage").on('click', function(event) {
 		event.preventDefault();
 		var formData = new FormData($('#productImageInfoForm')[0]);
-		var $productImageId = $('#productImageId');
-		var isAddAction = $productImageId.val() == undefined || $productImageId.val() == "";
+		var $productImageId = formData.get("productImageId");
+		var isAddAction = $productImageId == undefined || $productImageId == "";
 		$("#productImageInfoForm").validate({
 			rules: {
 				imagesFile: {
@@ -110,13 +115,9 @@ $(document).ready(function() {
 					if (responseData.responseCode == 100) {
 						reloadDataTable();
 						$('#myModal').modal('toggle');
-						$('#announcemnet strong:eq(0)').removeClass("text-warning").addClass("text-success");
-						$('#notification').text(responseData.responseMsg);
-						$("#announcemnet").toast('show');
+						showNotification(true, responseData.responseMsg)
 					} else if(responseData.responseCode == 1 || responseData.responseCode == 0) {
-						$('#announcemnet strong:eq(0)').removeClass("text-success").addClass("text-warning");
-						$('#notification').text(responseData.responseMsg);
-						$("#announcemnet").toast('show');
+						showNotification(false, responseData.responseMsg)
 					}
 				},
 				error: function(e) {
@@ -142,14 +143,10 @@ $(document).ready(function() {
 				if(responseData.responseCode == 100) {
 					reloadDataTable();
 					$('#confirmDeleteModal').modal('toggle');
-					$('#announcemnet strong:eq(0)').removeClass("text-warning").addClass("text-success");
-					$('#notification').text(responseData.responseMsg);
-					$("#announcemnet").toast('show');
+					showNotification(true, responseData.responseMsg)
 				} else {
+					showNotification(false, responseData.responseMsg)
 					reloadDataTable();
-					$('#announcemnet strong:eq(0)').removeClass("text-success").addClass("text-warning");
-					$('#notification').text(responseData.responseMsg);
-					$("#announcemnet").toast('show');
 				}
 			},
 			error: function(e) {

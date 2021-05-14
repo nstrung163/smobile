@@ -1,0 +1,449 @@
+/* START BOX CARD */
+.box-card {
+	box-shadow: 0 0 18px rgb(0 0 0/ 12%);
+}
+
+.box-card-container {
+	width: 600px;
+	margin: 0 auto;
+	font-size: 1.4rem;
+	padding: 1px 0;
+}
+
+.box-card__title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 0;
+	background-color: #f3f3f3;
+}
+
+.box-card__title__left {
+	
+}
+
+.box-card__title--back--home {
+	
+}
+
+.box-card__title__right {
+	font-size: 1.6rem;
+	font-weight: 600;
+}
+
+#formCheckout {
+	/* box-shadow: 0 0 18px rgb(0 0 0 / 12%); */
+	
+}
+/* Start product information */
+.product-info__list {
+	background-color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.product-info__item {
+	display: flex;
+	justify-content: stretch;
+	padding: 10px;
+	border-bottom: 1px solid #eee;
+	font-size: 1.5rem;
+}
+
+.product-info__item:last-child {
+	border-bottom: none;
+}
+
+.product-info__item__image {
+	width: 30%; /* border-radius: 5px; */
+}
+
+.product-info__item__essential {
+	display: flex;
+	flex-direction: column;
+	line-height: 3rem;
+}
+
+.product-info__item__name {
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+.product-info__item__price {
+	color: #e11b1e;
+	font-weight: 500;
+}
+
+.status_purchase {
+	color: #4a90e2;
+	font-weight: 500;
+}
+
+.list-buy {
+	
+}
+
+.list-buy__title {
+	
+}
+
+.list-buy__item {
+	/* font-size: 1.3rem; */
+	
+}
+
+.box-update-card {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.box-update-card__delete {
+	
+}
+
+.pagination-list {
+	display: flex;
+	margin-left: 10px;
+}
+
+.pagination-list__item {
+	width: 35px;
+	height: 35px;
+	line-height: 3.5rem;
+	font-size: 1.5rem;
+	border: 1px solid #eee;
+	text-align: center; /* margin: 0 auto; */
+}
+/* End product information */
+
+/* Start box price */
+.box-price {
+	margin: 23px 0;
+}
+
+.box-price__code-discount {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+}
+
+.box-price__total-price {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	border-bottom: 1px solid #eee;
+}
+
+.box-price__code-discount--title {
+	
+}
+
+.box-price__code-discount--price {
+	
+}
+
+.box-price__total-price--title {
+	
+}
+
+.box-price__total-price--price {
+	color: #e11b1e;
+	font-weight: bold;
+}
+
+/* End box price */
+
+/* Start box shipping */
+.box-shipping {
+	
+}
+
+.box-shipping__title {
+	text-align: right;
+	color: #e11b1e;
+	padding: 5px 12px 24px 0;
+	border-bottom: 1px solid #eee;
+}
+/* End box shipping */
+
+/* Information user */
+.info-user {
+	padding: 9px;
+}
+
+.info-user span {
+	font-size: 1.8rem;
+	font-weight: 500;
+	/* margin-bottom: 10px !important; */
+}
+
+.info-user__required {
+	width: 100%;
+	margin: 15px 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.info-user__required label {
+	margin: 10px 0;
+	font-size: 1.3rem;
+}
+
+.info-user__required--name {
+	width: 50%;
+	margin-right: 10px;
+}
+
+.info-user__required--phone {
+	width: 50%;
+}
+
+.info-user__note {
+	display: flex;
+	flex-direction: column;
+}
+
+.info-user__note {
+	font-size: 1.3rem;
+}
+
+#fullName {
+	width: 100%;
+	border: 1px solid #eee;
+	padding: 5px;
+}
+
+#phoneNumber {
+	width: 100%;
+	border: 1px solid #eee;
+	padding: 5px;
+}
+
+#content-note {
+	border: 1px solid #eee;
+	padding: 5px;
+	margin-top: 5px;
+}
+/* .option-receive {
+                                    
+                                    }
+                                    
+                                    .option-receive__title {
+                                    
+                                    }
+                                    
+                                    .option-receive__store {
+                                    
+                                    }
+                                    
+                                    .option-receive__home {
+                                    
+                                    }
+                                    
+                                    #optionReceiveStore {
+                                    }
+                                    #optionReceiveHome {
+                                    } */
+/* End box shipping */
+/* Start payment method */
+.box-payment {
+	
+}
+
+.box-payment__separate-area {
+	position: relative;
+	margin: 20px 0;
+}
+
+.box-payment__separate {
+	width: 35%;
+	font-size: 1.5rem;
+	background: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px 0;
+	position: relative;
+	left: 32%;
+	z-index: 1;
+}
+
+.box-payment__separate-area::after {
+	content: "";
+	width: 100%;
+	top: 0;
+	height: 50%;
+	position: absolute;
+	border-bottom: 1px solid #ccc;
+	z-index: 0;
+}
+
+.box-payment__zalo {
+	display: flex;
+	align-items: center;
+}
+
+.box-payment__zalo label {
+	display: flex;
+	justify-content: stretch;
+	align-items: center;
+}
+
+.box-payment__zalo i {
+	display: block;
+	height: 27px;
+	width: 75px;
+	background-image: url(/images/payment.png);
+	background-repeat: no-repeat;
+	background-position: 0px -30px;
+}
+
+.box-paymen__other {
+	margin: 0 10px;
+}
+
+.box-paymen__other span {
+	font-size: 1.7rem;
+	font-weight: bold;
+}
+
+.box-payment__vnpay {
+	display: flex;
+	justify-content: stretch;
+	align-items: center;
+}
+
+.box-payment__vnpay lable {
+	
+}
+
+.box-payment__vnpay--label {
+	display: flex;
+	justify-content: stretch;
+	align-items: center;
+}
+
+.box-payment__vnpay i {
+	display: block;
+	height: 27px;
+	width: 88px;
+	background-image: url(/images/payment.png);
+	background-repeat: no-repeat;
+	background-position: -78px -28px;
+	margin: 2px;
+}
+
+#btnSubmitCheckout {
+	background-color: #4a90e2;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	font-size: 1.4rem;
+	margin: 0 auto;
+}
+
+#zalo-method {
+	margin: 0 5px;
+}
+
+#vn-method {
+	margin: 0 5px;
+}
+
+i.icon-zalopay {
+	margin: 2px;
+}
+
+i.icon-atm {
+	width: 49px;
+	margin: 2px;
+	background-position: -94px 0;
+}
+
+i.icon-visa {
+	background-position: 4px 0;
+	width: 52px;
+	margin: 2px;
+}
+
+i.icon-master {
+	background-position: -50px 0;
+	width: 48px;
+	margin: 2px;
+}
+
+i.icon-vnpay {
+	
+}
+
+.box-payment__online {
+	padding: 0 10px;
+}
+
+.box-payment__online span {
+	font-size: 1.7rem;
+	font-weight: bold;
+}
+
+#btnSubmitCheckoutPayOnline {
+	background-color: #e11b1e;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	font-size: 1.4rem;
+	margin: 16px auto;
+}
+
+.btn-aqua {
+	
+}
+
+.not-authenticated-area {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 240px;
+}
+
+.not-authenticated-area__title {
+	padding-bottom: 20px;
+	font-size: 1.6rem;
+}
+
+.not-authenticated-area--btn {
+	width: 30%;
+	font-size: 1.5rem;
+}
+
+.notification-empty-history {
+	text-align: center;
+	font-size: 1.5rem;
+	height: 250px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.notification-empty-history:before {
+	content: "";
+	display: block;
+	width: 104px;
+	height: 106px;
+	background-image: url(/images/cart-mobile.png);
+	background-repeat: no-repeat;
+	background-position: -80px -40px;
+	position: absolute;
+	top: -1%;
+}
+
+/* END BOX CARD */

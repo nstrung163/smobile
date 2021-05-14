@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -39,6 +42,12 @@ public class ProductOptionEntity {
 	
 	@Column(name = "SALE_PRICE", columnDefinition = "double", nullable =  false)
 	private double salePrice;
+	
+	@Column(name = "IMAGE_URL", columnDefinition = "text", nullable = false)
+	private String imageUrl;
+	
+	@Transient
+	private MultipartFile imageFile;
 
 	@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID", nullable = false)
 	@ManyToOne(fetch = FetchType.EAGER)
