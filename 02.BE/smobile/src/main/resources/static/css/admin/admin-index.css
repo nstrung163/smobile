@@ -131,11 +131,17 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error {
 	position: relative;
 }
 
+.td-id {
+	width: 5%;
+	text-align: center;
+}
+
 .action-btns {
 	position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 90%;
 }
 /* END CUSTOM DATATABLE */
 
@@ -148,4 +154,14 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error {
 .sb-nav-fixed #layoutSidenav #layoutSidenav_nav {
     width: 250px;
     height: 100vh;
+}
+/* END CUSTOM WIDTH CONTENT */
+.alert-info, .alert-danger {
+    top: 120px !important;
+    padding: 10px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    line-height: 2rem;
 }

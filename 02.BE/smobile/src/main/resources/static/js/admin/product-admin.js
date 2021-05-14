@@ -7,18 +7,29 @@ function initTableData() {
 			orderCellsTop: true,
 			processing: true,
 			data: responseData,
+			"columnDefs": [
+				{ className: "td-id", "targets": [0] },
+				{ className: "td-action", "targets": [7] }
+			],
+			"order": [[0, 'desc']],
 			columns: [
 				{ data: 'productId' },
 				{ data: 'productName' },
-				{ render: function(data, type, row) {
-					return `<div class="unit-price"> ${currencyFormat(row.unitPrice)} ₫</div>`;
-				} },
-				{ render: function(data, type, row) {
-					return `<div class="quantity-product"> ${row.quantity}</div>`;
-				} },
-				{ render: function(data, type, row) {
-					return `<div class="sale-date"> ${getFormattedDate(row.saleDate)}</div>`;
-				} },
+				{
+					render: function(data, type, row) {
+						return `<div class="unit-price"> ${currencyFormat(row.unitPrice)} ₫</div>`;
+					}
+				},
+				{
+					render: function(data, type, row) {
+						return `<div class="quantity-product"> ${row.quantity}</div>`;
+					}
+				},
+				{
+					render: function(data, type, row) {
+						return `<div class="sale-date"> ${getFormattedDate(row.saleDate)}</div>`;
+					}
+				},
 				{ data: 'statusProduct' },
 				{ data: 'brandEntity.brandName' },
 				{
@@ -87,7 +98,7 @@ $(document).ready(function() {
 				$("#saleDate").val(responseData.saleDate);
 				$("#statusProduct").val(responseData.statusProduct);
 				$("#brandId").val(responseData.brandEntity.brandId);
-				if($("#statusProduct").val() == "Hết hàng") {
+				if ($("#statusProduct").val() == "Hết hàng") {
 					$("#quantity").val(0);
 					$('input[name=quantity]').attr('readonly', 'readonly');
 				} else {
@@ -97,9 +108,9 @@ $(document).ready(function() {
 			}
 		})
 	})
-	
+
 	$('#statusProduct').on('change', function() {
-		if(this.value != "Hết hàng" || this.value == "") {
+		if (this.value != "Hết hàng" || this.value == "") {
 			$('input[name=quantity]').removeAttr('readonly');
 		} else {
 			$('input[name=quantity]').attr('readonly', 'readonly');
@@ -165,7 +176,7 @@ $(document).ready(function() {
 			errorClass: "error-message-invalid"
 		});
 		if ($("#productInfoForm").valid()) {
-			if($('#statusProduct').val() == "Hết hàng") {
+			if ($('#statusProduct').val() == "Hết hàng") {
 				$('#quantity').val(0)
 				$('input[name=quantity]').removeAttr('readonly');
 			} else {
@@ -184,13 +195,9 @@ $(document).ready(function() {
 						/**Reload datatable */
 						reloadDataTable();
 						$('#myModal').modal('toggle');
-						$('#announcemnet strong:eq(0)').removeClass("text-warning").addClass("text-success");
-						$('#notification').text(responseData.responseMsg);
-						$("#announcemnet").toast('show');
-					} else if(responseData.responseCode == 1 || responseData.responseCode == 0) {
-						$('#announcemnet strong:eq(0)').removeClass("text-success").addClass("text-warning");
-						$('#notification').text(responseData.responseMsg);
-						$("#announcemnet").toast('show');
+						showNotification(true, responseData.responseMsg)
+					} else if (responseData.responseCode == 1 || responseData.responseCode == 0) {
+						showNotification(false, responseData.responseMsg)
 					}
 				},
 				error: function(e) {
@@ -206,7 +213,7 @@ $(document).ready(function() {
 		$("#deleteProductName").text($(this).data("name"));
 		$("#btnSubmitDelete").attr('data-id', $(this).data('id'));
 	})
-	
+
 	/** Submit delete product*/
 	$("#btnSubmitDelete").on('click', function() {
 		$.ajax({
@@ -214,16 +221,12 @@ $(document).ready(function() {
 			type: 'DELETE',
 			success: function(responseData) {
 				console.log('responseCode: ' + responseData.responseCode);
-				if(responseData.responseCode == 100) {
+				if (responseData.responseCode == 100) {
 					reloadDataTable();
 					$('#confirmDeleteModal').modal('toggle');
-					$('#announcemnet strong:eq(0)').removeClass("text-warning").addClass("text-success");
-					$('#notification').text(responseData.responseMsg);
-					$("#announcemnet").toast('show');
-				} else  { 
-					$('#announcemnet strong:eq(0)').removeClass("text-success").addClass("text-warning");
-					$('#notification').text(responseData.resposneMsg);
-					$("#announcemnet").toast('show');
+					showNotification(true, responseData.responseMsg)
+				} else {
+					showNotification(false, responseData.responseMsg)
 				}
 			},
 			error: function(e) {
@@ -254,10 +257,10 @@ var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth() + 1;
 var yyyy = today.getFullYear();
-if(dd < 10) {
+if (dd < 10) {
 	dd = '0' + dd;
 }
-if(mm < 10) { 
+if (mm < 10) {
 	mm = '0' + mm;
 }
 today = yyyy + '-' + mm + '-' + dd;

@@ -132,7 +132,7 @@ public class CartServiceImpl implements ICartService {
 			 listHistoryBuy = ObjectToModel.convertToListPurchaseModel(purchaseRepository.getListPurchaseDetailByUserId(userId));
 			log.info("Lấy danh lịch sử mua hàng thành công!");
 		} catch (Exception e) {
-			log.error("Lấy danh sách lịch sửa mua hàng thất bại!");
+			log.error("Lấy danh sách lịch sửa mua hàng thất bại!" + e.getMessage());
 		}
 		return listHistoryBuy;
 	}

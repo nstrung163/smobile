@@ -1,9 +1,10 @@
 package com.smobile.service;
 
-import com.smobile.entity.ProductCommentEntity;
-import com.smobile.model.ResponseDataModel;
-
 import java.util.List;
+
+import com.smobile.entity.ProductCommentEntity;
+import com.smobile.model.CommentModel;
+import com.smobile.model.ResponseDataModel;
 
 public interface IProductCommentService {
 
@@ -11,7 +12,7 @@ public interface IProductCommentService {
 	 * 
 	 * Get all comment
 	 * 
-	 * @returnList<ProductCommentEntity>
+	 * @return List<ProductCommentEntity>
 	 */
 	List<ProductCommentEntity> findAllProductComment();
 	
@@ -60,4 +61,12 @@ public interface IProductCommentService {
 	 */
 	ResponseDataModel deleteCommentById(Integer commnetId);
 	
+	/**
+	 * 
+	 * Convert product comment entity to product comment model
+	 * 
+	 * @param productCommentList
+	 * @return List<ProductCommentModel>
+	 */
+	List<CommentModel> convertCommentEntityToCommentModel(List<ProductCommentEntity> productCommentList);
 }

@@ -122,23 +122,10 @@
                 <div class="container-fluid">
                     <!-- BODY -->
                     <ol  class="breadcrumb mb-4 mt-4">
-                        <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/home">Trang chủ</a></li>
                         <li class="breadcrumb-item active">Sản Phẩm</li>
                     </ol>
                     <h3>Quản Lý Sản Phẩm</h3>
-                    <div id="announcemnet" role="alert" aria-live="assertive" aria-atomic="true" class="toast"
-                        data-animation="true" data-autohide="true" data-delay="3000"
-                        style="position: absolute; top: 70px; right: 30px; z-index: 100000;">
-                        <div class="toast-header alert-success">
-                            <strong class="mr-auto text-success">Thông báo</strong>
-                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="toast-body">
-                            <strong id="notification">Thành công</strong>
-                        </div>
-                    </div>
                     <!-- Alert -->
                     <div class="card mb-4">
                         <div class="card-header">

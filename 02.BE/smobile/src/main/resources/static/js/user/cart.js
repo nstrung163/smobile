@@ -147,11 +147,8 @@ $('.remove-product').on('click', function(event) {
 		}
 	})
 })
+
 $('.box-card__title--back--home').click(function(event) {
 	event.preventDefault();
 	window.history.back();
 })
-
-jQuery.validator.addMethod('valid_phone', function (value) {
-    return /([\+84|84|0]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8})\b/.test(value);
-});

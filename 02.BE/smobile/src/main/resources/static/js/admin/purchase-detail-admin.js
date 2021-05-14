@@ -11,7 +11,7 @@ $.get(url, function(responseData) {
 		data: responseData,
 		"order": [[ 1, 'desc' ]],
 		"columnDefs": [ 
-			{ className: "td-ma-cthd", "targets": [ 0 ] },
+			{ className: "td-id", "targets": [ 0 ] },
 			{ className: "td-product-name", "targets": [ 2 ] },
 			{ className: "td-sale-price", "targets": [ 3 ] },
 			{ className: "td-quantity", "targets": [ 4 ] },
@@ -21,7 +21,10 @@ $.get(url, function(responseData) {
 			{ className: "td-action", "targets": [ 8 ] },
 		  ],
 		columns: [
-			{ data: 'purchaseDetailId' },
+			{ render: function(data, type, row) {
+					return `<div class="purchase-id">${row.purchaseDetailId}</div>`;
+				} 
+			},
 			{ render: function(data, type, row) {
 					return `<div class='text-center image-area-brand'><a href="/${row.imageUrl}" data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src="/${row.imageUrl}"></div>`;
 				} 
@@ -31,7 +34,7 @@ $.get(url, function(responseData) {
 				} 
 			},
 			{ render: function(data, type, row) {
-					return `<div class="unit-price"> ${currencyFormat(row.salePrice)} ₫</div>`;
+					return `<div class="sale-price"> ${currencyFormat(row.salePrice)} ₫</div>`;
 				} 
 			},
 			{ render: function(data, type, row) {
@@ -64,7 +67,8 @@ $.get(url, function(responseData) {
 					return `<div class="action-btns text-center">
 							<a class="edit-btn" data-id="${row.purchaseDetailId}" data-name="${row.productName}" data-toggle="modal" data-target="#myModal">
 								<i class="icon-edit-btn fas fa-edit"></i>
-							</a> | 
+							</a> 
+							| 
 							<a class="delete-btn" data-id="${row.purchaseDetailId}" data-name="${row.productName}" data-toggle="modal" data-target="#confirmDeleteModal">
 								<i class="icon-delete-btn fas fa-trash-alt"></i>
 							</a>
@@ -98,6 +102,30 @@ $(document).ready(function() {
 				$("#salePrice").val(responseData[0].salePrice);
 				$("#quantity").val(responseData[0].quantity);
 				$("#dateOfOrder").val(responseData[0].dateOfOrder);
+				$("#phoneNumber").val(responseData[0].phoneNumber);
+				$("#deliveryAddress").val(responseData[0].deliveryAddress);
+				
+				var purchaseStatusId = responseData[0].purchaseStatusId;
+				switch(purchaseStatusId) {
+					case purchaseStatusId = 1:
+						$('#purchaseStatusName').find('option[value="1"]').attr("selected", "selected");
+						break;
+					case purchaseStatusId = 2:
+						$('#purchaseStatusName').find('option[value="2"]').attr("selected", "selected");
+						break;
+					case purchaseStatusId = 3:
+						$('#purchaseStatusName').find('option[value="3"]').attr("selected", "selected");
+						break;
+					case purchaseStatusId = 4:
+						$('#purchaseStatusName').find('option[value="4"]').attr("selected", "selected");
+						break;
+					default:
+						$('#purchaseStatusName').find('option[value="5"]').attr("selected", "selected");
+				}
+				
+				$("#salePriceText").val(currencyFormat(responseData[0].salePrice));
+				$("#quantityText").val('x' + responseData[0].quantity);
+				$("#totalPrice").val(currencyFormat(responseData[0].salePrice*responseData[0].quantity) + " ₫");
 				/*$("#purchaseStatusName").val(responseData[0].purchaseStatusName);*/
 				$("#fullName").val(responseData[0].fullName);
 				$("#description").val(responseData[0].description);
@@ -143,13 +171,9 @@ $(document).ready(function() {
 						/**Reload datatable */
 						reloadDataTable();
 						$('#myModal').modal('toggle');
-						$('#announcemnet strong:eq(0)').removeClass("text-warning").addClass("text-success");
-						$('#notification').text(responseData.responseMsg);
-						$("#announcemnet").toast('show');
+						showNotification(true, responseData.responseMsg);
 					} else if(responseData.responseCode == 1 || responseData.responseCode == 0) {
-						$('#announcemnet strong:eq(0)').removeClass("text-success").addClass("text-warning");
-						$('#notification').text(responseData.responseMsg);
-						$("#announcemnet").toast('show');
+						showNotification(false, responseData.responseMsg)
 					}
 				},
 				error: function(e) {
@@ -157,7 +181,6 @@ $(document).ready(function() {
 				}
 			})
 		}
-
 	})
 
 	/** Show modal delete purchase detail */
@@ -173,11 +196,13 @@ $(document).ready(function() {
 			url: '/admin/purchase-detail/' + $(this).attr('data-id'),
 			type: 'DELETE',
 			success: function(responseData) {
-				reloadDataTable();
-				$('#confirmDeleteModal').modal('toggle');
-				$('#announcemnet strong:eq(0)').removeClass("text-warning").addClass("text-success");
-				$('#notification').text("Xóa đơn hàng thành công!");
-				$("#announcemnet").toast('show');
+				if(responseData.responseCode == 100) {
+					reloadDataTable();
+					$('#confirmDeleteModal').modal('toggle');
+					showNotification(true, responseData.responseMsg)
+				} else {
+					showNotification(false, responseData.responseMsg)
+				}
 			},
 			error: function(e) {
 				console.log('error: ' + $(this).data('id'))
@@ -185,16 +210,6 @@ $(document).ready(function() {
 			}
 		})
 	})
-})
-
-/** Toggle with of tag td */
-$('.btn-change-width').click(function() {
-	console.log($('#dataTable').find('.cancel'))
-	$('#dataTable').find('.processing').toggleClass('td-small');
-	$('#dataTable').find('.sending').toggleClass('td-small');
-	$('#dataTable').find('.wating').toggleClass('td-small');
-	$('#dataTable').find('.sended').toggleClass('td-small');
-	$('#dataTable').find('.cancel').toggleClass('td-small');
 })
 
 function reloadDataTable() {

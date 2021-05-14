@@ -1,5 +1,6 @@
 .sale-date {
-	width: 100px;
+	width: 84px;
+	margin: 0 auto;
 }
 
 #purchaseDetailInfoForm {
@@ -31,6 +32,10 @@
 	width: 20%;
 }
 
+.sale-price {
+	text-align: right;
+	width: 100px;
+}
 .td-sale-price {
 	width: 5%;
 }
@@ -48,20 +53,19 @@
 }
 
 .td-full-name {
-	width: 14%;
+	width: 18%;
 }
 
 .td-purchase-status-name {
-	width: 14%;
+	width: 18%;
 	position: relative;
 }
 
 .product-quantity {
-	text-align: center;
 }
 
 .wating, .cancel, .sended, .sending, .processing {
-	min-width: 100px;
+	min-width: 126px;
     text-align: center;
     color: #fff;
     border: 1px solid #ccc;
@@ -96,21 +100,65 @@
 .td-small {
 	width: 130px;
 }
+
+.full-name {
+	
+}
+
 /* START FORM PURCHASE */
 .image-product-area {
 	width: 57%;
+	position: relative;
 }
 
 .group-row-right {
-	
+	width: 42%;
 }
+
+.td-id {
+	position: relative;
+}
+
+.purchase-id, .action-btns, .preview-image-upload {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.action-btns {
+    width: 90%;
+}
+
+
+.product-quantity {
+	text-align: center;
+}
+
+.form-group {
+    margin-bottom: 5px;
+}
+
 /* END FORM  PURCHASE */
 /* START EDIT MODAL */
+
+#myModal {
+	padding-right: 260px !important;
+}
+
 .modal-content {
 	top: -20px;
+	width: 780px;
 }
 .btn-box {
 	display: flex;
     justify-content: space-evenly;
 }
 /* END EDIT MODAL */
+
+.preview-image-upload {
+	width: 70%;
+}
+.preview-image-upload img {
+	max-width: 52%;
+}

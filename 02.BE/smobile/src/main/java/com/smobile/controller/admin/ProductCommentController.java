@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smobile.entity.ProductCommentEntity;
 import com.smobile.model.ResponseDataModel;
-import com.smobile.service.impl.ProductCommentServiceImpl;
+import com.smobile.service.IProductCommentService;
 
 @Controller
-@RequestMapping(value = "/v1/api")
+@RequestMapping(value = "/admin")
 public class ProductCommentController {
 
 	@Autowired
-	ProductCommentServiceImpl productCommentService;
+	IProductCommentService productCommentService;
 	
 	@GetMapping(value = "/comments")
 	@ResponseBody

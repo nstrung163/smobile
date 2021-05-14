@@ -34,4 +34,10 @@ public class PurchaseModel {
 	
 	private Integer purchaseId;
 	
+	private String phoneNumber;
+	
+	private String deliveryAddress;
+	
+	private Integer purchaseStatusId;
+	
 }

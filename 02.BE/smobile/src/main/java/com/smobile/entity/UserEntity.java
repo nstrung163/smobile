@@ -63,6 +63,9 @@ public class UserEntity {
 
 	@Column(name = "ROLE", columnDefinition = "nvarchar(40) default 'ROLE_USER'", nullable = true)
 	private String role;
+	
+	@Column(name = "STATUS_USER", columnDefinition = "int default 1", nullable = true)
+	private int statusUser;
 
 	@Transient
 	private MultipartFile avatarFile;

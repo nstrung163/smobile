@@ -10,13 +10,19 @@ $.get(url, function(responseData) {
 		processing: true,
 		data: responseData,
 		"columnDefs": [ 
-			{ className: "td-action", "targets": [ 4 ] },
+			{ className: "td-id", "targets": [ 0 ] },
+			{ className: "td-action", "targets": [ 4 ] }
 		  ],
+		"order": [[ 0, 'desc' ]],
 		columns: [
 			{ data: 'brandId' },
 			{ data: 'brandName' },
 			{ render: function(data, type, row) {
-					return `<div class='text-center image-area-brand'><a href="/${row.logo}" data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src="/${row.logo}"></div>`;
+					return `<div class='text-center image-area-brand'>
+								<a href="/${row.logo}" data-toggle='lightbox' data-max-width='1000'>
+									<img class='img-fluid' src="/${row.logo}">
+								</a>
+							</div>`;
 				} 
 			},
 			{ data: 'description' },
@@ -47,16 +53,16 @@ $.get(url, function(responseData) {
 				}
 			}
 		]
-	});
-}).fail(function() {
-	alert("Lỗi khi lấy dữ liệu từ hệ thống!");
-})
+	  });
+	}).fail(function() {
+		alert("Lỗi khi lấy dữ liệu từ hệ thống!");
+	})
 }
 
 $(document).ready(function() {
 	initTableData();
 
-	/** Show modal form update brand */
+	/** Show modal form update user */
 	$("#dataTable").on('click', '.edit-btn', function() {
 		$('#brandId').parent().removeClass("d-none");
 		$('.modal-title').text('Chỉnh Sửa Nhãn Hiệu');
@@ -72,13 +78,12 @@ $(document).ready(function() {
 				$("#brandId").val(responseData.brandId);
 				$("#brandName").val(responseData.brandName);
 				$("#description").val(responseData.description);
-				var brandLogo = '/' + responseData.logo;
-				console.log(brandLogo)
+				var brandLogo = responseData.logo;
 				if(brandLogo == null || brandLogo == "") {
 					brandLogo = '/images/image-demo.png';
 				}
 				
-				$("#logoImg img").attr('src', brandLogo)
+				$("#logoImg img").attr('src', '/' + brandLogo)
 				$("#logo").val(brandLogo);
 			}
 		})
@@ -130,13 +135,9 @@ $(document).ready(function() {
 						reloadDataTable();
 						$('#myModal').modal('toggle');
 						/*$('.modal-backdrop').remove();*/
-						$('#announcemnet strong:eq(0)').removeClass("text-warning").addClass("text-success");
-						$('#notification').text(responseData.responseMsg);
-						$("#announcemnet").toast('show');
+						showNotification(true, responseData.responseMsg)
 					} else if(responseData.responseCode == 1 || responseData.responseCode == 0) {
-						$('#announcemnet strong:eq(0)').removeClass("text-success").addClass("text-warning");
-						$('#notification').text(responseData.responseMsg);
-						$("#announcemnet").toast('show');
+						showNotification(false, responseData.responseMsg)
 					}
 				},
 				error: function(e) {
@@ -161,12 +162,13 @@ $(document).ready(function() {
 			url: '/admin/brand/' + $(this).attr('data-id'),
 			type: 'DELETE',
 			success: function(responseData) {
-				reloadDataTable();
-				$('#confirmDeleteModal').modal('toggle');
-				$('#announcemnet strong:eq(0)').removeClass("text-warning").addClass("text-success");
-				$('#notification').text("Xóa nhãn hiệu thành công!");
-				$("#announcemnet").toast('show');
-				console.log(responseData + ' success: ' + $(this).data('id'))
+				if(responseData.responseCode == 100) {
+					reloadDataTable();
+					$('#confirmDeleteModal').modal('toggle');
+					showNotification(true, responseData.responseMsg)
+				} else {
+					showNotification(false, responseData.responseMsg)
+				}
 			},
 			error: function(e) {
 				console.log('error: ' + $(this).data('id'))

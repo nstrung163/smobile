@@ -76,14 +76,11 @@ public class ProductImageServiceImpl implements IProductImageService{
 			if(imageFile != null && imageFile[0].getSize() > 0) {
 				String imagePath = FileHelper.editFile(productImagePathFolder, imageFile, productImageEntity.getImageUrl());
 				productImageEntity.setImageUrl(imagePath);
-				productImageRepository.saveAndFlush(productImageEntity);
-				responseCode = Constants.RESULT_CD_SUCCESS;
-				responseMsg = "Cập nhật ảnh sản phẩm thành công!";
-				log.info(responseMsg);
-			} else {
-				responseMsg = "Vui lòng chọn ảnh cho sản phẩm";
-				log.warn(responseMsg);
 			}
+			productImageRepository.saveAndFlush(productImageEntity);
+			responseCode = Constants.RESULT_CD_SUCCESS;
+			responseMsg = "Cập nhật ảnh sản phẩm thành công!";
+			log.info(responseMsg);
 		} catch (Exception e) {
 			responseMsg = "Chỉnh sửa ảnh cho sản phẩm thất bại!";
 			log.error(responseMsg + e.getMessage());

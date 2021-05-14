@@ -37,8 +37,6 @@ import com.smobile.repository.IProductImageRepository;
 import com.smobile.repository.IProductInfoRepository;
 import com.smobile.repository.IProductOptionRepository;
 import com.smobile.repository.IProductRepository;
-import com.smobile.repository.IPurchaseDetailRepository;
-import com.smobile.repository.IPurchaseRepository;
 import com.smobile.service.IProductResponseService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -64,12 +62,6 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 	
 	@Autowired
 	IProductCommentRepository productCommentRepository;
-	
-	@Autowired
-	IPurchaseRepository purchaseRepository;
-	
-	@Autowired
-	IPurchaseDetailRepository purchaseDetailRepository;
 	
 	@Autowired
 	HttpSession session;

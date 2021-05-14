@@ -57,8 +57,13 @@ public class ObjectToModel {
 			String imageUrl = (String) obj[9];
 			BigInteger purchaseIdBig = (BigInteger) obj[10];
 			Integer purchaseId = purchaseIdBig.intValue();
+			String phoneNumber = (String) obj[11];
+			String deliveryAddress = (String) obj[12];
+			BigInteger purchaseStatusIdBig = (BigInteger) obj[13];
+			Integer purchaseStatusId = purchaseStatusIdBig.intValue();
 			PurchaseModel purchaseModel = new PurchaseModel(purchaseDetailId, productName, colorProductName,memoryProduct, 
-											                salePrice, quantity, dateOfOrder, purchaseStatusName, fullName, imageUrl,purchaseId);
+											                salePrice, quantity, dateOfOrder, purchaseStatusName, 
+											                fullName, imageUrl, purchaseId, phoneNumber, deliveryAddress, purchaseStatusId);
 			purchaseModelList.add(purchaseModel);
 		}
 		return purchaseModelList;

@@ -63,32 +63,45 @@
                         <a class="nav-link" href="/admin/home">
                             <span class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></span> Trang chủ
                         </a>
-                        <!-- Quản lý danh mục -->
+                        <!-- Quản lý sản phẩm -->
                         <div class="sb-sidenav-menu-heading">Quản lý cửa hàng</div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <span class="sb-nav-link-icon"><i class="fas fa-table"></i></span>
-                                Quản lý danh mục
+                                Quản lý sản phẩm
                             <span class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></span>
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                            	<a class="nav-link" href="/admin/brand-list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
                             	<a class="nav-link" href="/admin/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
                                 <a class="nav-link" href="/admin/product-image-list"><i class="mr-2 fas fa-user-circle"></i>Hình ảnh sản phẩm</a>
                                 <a class="nav-link" href="/admin/product-option-list"><i class="mr-2 fas fa-star-half-alt"></i>Loại sản phẩm</a>
                                 <a class="nav-link" href="/admin/product-info-list"><i class="mr-2 fas fa-star-half-alt"></i>Thông tin chi tiết sản phẩm</a>
-                                <a class="nav-link" href="/admin/user-list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a>
-                                <a class="nav-link" href="/admin/comment-list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
-                                <a class="nav-link" href="/admin/rate-list"><i class="mr-2 fas fa-comments"></i>Đánh giá</a>
-                                <a class="nav-link" href="/admin/news-list"><i class="mr-2 fas fa-comments"></i>Tin tức</a>
                             </nav>
                         </div>
-                        <!-- Quản lý bán hàng -->
+                        <!-- Quản lý nhãn hiệu -->
+                        <a class="nav-link" href="/admin/brand-list">
+							<div class="sb-nav-link-icon">
+								<i class="mr-2 fas fa-copyright"></i>
+							</div> Quản lý nhãn hiệu
+						</a>
+						<!-- Quản lý bán hàng -->
                         <a class="nav-link" href="/admin/purchase-detail-list">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-shopping-cart"></i>
 							</div> Quản lý bán hàng
-						</a> 
+						</a>
+						<!-- Quản lý đánh giá và bình luận -->
+                        <a class="nav-link" href="/admin/comment-list">
+							<div class="sb-nav-link-icon">
+								<i class="mr-2 fas fa-comments"></i>
+							</div> Quản lý đánh giá bình luận
+						</a>
+						<!-- Quản lý tài khoản -->
+                        <a class="nav-link" href="/admin/user-list">
+							<div class="sb-nav-link-icon">
+								<i class="mr-2 fas fa-user-circle"></i>
+							</div> Quản lý tài khoản
+						</a>
                         <!-- Thống kê -->
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStatistic" aria-expanded="false" aria-controls="collapseStatistic">
                             <span class="sb-nav-link-icon">
