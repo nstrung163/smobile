@@ -159,3 +159,12 @@ function getFormattedDate(saleDate) {
 jQuery.validator.addMethod('valid_phone', function (value) {
     return /([\+84|84|0]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8})\b/.test(value);
 });
+jQuery.validator.addMethod('lettersonly', function(value, element) {
+	return this.optional(element) || /^[- a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếéểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$/i.test(value);
+}, "Letters and spaces only please");
+jQuery.validator.addMethod('username', function(value, element) {
+	return this.optional(element) || /^[a-z0-9_-]+$/i.test(value);
+}, "Username format");
+jQuery.validator.addMethod('passwordChars', function(value, element) {
+	return this.optional(element) || /^.*(?=.*\d)(?=.*[a-zA-Z]).*$/i.test(value);
+}, "Password format");

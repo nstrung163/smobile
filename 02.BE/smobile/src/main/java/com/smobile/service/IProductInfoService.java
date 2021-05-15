@@ -44,6 +44,6 @@ public interface IProductInfoService {
 	 * @param productInfoId
 	 * @return ResponseDataModel
 	 */ 
-	ResponseDataModel deleteProdutInfo(Integer productInfoId);
+	ResponseDataModel deleteProductInfo(Integer productInfoId);
 	
 }

@@ -104,7 +104,7 @@ $(document).ready(function() {
 				$("#dateOfOrder").val(responseData[0].dateOfOrder);
 				$("#phoneNumber").val(responseData[0].phoneNumber);
 				$("#deliveryAddress").val(responseData[0].deliveryAddress);
-				
+				$("#notePurchase").val(responseData[0].notePurchase);
 				var purchaseStatusId = responseData[0].purchaseStatusId;
 				switch(purchaseStatusId) {
 					case purchaseStatusId = 1:

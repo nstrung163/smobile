@@ -6,23 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smobile.entity.ProductOptionEntity;
 import com.smobile.model.ResponseDataModel;
-import com.smobile.service.impl.ProductOptionServiceImpl;
+import com.smobile.service.IProductOptionService;
+import com.smobile.service.IProductService;
 
 @Controller
-@RequestMapping(value = "/v1/api")
+@RequestMapping(value = "/admin")
 public class ProductOptionController {
 
 	@Autowired
-	ProductOptionServiceImpl productOptionService;
+	IProductOptionService productOptionService;
+	
+	@Autowired
+	IProductService productService;
 	
 	@GetMapping(value = "/product-options")
 	@ResponseBody
@@ -36,15 +40,15 @@ public class ProductOptionController {
 		return productOptionService.findByProductOption(id);
 	}
 	
-	@PostMapping(value = "/product-option")
+	@PostMapping(value = "/product-option/add")
 	@ResponseBody
-	public ResponseDataModel addNewProuctOption(@RequestBody ProductOptionEntity productOptionEntity) {
+	public ResponseDataModel addNewProductOption(@ModelAttribute ProductOptionEntity productOptionEntity) {
 		return productOptionService.addNewProductOption(productOptionEntity);
 	}
 	
-	@PutMapping(value = "/product-option")
+	@PutMapping(value = "/product-option/update")
 	@ResponseBody
-	public ResponseDataModel updateProductOption(@RequestBody ProductOptionEntity productOptionEntity) {
+	public ResponseDataModel updateProductOption(@ModelAttribute ProductOptionEntity productOptionEntity) {
 		return productOptionService.updateProductOption(productOptionEntity);
 	}
 	

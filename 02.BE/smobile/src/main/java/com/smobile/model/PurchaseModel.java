@@ -40,4 +40,6 @@ public class PurchaseModel {
 	
 	private Integer purchaseStatusId;
 	
+	private String notePurchase;
+	
 }

@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Hệ thống quản lý điện thoại di động Smobile" />
     <meta name="author" content="NST" />
-    <title>Trang chủ</title>
+    <title>Trang chủ | Tài Khoản</title>
     <link href="<c:url value='/plugins/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
     <link href="<c:url value='/plugins/datatables/css/dataTables.bootstrap.min.css'/>" rel="stylesheet" />
     <link href="<c:url value='/plugins/datatables/css/dataTables.bootstrap4.min.css'/>" rel="stylesheet" />
@@ -43,8 +43,6 @@
                     <i class="fas fa-user fa-fw"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">Cài đặt</a> 
-                    <a class="dropdown-item" href="#">Hoạt động đăng nhập</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/logout">Đăng xuất</a>
                 </div>
@@ -71,17 +69,17 @@
                             <span class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></span>
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
+                           <nav class="sb-sidenav-menu-nested nav">
                             	<a class="nav-link" href="/admin/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
-                                <a class="nav-link" href="/admin/product-image-list"><i class="mr-2 fas fa-user-circle"></i>Hình ảnh sản phẩm</a>
-                                <a class="nav-link" href="/admin/product-option-list"><i class="mr-2 fas fa-star-half-alt"></i>Loại sản phẩm</a>
-                                <a class="nav-link" href="/admin/product-info-list"><i class="mr-2 fas fa-star-half-alt"></i>Thông tin chi tiết sản phẩm</a>
+                                <a class="nav-link" href="/admin/product-image-list"><i class="mr-2 fas fa-images"></i>Hình ảnh sản phẩm</a>
+                                <a class="nav-link" href="/admin/product-option-list"><i class="mr-2 fas fa-clone"></i>Tùy chọn sản phẩm</a>
+                                <a class="nav-link" href="/admin/product-info-list"><i class="mr-2 fas fa-info-circle"></i>Thông tin chi tiết sản phẩm</a>
                             </nav>
                         </div>
                         <!-- Quản lý nhãn hiệu -->
                         <a class="nav-link" href="/admin/brand-list">
 							<div class="sb-nav-link-icon">
-								<i class="mr-2 fas fa-copyright"></i>
+								<i class=" fas fa-copyright"></i>
 							</div> Quản lý nhãn hiệu
 						</a>
 						<!-- Quản lý bán hàng -->
@@ -93,13 +91,13 @@
 						<!-- Quản lý đánh giá và bình luận -->
                         <a class="nav-link" href="/admin/comment-list">
 							<div class="sb-nav-link-icon">
-								<i class="mr-2 fas fa-comments"></i>
+								<i class="fas fa-comments"></i>
 							</div> Quản lý đánh giá bình luận
 						</a>
 						<!-- Quản lý tài khoản -->
                         <a class="nav-link" href="/admin/user-list">
 							<div class="sb-nav-link-icon">
-								<i class="mr-2 fas fa-user-circle"></i>
+								<i class=" fas fa-user-circle"></i>
 							</div> Quản lý tài khoản
 						</a>
                         <!-- Thống kê -->
@@ -134,14 +132,14 @@
                 <div class="container-fluid">
                     <!-- BODY -->
                     <ol  class="breadcrumb mb-4 mt-4">
-                        <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
-                        <li class="breadcrumb-item active">Nhãn Hiệu</li>
+                        <li class="breadcrumb-item"><a href="/admin/home">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Tài khoản</li>
                     </ol>
-                    <h3 >Quản Lý Nhãn Hiệu</h3>
+                    <h3 >Quản Lý Tài Khoản</h3>
                     <!-- Alert -->
                     <div class="card mb-4">
                         <div class="card-header">
-                            <i class="fas fa-table mr-1"></i> Thông tin nhãn hiệu
+                            <i class="fas fa-table mr-1"></i> Thông tin tài khoản
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -173,7 +171,7 @@
                                             <th>Số Điện Thoại</th>
                                             <th>Địa Chỉ</th>
                                             <th>Email</th>
-                                            <th>Actions</th>
+                                            <th></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>

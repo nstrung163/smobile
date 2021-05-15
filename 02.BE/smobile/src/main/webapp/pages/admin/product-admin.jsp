@@ -44,8 +44,6 @@
                     <i class="fas fa-user fa-fw"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">Cài đặt</a> 
-                    <a class="dropdown-item" href="#">Hoạt động đăng nhập</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/logout">Đăng xuất</a>
                 </div>
@@ -64,32 +62,45 @@
                         <a class="nav-link" href="/admin/home">
                             <span class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></span> Trang chủ
                         </a>
-                        <!-- Quản lý danh mục -->
+                        <!-- Quản lý sản phẩm -->
                         <div class="sb-sidenav-menu-heading">Quản lý cửa hàng</div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <span class="sb-nav-link-icon"><i class="fas fa-table"></i></span>
-                                Quản lý danh mục
+                                Quản lý sản phẩm
                             <span class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></span>
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                            	<a class="nav-link" href="/admin/brand-list"><i class="mr-2 fas fa-copyright"></i>Nhãn hiệu </a>
                             	<a class="nav-link" href="/admin/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
-                                <a class="nav-link" href="/admin/product-image-list"><i class="mr-2 fas fa-user-circle"></i>Hình ảnh sản phẩm</a>
-                                <a class="nav-link" href="/admin/product-option-list"><i class="mr-2 fas fa-star-half-alt"></i>Loại sản phẩm</a>
-                                <a class="nav-link" href="/admin/product-info-list"><i class="mr-2 fas fa-star-half-alt"></i>Thông tin chi tiết sản phẩm</a>
-                                <a class="nav-link" href="/admin/user-list"><i class="mr-2 fas fa-user-circle"></i>Tài khoản</a>
-                                <a class="nav-link" href="/admin/comment-list"><i class="mr-2 fas fa-comments"></i>Bình luận</a>
-                                <a class="nav-link" href="/admin/rate-list"><i class="mr-2 fas fa-comments"></i>Đánh giá</a>
-                                <a class="nav-link" href="/admin/news-list"><i class="mr-2 fas fa-comments"></i>Tin tức</a>
+                                <a class="nav-link" href="/admin/product-image-list"><i class="mr-2 fas fa-images"></i>Hình ảnh sản phẩm</a>
+                                <a class="nav-link" href="/admin/product-option-list"><i class="mr-2 fas fa-clone"></i>Tùy chọn sản phẩm</a>
+                                <a class="nav-link" href="/admin/product-info-list"><i class="mr-2 fas fa-info-circle"></i>Thông tin chi tiết sản phẩm</a>
                             </nav>
                         </div>
-                        <!-- Quản lý bán hàng -->
+                        <!-- Quản lý nhãn hiệu -->
+                        <a class="nav-link" href="/admin/brand-list">
+							<div class="sb-nav-link-icon">
+								<i class="mr-2 fas fa-copyright"></i>
+							</div> Quản lý nhãn hiệu
+						</a>
+						<!-- Quản lý bán hàng -->
                         <a class="nav-link" href="/admin/purchase-detail-list">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-shopping-cart"></i>
 							</div> Quản lý bán hàng
-						</a> 
+						</a>
+						<!-- Quản lý đánh giá và bình luận -->
+                        <a class="nav-link" href="/admin/comment-list">
+							<div class="sb-nav-link-icon">
+								<i class="mr-2 fas fa-comments"></i>
+							</div> Quản lý đánh giá bình luận
+						</a>
+						<!-- Quản lý tài khoản -->
+                        <a class="nav-link" href="/admin/user-list">
+							<div class="sb-nav-link-icon">
+								<i class="mr-2 fas fa-user-circle"></i>
+							</div> Quản lý tài khoản
+						</a>
                         <!-- Thống kê -->
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStatistic" aria-expanded="false" aria-controls="collapseStatistic">
                             <span class="sb-nav-link-icon">
@@ -125,7 +136,7 @@
                         <li class="breadcrumb-item"><a href="/admin/home">Trang chủ</a></li>
                         <li class="breadcrumb-item active">Sản Phẩm</li>
                     </ol>
-                    <h3>Quản Lý Sản Phẩm</h3>
+                    <h4>Quản Lý Sản Phẩm</h4>
                     <!-- Alert -->
                     <div class="card mb-4">
                         <div class="card-header">
@@ -188,13 +199,15 @@
 										<label for="unitPrice">Đơn giá:</label>
 										<input type="number" class="form-control" placeholder="Nhập đơn giá sản phẩm" name="unitPrice" id="unitPrice">
 									</div>
-									<div class="form-group">
-										<label for="quantity">Số lượng:</label>
-										<input type="number" class="form-control" placeholder="Nhập số lượng sản phẩm" name="quantity" id="quantity">
-									</div>
-									<div class="form-group">
-										<label for="saleDate">Ngày bán:</label>
-										<input type="date" class="form-control" placeholder="Chọn ngày bán sản phẩm" name="saleDate" id="saleDate">
+									<div class="group-row">
+										<div class="form-group">
+											<label for="quantity">Số lượng:</label>
+											<input type="number" class="form-control" placeholder="Nhập số lượng " name="quantity" id="quantity">
+										</div>
+										<div class="form-group">
+											<label for="saleDate">Ngày bán:</label>
+											<input type="date" class="form-control" placeholder="Chọn ngày bán sản phẩm" name="saleDate" id="saleDate">
+										</div>
 									</div>
 									<div class="form-group">
 										<label for="statusProduct">Trạng thái:</label>
@@ -228,7 +241,7 @@
 					<div class="modal-dialog modal-dialog-centered" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title">Xóa Nhãn Hiệu</h5>
+								<h5 class="modal-title">Xóa Sản Phẩm</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>

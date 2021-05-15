@@ -68,29 +68,31 @@ public class UserServiceImpl implements IUserService {
 	public ResponseDataModel addNewUser(UserEntity userEntity) {
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
+		log.info("Bắt đầu đăng ký người dùng");
 		try {
 			MultipartFile avatarFile = userEntity.getAvatarFile();
-			if(avatarFile != null && avatarFile.getSize() > 0) {
-				if(findByUserName(userEntity.getUsername()) != null) {
-					responseMsg = "Tên người dùng đã tồn tại!";
-					log.warn(responseMsg);
-				} else {
+			
+			if(findByUserName(userEntity.getUsername()) != null) {
+				responseMsg = "Tên người dùng đã tồn tại!";
+				log.warn(responseMsg);
+			} else {
+				if(avatarFile != null && avatarFile.getSize() > 0) {
 					String avataPath = FileHelper.addNewFile(accountFolderPath, avatarFile);
 					userEntity.setAvatarUrl(avataPath);
-//					userEntity.setPassword(FileHelper.enrcyptMD5(userEntity.getPassword() + Constants.ENCRYPT_CONSTANTS));
-					userRepository.saveAndFlush(userEntity);
-					responseCode = Constants.RESULT_CD_SUCCESS;
-					responseMsg = "Đăng ký tài khoản thành công!";
-					log.info(responseMsg);
 				}
-			} else {
-				responseMsg = "Vui lòng chọn ảnh đại diện!";
-				log.warn(responseMsg);
+				userEntity.setPassword(FileHelper.enrcyptMD5(userEntity.getPassword()));
+				userEntity.setRole("ROLE_USER");
+				userEntity.setStatusUser(1);
+				userRepository.saveAndFlush(userEntity);
+				responseCode = Constants.RESULT_CD_SUCCESS;
+				responseMsg = "Đăng ký tài khoản thành công!";
+				log.info(responseMsg);
 			}
 		} catch (Exception e) {
 			responseMsg = "Đăng ký tài khoản thất bại";
 			log.error(responseMsg + e.getMessage());
 		}
+		log.info("Kết thúc đăng ký người dùng");
 		return new ResponseDataModel(responseCode, responseMsg); 
 	}
 
@@ -109,8 +111,8 @@ public class UserServiceImpl implements IUserService {
 			responseMsg = "Cập nhật tài khoản thành công!";
 			log.info(responseMsg);
 		} catch (Exception e) {
-			responseMsg = "Cập nhật tài khoản thất bại";
-			log.error(responseMsg + e.getMessage());
+			responseMsg = "Cập nhật tài khoản thất bại do: " + e.getMessage();
+			log.error(responseMsg);
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}

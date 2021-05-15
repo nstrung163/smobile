@@ -136,6 +136,10 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error {
 	text-align: center;
 }
 
+.td-sale-price {
+	width: 13%;
+}
+
 .action-btns {
 	position: absolute;
     top: 50%;
@@ -156,6 +160,7 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error {
     height: 100vh;
 }
 /* END CUSTOM WIDTH CONTENT */
+/* CUSTOM ALERT */
 .alert-info, .alert-danger {
     top: 120px !important;
     padding: 10px;
@@ -164,4 +169,40 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error {
     align-items: center;
     width: 25%;
     line-height: 2rem;
+    z-index: 10000 !important;
+}
+/* START GROUP FORM */
+.group-row {
+	display: flex;
+	justify-content: space-between;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+/* END GROUP FORM */
+
+.sale-price-input, .memory-product-price {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.suffixes-input {
+	padding-left: 5px;
+}
+
+.custom-line-row {
+	height: 36px;
+    line-height: 18px;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.memory-product {
+    margin-right: 10px;
+    width: 50%;
 }

@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Hệ thống quản lý điện thoại di động Smobile" />
     <meta name="author" content="NST" />
-    <title>Trang chủ</title>
+    <title>Trang chủ | Bán Hàng</title>
     <link href="<c:url value='/plugins/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
     <link href="<c:url value='/plugins/datatables/css/dataTables.bootstrap.min.css'/>" rel="stylesheet" />
     <link href="<c:url value='/plugins/datatables/css/dataTables.bootstrap4.min.css'/>" rel="stylesheet" />
@@ -45,8 +45,6 @@
                     <i class="fas fa-user fa-fw"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">Cài đặt</a> 
-                    <a class="dropdown-item" href="#">Hoạt động đăng nhập</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/logout">Đăng xuất</a>
                 </div>
@@ -73,17 +71,17 @@
                             <span class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></span>
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
+                           <nav class="sb-sidenav-menu-nested nav">
                             	<a class="nav-link" href="/admin/product-list"><i class="mr-2 fab fa-product-hunt"></i>Sản phẩm </a>
-                                <a class="nav-link" href="/admin/product-image-list"><i class="mr-2 fas fa-user-circle"></i>Hình ảnh sản phẩm</a>
-                                <a class="nav-link" href="/admin/product-option-list"><i class="mr-2 fas fa-star-half-alt"></i>Loại sản phẩm</a>
-                                <a class="nav-link" href="/admin/product-info-list"><i class="mr-2 fas fa-star-half-alt"></i>Thông tin chi tiết sản phẩm</a>
+                                <a class="nav-link" href="/admin/product-image-list"><i class="mr-2 fas fa-images"></i>Hình ảnh sản phẩm</a>
+                                <a class="nav-link" href="/admin/product-option-list"><i class="mr-2 fas fa-clone"></i>Tùy chọn sản phẩm</a>
+                                <a class="nav-link" href="/admin/product-info-list"><i class="mr-2 fas fa-info-circle"></i>Thông tin chi tiết sản phẩm</a>
                             </nav>
                         </div>
                         <!-- Quản lý nhãn hiệu -->
                         <a class="nav-link" href="/admin/brand-list">
 							<div class="sb-nav-link-icon">
-								<i class="mr-2 fas fa-copyright"></i>
+								<i class=" fas fa-copyright"></i>
 							</div> Quản lý nhãn hiệu
 						</a>
 						<!-- Quản lý bán hàng -->
@@ -95,13 +93,13 @@
 						<!-- Quản lý đánh giá và bình luận -->
                         <a class="nav-link" href="/admin/comment-list">
 							<div class="sb-nav-link-icon">
-								<i class="mr-2 fas fa-comments"></i>
+								<i class="fas fa-comments"></i>
 							</div> Quản lý đánh giá bình luận
 						</a>
 						<!-- Quản lý tài khoản -->
                         <a class="nav-link" href="/admin/user-list">
 							<div class="sb-nav-link-icon">
-								<i class="mr-2 fas fa-user-circle"></i>
+								<i class=" fas fa-user-circle"></i>
 							</div> Quản lý tài khoản
 						</a>
                         <!-- Thống kê -->
@@ -136,23 +134,10 @@
                 <div class="container-fluid">
                     <!-- BODY -->
                     <ol  class="breadcrumb mb-4 mt-4">
-                        <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/home">Trang chủ</a></li>
                         <li class="breadcrumb-item active">Bán Hàng</li>
                     </ol>
                     <h3 >Quản Lý Bán Hàng</h3>
-                    <div id="announcemnet" role="alert" aria-live="assertive" aria-atomic="true" class="toast"
-                        data-animation="true" data-autohide="true" data-delay="3000"
-                        style="position: absolute; top: 70px; right: 30px; z-index: 100000;">
-                        <div class="toast-header alert-success">
-                            <strong class="mr-auto text-success">Thông báo</strong>
-                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="toast-body">
-                            <strong id="notification">Thành công</strong>
-                        </div>
-                    </div>
                     <!-- Alert -->
                     <div class="card mb-4">
                         <div class="card-header">
@@ -176,7 +161,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                          <th>Mã hóa đơn CT</th>
+                                          <th>Mã HĐCT</th>
                                           <th>Hình ảnh sản phẩm</th>
                                           <th>Tên sản phẩm</th>
                                           <th>Giá bán</th>
@@ -274,14 +259,19 @@
 													<input type="text" class="form-control" id="deliveryAddress" name="deliveryAddress" readonly="readonly" required="required" >
 												</div>
 											</div>
-											<div class="form-group">
-												<label for="brandEntity">Trạng Thái: </label>
-												<select class="form-control" id="purchaseStatusName" name="purchaseStatusName">
-													<option class="selected" value="">Chọn trạng thái đơn hàng</option>
-													<c:forEach items="${purchaseStatusList}" var="purchaseStatus">
-														<option value="${purchaseStatus.purchaseStatusId}" class="form-select purchase-status-name">${purchaseStatus.purchaseStatusName}</option>
-													</c:forEach>
-												</select>
+											<div class="group-row group-row-note-area">
+												<div class="form-group form-group-note">
+													<label for="notePurchase">Ghi Chú Đơn Hàng:</label>
+													<input type="text" class="form-control" id="notePurchase" name="notePurchase" placeholder="Nhập ghi chú đơn hàng" readonly="readonly">
+												</div>
+												<div class="form-group form-group-status">
+													<label for="purchaseStatus">Trạng Thái: </label>
+													<select class="form-control" id="purchaseStatusName" name="purchaseStatusName">
+														<c:forEach items="${purchaseStatusList}" var="purchaseStatus">
+															<option value="${purchaseStatus.purchaseStatusId}" class="form-select purchase-status-name">${purchaseStatus.purchaseStatusName}</option>
+														</c:forEach>
+													</select>
+												</div>
 											</div>
 										</div>
 									</div>

@@ -24,75 +24,72 @@ public class HomeAdminController {
 	IPurchaseStatusService purchaseStatusService;
 	
 	@GetMapping(value = {"/home", "" })
-	public String initHomePage() {
+	public String initialHomePage() {
 		return "admin/index-admin";
 	}
 
 	@GetMapping(value = "/brand-list")
-	public String initBrandPage() {
+	public String initialBrandPage() {
 		return "admin/brand-admin";
 	}
 	
 	@GetMapping(value = "/product-list")
-	public String initProductPage(Model model) {
+	public String initialProductPage(Model model) {
 		model.addAttribute("brandList", brandService.findAllBrand());
 		return "admin/product-admin";
 	}
 	
 	@GetMapping(value = "/product-image-list")
-	public String initProductImagePage(Model model) {
-		model.addAttribute("productImageList", productService.findAllProduct());
+	public String initialProductImagePage(Model model) {
+		model.addAttribute("productList", productService.findAllProduct());
 		return "admin/product-image-admin";
 	}
 	
 	@GetMapping(value = "/product-option-list")
-	public String initProductOptionPage(Model model) {
+	public String initialProductOptionPage(Model model) {
+		model.addAttribute("productList", productService.findAllProduct());
 		return "admin/product-option-admin";
 	}
 	
 	@GetMapping(value = "/product-info-list")
-	public String initInfoProductPage(Model model) {
+	public String initialInfoProductPage(Model model) {
+		model.addAttribute("productList", productService.findAllProduct());
 		return "admin/product-info-admin";
 	}
 	
 	@GetMapping(value = "/user-list")
-	public String initUserPage(Model model) {
+	public String initialUserPage(Model model) {
 		return "admin/user-admin";
 	}
 	
 	@GetMapping(value = "/comment-list")
-	public String initCommentPage(Model model) {
+	public String initialCommentPage(Model model) {
 		return "admin/comment-admin";
 	}
 	
-	@GetMapping(value = "/rate-list")
-	public String initRatePage(Model model) {
-		return "admin/rate-admin";
-	}
-	
 	@GetMapping(value = "/news-list")
-	public String initNewsPage(Model model) {
+	public String initialNewsPage(Model model) {
 		return "admin/news-admin";
 	}
 	
 	@GetMapping(value = "/purchase-list")
-	public String initPurchasePage(Model model) {
+	public String initialPurchasePage(Model model) {
 		return "admin/purchase-admin";
 	}
 	
 	@GetMapping(value = "/purchase-detail-list")
-	public String initPurchaseDetailPage(Model model) {
+	public String initialPurchaseDetailPage(Model model) {
 		model.addAttribute("purchaseStatusList", purchaseStatusService.findAllPurchaseStatus());
 		return "admin/purchase-detail-admin";
 	}
 	
 	@GetMapping(value = "/statistic/product")
-	public String initStatisticProductPage(Model model) {
+	public String initialStatisticProductPage(Model model) {
 		return "admin/statistic-product";
 	}
 	
 	@GetMapping(value = "/statistic/purchase")
-	public String initStatisticPurchasePage(Model model) {
+	public String initialStatisticPurchasePage(Model model) {
 		return "admin/statistic-purchase";
 	}
 	

@@ -40,7 +40,6 @@ body {
   padding: 20px;
   border-radius: 3px;
   margin-top: 15px;
-  height: 620px;
   box-shadow: 0 0 18px rgb(0 0 0 / 12%);
 }
 
@@ -107,3 +106,45 @@ body {
   display: flex;
   justify-content: center;
 }
+.preview-image-upload {
+	display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    opacity: 0.7;
+}
+
+a {
+	cursor: pointer;
+	text-decoration: none;
+}
+div.error-message-invalid
+{
+	position: relative;
+	padding: .375rem .75rem;
+	margin-top: .5rem;
+	color: #dc3545 !important;
+	width: 100%;
+	border-radius: .25rem;
+}
+input.error-message-invalid
+{
+	position: relative;
+	padding: .375rem .75rem;
+	margin-top: .5rem;
+	border: 1px solid #f5c6cb !important;
+	color: #dc3545 !important;
+	width: 100%;
+	border-radius: .25rem;
+}
+
+div.error-message-invalid, div.error, label.error-message-invalid, label.error {
+    background-color: #f8d7da;
+    position: relative;
+    padding: .375rem .75rem;
+    margin-top: .5rem;
+    border: 1px solid #f5c6cb !important;
+    color: #dc3545 !important;
+    width: 100%;
+    border-radius: .25rem;
+}
+

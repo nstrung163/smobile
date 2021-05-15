@@ -85,7 +85,7 @@ public class ProductInfoServiceImpl implements IProductInfoService{
 	}
 
 	@Override
-	public ResponseDataModel deleteProdutInfo(Integer productInfoId) {
+	public ResponseDataModel deleteProductInfo(Integer productInfoId) {
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
 		ProductInfoEntity productInfoEntity = findByProductInfoId(productInfoId);

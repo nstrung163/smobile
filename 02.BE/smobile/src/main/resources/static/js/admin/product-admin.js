@@ -81,7 +81,7 @@ $(document).ready(function() {
 	/** Show modal form update product */
 	$("#dataTable").on('click', '.edit-btn', function() {
 		$('#productId').parent().removeClass("d-none");
-		$('.modal-title').text('Chỉnh Sửa Nhãn Hiệu');
+		$('.modal-title').text('Chỉnh Sửa Sản Phẩm');
 		$('#btnSubmitProduct').text('Cập nhật');
 		$.ajax({
 			url: '/admin/product/' + $(this).data('id'),
@@ -132,11 +132,13 @@ $(document).ready(function() {
 				},
 				unitPrice: {
 					required: true,
-					minlength: 1
+					minlength: 1,
+					min: 1
 				},
-				quantity: {
-					required: true,
-					maxlength: 32767
+				quantity: {	
+					required: isAddAction,
+					maxlength: 32767,
+					min: 0
 				},
 				saleDate: {
 					required: true
@@ -156,11 +158,13 @@ $(document).ready(function() {
 				},
 				unitPrice: {
 					required: "Đơn giá không được để trống!",
-					minlength: "Đơn giá không được bé hơn 1"
+					minlength: "Đơn giá không được bé hơn 1",
+					min: "Đơn giá không được bé hơn 1"
 				},
 				quantity: {
 					required: "Số lượng không được để trống!",
-					maxlength: "Số lượng thêm vào không vượt quá 32767"
+					maxlength: "Số lượng thêm vào không vượt quá 32767",
+					min: "Số lượng không được bé 0"
 				},
 				saleDate: {
 					required: "Ngày bán sản phẩm không được để trống!"

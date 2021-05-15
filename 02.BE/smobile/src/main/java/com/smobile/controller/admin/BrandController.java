@@ -24,11 +24,6 @@ public class BrandController {
 	@Autowired
 	BrandServiceImp brandService;
 	
-//	@GetMapping(value = "/admin/brand-list")
-//	public String initPage() {
-//		return "admin/brand-admin";
-//	}
-	
 	@GetMapping(value = "/brands")
 	@ResponseBody
 	public List<BrandEntity> getAllBrands() {

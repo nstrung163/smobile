@@ -64,9 +64,7 @@ public class ProductImageServiceImpl implements IProductImageService{
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
 
-	/**
-	 * Chỉ update 1 ảnh 1 lần
-	 */
+	// Update once image
 	@Override
 	public ResponseDataModel updateProductImage(ProductImageEntity productImageEntity) {
 		int responseCode = Constants.RESULT_CD_FAIL;

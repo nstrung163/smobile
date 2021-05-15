@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smobile.entity.ProductImageEntity;
 import com.smobile.model.ResponseDataModel;
-import com.smobile.service.impl.ProductImageServiceImpl;
+import com.smobile.service.IProductImageService;
 
 @Controller
 @RequestMapping(value = "/admin")
 public class ProductImageController {
 
 	@Autowired
-	ProductImageServiceImpl productImageService;
+	IProductImageService productImageService;
 	
 	@GetMapping(value = "/product-images")
 	@ResponseBody
