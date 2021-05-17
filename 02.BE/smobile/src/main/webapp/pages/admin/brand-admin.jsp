@@ -113,7 +113,7 @@
                         <div class="collapse" id="collapseStatistic" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="/admin/statistic/product">Theo sản phẩm</a>
-                                 <a class="nav-link" href="/admin/statistic/order">Theo hóa đơn</a>
+                                 <a class="nav-link" href="/admin/statistic/purchase">Theo hóa đơn</a>
                             </nav>
                         </div>
                     </div>
@@ -133,7 +133,7 @@
                 <div class="container-fluid">
                     <!-- BODY -->
                     <ol  class="breadcrumb mb-4 mt-4">
-                        <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/home">Trang chủ</a></li>
                         <li class="breadcrumb-item active">Nhãn Hiệu</li>
                     </ol>
                     <h3 >Quản Lý Nhãn Hiệu</h3>

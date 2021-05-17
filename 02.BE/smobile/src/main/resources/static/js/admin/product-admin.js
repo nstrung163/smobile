@@ -61,8 +61,8 @@ function initTableData() {
 				}
 			]
 		});
-	}).fail(function() {
-		alert("Lỗi khi lấy dữ liệu từ hệ thống! ");
+	}).fail(function(e) {
+		alert("Lỗi khi lấy dữ liệu từ hệ thống! " + JSON.stringify(e));
 	})
 }
 

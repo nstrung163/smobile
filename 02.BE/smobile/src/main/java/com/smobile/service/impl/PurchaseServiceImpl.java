@@ -14,9 +14,12 @@ import com.smobile.entity.PurchaseDetailEntity;
 import com.smobile.entity.PurchaseEntity;
 import com.smobile.entity.PurchaseStatusEntity;
 import com.smobile.entity.UserEntity;
+import com.smobile.model.IPurchaseQuantity;
+import com.smobile.model.IRevenuePrice;
 import com.smobile.model.ResponseDataModel;
 import com.smobile.repository.IOptionShippingRepository;
 import com.smobile.repository.IPaymentMethodRepository;
+import com.smobile.repository.IProductRepository;
 import com.smobile.repository.IPurchaseDetailRepository;
 import com.smobile.repository.IPurchaseRepository;
 import com.smobile.repository.IPurchaseStatusRepository;
@@ -46,6 +49,9 @@ public class PurchaseServiceImpl implements IPurchaseService{
 	
 	@Autowired
 	IPurchaseDetailRepository purchaseDetailRepository;
+	
+	@Autowired
+	IProductRepository productRepository;
 
 	@Override
 	public List<PurchaseEntity> findAllPurchase() {
@@ -179,6 +185,30 @@ public class PurchaseServiceImpl implements IPurchaseService{
 			log.warn(responseMsg);
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
+	}
+
+	@Override
+	public List<IPurchaseQuantity> getListPurchaseQuantityEachMonth(Integer year) {
+		List<IPurchaseQuantity> purchaseQuantities = new ArrayList<IPurchaseQuantity>();
+		try {
+			purchaseQuantities = purchaseRepository.getListPurchaseQuantityEachMonth(year);
+			log.info("Lấy danh tổng số đơn đặt hằng mỗi tháng thành công!");
+		} catch (Exception e) {
+			log.warn("Lấy danh tổng số đơn đặt hằng mỗi tháng không thành công do: " + e.getMessage());
+		}
+		return purchaseQuantities;
+	}
+
+	@Override
+	public List<IRevenuePrice> getListRevenueEachMonth(Integer year) {
+		List<IRevenuePrice> revenuePrices = new ArrayList<IRevenuePrice>();
+		try {
+			revenuePrices = purchaseRepository.getListRevenuePriceEachMonth(year);
+			log.info("Lấy danh sách tổng doanh thu theo tháng thàng công");
+		} catch (Exception e) {
+			log.info("Lấy danh sách tổng doanh thu theo tháng không thàng công do: " + e.getMessage());
+		}
+		return revenuePrices;
 	}
 
 }

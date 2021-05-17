@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.smobile.model.ProductStatisticModel;
 import com.smobile.model.PurchaseModel;
 import com.smobile.model.ResponseDataModel;
 import com.smobile.service.ICartService;
 import com.smobile.service.IProductResponseService;
+import com.smobile.service.IProductService;
 import com.smobile.service.IPurchaseDetailService;
 import com.smobile.service.IPurchaseService;
 
@@ -34,6 +36,9 @@ public class HomeAdminControllerApi {
 	
 	@Autowired
 	ICartService cartService;
+	
+	@Autowired
+	IProductService productService;
 	
 	@GetMapping(value = "/purchase-details")
 	@ResponseBody
@@ -58,5 +63,11 @@ public class HomeAdminControllerApi {
 	@ResponseBody
 	public ResponseDataModel deletePurchaseDetailById(@PathVariable(value = "id") Integer id) {
 		return purchaseDetailService.deletePurchaseDetailById(id);
+	}
+	
+	@GetMapping(value = "/statistic/products")
+	@ResponseBody
+	public List<ProductStatisticModel> getListProductStatistic() {
+		return productService.getListProductStatisticModel();
 	}
 }

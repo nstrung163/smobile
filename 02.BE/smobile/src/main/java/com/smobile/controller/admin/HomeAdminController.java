@@ -1,13 +1,21 @@
 package com.smobile.controller.admin;
 
+import java.time.Year;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.smobile.model.IPurchaseQuantity;
+import com.smobile.model.IRevenuePrice;
 import com.smobile.service.IBrandService;
 import com.smobile.service.IProductService;
+import com.smobile.service.IPurchaseService;
 import com.smobile.service.IPurchaseStatusService;
 
 @Controller
@@ -22,6 +30,9 @@ public class HomeAdminController {
 	
 	@Autowired
 	IPurchaseStatusService purchaseStatusService;
+	
+	@Autowired
+	IPurchaseService purchaseService;
 	
 	@GetMapping(value = {"/home", "" })
 	public String initialHomePage() {
@@ -89,7 +100,46 @@ public class HomeAdminController {
 	}
 	
 	@GetMapping(value = "/statistic/purchase")
-	public String initialStatisticPurchasePage(Model model) {
+	public String initialStatisticPurchasePage(@RequestParam(required = false) Integer year, Model model) {
+		List<IPurchaseQuantity> purchaseQuantities;
+		List<IRevenuePrice> revenuePrices;
+		if(year != null) {
+			model.addAttribute("titlePurchaseQuantity", "Thống Kê Số Lượng Đơn Hàng Trong Năm " + year);
+			model.addAttribute("titleRevenuePrice", "Thống Kê Số Lượng Đơn Hàng Trong Năm " + year);
+			purchaseQuantities = purchaseService.getListPurchaseQuantityEachMonth(year);
+			revenuePrices = purchaseService.getListRevenueEachMonth(year);
+		} else {
+			int currentYeat = Year.now().getValue();
+			model.addAttribute("titlePurchaseQuantity", "Thống Kê Số Lượng Đơn Hàng Trong Năm " + currentYeat);
+			model.addAttribute("titleRevenuePrice", "Thống Kê Số Lượng Đơn Hàng Trong Năm " + currentYeat);
+			purchaseQuantities = purchaseService.getListPurchaseQuantityEachMonth(currentYeat);
+			revenuePrices = purchaseService.getListRevenueEachMonth(currentYeat);
+		}
+		
+		List<Integer> listPurchaseQuantity = new ArrayList<Integer>();
+		List<Double> listRevenPrice = new ArrayList<Double>();
+		Integer biggestmaxPurchaseQuantity = 0;
+		Double biggestRevenuePrice = 0.0;
+		
+		for(IPurchaseQuantity purchaseQuantity : purchaseQuantities) {
+			listPurchaseQuantity.add(purchaseQuantity.getPurchaseQuantity());
+			if(purchaseQuantity.getPurchaseQuantity() != null) {
+				biggestmaxPurchaseQuantity = biggestmaxPurchaseQuantity > purchaseQuantity.getPurchaseQuantity() ? biggestmaxPurchaseQuantity : purchaseQuantity.getPurchaseQuantity(); 
+			}
+		}
+		
+		for(IRevenuePrice revenuePrice : revenuePrices) {
+			listRevenPrice.add(revenuePrice.getRevenuePrice());
+			if(revenuePrice.getRevenuePrice() != null) {
+				biggestRevenuePrice = biggestRevenuePrice >  revenuePrice.getRevenuePrice() ? biggestRevenuePrice : revenuePrice.getRevenuePrice();
+			}
+		}
+		
+		model.addAttribute("biggestmaxPurchaseQuantity", biggestmaxPurchaseQuantity);
+		model.addAttribute("biggestRevenuePrice", biggestRevenuePrice);
+		model.addAttribute("listPurchaseQuantity", listPurchaseQuantity);
+		model.addAttribute("listRevenPrice", listRevenPrice);
+		
 		return "admin/statistic-purchase";
 	}
 	

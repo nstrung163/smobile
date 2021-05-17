@@ -77,6 +77,15 @@ public interface IProductRepository extends JpaRepository<ProductEntity, Integer
 //			+ "					   GROUP BY PRODUCT_ID) AS PM ON PRODUCT.PRODUCT_ID = PM.PRODUCT_ID", nativeQuery = true)
 //	Page<ProductEntity> findAllOutStanding(Pageable pageable);
 	
+	@Query(value = "SELECT P.*, IFNULL(PCD.NUMBER_OF_PRODUCTS_SOLD, 0) AS NUMBER_OF_PRODUCTS_SOLD\r\n"
+			+ "FROM PRODUCT AS P \r\n"
+			+ "	 	LEFT JOIN (SELECT PCD.PRODUCT_ID, SUM(PCD.QUANTITY) AS NUMBER_OF_PRODUCTS_SOLD\r\n"
+			+ "				FROM PURCHASE_DETAIL AS PCD\r\n"
+			+ "				JOIN (SELECT PURCHASE_ID FROM PURCHASE WHERE PURCHASE_STATUS_ID = 3) AS PC ON PC.PURCHASE_ID = PCD.PURCHASE_ID\r\n"
+			+ "				GROUP BY PCD.PRODUCT_ID) AS PCD ON P.PRODUCT_ID = PCD.PRODUCT_ID\r\n"
+			+ "ORDER BY NUMBER_OF_PRODUCTS_SOLD DESC;", nativeQuery = true)
+	List<Object[]> getListProductStatistic();
+	
 	// Search product
 	public static Specification<ProductEntity> getSearchCondition(SearchCondition searchCondition) {
 		return new Specification<ProductEntity>() {

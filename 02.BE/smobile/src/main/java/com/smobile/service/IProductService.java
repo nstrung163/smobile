@@ -3,6 +3,7 @@ package com.smobile.service;
 import java.util.List;
 
 import com.smobile.entity.ProductEntity;
+import com.smobile.model.ProductStatisticModel;
 import com.smobile.model.ResponseDataModel;
 
 public interface IProductService {
@@ -50,5 +51,13 @@ public interface IProductService {
 	 * @return ResponseDataModel
 	 */
 	ResponseDataModel deleteProductById(Integer productId);
+	
+	/**
+	 * 
+	 * Get a list product statistic
+	 * 
+	 * @return List<ProductStatisticModel>
+	 */
+	List<ProductStatisticModel> getListProductStatisticModel();
 
 }

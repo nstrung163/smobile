@@ -238,17 +238,6 @@ public class CartServiceImpl implements ICartService {
 			session.setAttribute("cartItems", cartItems);
 			session.setAttribute("totalItem", cartItems.size());
 			session.setAttribute("totalPrice", CartModel.getTotalPrice(cartItems));
-
-//			for (Map.Entry<Integer, CartModel> cartItem : cartItems.entrySet()) {
-//				System.out.println("Key: " + cartItem.getKey());
-//				System.out.println("Tên sản phẩm: " + cartItem.getValue().getProductName());
-//				System.out.println("Số lượng: " + cartItem.getValue().getQuantity());
-//				System.out.println("Đường dẫn ảnh: " + cartItem.getValue().getImageUrl());
-//				System.out.println("------------------------------------------");
-//			}
-//
-//			System.out.println("Tổng số phẩn tử của cart: " + cartItems.size());
-//			System.out.println("Tổng giá của giỏ hàng: " + CartModel.getTotalPrice(cartItems));
 			
 			responseMsg = "Thêm số sản phẩm vào giỏ thành công";
 			repsonseCode = Constants.RESULT_CD_SUCCESS;

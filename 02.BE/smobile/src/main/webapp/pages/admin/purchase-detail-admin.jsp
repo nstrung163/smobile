@@ -114,7 +114,7 @@
                         <div class="collapse" id="collapseStatistic" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="/admin/statistic/product">Theo sản phẩm</a>
-                                 <a class="nav-link" href="/admin/statistic/order">Theo hóa đơn</a>
+                                 <a class="nav-link" href="/admin/statistic/purchase">Theo hóa đơn</a>
                             </nav>
                         </div>
                     </div>

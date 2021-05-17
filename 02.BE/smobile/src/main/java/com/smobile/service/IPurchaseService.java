@@ -3,6 +3,8 @@ package com.smobile.service;
 import java.util.List;
 
 import com.smobile.entity.PurchaseEntity;
+import com.smobile.model.IPurchaseQuantity;
+import com.smobile.model.IRevenuePrice;
 import com.smobile.model.ResponseDataModel;
 
 public interface IPurchaseService {
@@ -60,4 +62,23 @@ public interface IPurchaseService {
 	 * @return ResponseDataModel
 	 */
 	ResponseDataModel updateStatusPurchase(Integer purchaseId, Integer purchaseStatusId);
+	
+	/**
+	 * 
+	 * Get a list quantity of purchase each month of the year
+	 * 
+	 * @param year
+	 * @return List<IPurchaseQuantity>
+	 */
+	List<IPurchaseQuantity> getListPurchaseQuantityEachMonth(Integer year);
+	
+	/**
+	 * 
+	 * Get a list of total revenue price each month of the year
+	 * 
+	 * @param year
+	 * @return List<IRevenuePrice>
+	 */
+	List<IRevenuePrice> getListRevenueEachMonth(Integer year);
+	
 }

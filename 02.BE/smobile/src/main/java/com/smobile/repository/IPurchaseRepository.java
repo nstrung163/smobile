@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.smobile.entity.PurchaseEntity;
+import com.smobile.model.IPurchaseQuantity;
+import com.smobile.model.IRevenuePrice;
 
 public interface IPurchaseRepository extends JpaRepository<PurchaseEntity, Integer> {
 
@@ -56,4 +58,24 @@ public interface IPurchaseRepository extends JpaRepository<PurchaseEntity, Integ
 			+ "		JOIN PURCHASE_STATUS AS PCS ON PC.PURCHASE_STATUS_ID = PCS.PURCHASE_STATUS_ID\r\n"
 			+ "	WHERE PCD.PURCHASE_DETAIL_ID = ?1", nativeQuery = true)
 	List<Object[]> findPurchaseDetailById(Integer purchaseDetailId);
+	
+	@Query(value = "SELECT MT.MONTH_NUMBER AS MONTH, COUNT(P.PURCHASE_ID) AS PurchaseQuantity\r\n"
+			+ "FROM MONTH_TABLE AS MT\r\n"
+			+ "	 LEFT JOIN (SELECT PURCHASE_ID, DATE_OF_ORDER \r\n"
+			+ "				FROM PURCHASE\r\n"
+			+ "                WHERE YEAR(DATE_OF_ORDER) = ?1 AND PURCHASE_STATUS_ID = 3) AS P\r\n"
+			+ "     ON MT.MONTH_NUMBER = MONTH(DATE_OF_ORDER)\r\n"
+			+ "GROUP BY MT.MONTH_NUMBER", nativeQuery = true)
+	List<IPurchaseQuantity> getListPurchaseQuantityEachMonth(Integer year);
+	
+	@Query(value = "SELECT MT.MONTH_NUMBER AS MONTH, IFNULL(PC.TOTAL_PRICE, 0) AS RevenuePrice\r\n"
+			+ "FROM MONTH_TABLE AS MT\r\n"
+			+ "	 LEFT JOIN (SELECT MONTH(PC.DATE_OF_ORDER) AS MONTH, SUM(PCD.QUANTITY*PCD.SALE_PRICE) AS TOTAL_PRICE\r\n"
+			+ "			   FROM PURCHASE AS PC \r\n"
+			+ "					JOIN PURCHASE_DETAIL AS PCD ON PC.PURCHASE_ID = PCD.PURCHASE_ID\r\n"
+			+ "			   WHERE YEAR(PC.DATE_OF_ORDER) = ?1 AND PURCHASE_STATUS_ID = 3\r\n"
+			+ "			   GROUP BY MONTH) AS PC\r\n"
+			+ "	 ON MT.MONTH_NUMBER = PC.MONTH", nativeQuery = true)
+	List<IRevenuePrice> getListRevenuePriceEachMonth(Integer year);
+	
 }

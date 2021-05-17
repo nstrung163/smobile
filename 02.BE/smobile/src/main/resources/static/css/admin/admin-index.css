@@ -206,3 +206,18 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error {
     margin-right: 10px;
     width: 50%;
 }
+
+.quantity-product-info {
+	text-align: center;
+    background: #32bf44;
+    color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+.td-product-quantity-warn {
+	text-align: center;
+    background: red;
+    color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}

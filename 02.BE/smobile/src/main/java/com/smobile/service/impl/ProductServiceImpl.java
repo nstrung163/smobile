@@ -1,5 +1,6 @@
 package com.smobile.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -7,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.smobile.common.constant.Constants;
+import com.smobile.convert.ObjectToModel;
 import com.smobile.entity.ProductEntity;
+import com.smobile.model.ProductStatisticModel;
 import com.smobile.model.ResponseDataModel;
 import com.smobile.repository.IProductRepository;
 import com.smobile.service.IProductService;
@@ -88,6 +91,19 @@ public class ProductServiceImpl implements IProductService{
 			log.error("Xóa sản phẩm thất bại: " + e.getMessage());
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
+	}
+	
+	@Override
+	public List<ProductStatisticModel> getListProductStatisticModel() {
+		List<ProductStatisticModel> productStatisticModels = new ArrayList<ProductStatisticModel>();
+		try {
+			List<Object[]> productStatictisObject = productRepository.getListProductStatistic();
+			productStatisticModels = ObjectToModel.convertToListProductStatistic(productStatictisObject);
+			log.info("Lấy danh sách thống số lượng sản phẩm đã bán thành công!");
+		} catch (Exception e) {
+			log.warn("Thống kê số lượng sản phẩm đã bán không thành công do: " + e.getMessage());
+		}
+		return productStatisticModels;
 	}
 
 }
