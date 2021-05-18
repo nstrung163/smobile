@@ -427,3 +427,31 @@ input[type="checkbox"]:checked + label:before {
 .btn-delete-all {
   background: #c10017;
 }
+
+.product-empty {
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    padding: 3%;
+    border: 1px solid #e0e0e0;
+}
+
+.product-empty__img {
+  width: 30%;
+}
+
+.product-empty__notification {
+  font-size: 17px;
+    color: #6b6b6b;
+    padding: 10px 0;
+}
+
+.product-empty__back {
+
+}
+
+.product-empty__back i {
+  font-size: 11px;
+}
