@@ -28,7 +28,7 @@
             </div>
             <div class="search">
                 <input type="text" class="search__input" placeholder="Bạn tìm gì..."/>
-                <a href="/user/search" class="search__item"></a>
+                <a href="/user/search" class="search__item" id="search-keyword"></a>
             </div>
             <div class="header-right">
                 <a href="/user/history-buy" id="history-buy">Lịch sử mua hàng</a>
@@ -252,6 +252,7 @@
     </footer>
     <div id="goto-top">↑</div>
     <script src="<c:url value='/plugins/jquery/jquery-3.5.1.min.js'/>"></script>
+    <script src="<c:url value='/plugins/jquery/jquery.validate.min.js'/>"></script>
 	<script src="<c:url value='/plugins/bootstrap/js/bootstrap.min.js'/>"></script>
 	<script src="<c:url value='/js/base.js'/>"></script>
   </body>

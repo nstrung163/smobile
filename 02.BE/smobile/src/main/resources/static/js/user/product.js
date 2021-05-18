@@ -420,22 +420,24 @@ function searchProductCondition(pageNumber, isClickSearchBtn) {
 		contentType: 'application/json',
 		data: JSON.stringify(searchCondition),
 		success: function(responseData) {
-			renderProductApi(responseData.data.productItemList);
-			renderPagination(responseData.data.paginationList);
 			if(responseData.data.productItemList.length == 0) {
-				renderMessageSearch(responseData.responseMsg);
-			} else if(isClickSearchBtn) {
-				$('#resultSearch p').empty();
-				showNotification(true, responseData.responseMsg);
-			}else {
-				$('#resultSearch p').empty();
-			}
-				
-			if(responseData.data.paginationList.pageNumberList.length < 2) {
-				$('.pagination').addClass("d-none");
+				$('.outstanding-phone').addClass('d-none');
+				$('.product-empty').removeClass('d-none');
 			} else {
-				$('.pagination').removeClass("d-none");
-			}
+				$('.outstanding-phone').removeClass('d-none');
+				$('.product-empty').addClass('d-none');
+				renderProductApi(responseData.data.productItemList);
+				renderPagination(responseData.data.paginationList);
+				
+				if(isClickSearchBtn) {
+					showNotification(true, responseData.responseMsg);
+				}
+				if(responseData.data.paginationList.pageNumberList.length < 2) {
+					$('.pagination').addClass("d-none");
+				} else {
+					$('.pagination').removeClass("d-none");
+				}
+			}	
 		}
 	})
 }

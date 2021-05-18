@@ -384,52 +384,54 @@ input[type="checkbox"]:checked+label:before {
 }
 /* Condition search area*/
 .condition-search-box {
-  font-size: 1.4rem;
-  display: flex;
+	font-size: 1.4rem;
+	display: flex;
 }
 
 .condition-search__list {
-  display: flex;
-  justify-content: start;
-  flex-wrap: wrap;
+	display: flex;
+	justify-content: start;
+	flex-wrap: wrap;
 }
 
 .condition-search--item {
-  height: 30px;
-  line-height: 30px;
-  background: #288ad6;
-  margin: 0 0 10px 10px;
-  border-radius: 5px;
-  padding: 0 5px;
-  position: relative;
+	height: 30px;
+	line-height: 30px;
+	background: #288ad6;
+	margin: 0 0 10px 10px;
+	border-radius: 5px;
+	padding: 0 5px;
+	position: relative;
 }
 
 .condition-search--link {
-  color: #fff;
-  display: block;
-  padding-right: 14px;
+	color: #fff;
+	display: block;
+	padding-right: 14px;
 }
+
 .condition-search--link:hover {
-  color: #fff;
+	color: #fff;
 }
+
 .btn-close-condition {
-  cursor: pointer;
-  width: 14px;
-  height: 14px;
-  background-image: url(/images/icon-click.png);
-  background-repeat: no-repeat;
-  background-position: -247px -29px;
-  position: absolute;
-  top: 8px;
-  right: 1px;
+	cursor: pointer;
+	width: 14px;
+	height: 14px;
+	background-image: url(/images/icon-click.png);
+	background-repeat: no-repeat;
+	background-position: -247px -29px;
+	position: absolute;
+	top: 8px;
+	right: 1px;
 }
 
 .btn-delete-all-box {
-  display: flex;
+	display: flex;
 }
 
 .btn-delete-all {
-  background: #c10017;
+	background: #c10017;
 }
 /* START PRODUCT RELATED */
 .product-related {
@@ -447,3 +449,34 @@ input[type="checkbox"]:checked+label:before {
 	
 }
 /* END PRODUCT RELATED */
+
+/* START NOT FOUND PRODUCT */
+.product-empty {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 14px;
+	border: 1px solid #e0e0e0;
+    margin: 0 10px;
+	padding: 3%;
+}
+
+.product-empty__img {
+	width: 30%;
+}
+
+.product-empty__notification {
+	font-size: 17px;
+	color: #6b6b6b;
+	padding: 10px 0;
+}
+
+.product-empty__back {
+	
+}
+
+.product-empty__back i {
+	font-size: 11px;
+}
+/* END NOT FOUND PRODUCT */

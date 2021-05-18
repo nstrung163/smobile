@@ -12,6 +12,8 @@ import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -23,8 +25,10 @@ import com.smobile.entity.ProductEntity;
 import com.smobile.entity.ProductInfoEntity;
 import com.smobile.model.SearchCondition;
 
-public interface IProductRepository extends JpaRepository<ProductEntity, Integer>, JpaSpecificationExecutor<ProductEntity> {
+public interface IProductRepository extends JpaRepository<ProductEntity, Integer>,JpaSpecificationExecutor<ProductEntity> {
 
+	Page<ProductEntity> findByProductNameContainingIgnoreCase(String productName, Pageable pageable);
+	
 	ProductEntity findByProductId(Integer productId);
 	
 	ProductEntity findByProductName(String productName);

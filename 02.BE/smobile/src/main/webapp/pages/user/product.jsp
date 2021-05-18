@@ -27,7 +27,7 @@
             </div>
             <div class="search">
                 <input type="text" class="search__input" placeholder="Bạn tìm gì..."/>
-                <a href="/user/search" class="search__item"></a>
+                <a href="/user/search" class="search__item" id="search-keyword"></a>
             </div>
             <div class="header-right">
                 <a href="/user/history-buy" id="history-buy">Lịch sử mua hàng</a>
@@ -223,6 +223,13 @@
           	</span>
           </div>
         </div>
+      	
+      	 <!-- Product not found -->
+	     <div class="product-empty d-none">
+	       <img src="/images/no-result.gif" alt="Không tìm thất sản phẩm với tiêu chí tìm kiếm" class="product-empty__img">
+	       <p class="product-empty__notification">Không có sản phẩm nào phù hợp với tiêu chí tìm kiếm!</p>
+	       <a href="/user/product" class="product-empty__back"> <i class="fas fa-chevron-left"></i> Xem tất cả điện thoại</a>
+	     </div>
       </div>
       <!-- Condition box -->
       <section class="container-fluid outstanding-phone">
@@ -463,6 +470,7 @@
         <p></p>
       </div>
       </section>
+      
       <!-- Viewed Product  -->
       <section class="product-viewed-area">
       	<c:choose>
@@ -556,6 +564,7 @@
     </footer>
     <div id="goto-top">↑</div>
 	<script src="<c:url value='/plugins/jquery/jquery-3.5.1.min.js'/>"></script>
+	<script src="<c:url value='/plugins/jquery/jquery.validate.min.js'/>"></script>
 	<script src="<c:url value='/plugins/bootstrap/js/bootstrap.min.js'/>"></script>
 	<script src="<c:url value='/plugins/bootstrap/js/bootstrap-notify.min.js'/>"></script>
 	<script src="<c:url value='/js/base.js'/>"></script>

@@ -41,19 +41,18 @@ public class HomeController {
 	IBrandService brandService;
 	
 	@GetMapping(value = "/home")
-	public String initHomePage(Model model) {
+	public String initialHomePage(Model model) {
 		model.addAttribute("totalProduct", productService.findAllProduct().size());
 		return "index";
 	}
 	
-	// Cần chỉnh sửa sau
-	@GetMapping(value = "/user/search")
-	public String initSearchPage() {
-		return "user/product";
+	@GetMapping(value = "/user/search/{keyword}")
+	public String initialSearchPage(@PathVariable(value = "keyword") String keyword) {
+		return "user/product-search";
 	} 
 	
 	@GetMapping(value = "/user/history-buy")
-	public ModelAndView initHistoryBuyPage() {
+	public ModelAndView initialHistoryBuyPage() {
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String userEntity = authentication.getName();
@@ -69,17 +68,17 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/user/cart", method = {RequestMethod.GET, RequestMethod.POST})
-	public String initCartPage() {
+	public String initialCartPage() {
 		return "user/cart";
 	}
 	
 	@GetMapping(value = "/user/register")
-	public String initRegisterPage() {
+	public String initialRegisterPage() {
 		return "user/register";
 	}
 	
 	@GetMapping(value = "/user/product")
-	public String initProductPage(Model model) {
+	public String initialProductPage(Model model) {
 		model.addAttribute("listBrand", brandService.findAllBrand());
 		return "user/product";
 	}

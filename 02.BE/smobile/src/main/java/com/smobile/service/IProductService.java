@@ -3,6 +3,7 @@ package com.smobile.service;
 import java.util.List;
 
 import com.smobile.entity.ProductEntity;
+import com.smobile.model.ProductItemModel;
 import com.smobile.model.ProductStatisticModel;
 import com.smobile.model.ResponseDataModel;
 
@@ -60,4 +61,21 @@ public interface IProductService {
 	 */
 	List<ProductStatisticModel> getListProductStatisticModel();
 
+	/**
+	 * 
+	 * Search product by product name
+	 * 
+	 * @param productName
+	 * @return ResponseDataModel
+	 */
+	ResponseDataModel findByProductNameContainingIgnoreCase(int pageNumber, String productName);
+
+	/**
+	 * 
+	 * Convert a list product entity to product item model
+	 * 
+	 * @param productList
+	 * @return
+	 */
+	List<ProductItemModel> convertProductEntityToProductItemModel(List<ProductEntity> productList);
 }

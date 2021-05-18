@@ -1,0 +1,54 @@
+.search-box__title {
+	font-size: 2rem;
+	padding-top: 20px;
+	display: flex;
+	align-items: center;
+}
+
+.search-box__title span {
+	font-weight: 600;
+	padding: 0 5px;
+}
+
+.not-found-product {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 30px;
+	font-size: 15px;
+}
+
+.not-found__img {
+	width: 25%;
+}
+
+.not-found__nofication {
+	font-size: 20px;
+	margin: 10px;
+}
+
+.not-found__recommend-search {
+	background: #fff;
+	padding: 15px;
+	border-radius: 3px;
+	box-shadow: -1px 0px 2px 2px rgb(226 221 221/ 70%);
+}
+
+.not-found__recommend__title {
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
+.not-found__recommend__list {
+	padding-left: 10px;
+	line-height: 20px;
+}
+
+.not-found--item {
+	list-style: inside;
+}
+
+.span-bold {
+	font-weight: bold;
+}

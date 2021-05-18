@@ -97,4 +97,10 @@ public class ProductControllerUser {
 	public ResponseDataModel getProductRelated(@PathVariable(value = "productId") Integer productId) {
 		return productResponseService.findProductRelatedByProductId(productId);
 	}
+	
+	@GetMapping(value = "/search/{keyword}/{pageNumber}")
+	@ResponseBody
+	public ResponseDataModel findByProductNameContaining(@PathVariable(value = "pageNumber") int pageNumber , @PathVariable(value = "keyword") String keyword) {
+		return productService.findByProductNameContainingIgnoreCase(pageNumber, keyword);
+	}
 }

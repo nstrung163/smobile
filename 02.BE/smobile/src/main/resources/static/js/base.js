@@ -46,6 +46,15 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
             }
 );
 
+/** Seach product by keyword */
+$('#search-keyword').click(function(event) {
+	event.preventDefault();
+	var keyword = $('.search__input').val();
+	if(keyword != "") {
+		window.location.pathname = 'user/search/' + keyword;
+	}
+})
+
 /** Show more and hidden footer */
 $(".showMore").click(function () {
     $(".col-hidden").css("display", "block");
