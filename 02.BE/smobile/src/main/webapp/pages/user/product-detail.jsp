@@ -291,7 +291,7 @@
 	                      <label class="full" for="star1" title="Sucks big time - 1 star"></label>
 	                  </fieldset>
 	                  <input type="hidden" id="rateNumber" name="rateNumber" value="">
-	                   <input type="hidden" id="dateOfComment" name="dateOfComment" value="">
+	                  <input type="hidden" id="dateOfComment" name="dateOfComment" value="">
                 </div>
                 <div class="form-group comment-content">
                   <label for="commentContent">Đánh giá</label>

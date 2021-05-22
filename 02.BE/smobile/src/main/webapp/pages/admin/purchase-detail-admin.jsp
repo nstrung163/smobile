@@ -227,18 +227,18 @@
 													<label for="salePrice">Giá Bán: </label>
 													<input type="number" class="form-control" id="salePrice" name="salePrice" readonly="readonly" required="required" >
 												</div>
-												<div class="form-group d-none">
-													<label for="quantity">Số Lượng: </label>
-													<input type="number" class="form-control" id="quantity" name="quantity" readonly="readonly" required="required" >
-												</div>
 												<!-- Price and quantity text -->
 												<div class="form-group">
 													<label for="salePriceText">Giá Bán: </label>
 													<input type="text" class="form-control" id="salePriceText" name="salePriceText" readonly="readonly" required="required" >
 												</div>
-												<div class="form-group">
+												<div class="form-group d-none">
 													<label for="quantityText">Số Lượng: </label>
 													<input type="text" class="form-control" id="quantityText" name="quantityText" readonly="readonly" required="required" >
+												</div>
+												<div class="form-group">
+													<label for="quantity">Số Lượng: </label>
+													<input type="number" class="form-control" id="quantity" name="quantity" required="required" min="1" >
 												</div>
 												<div class="form-group">
 													<label for="totalPrice">Thành Tiền: </label>

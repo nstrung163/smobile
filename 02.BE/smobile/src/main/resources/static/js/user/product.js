@@ -244,6 +244,8 @@ $('.condition-search__list').on('click', '.condition-search--link', function(eve
 	event.preventDefault();
 	var dataIdRender = $(this).attr("data-id");
 	var index = "";
+	console.log(priceFrom)
+	console.log(priceTo)
 	switch(dataIdRender) {
 		// PIN
 		case "duoi-3000":
@@ -277,23 +279,28 @@ $('.condition-search__list').on('click', '.condition-search--link', function(eve
 			break;
 		// Price product
 		case "5":
-			priceFrom = "0";
-			priceTo = "5000000";
+			/*priceFrom = "0";
+			priceTo = "5000000";*/
+			index = dataIdRender;
 			break;
 		case "5-10":
-			priceFrom = "5000000";
-			priceTo = "10000000";
+			/*priceFrom = "5000000";
+			priceTo = "10000000";*/
+			index = dataIdRender;
 			break;
 		case "10-15":
-			priceFrom = "10000000";
-			priceTo = "15000000";
+			/*priceFrom = "10000000";
+			priceTo = "15000000";*/
+			index = dataIdRender;
 			break;
 		case "15-20":
-			priceFrom = "15000000";
-			priceTo = "20000000";
+			/*priceFrom = "15000000";
+			priceTo = "20000000";*/
+			index = dataIdRender;
 			break;
 		case ">20":
-			priceFrom = "20000000";
+			/*priceFrom = "20000000";*/
+			index = dataIdRender;
 			break;
 		
 	}
@@ -302,6 +309,8 @@ $('.condition-search__list').on('click', '.condition-search--link', function(eve
 	$('.list-filter__pin li a').find('.check-filter-box').each(function() {
 		if($(this).parent().attr("data-id") == dataIdRender) {
 			// Remove checked filter box
+			console.log(priceFrom)
+			console.log(priceTo)
 			$(this).removeClass('check-filter-box');
 			// Remove value of checked in list pin
 			if(listPin.indexOf2d(index)) {
@@ -309,6 +318,8 @@ $('.condition-search__list').on('click', '.condition-search--link', function(eve
 				console.log(indexRemove);
 				listPin.splice(indexRemove, 1);
 			}
+			console.log(priceFrom)
+			console.log(priceTo)
 		}
 	})
 	
@@ -339,10 +350,12 @@ $('.condition-search__list').on('click', '.condition-search--link', function(eve
 	})
 	
 	/** Check and remove element price product */
-	$('.search-product__price .search-product-list li').each(function() {
-		$(this).removeClass('check-price');
-		priceFrom = "";
-		priceTo = "";
+	$('.search-product__price .search-product-list li a').each(function() {
+		if($(this).attr("data-id") == dataIdRender) {
+			$(this).parent().removeClass('check-price');
+			priceFrom = "";
+			priceTo = "";
+		}
 	})
 	
 	/** Check and remove element brand*/

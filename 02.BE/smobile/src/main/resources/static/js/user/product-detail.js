@@ -86,20 +86,6 @@ $('.box-qa__rate__show-form').on('click', function() {
 	
 })
 
-/** Set value for rate number on event click */
-$('.rating label').on('click', function ()
-{
-    var labelSelected = $(this).attr("for");
-    $('.rating').find('input[name=rating]').each(function ()
-    {
-        if ($(this).attr("id") == labelSelected)
-        {
-			rateNumber = $(this).val();
-            return false;
-        }
-    })
-})
-
 /** View all rate and comment product */
 $('.box-reviewer__list').on('click', '.btn-view-all', function(event){
 	event.preventDefault();
@@ -128,20 +114,55 @@ $('.btnSubmitRateComment').on('click', function(event) {
 	event.preventDefault();
 	$("#rateNumber").val(rateNumber)
 	$("#dateOfComment").val(today)
-	var formRateComment = new FormData($('#from-rate-comment')[0])
-	$.ajax({
-		url: '/user/comment',
-		type: 'POST',
-		dataType: 'JSON',
-		processData: false,
-		contentType: false,
-		enctype: 'multipart/form-data',
-		data: formRateComment, 
-		success: function(responseData) {
-			// Refresh page
-			window.location = window.location.pathname;
-		}
-	})
+	var formRateComment = new FormData($('#from-rate-comment')[0]);
+	$("#from-rate-comment").validate({
+		rules: {
+			rateNumber: {
+				required: true,
+			}
+		},
+		messages: {
+			quantity: {
+				required: "Vui lòng chọn đánh giá",
+			}
+		},
+		errorElement: "div",
+		errorClass: "error-message-invalid"
+	});	
+	if($("#from-rate-comment").valid()) {
+		$.ajax({
+			url: '/user/comment',
+			type: 'POST',
+			dataType: 'JSON',
+			processData: false,
+			contentType: false,
+			enctype: 'multipart/form-data',
+			data: formRateComment, 
+			success: function(responseData) {
+				if(responseData.responseCode == 100) {
+					// Refresh page
+					window.location = window.location.pathname;
+				} else {
+					showNotification(false, responseData.responseMsg);
+				}
+			}
+		})
+	}
+	
+})
+
+/** Set value for rate number on event click */
+$('.rating label').on('click', function ()
+{
+    var labelSelected = $(this).attr("for");
+    $('.rating').find('input[name=rating]').each(function ()
+    {
+        if ($(this).attr("id") == labelSelected)
+        {
+			rateNumber = $(this).val();
+            return false;
+        }
+    })
 })
 
 /** Remove all history clicked on product */
@@ -503,15 +524,14 @@ function renderBoxReviewerList(productCommentModels) {
 			$(`.comment-${key}`).addClass('d-none');
 		}
 	})
-	if(productCommentModels.length > 3) {
-		$boxReivewerList.append(`
-							<li class="box-reviewer__item">
-								<a href="api/get-all-comment/${productId}" class="btn btn-view-all">
-									Xem tất cả đánh giá <i class="fas fa-chevron-right"></i>
-								</a>
-							</li>
-							`);
-	}
+	$boxReivewerList.append(`
+						<li class="box-reviewer__item">
+							<a href="api/get-all-comment/${productId}" class="btn btn-view-all">
+								Xem tất cả đánh giá <i class="fas fa-chevron-right"></i>
+							</a>
+						</li>
+						`);
+
 }
 
 function renderProductRelated(productList) {
