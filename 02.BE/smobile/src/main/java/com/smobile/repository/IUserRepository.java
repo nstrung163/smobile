@@ -19,6 +19,6 @@ public interface IUserRepository extends JpaRepository<UserEntity, Integer> {
 	
 	UserEntity findByUsername(String userName);
 	
-	@Query(value = "SELECT * FROM USER WHERE USERNAME = :USERNAME AND PASSWORD = :PASSWORD", nativeQuery = true)
+	@Query(value = "SELECT * FROM USER WHERE USERNAME = :USERNAME AND PASSWORD = :PASSWORD AND STATUS_USER = 1", nativeQuery = true)
 	UserEntity findUserByUsernameAndPassword(@Param("USERNAME") String username, @Param("PASSWORD") String password);
 }

@@ -54,9 +54,9 @@ public class PurchaseController {
 		return purchaseService.deletePurchaseById(id);
 	}
 	
-	@PutMapping(value = "/purchase/{purchaseId}/{purchaseStatusId}")
-	@ResponseBody
-	public ResponseDataModel updateStatusPurchase(@PathVariable(value = "purchaseId") Integer purchaserId, @PathVariable(value = "purchaseStatusId") Integer purchaserStatusId) {
-		return purchaseService.updateStatusPurchase(purchaserId, purchaserStatusId);
-	}
+//	@PutMapping(value = "/purchase/{purchaseId}/{purchaseStatusId}")
+//	@ResponseBody
+//	public ResponseDataModel updateStatusPurchase(@PathVariable(value = "purchaseId") Integer purchaserId, @PathVariable(value = "purchaseStatusId") Integer purchaserStatusId) {
+//		return purchaseService.updateStatusPurchase(purchaserId, purchaserStatusId);
+//	}
 }

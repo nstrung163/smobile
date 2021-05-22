@@ -61,7 +61,7 @@ public interface IPurchaseService {
 	 * @param purchaseStatusId
 	 * @return ResponseDataModel
 	 */
-	ResponseDataModel updateStatusPurchase(Integer purchaseId, Integer purchaseStatusId);
+	ResponseDataModel updateStatusPurchase(Integer purchaseId, Integer purchaseStatusId, int quantity, Integer purchaseDetailId);
 	
 	/**
 	 * 

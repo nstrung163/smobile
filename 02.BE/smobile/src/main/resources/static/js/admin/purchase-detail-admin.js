@@ -108,22 +108,37 @@ $(document).ready(function() {
 				var purchaseStatusId = responseData[0].purchaseStatusId;
 				switch(purchaseStatusId) {
 					case purchaseStatusId = 1:
+						$('.purchase-status-name').removeAttr("selected", "selected");
 						$('#purchaseStatusName').find('option[value="1"]').attr("selected", "selected");
+						$('#quantity').removeAttr("readonly", "readonly");
+						$('#purchaseStatusName').removeAttr("disabled", "disabled");
 						break;
 					case purchaseStatusId = 2:
+						$('.purchase-status-name').removeAttr("selected", "selected");
 						$('#purchaseStatusName').find('option[value="2"]').attr("selected", "selected");
+						$('#quantity').attr("readonly", "readonly");
+						$('#purchaseStatusName').removeAttr("disabled", "disabled");
 						break;
 					case purchaseStatusId = 3:
+						$('.purchase-status-name').removeAttr("selected", "selected");
 						$('#purchaseStatusName').find('option[value="3"]').attr("selected", "selected");
+						$('#quantity').attr("readonly", "readonly");
+						$('#purchaseStatusName').attr("disabled", "disabled");
 						break;
 					case purchaseStatusId = 4:
+						$('.purchase-status-name').removeAttr("selected", "selected");
 						$('#purchaseStatusName').find('option[value="4"]').attr("selected", "selected");
+						$('#quantity').removeAttr("readonly", "readonly");
+						$('#purchaseStatusName').removeAttr("disabled", "disabled");
 						break;
 					default:
+						$('.purchase-status-name').removeAttr("selected", "selected");
 						$('#purchaseStatusName').find('option[value="5"]').attr("selected", "selected");
+						$('#quantity').removeAttr("readonly", "readonly");
+						$('#purchaseStatusName').removeAttr("disabled", "disabled");
 				}
 				
-				$("#salePriceText").val(currencyFormat(responseData[0].salePrice));
+				$("#salePriceText").val(currencyFormat(responseData[0].salePrice)  + " ₫");
 				$("#quantityText").val('x' + responseData[0].quantity);
 				$("#totalPrice").val(currencyFormat(responseData[0].salePrice*responseData[0].quantity) + " ₫");
 				/*$("#purchaseStatusName").val(responseData[0].purchaseStatusName);*/
@@ -145,11 +160,21 @@ $(document).ready(function() {
 		var formData = new FormData($('#purchaseDetailInfoForm')[0]);
 		$("#purchaseDetailInfoForm").validate({
 			rules: {
+				quantity: {
+					required: true,
+					min: 1,
+					max: 32767
+				},
 				purchaseStatusName: {
 					required: true
 				}
 			},
 			messages: {
+				quantity: {
+					required: "Vui lòng nhập số lượng",
+					min: "Số lượng phải lớn hơn 1",
+					max: "Số lượng phải bé hơn 32767"
+				},
 				purchaseStatusName: {
 					required: "Trạng thái đơn hàng không được để trống!",
 				}
@@ -177,7 +202,7 @@ $(document).ready(function() {
 					}
 				},
 				error: function(e) {
-					alert('Cập nhật nhãn hiệu không thành công! ' + JSON.stringify(e));
+					alert('Cập nhật hóa đơn mua hàng không thành công! ' + JSON.stringify(e));
 				}
 			})
 		}
@@ -210,6 +235,11 @@ $(document).ready(function() {
 			}
 		})
 	})
+})
+
+$('#quantity').on('keyup', function() {
+	var salePrice = $('#salePrice').val();
+	$("#totalPrice").val(currencyFormat(salePrice*$(this).val()) + " ₫");
 })
 
 function reloadDataTable() {

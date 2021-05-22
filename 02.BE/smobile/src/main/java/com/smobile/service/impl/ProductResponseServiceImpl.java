@@ -292,15 +292,21 @@ public class ProductResponseServiceImpl implements IProductResponseService{
 		String responseMsg = Strings.EMPTY;
 		try {
 			MultipartFile imageFile = productCommentEntity.getImageFile();
-			if(imageFile != null & imageFile.getSize() > 0) {
+			if(imageFile != null & imageFile.getSize() > 0 ) {
 				String imageUrlPath = FileHelper.addNewFile(commentFolderPath, imageFile);
 				productCommentEntity.setImageCommentUrl(imageUrlPath);
+			}
+			if(productCommentEntity.getRateNumber() != 0) {
 				productCommentRepository.saveAndFlush(productCommentEntity);
 				log.info("Tạo mới bình luân thành công");
+				responseMsg = "Đánh giá và bình luận thành công";
+				responseCode = Constants.RESULT_CD_SUCCESS;
+				log.info(responseMsg);
+			} else {
+				responseMsg = "Vui lòng chọn số đánh giá cho sản phẩm";
+				log.info(responseMsg);
 			}
-			responseMsg = "Đánh giá và bình luận thành công";
-			responseCode = Constants.RESULT_CD_SUCCESS;
-			log.info(responseMsg);
+			
 		} catch (Exception e) {
 			responseMsg = "Đánh giá và bình luận không thành công!";
 			log.error(responseMsg);

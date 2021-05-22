@@ -56,7 +56,11 @@ public class HomeAdminControllerApi {
 	@ResponseBody
 	public ResponseDataModel updatePurchaseDetail(@ModelAttribute PurchaseModel purchaseModel) {
 		System.out.println("Giá trị purchaseModel là: " + purchaseModel.toString());
-		return purchaseService.updateStatusPurchase(purchaseModel.getPurchaseId(), Integer.valueOf(purchaseModel.getPurchaseStatusName()));
+		Integer purchaseDetailId = purchaseModel.getPurchaseDetailId();
+		Integer purchaseStatusId = Integer.valueOf(purchaseModel.getPurchaseStatusName());
+		Integer purchaseId = purchaseModel.getPurchaseId();
+		int quantity = purchaseModel.getQuantity();
+		return purchaseService.updateStatusPurchase(purchaseId, purchaseStatusId, quantity, purchaseDetailId);
 	}
 	
 	@DeleteMapping(value = "/purchase-detail/{id}")

@@ -164,15 +164,18 @@ public class PurchaseServiceImpl implements IPurchaseService{
 	}
 
 	@Override
-	public ResponseDataModel updateStatusPurchase(Integer purchaseId, Integer purchaseStatusId) {
+	public ResponseDataModel updateStatusPurchase(Integer purchaseId, Integer purchaseStatusId, int quantity, Integer purchaseDetailId) {
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
 		try {
 			PurchaseEntity purchaseEntity = purchaseRepository.findByPurchaseId(purchaseId);
+			PurchaseDetailEntity purchaseDetailEntity = purchaseDetailRepository.findByPurchaseDetailId(purchaseDetailId);
+			PurchaseStatusEntity purchaseStatusEntity = purchaseStatusRepository.findByPurchaseStatusId(purchaseStatusId);
 			if(purchaseEntity != null) {
-				PurchaseStatusEntity purchaseStatusEntity = purchaseStatusRepository.findByPurchaseStatusId(purchaseStatusId);
-				purchaseEntity.setPurchaseStatusEntity(purchaseStatusEntity);
+				purchaseEntity.setPurchaseStatusEntity(purchaseStatusEntity); // Update purchase status
 				purchaseRepository.saveAndFlush(purchaseEntity);
+				purchaseDetailEntity.setQuantity(quantity); // Update quantity product
+				purchaseDetailRepository.saveAndFlush(purchaseDetailEntity);
 				responseCode = Constants.RESULT_CD_SUCCESS;
 				responseMsg = "Cập nhật trạng thái hóa đơn thành công!";
 				log.warn(responseMsg);
