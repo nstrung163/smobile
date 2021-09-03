@@ -158,7 +158,9 @@
           </div>
           <div class="hotnew">
             <div class="experience-video">
-              <h2 class="experience-video-heading"><a href="/user/news"></a>Tin tức</a></h2>
+              <h2 class="experience-video-heading"><a href="/user/news">
+                <a>Tin tức</a>
+              </h2>
               <ul>
                 <li>
                   <a href="/user/news" class="experience-video--link">
@@ -812,6 +814,7 @@
     </footer>
     <div id="goto-top">↑</div>
     <script src="<c:url value='/plugins/jquery/jquery-3.5.1.min.js'/>"></script>
+    <script src="<c:url value='/plugins/jquery/jquery.validate.min.js'/>"></script>
 	<script src="<c:url value='/plugins/bootstrap/js/bootstrap.min.js'/>"></script>
 	<script src="<c:url value='/js/base.js'/>"></script>
 	<script src="<c:url value='/js/user/index.js'/>"></script>

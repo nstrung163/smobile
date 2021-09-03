@@ -76,7 +76,7 @@ body {
   width: 177px;
   height: 54px;
   background-position: -4px -2px;
-  background-image: url(/images/logo-login.PNG);
+  background-image: url('/images/logo-login.png');
   background-repeat: no-repeat;
   display: flex;
   margin: 0 auto;
