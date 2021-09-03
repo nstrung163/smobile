@@ -11,6 +11,9 @@ import com.smobile.model.ProductMemoryPriceModel;
 import com.smobile.model.ProductStatisticModel;
 import com.smobile.model.PurchaseModel;
 
+/**
+ * The ObjectToModel to convert from Object to Model
+ */
 public class ObjectToModel {
 
 	/**
